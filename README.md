@@ -54,13 +54,20 @@ Dự án được xây dựng theo chuẩn mực 3 tầng dữ liệu Medallion 
 
 ```text
 .
-├── De_Tai_7_Databricks_Notebook.ipynb  # File Jupyter Notebook trọn gói Code + Visualizations (Import trực tiếp vào Databricks)
-├── HUONG_DAN_DE_TAI_7.md               # Hướng dẫn chi tiết thực hiện Đề tài 7 theo chuẩn Rubric môn học
-├── tutorial_databricks.md              # Hướng dẫn chi tiết từ A-Z thao tác trên Databricks Community / Serverless Edition
-├── visualize_medallion_layers.md       # Mã nguồn vẽ biểu đồ trực quan hóa cho Bronze, Silver, Gold Layer & MLlib Model
-├── credit_risk_dataset.csv             # Bộ dữ liệu thực nghiệm rủi ro tín dụng (Kaggle)
-├── project.pdf                         # File quy định đề tài & Rubric chấm điểm của bộ môn
-└── README.md                           # File hướng dẫn & tổng quan dự án (File này)
+├── README.md                           # File hướng dẫn & tổng quan dự án (Duy nhất ở thư mục gốc)
+├── code/                               # Thư mục mã nguồn & Notebooks
+│   ├── Credit_Scoring_Analytics.py
+│   ├── Credit_Scoring_Visualization.py
+│   ├── De_Tai_7_Databricks_Notebook.ipynb
+│   └── credit_risk_dataset.csv
+├── requirements/                       # Thư mục yêu cầu & đánh giá Rubric
+│   ├── requirements.txt
+│   └── scoring.md
+└── tutorial/                           # Thư mục tài liệu hướng dẫn & công thức toán
+    ├── HUONG_DAN_DE_TAI_7.md
+    ├── probability_thresholds_and_formulas.md
+    ├── tutorial_databricks.md
+    └── project.pdf
 ```
 
 ---
