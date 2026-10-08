@@ -70,6 +70,7 @@ Dự án được xây dựng theo chuẩn mực 3 tầng dữ liệu Medallion 
 │   └── 06_TAI_LIEU_THAM_KHAO.md
 ├── latex/                              # Thư mục Báo cáo Tiểu luận biên dịch bằng LaTeX (.tex)
 │   ├── main.tex
+│   ├── README.md                       # Hướng dẫn 3 cách chuyển đổi LaTeX sang Microsoft Word (.docx)
 │   ├── 00_trang_bia.tex
 │   ├── 01_chuong_1_gioi_thieu.tex
 │   ├── 02_chuong_2_kien_truc.tex
