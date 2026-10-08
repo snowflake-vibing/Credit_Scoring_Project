@@ -60,6 +60,14 @@ Dự án được xây dựng theo chuẩn mực 3 tầng dữ liệu Medallion 
 │   ├── Credit_Scoring_Visualization.py
 │   ├── De_Tai_7_Databricks_Notebook.ipynb
 │   └── credit_risk_dataset.csv
+├── doc/                                # Thư mục Báo cáo Tiểu luận chi tiết từng Chương
+│   ├── 00_OUTLINE_VA_TRANG_BIA.md
+│   ├── 01_CHUONG_1_GIOI_THIEU.md
+│   ├── 02_CHUONG_2_KIEN_TRUC.md
+│   ├── 03_CHUONG_3_XU_LY_DU_LIEU.md
+│   ├── 04_CHUONG_4_MO_HINH_AI.md
+│   ├── 05_CHUONG_5_KHUYEN_NGHI.md
+│   └── 06_TAI_LIEU_THAM_KHAO.md
 ├── requirements/                       # Thư mục yêu cầu & đánh giá Rubric
 │   ├── requirements.txt
 │   └── scoring.md
