@@ -1,0 +1,71 @@
+\documentclass[12pt,a4paper]{report}
+
+% khai báo gói hỗ trợ tiếng Việt và định dạng trang
+\usepackage[utf8]{vietnam}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{booktabs,tabularx,multirow}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{hyperref}
+
+% Định dạng hiển thị mã nguồn PySpark / SQL
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{pysparkstyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=pysparkstyle}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Báo Cáo Tiểu Luận - Đề Tài 7 Credit Scoring},
+}
+
+\begin{document}
+
+% 00. Trang bìa & Mục lục
+\include{00_trang_bia}
+
+% 01. Chương 1
+\include{01_chuong_1_gioi_thieu}
+
+% 02. Chương 2
+\include{02_chuong_2_kien_truc}
+
+% 03. Chương 3
+\include{03_chuong_3_xu_ly_du_lieu}
+
+% 04. Chương 4
+\include{04_chuong_4_mo_hinh_ai}
+
+% 05. Chương 5
+\include{05_chuong_5_khuyen_nghi}
+
+% 06. Tài liệu tham khảo
+\include{06_tai_lieu_tham_khao}
+
+\end{document}

@@ -1,0 +1,80 @@
+\chapter{XỬ LÝ \& PHÂN TÍCH DỮ LIỆU LỚN VỚI PYSPARK VÀ SPARK SQL}
+
+\section{Thu thập \& Nạp dữ liệu thô (Bronze Layer Ingestion)}
+Thao tác nạp dữ liệu thô được thực hiện thông qua giao diện Catalog Explorer của Databricks Serverless, sau đó tạo bảng Delta Bronze bằng PySpark:
+
+\begin{lstlisting}[language=Python, caption={Mã nguồn nạp dữ liệu vào Bronze Delta Table}]
+from pyspark.sql import SparkSession
+
+# 1. Doc du lieu tu Managed Table
+df_raw = spark.table("workspace.default.credit_risk_dataset")
+
+# 2. Luu vao Bronze Delta Table
+df_raw.write.format("delta") \
+    .mode("overwrite") \
+    .saveAsTable("workspace.default.bronze_credit_data")
+
+print("-> Da ghi thanh cong du lieu tho vao Bronze Table: bronze_credit_data")
+\end{lstlisting}
+
+\section{Tiền xử lý \& Làm sạch dữ liệu phân tán (Silver Layer Cleaning)}
+Quy trình làm sạch dữ liệu giải quyết các vấn đề chất lượng dữ liệu:
+\begin{itemize}
+    \item \textbf{Xử lý giá trị bị thiếu (Missing Values Imputation):} điền thâm niên làm việc thiếu \texttt{person\_emp\_length = 0}, điền lãi suất thiếu \texttt{loan\_int\_rate = 11.0\%}, điền thâm niên tín dụng thiếu \texttt{cb\_person\_cred\_hist\_length = 1} năm.
+    \item \textbf{Lọc ngoại lai (Outliers Filtering):} giữ lại độ tuổi hợp lệ trong khoảng $[18, 80]$ và loại bỏ thu nhập $\le 0$.
+\end{itemize}
+
+\begin{lstlisting}[language=Python, caption={Mã nguồn làm sạch dữ liệu và ghi bảng Silver Delta Table}]
+from pyspark.sql.functions import col, when
+
+df_bronze = spark.table("workspace.default.bronze_credit_data")
+
+df_silver = df_bronze \
+    .filter((col("person_age") >= 18) & (col("person_age") <= 80)) \
+    .filter(col("person_income") > 0) \
+    .na.fill({
+        "person_emp_length": 0,
+        "loan_int_rate": 11.0,
+        "cb_person_cred_hist_length": 1
+    }) \
+    .withColumn("person_income", col("person_income").cast("double")) \
+    .withColumn("loan_amnt", col("loan_amnt").cast("double")) \
+    .withColumn("loan_status", col("loan_status").cast("integer"))
+
+df_silver.write.format("delta") \
+    .mode("overwrite") \
+    .saveAsTable("workspace.default.silver_credit_data")
+\end{lstlisting}
+
+\section{Phân tích khám phá \& Tính toán chỉ số KPIs kinh doanh (Spark SQL Analytics)}
+Sử dụng \textbf{Spark SQL} để truy vấn các chỉ số tài chính cốt lõi phục vụ báo cáo quản trị:
+
+\begin{lstlisting}[language=SQL, caption={Truy vấn Spark SQL thống kê tỷ lệ nợ xấu NPL \%}]
+SELECT 
+    loan_intent AS Muc_Dich_Vay,
+    COUNT(*) AS Tong_So_Khoan_Vay,
+    SUM(loan_status) AS So_Khoan_Vay_Vo_No,
+    ROUND(AVG(loan_status) * 100, 2) AS Ty_Le_Vo_No_Pct,
+    ROUND(AVG(loan_amnt), 0) AS Khoan_Vay_Trung_Binh,
+    ROUND(AVG(loan_int_rate), 2) AS Lai_Suat_Trung_Binh
+FROM workspace.default.silver_credit_data
+GROUP BY loan_intent
+ORDER BY Ty_Le_Vo_No_Pct DESC;
+\end{lstlisting}
+
+\section{Ứng dụng Window Functions tính chỉ số DTI \& Xếp hạng thu nhập}
+Ứng dụng hàm cửa sổ PySpark \texttt{Window.partitionBy().orderBy()} để phân tích chỉ số Debt-to-Income ($DTI = \frac{\text{Loan Amount}}{\text{Person Income}}$) và xếp hạng thu nhập khách hàng:
+
+\begin{lstlisting}[language=Python, caption={Ứng dụng Window Functions tính DTI và xếp hạng thu nhập}]
+from pyspark.sql.window import Window
+from pyspark.sql.functions import rank, round, col
+
+windowSpec = Window.partitionBy("loan_intent").orderBy(col("person_income").desc())
+
+df_kpi = df_silver \
+    .withColumn("income_rank", rank().over(windowSpec)) \
+    .withColumn("debt_to_income_ratio", round(col("loan_amnt") / col("person_income"), 4))
+
+display(df_kpi.select("person_age", "person_income", "loan_intent", "loan_amnt", "debt_to_income_ratio", "income_rank").limit(10))
+\end{lstlisting}
+\newpage

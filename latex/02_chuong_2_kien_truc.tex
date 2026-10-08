@@ -1,0 +1,57 @@
+\chapter{KIẾN TRÚC LUỒNG DỮ LIỆU LAKEHOUSE (MEDALLION ARCHITECTURE)}
+
+\section{Tổng quan Nền tảng Databricks Lakehouse \& Delta Lake}
+Hệ thống được thiết kế và triển khai trên nền tảng \textbf{Databricks Community / Serverless Cloud Edition}, kết hợp sức mạnh xử lý phân tán của \textbf{Apache Spark} và định dạng lưu trữ \textbf{Delta Lake}.
+
+Các ưu điểm vượt trội của Delta Lake trong dự án:
+\begin{enumerate}
+    \item \textbf{Đảm bảo tính toàn vẹn dữ liệu (ACID Transactions):} Đảm bảo các thao tác ghi/đọc dữ liệu lớn không bị xung đột hoặc hư hỏng file khi nhiều tiến trình chạy song song.
+    \item \textbf{Khả năng truy vết lịch sử (Time Travel / Versioning):} Cho phép kiểm tra lại trạng thái dữ liệu ở bất kỳ thời điểm nào trong quá khứ để phục vụ công tác kiểm toán tín dụng.
+    \item \textbf{Hiệu năng truy vấn vượt trội:} Tự động tối ưu hóa lưu trữ (Indexing, Data Skipping, Partitioning) giúp truy vấn PySpark và Spark SQL đạt tốc độ cao.
+\end{enumerate}
+
+\section{Chi tiết 3 tầng kiến trúc Medallion (Bronze -- Silver -- Gold)}
+Dữ liệu được tổ chức phân tầng chặt chẽ theo mô hình chuẩn \textbf{Medallion Architecture}:
+
+\begin{figure}[h!]
+\centering
+\begin{verbatim}
+[ Nguồn Dữ Liệu Thô: credit_risk_dataset.csv ]
+                       │
+                       ▼ (GUI Upload / Catalog Ingestion)
+[ TẦNG BRONZE: workspace.default.bronze_credit_data ]
+- Bảng Delta thô, lưu trữ nguyên bản cấu trúc ban đầu
+                       │
+                       ▼ (PySpark Cleaning & Data Preprocessing)
+[ TẦNG SILVER: workspace.default.silver_credit_data ]
+- Làm sạch missing values, lọc outliers, chuẩn hóa kiểu dữ liệu
+- Tính toán chỉ số KPIs & Phân tích khám phá (Spark SQL)
+                       │
+                       ▼ (Spark MLlib Pipeline & CrossValidation)
+[ TẦNG GOLD: workspace.default.gold_credit_scoring ]
+- Bảng kết quả dự báo (Prediction, Probability, Risk Score)
+- Phân tầng rủi ro & Chính sách phê duyệt vay tự động
+\end{verbatim}
+\caption{Kiến trúc luồng dữ liệu 3 tầng Medallion trên Delta Lake}
+\end{figure}
+
+\subsection{1. Tầng BRONZE (\texttt{workspace.default.bronze_credit_data})}
+Tiếp nhận và bảo toàn dữ liệu thô ban đầu ngay sau khi nạp từ hệ thống dưới dạng Delta Table. Nguyên tắc là không chỉnh sửa hay xóa bỏ bất kỳ bản ghi thô nào để phục vụ audit.
+
+\subsection{2. Tầng SILVER (\texttt{workspace.default.silver_credit_data})}
+Xử lý làm sạch và nâng cao chất lượng dữ liệu: điền giá trị thiếu (\texttt{.na.fill()}), lọc bỏ các bản ghi ngoại lai (outliers) phi thực tế (tuổi <18 hoặc >80, thu nhập <=0), ép kiểu dữ liệu chuẩn (Double, Integer).
+
+\subsection{3. Tầng GOLD (\texttt{workspace.default.gold_credit_scoring})}
+Lưu trữ kết quả đầu ra cao nhất từ mô hình Học máy phân tán \textbf{Spark MLlib} gồm nhãn dự báo \texttt{prediction}, xác suất vỡ nợ \texttt{probability}, phân tầng rủi ro \texttt{Risk\_Segment} và quyết định duyệt vay tự động \texttt{Credit\_Policy\_Decision}.
+
+\section{Sơ đồ luồng dữ liệu phân tán (Data Pipeline Architecture)}
+Luồng xử lý từ dữ liệu thô đến quyết định quản trị được tự động hóa 100\% trong Databricks Notebook:
+\begin{enumerate}
+    \item \textbf{Ingestion Layer:} Upload CSV vào Catalog $\rightarrow$ \texttt{workspace.default.credit\_risk\_dataset}.
+    \item \textbf{Bronze Transformation:} PySpark \texttt{spark.table()} $\rightarrow$ ghi bảng Delta \texttt{bronze\_credit\_data}.
+    \item \textbf{Silver Transformation:} PySpark Filter \& Imputer $\rightarrow$ ghi bảng Delta \texttt{silver\_credit\_data}.
+    \item \textbf{Spark SQL Analytics:} Truy vấn \texttt{\%sql} tính toán chỉ số NPL \%, DTI và Window Functions.
+    \item \textbf{Gold MLlib Execution:} Đóng gói MLlib Pipeline $\rightarrow$ huấn luyện với \texttt{CrossValidator} $\rightarrow$ ghi bảng Delta \texttt{gold\_credit\_scoring}.
+    \item \textbf{Dashboard \& Action:} Trực quan hóa biểu đồ và tự động xuất ma trận phê duyệt vay.
+\end{enumerate}
+\newpage
