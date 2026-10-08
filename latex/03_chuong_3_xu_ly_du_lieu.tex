@@ -1,7 +1,7 @@
 \chapter{XỬ LÝ \& PHÂN TÍCH DỮ LIỆU LỚN VỚI PYSPARK VÀ SPARK SQL}
 
 \section{Thu thập \& Nạp dữ liệu thô (Bronze Layer Ingestion)}
-Thao tác nạp dữ liệu thô được thực hiện thông qua giao diện Catalog Explorer của Databricks Serverless, sau đó tạo bảng Delta Bronze bằng PySpark:
+Thao tác nạp dữ liệu thô được thực hiện thông qua giao diện Catalog Explorer của Databricks Serverless \cite{databricks2026}, sau đó tạo bảng Delta Bronze bằng PySpark:
 
 \begin{lstlisting}[language=Python, caption={Mã nguồn nạp dữ liệu vào Bronze Delta Table}]
 from pyspark.sql import SparkSession
@@ -23,6 +23,15 @@ Quy trình làm sạch dữ liệu giải quyết các vấn đề chất lượ
     \item \textbf{Xử lý giá trị bị thiếu (Missing Values Imputation):} điền thâm niên làm việc thiếu \texttt{person\_emp\_length = 0}, điền lãi suất thiếu \texttt{loan\_int\_rate = 11.0\%}, điền thâm niên tín dụng thiếu \texttt{cb\_person\_cred\_hist\_length = 1} năm.
     \item \textbf{Lọc ngoại lai (Outliers Filtering):} giữ lại độ tuổi hợp lệ trong khoảng $[18, 80]$ và loại bỏ thu nhập $\le 0$.
 \end{itemize}
+
+% SƠ ĐỒ QUY TRÌNH TIỀN XỬ LÝ DỮ LIỆU
+\begin{figure}[h!]
+\centering
+% [GHI CHÚ DÀNH CHO NGHƯỜI DÙNG: CHÈN FILE SƠ ĐỒ TIỀN XỬ LÝ VÀO ĐÂY BẰNG LỆNH \includegraphics[width=0.85\textwidth]{so_do_tien_xu_ly.png}]
+\framebox[\textwidth][c]{\vspace{2.5cm} \textbf{[SƠ ĐỒ 3.1: QUY TRÌNH TIỀN XỬ LÝ VÀ LÀM SẠCH DỮ LIỆU VỚI PYSPARK]} \vspace{2.5cm}}
+\caption{Sơ đồ Quy trình Tiền xử lý và Làm sạch Dữ liệu Tín dụng Phân tán}
+\label{fig:sodo_preprocessing}
+\end{figure}
 
 \begin{lstlisting}[language=Python, caption={Mã nguồn làm sạch dữ liệu và ghi bảng Silver Delta Table}]
 from pyspark.sql.functions import col, when

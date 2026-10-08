@@ -1,11 +1,12 @@
 \chapter{PHÂN TÍCH Ý NGHĨA NGHIỆP VỤ \& ĐỀ XUẤT CHIẾN LƯỢC QUẢN TRỊ}
 
 \section{Phân tầng Rủi ro Tín dụng \& Ma trận Duyệt vay Tự động}
-Dựa trên xác suất vỡ nợ $p = P(\text{Default}=1 | X)$ do mô hình Gold Layer trả về, hệ thống phân chia hồ sơ thành \textbf{4 Phân tầng Rủi ro (Risk Segments)} và tự động hóa quy trình ra quyết định:
+Dựa trên xác suất vỡ nợ $p = P(\text{Default}=1 | X)$ do mô hình Gold Layer trả về, hệ thống phân chia hồ sơ thành \textbf{4 Phân tầng Rủi ro (Risk Segments)} theo chuẩn mực quản trị rủi ro Basel \cite{basel2017} và tự động hóa quy trình ra quyết định:
 
 \begin{table}[h!]
 \centering
 \caption{Ma trận Quyết định Phê duyệt Tín dụng Tự động}
+\label{tab:decision_matrix}
 \begin{tabularx}{\textwidth}{|l|c|X|c|}
 \hline
 \textbf{Phân tầng Rủi ro} & \textbf{Ngưỡng Xác suất ($p$)} & \textbf{Quyết định Duyệt Vay} & \textbf{Lãi suất đề xuất} \\ \hline
@@ -16,8 +17,17 @@ Dựa trên xác suất vỡ nợ $p = P(\text{Default}=1 | X)$ do mô hình Gol
 \end{tabularx}
 \end{table}
 
+% SƠ ĐỒ QUY TRÌNH PHÊ DUYỆT TÍN DỤNG TỰ ĐỘNG
+\begin{figure}[h!]
+\centering
+% [GHI CHÚ DÀNH CHO NGHƯỜI DÙNG: CHÈN SƠ ĐỒ QUY TRÌNH DUYỆT VAY VÀO ĐÂY BẰNG LỆNH \includegraphics[width=0.85\textwidth]{so_do_quy_trinh_duyet_vay.png}]
+\framebox[\textwidth][c]{\vspace{2.5cm} \textbf{[SƠ ĐỒ 5.1: QUY TRÌNH PHÊ DUYỆT TÍN DỤNG TỰ ĐỘNG VỚI MA TRẬN 4 PHÂN TẦNG]} \vspace{2.5cm}}
+\caption{Sơ đồ Quy trình Phê duyệt Tín dụng Tự động dựa trên xác suất dự báo $p$}
+\label{fig:sodo_decision_process}
+\end{figure}
+
 \section{Mô hình Định giá Lãi suất theo Rủi ro (Risk-Based Pricing)}
-Áp dụng nguyên lý bù đắp rủi ro tín dụng (Risk Premium):
+Áp dụng nguyên lý bù đắp rủi ro tín dụng (Risk Premium) \cite{arminger1997}:
 $$\text{Lãi suất vay đề xuất (\%)} = \text{Lãi suất cơ bản (8.5\%)} + (p \times 15\%)$$
 
 Khách hàng có xác suất nợ xấu $p = 5\%$ sẽ nhận mức lãi suất $9.25\%$/năm, trong khi khách hàng có $p = 25\%$ sẽ chịu mức lãi suất $12.25\%$/năm để bù đắp chi phí rủi ro cho ngân hàng.
@@ -25,7 +35,7 @@ Khách hàng có xác suất nợ xấu $p = 5\%$ sẽ nhận mức lãi suất 
 \section{Đánh giá tác động tài chính \& Lợi nhuận đầu tư (ROI)}
 \begin{enumerate}
     \item \textbf{Giảm thiểu tỷ lệ NPL:} loại bỏ hơn $80\%$ hồ sơ vỡ nợ tiềm ẩn ở nhóm Rủi ro Rất Cao, giảm tỷ lệ NPL tổng thể xuống dưới \textbf{$4.2\%$}.
-    \item \textbf{Tiết kiệm chi phí trích lập dự phòng:} giảm hàng chục tỷ đồng tiền trích lập dự phòng rủi ro hàng năm.
+    \item \textbf{Tiết kiệm chi phí trích lập dự phòng:} giảm hàng chục tỷ đồng tiền trích lập dự phòng rủi ro hàng năm theo tiêu chuẩn NHNN và Basel \cite{basel2017}.
     \item \textbf{Tăng tốc độ xử lý:} phê duyệt tự động cho $>65\%$ số lượng hồ sơ trong \textbf{<5 phút}.
 \end{enumerate}
 

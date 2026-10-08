@@ -1,6 +1,6 @@
 \documentclass[12pt,a4paper]{report}
 
-% khai báo gói hỗ trợ tiếng Việt và định dạng trang
+% khai báo các gói hỗ trợ tiếng Việt, trình bày đồ án và toán học
 \usepackage[utf8]{vietnam}
 \usepackage[margin=2.5cm]{geometry}
 \usepackage{graphicx}
@@ -9,6 +9,15 @@
 \usepackage{xcolor}
 \usepackage{listings}
 \usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{caption}
+
+% Cấu hình header & footer chuẩn Đồ án
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\small Đồ án Tiểu luận: Mô hình Chấm điểm Tín dụng}
+\lhead{\small SVTH: Lê Thành Hiệu -- GVHD: Trần Mạnh Tường}
+\cfoot{\thepage}
 
 % Định dạng hiển thị mã nguồn PySpark / SQL
 \definecolor{codegreen}{rgb}{0,0.6,0}
@@ -40,9 +49,10 @@
 \hypersetup{
     colorlinks=true,
     linkcolor=blue,
+    citecolor=red,
     filecolor=magenta,      
     urlcolor=cyan,
-    pdftitle={Báo Cáo Tiểu Luận - Đề Tài 7 Credit Scoring},
+    pdftitle={Đồ án Tiểu luận - Lê Thành Hiệu - GVHD Trần Mạnh Tường},
 }
 
 \begin{document}

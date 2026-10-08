@@ -1,21 +1,21 @@
 \chapter{TỔNG QUAN VỀ BÀI TOÁN \& ĐẶT VẤN ĐỀ}
 
 \section{Bối cảnh ngành Tài chính - Ngân hàng \& FinTech}
-Trong kỷ nguyên số hóa, tài chính tiêu dùng và cho vay tín chấp đóng vai trò đòn bẩy quan trọng giúp thúc đẩy tiêu dùng và tăng trưởng kinh tế. Tuy nhiên, hoạt động cấp tín dụng luôn gắn liền với \textbf{rủi ro vỡ nợ (Loan Default Risk)}. Khi khách hàng không hoàn trả khoản vay đúng hạn, tổ chức tài chính phải chịu tổn thất vốn trực tiếp và gia tăng tỷ lệ nợ xấu (Non-Performing Loan -- NPL).
+Trong kỷ nguyên số hóa, tài chính tiêu dùng và cho vay tín chấp đóng vai trò đòn bẩy quan trọng giúp thúc đẩy tiêu dùng và tăng trưởng kinh tế \cite{arminger1997}. Tuy nhiên, hoạt động cấp tín dụng luôn gắn liền với \textbf{rủi ro vỡ nợ (Loan Default Risk)}. Khi khách hàng không hoàn trả khoản vay đúng hạn, tổ chức tài chính phải chịu tổn thất vốn trực tiếp và gia tăng tỷ lệ nợ xấu (Non-Performing Loan -- NPL) theo quy định của Hiệp ước Basel \cite{basel2017}.
 
 Quy trình thẩm định tín dụng truyền thống phụ thuộc nhiều vào đánh giá thủ công của cán bộ tín dụng, dẫn đến các hạn chế lớn:
 \begin{itemize}
     \item \textbf{Thời gian xử lý kéo dài:} Thường mất từ 1 đến 3 ngày làm việc để phê duyệt một hồ sơ.
     \item \textbf{Tính cảm quan cao:} Khó đảm bảo tính nhất quán và khách quan giữa các cán bộ thẩm định.
-    \item \textbf{Chi phí vận hành đắt đỏ:} Khó mở rộng quy mô (Scale-up) khi số lượng hồ sơ vay đăng ký trực tuyến gia tăng hàng ngàn lượt mỗi ngày.
-\end{itemize}
+    \item \textbf{Chi phí vận hành đắt đỏ:} Khó mở rộng quy mô (Scale-up) khi số lượng hồ sơ vay đăng ký trực tuyến gia tăng hàng ngàn lượt mỗi ngày \cite{uwais2021}.
+\end{itemize">
 
 Do đó, việc ứng dụng \textbf{Dữ liệu lớn (Big Data)} và \textbf{Trí tuệ nhân tạo (AI/Machine Learning)} vào quy trình Chấm điểm tín dụng (Credit Scoring) là yêu cầu tất yếu để tự động hóa 100\% khâu duyệt vay, giảm thiểu chi phí vận hành và kiểm soát nợ xấu.
 
 \section{Tính cấp thiết của đề tài \& Mục tiêu tự động hóa}
-Đề tài \textbf{"Mô Hình Chấm Điểm Tín Dụng Và Thẩm Định Rủi Ro Vỡ Nợ"} giải quyết bài toán cốt lõi của các ngân hàng và công ty FinTech hiện đại: \textit{Làm thế nào để phân loại chính xác hồ sơ có nguy cơ vỡ nợ trước khi quyết định giải ngân?}
+Đồ án \textbf{"Mô Hình Chấm Điểm Tín Dụng Và Thẩm Định Rủi Ro Vỡ Nợ"} do sinh viên \textbf{Lê Thành Hiệu} thực hiện dưới sự hướng dẫn của thầy \textbf{Trần Mạnh Tường} giải quyết bài toán cốt lõi của các ngân hàng và công ty FinTech hiện đại: \textit{Làm thế nào để phân loại chính xác hồ sơ có nguy cơ vỡ nợ trước khi quyết định giải ngân?}
 
-Mục tiêu cụ thể của dự án bao gồm:
+Mục tiêu cụ thể của đồ án bao gồm:
 \begin{enumerate}
     \item \textbf{Tự động hóa phê duyệt tín dụng 100\%:} Xây dựng luồng xử lý và dự báo phân tán với Apache Spark trên nền tảng Databricks.
     \item \textbf{Kiểm soát \& Giảm tỷ lệ NPL:} Loại bỏ trên 80\% rủi ro nợ xấu nhóm rủi ro cao, giảm tỷ lệ NPL tổng thể xuống dưới 5\%.
@@ -26,10 +26,11 @@ Mục tiêu cụ thể của dự án bao gồm:
 \begin{table}[h!]
 \centering
 \caption{Phân tích mô hình 5Vs Big Data cho Đề tài 7}
+\label{tab:5vs_analysis}
 \begin{tabularx}{\textwidth}{|l|X|}
 \hline
-\textbf{Đặc tính Big Data} & \textbf{Biểu hiện cụ thể trong Đề tài 7} \\ \hline
-\textbf{Volume (Dung lượng)} & Xử lý hàng chục nghàn đến hàng triệu bản ghi giao dịch lịch sử và thông tin vay từ hệ thống Core Banking / CRM. \\ \hline
+\textbf{Đặc tính Big Data} & \textbf{Biểu hiện cụ thể trong Đồ án} \\ \hline
+\textbf{Volume (Dung lượng)} & Xử lý hàng chục nghàn đến hàng triệu bản ghi giao dịch lịch sử và thông tin vay từ hệ thống Core Banking / CRM \cite{uwais2021}. \\ \hline
 \textbf{Velocity (Tốc độ)} & Phê duyệt khoản vay tức thì trong \textbf{< 5 phút} ngay khi khách hàng nộp hồ sơ trên ứng dụng Mobile Banking. \\ \hline
 \textbf{Variety (Đa dạng)} & Kết hợp dữ liệu nhân khẩu học (tuổi, học vấn), dữ liệu tài chính (thu nhập, dư nợ) và lịch sử tín dụng (chậm trả, thâm niên). \\ \hline
 \textbf{Veracity (Độ tin cậy)} & Tiền xử lý và làm sạch triệt để các giá trị thiếu (missing values), dữ liệu nhiễu và ngoại lai phi thực tế. \\ \hline
@@ -37,8 +38,17 @@ Mục tiêu cụ thể của dự án bao gồm:
 \end{tabularx}
 \end{table}
 
+% SƠ ĐỒ MÔ HÌNH 5VS BIG DATA
+\begin{figure}[h!]
+\centering
+% [GHI CHÚ DÀNH CHO NGHƯỜI DÙNG: BẠN CÓ THỂ CHÈN FILE HÌNH ẢNH SƠ ĐỒ VÀO ĐÂY BẰNG CÁCH THAY ĐƯỜNG DẪN ẢNH VÀO LỆNH \includegraphics[width=0.85\textwidth]{duong_dan_anh.png}]
+\framebox[\textwidth][c]{\vspace{2.5cm} \textbf{[SƠ ĐỒ 1.1: MÔ HÌNH 5VS BIG DATA TRONG CHẤM ĐIỂM TÍN DỤNG]} \vspace{2.5cm}}
+\caption{Sơ đồ mô hình 5Vs Big Data áp dụng trong Hệ thống Chấm điểm Tín dụng}
+\label{fig:sodo_5vs}
+\end{figure}
+
 \section{Bộ dữ liệu nghiên cứu \& Phạm vi đề tài}
-Dự án sử dụng bộ dữ liệu thực nghiệm \textbf{Credit Risk Dataset} (Kaggle) bao gồm 32,581 bản ghi với 12 thuộc tính quan trọng:
+Dự án sử dụng bộ dữ liệu thực nghiệm \textbf{Credit Risk Dataset} (Kaggle \cite{kaggle2026}) bao gồm 32,581 bản ghi với 12 thuộc tính quan trọng:
 \begin{itemize}
     \item \texttt{person\_age}: Tuổi khách hàng.
     \item \texttt{person\_income}: Thu nhập hàng năm.

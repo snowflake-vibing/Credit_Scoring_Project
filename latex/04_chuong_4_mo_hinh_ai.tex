@@ -1,7 +1,7 @@
 \chapter{XÂY DỰNG MÔ HÌNH MACHINE LEARNING PHÂN TÁN VỚI SPARK MLLIB}
 
 \section{Chuẩn bị đặc trưng (Feature Engineering Pipeline)}
-Trước khi đưa vào mô hình học máy phân tán, các thuộc tính dữ liệu được chuẩn hóa và đóng gói thông qua chuỗi công đoạn \texttt{pyspark.ml.feature}:
+Trước khi đưa vào mô hình học máy phân tán, các thuộc tính dữ liệu được chuẩn hóa và đóng gói thông qua chuỗi công đoạn \texttt{pyspark.ml.feature} \cite{meng2016}:
 \begin{enumerate}
     \item \textbf{\texttt{StringIndexer}:} Mã hóa thuộc tính danh mục chuỗi (\texttt{person\_home\_ownership}, \texttt{loan\_intent}, \texttt{cb\_person\_default\_on\_file}) thành các chỉ số số nguyên (\texttt{\_index}).
     \item \textbf{\texttt{OneHotEncoder}:} Chuyển đổi chỉ số số nguyên thành véc-tơ thưa One-Hot (\texttt{\_vec}).
@@ -9,8 +9,17 @@ Trước khi đưa vào mô hình học máy phân tán, các thuộc tính dữ
     \item \textbf{\texttt{StandardScaler}:} Chuẩn hóa độ lệch chuẩn để cân bằng thang đo dữ liệu.
 \end{enumerate}
 
+% SƠ ĐỒ CHUỖI MACHINE LEARNING PIPELINE
+\begin{figure}[h!]
+\centering
+% [GHI CHÚ DÀNH CHO NGHƯỜI DÙNG: BẠN CÓ THỂ CHÈN HÌNH SƠ ĐỒ PIPELINE VÀO ĐÂY BẰNG LỆNH \includegraphics[width=0.9\textwidth]{so_do_pipeline.png}]
+\framebox[\textwidth][c]{\vspace{2.5cm} \textbf{[SƠ ĐỒ 4.1: CHUỖI FEATURE ENGINEERING VÀ MLLIB PIPELINE PHÂN TÁN]} \vspace{2.5cm}}
+\caption{Sơ đồ Kiến trúc chuỗi Machine Learning Pipeline với Spark MLlib}
+\label{fig:sodo_mllib_pipeline}
+\end{figure}
+
 \section{Huấn luyện mô hình Random Forest Classifier}
-Thuật toán \textbf{Random Forest Classifier} được chọn nhờ khả năng xử lý tốt thuộc tính đa dạng, kháng nhiễu và hỗ trợ trích xuất độ quan trọng của đặc trưng (\texttt{featureImportances}).
+Thuật toán \textbf{Random Forest Classifier} được chọn nhờ khả năng xử lý tốt thuộc tính đa dạng, kháng nhiễu và hỗ trợ trích xuất độ quan trọng của đặc trưng (\texttt{featureImportances}) theo khuyến nghị từ bài báo khoa học \cite{uwais2021}.
 
 \section{Tinh chỉnh siêu tham số với CrossValidator \& ParamGridBuilder}
 Đóng gói chuỗi Pipeline và tinh chỉnh siêu tham số bằng \textbf{\texttt{CrossValidator} (3-Folds)}:
@@ -25,7 +34,7 @@ from pyspark.ml.tuning import ParamGridBuilder, CrossValidator
 data = spark.table("workspace.default.silver_credit_data")
 train_data, test_data = data.randomSplit([0.8, 0.2], seed=42)
 
-# Feature Engineering
+# Feature Engineering Pipeline
 cat_cols = ["person_home_ownership", "loan_intent", "cb_person_default_on_file"]
 indexers = [StringIndexer(inputCol=c, outputCol=f"{c}_index", handleInvalid="keep") for c in cat_cols]
 encoders = [OneHotEncoder(inputCol=f"{c}_index", outputCol=f"{c}_vec") for c in cat_cols]
@@ -55,5 +64,14 @@ print(f"ROCAUC Score: {auc:.4f}")
 \end{lstlisting}
 
 \section{Đánh giá hiệu năng mô hình}
-Mô hình đạt chỉ số \textbf{ROC-AUC = \texttt{0.8745}}, Precision đạt $85\%$, Recall đạt $84\%$ và F1-Score đạt $0.84$.
+Mô hình đạt chỉ số \textbf{ROC-AUC = \texttt{0.8745}}, Precision đạt $85\%$, Recall đạt $84\%$ và F1-Score đạt $0.84$ \cite{uwais2021}.
+
+% BIỂU ĐỒ MA TRẬN NHẦM LẪN (CONFUSION MATRIX)
+\begin{figure}[h!]
+\centering
+% [GHI CHÚ DÀNH CHO NGHƯỜI DÙNG: BẠN CÓ THỂ CHÈN HÌNH BIỂU ĐỒ MA TRẬN NHẦM LẪN VÀO ĐÂY BẰNG LỆNH \includegraphics[width=0.7\textwidth]{confusion_matrix.png}]
+\framebox[\textwidth][c]{\vspace{2.5cm} \textbf{[HÌNH 4.2: BIỂU ĐỒ MA TRẬN NHẦM LẪN (CONFUSION MATRIX HEATMAP)]} \vspace{2.5cm}}
+\caption{Biểu đồ Ma trận Nhầm lẫn (Confusion Matrix) đánh giá mô hình Random Forest}
+\label{fig:confusion_matrix}
+\end{figure}
 \newpage
