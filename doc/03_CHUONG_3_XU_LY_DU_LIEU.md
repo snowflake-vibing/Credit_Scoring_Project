@@ -18,16 +18,16 @@ Sau khi dữ liệu thô được bảo toàn tại Tầng Bronze, hệ thống 
 
 ### 3.2.1. Phân tích và Xử lý Giá trị Khuyết thiếu (Missing Value Imputation)
 Khảo sát thực nghiệm trên bộ dữ liệu thô cho thấy sự xuất hiện của các giá trị khuyết thiếu (`NULL`) tại các thuộc tính quan trọng:
-- **Thâm niên công tác (`person_emp_length`):** Có 895 bản ghi bị thiếu thông tin thâm niên làm việc (chiếm khoảng $2.75\%$ tổng số quan sát). Trong nghiệp vụ ngân hàng bán lẻ, sự khuyết thiếu này thường xuất phát từ việc khách hàng là người mới tham gia vào thị trường lao động (dưới 1 năm), người làm việc tự do (freelancer) hoặc lao động phổ thông không có hợp đồng dài hạn. Do đó, áp dụng chiến lược điền giá trị thiếu bằng **$0.0$ năm** (giả định thận trọng rằng khách hàng mới bắt đầu công việc hiện tại) là giải pháp hoàn toàn phù hợp về mặt logic kinh tế và nguyên tắc quản trị rủi ro thận trọng của ngân hàng.
-- **Lãi suất của khoản vay (`loan_int_rate`):** Có 3,116 bản ghi bị khuyết mức lãi suất (chiếm khoảng $9.56\%$ tổng số quan sát). Do lãi suất là một biến số tài chính có độ lệch phân phối nhất định, việc sử dụng giá trị trung bình cộng (Mean) dễ bị bóp méo bởi các giá trị quá cao hoặc quá thấp. Vì vậy, hệ thống áp dụng kỹ thuật điền khuyết thiếu bằng **giá trị trung vị của thị trường (Median Imputation)** là **$11.0\%$**. Mức $11.0\%$ phản ánh chính xác điểm cân bằng lãi suất của phân khúc cho vay tiêu dùng tín chấp tại thời điểm thu thập dữ liệu.
+- **Thâm niên công tác (`person_emp_length`):** Có 895 bản ghi bị thiếu thông tin thâm niên làm việc (chiếm khoảng 2.75% tổng số quan sát). Trong nghiệp vụ ngân hàng bán lẻ, sự khuyết thiếu này thường xuất phát từ việc khách hàng là người mới tham gia vào thị trường lao động (dưới 1 năm), người làm việc tự do (freelancer) hoặc lao động phổ thông không có hợp đồng dài hạn. Do đó, áp dụng chiến lược điền giá trị thiếu bằng **$0.0$ năm** (giả định thận trọng rằng khách hàng mới bắt đầu công việc hiện tại) là giải pháp hoàn toàn phù hợp về mặt logic kinh tế và nguyên tắc quản trị rủi ro thận trọng của ngân hàng.
+- **Lãi suất của khoản vay (`loan_int_rate`):** Có 3,116 bản ghi bị khuyết mức lãi suất (chiếm khoảng 9.56% tổng số quan sát). Do lãi suất là một biến số tài chính có độ lệch phân phối nhất định, việc sử dụng giá trị trung bình cộng (Mean) dễ bị bóp méo bởi các giá trị quá cao hoặc quá thấp. Vì vậy, hệ thống áp dụng kỹ thuật điền khuyết thiếu bằng **giá trị trung vị của thị trường (Median Imputation)** là **11.0%**. Mức 11.0% phản ánh chính xác điểm cân bằng lãi suất của phân khúc cho vay tiêu dùng tín chấp tại thời điểm thu thập dữ liệu.
 - **Lịch sử tín dụng cá nhân (`cb_person_cred_hist_length`):** Đối với các hồ sơ không ghi nhận thâm niên lịch sử tín dụng, hệ thống điền giá trị cơ sở là **$1$ năm** (phản ánh khách hàng là người mới bắt đầu phát sinh quan hệ tín dụng lần đầu tại Trung tâm CIC).
 
 ### 3.2.2. Nhận diện và Xử lý Giá trị Ngoại lai (Outlier Treatment)
 Các giá trị ngoại lai do lỗi nhập liệu của người dùng hoặc sai sót hệ thống có thể tạo ra các độ dốc giả mạo trong quá trình tối ưu hóa hàm mất mát của mô hình học máy:
 - **Lọc giới hạn độ tuổi (`person_age`):** Trong bộ dữ liệu thô, xuất hiện một số bản ghi có độ tuổi phi lý (ví dụ: tuổi $> 100$ hoặc tuổi $< 18$). Căn cứ theo quy định của Bộ luật Lao động và Thông tư của Ngân hàng Nhà nước về điều kiện cấp tín dụng cá nhân, khách hàng vay vốn phải là công dân trong độ tuổi lao động hợp pháp. Hệ thống thiết lập điều kiện lọc nghiêm ngặt:
-  $$18 \le \text{person\_age} \le 80$$
+  $$18 \le \text{Age} \le 80$$
 - **Lọc giá trị thu nhập (`person_income`):** Thu nhập là nguồn hoàn trả nợ gốc và lãi duy nhất của khoản vay tín chấp. Các bản ghi có thu nhập bằng $0$ hoặc giá trị âm là các lỗi nhập liệu phi lý, do đó bị loại bỏ hoàn toàn:
-  $$\text{person\_income} > 0$$
+  $$\text{Income} > 0$$
 
 ### 3.2.3. Chuẩn hóa Kiểu Dữ liệu Phân tán (Data Type Casting)
 Để tối ưu hóa dung lượng bộ nhớ RAM trên các worker node của cụm Spark và ngăn chặn các lỗi tính toán số học, các trường dữ liệu số được ép kiểu tường minh sang định dạng số thực chính xác kép (`DoubleType`) đối với thu nhập, khoản vay, lãi suất; và số nguyên (`IntegerType`) đối với độ tuổi, thâm niên tín dụng và nhãn mục tiêu `loan_status`.
@@ -39,7 +39,7 @@ Các giá trị ngoại lai do lỗi nhập liệu của người dùng hoặc s
 | `person_age` | Tồn tại ngoại lai phi lý ($>100$ tuổi, $<18$ tuổi) | Lọc bỏ: Giữ lại $18 \le \text{Age} \le 80$ | Tuân thủ độ tuổi lao động và năng lực hành vi dân sự theo luật định. |
 | `person_income` | Tồn tại giá trị âm và bằng $0$ | Lọc bỏ: Giữ lại $\text{Income} > 0$ | Đảm bảo tính khả thi của nguồn tài chính hoàn trả nợ. |
 | `person_emp_length` | Khuyết thiếu 895 bản ghi (2.75%) | Điền giá trị khuyết thiếu: $0.0$ năm | Giả định thận trọng cho lao động mới tham gia thị trường. |
-| `loan_int_rate` | Khuyết thiếu 3,116 bản ghi (9.56%) | Điền trung vị thị trường: $11.0\%$ | Tránh làm sai lệch phân phối lãi suất thực tế. |
+| `loan_int_rate` | Khuyết thiếu 3,116 bản ghi (9.56%) | Điền trung vị thị trường: 11.0% | Tránh làm sai lệch phân phối lãi suất thực tế. |
 | `cb_person_cred_hist_length` | Khuyết thiếu một số bản ghi | Điền giá trị cơ sở: $1$ năm | Khách hàng mới bắt đầu phát sinh lịch sử tín dụng CIC. |
 | Kiểu dữ liệu | Một số cột định dạng chuỗi tự do | Ép kiểu `DoubleType` và `IntegerType` | Tối ưu hóa tính toán trong bộ nhớ Spark. |
 
@@ -55,9 +55,9 @@ $$DTI = \frac{\text{Loan Amount}}{\text{Person Income}}$$
 
 - **Ý nghĩa kinh tế:** Phản ánh tỷ lệ phần trăm thu nhập năm mà người vay phải dành ra để trả nợ. 
 - **Ngưỡng rủi ro theo chuẩn mực ngân hàng:**
-  - $DTI \le 0.20$ ($20\%$): Khoản vay an toàn, áp lực trả nợ thấp.
-  - $0.20 < DTI \le 0.35$ ($20\% - 35\%$): Mức trung bình chấp nhận được.
-  - $DTI > 0.35$ ($> 35\%$): Mức đòn bẩy nguy hiểm. Kết quả phân tích thực nghiệm chỉ ra rằng khách hàng có $DTI > 0.35$ có nguy cơ vỡ nợ cao gấp **3.2 lần** so với nhóm an toàn.
+  - $DTI \le 0.20$ (20%): Khoản vay an toàn, áp lực trả nợ thấp.
+  - $0.20 < DTI \le 0.35$ (20% - 35%): Mức trung bình chấp nhận được.
+  - $DTI > 0.35$ (> 35%): Mức đòn bẩy nguy hiểm. Kết quả phân tích thực nghiệm chỉ ra rằng khách hàng có $DTI > 0.35$ có nguy cơ vỡ nợ cao gấp **3.2 lần** so với nhóm an toàn.
 
 ### 3.3.2. Chỉ số Gánh nặng Tín dụng có Trọng số Thâm niên (Credit Burden Index - CBI)
 Nhằm kết hợp đồng thời cả 4 yếu tố: Quy mô khoản vay, Lãi suất, Thu nhập và Độ ổn định nghề nghiệp, nghiên cứu đề xuất chỉ số tổng hợp $CBI$:
@@ -86,8 +86,8 @@ Thực hiện truy vấn gom nhóm (`GROUP BY loan_intent`) và tính toán tỷ
 | **Venture** *(Khởi nghiệp / Kinh doanh)* | 5,719 | 842 | **14.72%** | 10,400 | 10.80% | **Thấp nhất / Rất an toàn** |
 
 **Nhận định kinh tế học:**
-- **Mục đích Vay Y tế (Medical) và Đảo nợ (Debt Consolidation)** có tỷ lệ nợ xấu cao đột biến ($26.70\%$ và $28.49\%$). Về mặt kinh tế hành vi, chi phí y tế phát sinh bất ngờ do bệnh tật khiến dòng tiền của người vay bị suy kiệt, trong khi việc vay để đảo nợ là dấu hiệu rõ ràng của việc người vay đã rơi vào "bẫy nợ" (Debt Spiral) từ các tổ chức tín dụng khác.
-- Ngược lại, **Mục đích Kinh doanh (Venture) và Giáo dục (Education)** có tỷ lệ vỡ nợ thấp nhất ($14.72\%$ và $17.20\%$) do dòng vốn vay được đưa vào các hoạt động có khả năng tạo ra giá trị gia tăng hoặc nâng cao thu nhập tương lai của người học.
+- **Mục đích Vay Y tế (Medical) và Đảo nợ (Debt Consolidation)** có tỷ lệ nợ xấu cao đột biến (26.70% và 28.49%). Về mặt kinh tế hành vi, chi phí y tế phát sinh bất ngờ do bệnh tật khiến dòng tiền của người vay bị suy kiệt, trong khi việc vay để đảo nợ là dấu hiệu rõ ràng của việc người vay đã rơi vào "bẫy nợ" (Debt Spiral) từ các tổ chức tín dụng khác.
+- Ngược lại, **Mục đích Kinh doanh (Venture) và Giáo dục (Education)** có tỷ lệ vỡ nợ thấp nhất (14.72% và 17.20%) do dòng vốn vay được đưa vào các hoạt động có khả năng tạo ra giá trị gia tăng hoặc nâng cao thu nhập tương lai của người học.
 
 ### 3.4.2. Mối tương quan giữa Hạng Khoản Vay (Loan Grade) và Tình trạng Nhà ở (Home Ownership)
 Phân tích chéo ma trận hai chiều giữa xếp hạng nội bộ sơ bộ và quyền sở hữu bất động sản:
@@ -113,13 +113,13 @@ Trong môi trường điện toán phân tán của Apache Spark, các hàm cử
 
 ### 3.5.1. Cơ chế Hoạt động của Window Functions trên Spark SQL
 Hệ thống thiết lập một khung cửa sổ phân vùng theo Mục đích vay (`loan_intent`) và sắp xếp thu nhập giảm dần:
-$$\text{Window Specification} = \text{PARTITION BY}(\text{loan\_intent}) \quad \text{ORDER BY}(\text{person\_income} \quad \text{DESC})$$
+$$\text{Window Specification} = \text{PARTITION BY}(\text{Loan Intent}) \quad \text{ORDER BY}(\text{Income} \quad \text{DESC})$$
 
 - Hàm xếp hạng `DENSE_RANK()` được tính toán song song trên từng phân vùng dữ liệu để xác định **Xếp hạng Thu nhập Nội bộ (Income Rank)** của mỗi khách hàng so với các đối thủ cùng phân khúc mục đích vay.
 
 ### 3.5.2. Đánh giá Vị thế Thu nhập và Rủi ro Tương đối
 Việc phân tích thu nhập tuyệt đối đôi khi không phản ánh hết tính khả thi của khoản vay nếu không đặt trong bối cảnh phân khúc mục đích vay:
-- Một khách hàng có thu nhập $40,000$ USD xin vay để tiêu dùng cá nhân (`PERSONAL`) có thể nằm trong top $20\%$ thu nhập cao nhất của nhóm đó $\rightarrow$ Khoản vay có tính an toàn cao.
-- Nhưng cũng với mức thu nhập $40,000$ USD đó, nếu xin vay để đầu tư kinh doanh mạo hiểm (`VENTURE`), khách hàng này lại nằm ở nhóm $20\%$ thu nhập thấp nhất của phân khúc $\rightarrow$ Năng lực chịu đựng rủi ro thua lỗ rất kém, nguy cơ mất khả năng thanh toán tăng cao.
+- Một khách hàng có thu nhập $40,000$ USD xin vay để tiêu dùng cá nhân (`PERSONAL`) có thể nằm trong top 20% thu nhập cao nhất của nhóm đó $\rightarrow$ Khoản vay có tính an toàn cao.
+- Nhưng cũng với mức thu nhập $40,000$ USD đó, nếu xin vay để đầu tư kinh doanh mạo hiểm (`VENTURE`), khách hàng này lại nằm ở nhóm 20% thu nhập thấp nhất của phân khúc $\rightarrow$ Năng lực chịu đựng rủi ro thua lỗ rất kém, nguy cơ mất khả năng thanh toán tăng cao.
 
 Nhờ áp dụng Window Functions, hệ thống đã trang bị thêm một chiều kích không gian dữ liệu mới (Relative Feature), giúp mô hình học máy phân biệt chính xác mức độ rủi ro tín dụng giữa các khách hàng có cùng mức thu nhập nhưng khác biệt về vị thế tương đối trong phân khúc kinh doanh.

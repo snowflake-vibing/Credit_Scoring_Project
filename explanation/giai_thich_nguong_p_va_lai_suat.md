@@ -68,7 +68,8 @@ $$\frac{C_{FP}}{C_{FN}} \approx \frac{0.70}{0.05} \approx 14$$
 
 Theo Lý thuyết Quyết định Bayes (Bayesian Decision Theory), ngưỡng ranh giới từ chối triệt để $p_{\text{reject}}$ được xác định khi tổn thất kỳ vọng của việc cho vay vượt quá tổn thất của việc từ chối:
 $$p \times C_{FP} > (1 - p) \times C_{FN}$$
-$$\Rightarrow p_{\text{reject}} = \frac{C_{FN}}{C_{FP} + C_{FN}} \approx \frac{0.05}{0.70 + 0.05} \approx 0.0667 \text{ (khoảng 6.7%)}$$
+$$\Rightarrow p_{\text{reject}} = \frac{C_{FN}}{C_{FP} + C_{FN}} \approx \frac{0.05}{0.70 + 0.05} \approx 0.0667$$
+*(tương đương khoảng 6.7%)*
 
 Tuy nhiên, vì ngân hàng có công cụ **bù đắp lãi suất rủi ro (Risk-Based Pricing)**, mức chịu đựng tối đa cho phép đẩy lên:
 * Khi **$p \ge 0.60$ (60%)**: Xác suất khách hàng không trả nợ là **đa số (> 60%)**. Cho dù ngân hàng có đẩy lãi suất lên cao bao nhiêu thì tiền lãi thu được từ 40% số người còn lại cũng **không thể bù đắp nổi 60% vốn gốc bị mất**. Vì vậy, tại mốc **$p \ge 0.60$**, bắt buộc phải **Từ chối cho vay (Auto-Reject)** để bảo toàn vốn.

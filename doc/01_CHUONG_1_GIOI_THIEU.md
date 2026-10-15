@@ -38,7 +38,7 @@ Nhằm giải quyết triệt để các hạn chế của quy trình truyền t
 4. **Xây dựng Động cơ Ra quyết định (Decision Engine) và Khung định giá theo rủi ro:** 
    - Chuẩn hóa xác suất vỡ nợ thành thang điểm FICO tiêu chuẩn ($300 - 850$).
    - Thiết lập ma trận phân tầng 4 nhóm rủi ro tín dụng dựa trên tối ưu hóa thống kê (Youden's J Statistic), phân tích tổn thất bất đối xứng và chuẩn mực an toàn vốn Basel II/III.
-   - Xây dựng mô hình định giá lãi suất theo rủi ro (Risk-Based Pricing Model) với các mức lãi suất $8.5\%$, $11.5\%$, $14.5\%$ tương ứng với từng phân khúc rủi ro.
+   - Xây dựng mô hình định giá lãi suất theo rủi ro (Risk-Based Pricing Model) với các mức lãi suất 8.5%, 11.5%, 14.5% tương ứng với từng phân khúc rủi ro.
 5. **Đánh giá hiệu quả kinh tế và đề xuất chiến lược quản trị:** Định lượng tác động tài chính của mô hình đối với việc giảm thiểu tỷ lệ nợ xấu NPL, cắt giảm chi phí dự phòng rủi ro và nâng cao năng lực cạnh tranh số của định chế tài chính.
 
 ---
@@ -86,9 +86,10 @@ Bộ dữ liệu gồm **12 thuộc tính**, bao gồm 11 biến giải thích (
 
 ### 1.5.3. Tỷ lệ nợ xấu nền (Baseline Default Rate)
 Trong tổng số 32,581 quan sát thực nghiệm, có 7,108 khoản vay bị vỡ nợ (`loan_status = 1`) và 25,473 khoản vay hoàn trả đúng hạn (`loan_status = 0`). Như vậy, tỷ lệ nợ xấu nền của bộ dữ liệu là:
-$$\text{Tỷ lệ Nợ xấu Nền} = \frac{7,108}{32,581} \times 100\% \approx 21.82\%$$
+$$\text{Baseline Default Rate} = \frac{7,108}{32,581} \approx 0.2182$$
+*(tương đương 21.82%)*
 
-Tỷ lệ này phản ánh đúng bối cảnh thực tế của thị trường cho vay tiêu dùng tín chấp (unsecured retail loans), nơi tỷ lệ rủi ro dao động quanh mức $15\% - 25\%$. Sự mất cân bằng dữ liệu ở mức vừa phải (tỷ lệ xấp xỉ 1:4 giữa nhóm nợ xấu và nhóm trả đúng hạn) đòi hỏi việc lựa chọn độ đo đánh giá mô hình phải dựa trên **ROC-AUC, Precision, Recall** thay vì độ chính xác tổng thể (Accuracy) thuần túy [15].
+Tỷ lệ này phản ánh đúng bối cảnh thực tế của thị trường cho vay tiêu dùng tín chấp (unsecured retail loans), nơi tỷ lệ rủi ro dao động quanh mức 15% - 25%. Sự mất cân bằng dữ liệu ở mức vừa phải (tỷ lệ xấp xỉ 1:4 giữa nhóm nợ xấu và nhóm trả đúng hạn) đòi hỏi việc lựa chọn độ đo đánh giá mô hình phải dựa trên **ROC-AUC, Precision, Recall** thay vì độ chính xác tổng thể (Accuracy) thuần túy [15].
 
 ---
 

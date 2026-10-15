@@ -169,7 +169,7 @@ Tính mức lãi suất đề xuất dựa trên chi phí vốn và biên bù đ
 $$R_{\text{loan}} = R_{\text{base}} + \Delta_{\text{Risk}}(p)$$
 Trong đó:
 $$\Delta_{\text{Risk}}(p) = p \times 0.15$$
-*(với lãi suất cơ sở $R_{\text{base}} = 0.085$ tương đương 8.5%/năm, và biên bù rủi ro $\Delta_{\text{Risk}}(p) = p \times 0.15$ tương đương $p \times 15\%$)*
+*(với lãi suất cơ sở $R_{\text{base}} = 0.085$ tương đương 8.5%/năm, và biên bù rủi ro $\Delta_{\text{Risk}}(p) = p \times 0.15$ tương đương p * 15%)*
 
 ---
 

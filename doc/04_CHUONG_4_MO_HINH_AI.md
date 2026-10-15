@@ -8,7 +8,7 @@ Trong các bài toán chấm điểm tín dụng và phân loại nợ xấu ng�
 
 ### 4.1.1. Nguyên lý Học máy Kết hợp (Ensemble Learning) và Kỹ thuật Bagging
 Random Forest hoạt động dựa trên triết lý "Sức mạnh của trí tuệ tập thể" (Wisdom of the Crowds). Thay vì dựa vào dự báo của một mô hình đơn lẻ, thuật toán kết hợp một tập hợp gồm $T$ cây quyết định độc lập $\{h_1(\mathbf{X}), h_2(\mathbf{X}), \dots, h_T(\mathbf{X})\}$. Kỹ thuật đóng gói này được thực hiện thông qua cơ chế **Bootstrap Aggregating (Bagging)**:
-1. **Lấy mẫu có hoàn lại (Bootstrap Sampling):** Từ tập dữ liệu huấn luyện ban đầu gồm $N$ mẫu, thuật toán rút ra $T$ tập dữ liệu con độc lập, mỗi tập có kích thước $N$ bằng cách lấy mẫu ngẫu nhiên có hoàn lại. Về mặt xác suất lý thuyết, mỗi tập mẫu bootstrap chứa khoảng $63.2\%$ số quan sát gốc, $36.8\%$ số quan sát còn lại không được chọn (được gọi là dữ liệu Out-of-Bag - OOB, dùng để kiểm định nội bộ mô hình).
+1. **Lấy mẫu có hoàn lại (Bootstrap Sampling):** Từ tập dữ liệu huấn luyện ban đầu gồm $N$ mẫu, thuật toán rút ra $T$ tập dữ liệu con độc lập, mỗi tập có kích thước $N$ bằng cách lấy mẫu ngẫu nhiên có hoàn lại. Về mặt xác suất lý thuyết, mỗi tập mẫu bootstrap chứa khoảng 63.2% số quan sát gốc, 36.8% số quan sát còn lại không được chọn (được gọi là dữ liệu Out-of-Bag - OOB, dùng để kiểm định nội bộ mô hình).
 2. **Chọn ngẫu nhiên tập con đặc trưng (Random Subspace Feature Selection):** Tại mỗi nút phân nhánh của từng cây quyết định, thay vì tìm kiếm điểm cắt tối ưu trên toàn bộ $d$ biến đặc trưng, thuật toán chỉ chọn ngẫu nhiên một tập con gồm $m$ biến (thường chọn $m = \lfloor \sqrt{d} \rfloor$). Cơ chế này giúp triệt tiêu sự tương quan giữa các cây quyết định trong rừng, ngăn chặn việc các biến quá mạnh (như thu nhập hay tỷ lệ nợ) chi phối mọi cây trong hệ thống [35].
 
 ### 4.1.2. Tiêu chuẩn Phân nhánh Tối ưu bằng Chỉ số Tạp chất Gini (Gini Impurity)
@@ -110,7 +110,7 @@ Mô hình tốt nhất sau khi tinh chỉnh siêu tham số được áp dụng 
 
 ### 4.4.1. Đường cong ROC và Chỉ số ROC-AUC
 Đường cong đặc trưng hoạt động của bộ thu (Receiver Operating Characteristic - ROC) phản ánh mối tương quan đánh đổi giữa Tỷ lệ bắt đúng nợ xấu (True Positive Rate - TPR) và Tỷ lệ nhận diện nhầm khách hàng tốt thành nợ xấu (False Positive Rate - FPR) tại mọi ngưỡng phân cắt xác suất có thể [39].
-- **Chỉ số ROC-AUC đạt được:** **`0.8745`** (tương đương xấp xỉ **$87.5\%$**).
+- **Chỉ số ROC-AUC đạt được:** **`0.8745`** (tương đương xấp xỉ **87.5%**).
 - **Đánh giá thống kê:** Theo chuẩn mực định lượng rủi ro tín dụng của Ngân hàng Thế giới (World Bank) và Hiệp ước Basel, một mô hình chấm điểm tín dụng có chỉ số $AUC \ge 0.80$ được xếp vào nhóm xuất sắc (Excellent Discrimination Power), vượt trội hoàn toàn so với mô hình hồi quy Logistic truyền thống (thường chỉ đạt $AUC \approx 0.75 - 0.79$).
 
 ### 4.4.2. Ma trận Nhầm lẫn (Confusion Matrix) trên Tập Kiểm thử
@@ -132,10 +132,10 @@ Từ ma trận nhầm lẫn, các chỉ số đo lường hiệu năng quan tr�
 | Chỉ Số Đánh Giá (Metric) | Công Thức Tính Toán | Giá Trị Đạt Được | Ý Nghĩa Kinh Doanh & Quản Trị Ngân Hàng |
 | :--- | :---: | :---: | :--- |
 | **ROC-AUC Score** | $\int \text{TPR} \, d(\text{FPR})$ | **`0.8745`** | Năng lực phân tách tuyệt vời giữa hồ sơ rủi ro và hồ sơ uy tín. |
-| **Độ nhạy (Recall / TPR)** | $\frac{TP}{TP + FN} = \frac{1,195}{1,422}$ | **`84.04%`** | Mô hình bắt đúng trên **$84\%$** tổng số các vụ vỡ nợ thực tế, chỉ để lọt lưới chưa đầy $16\%$. |
-| **Độ đặc hiệu (Specificity)** | $\frac{TN}{TN + FP} = \frac{4,484}{5,094}$ | **`88.03%`** | Nhận diện chính xác **$88\%$** khách hàng uy tín, giảm thiểu tình trạng từ chối nhầm khách hàng tốt. |
-| **Độ chính xác nợ xấu (Precision)** | $\frac{TP}{TP + FP} = \frac{1,195}{1,805}$ | **`66.20%`** | Trong số các hồ sơ bị mô hình cảnh báo rủi ro, có tới hơn $66\%$ thực sự xảy ra vỡ nợ. |
-| **Độ chính xác tổng thể (Accuracy)**| $\frac{TP + TN}{\text{Tổng Mẫu}} = \frac{5,679}{6,516}$ | **`87.15%`** | Tỷ lệ dự báo chính xác trên toàn bộ tập dữ liệu kiểm định. |
+| **Độ nhạy (Recall / TPR)** | $\frac{TP}{TP + FN} = \frac{1,195}{1,422}$ | **`84.04%`** | Mô hình bắt đúng trên **84%** tổng số các vụ vỡ nợ thực tế, chỉ để lọt lưới chưa đầy 16%. |
+| **Độ đặc hiệu (Specificity)** | $\frac{TN}{TN + FP} = \frac{4,484}{5,094}$ | **`88.03%`** | Nhận diện chính xác **88%** khách hàng uy tín, giảm thiểu tình trạng từ chối nhầm khách hàng tốt. |
+| **Độ chính xác nợ xấu (Precision)** | $\frac{TP}{TP + FP} = \frac{1,195}{1,805}$ | **`66.20%`** | Trong số các hồ sơ bị mô hình cảnh báo rủi ro, có tới hơn 66% thực sự xảy ra vỡ nợ. |
+| **Độ chính xác tổng thể (Accuracy)**| $\frac{TP + TN}{\text{Total Samples}} = \frac{5,679}{6,516}$ | **`87.15%`** | Tỷ lệ dự báo chính xác trên toàn bộ tập dữ liệu kiểm định. |
 | **F1-Score (Cân bằng P & R)** | $2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}}$ | **`0.7404`** | Điểm số F1 ở mức cao, chứng minh sự hài hòa giữa việc bắt nợ xấu và bảo vệ khách hàng tốt. |
 
 ---
@@ -148,7 +148,7 @@ Một trong những ưu điểm vượt trội của thuật toán Random Forest
 
 | Hạng | Tên Biến Đặc Trưng | Tỷ Trọng Đóng Góp (%) | Ý Nghĩa Kinh Tế & Tác Động Nghiệp Vụ Tín Dụng |
 | :---: | :--- | :---: | :--- |
-| **1** | `loan_percent_income` | **`31.25%`** | **Yếu tố quyết định số 1:** Tỷ lệ số tiền vay trên thu nhập ($DTI$) phản ánh trực tiếp gánh nặng tài chính. Khi tỷ lệ này vượt quá $35\%$, nguy cơ vỡ nợ tăng vọt bất kể thu nhập của khách hàng cao hay thấp. |
+| **1** | `loan_percent_income` | **`31.25%`** | **Yếu tố quyết định số 1:** Tỷ lệ số tiền vay trên thu nhập ($DTI$) phản ánh trực tiếp gánh nặng tài chính. Khi tỷ lệ này vượt quá 35%, nguy cơ vỡ nợ tăng vọt bất kể thu nhập của khách hàng cao hay thấp. |
 | **2** | `loan_int_rate` | **`22.40%`** | **Chi phí vốn vay:** Lãi suất càng cao thì nghĩa vụ trả nợ gốc và lãi hàng tháng càng nặng, đẩy khách hàng vào tình trạng căng thẳng dòng tiền. |
 | **3** | `person_income` | **`14.85%`** | **Năng lực tài chính nền tảng:** Thu nhập tuyệt đối đảm bảo khả năng tích lũy và chịu đựng các cú sốc chi tiêu bất thường của hộ gia đình. |
 | **4** | `cb_person_default_on_file` | **`11.10%`** | **Lịch sử quan hệ tín dụng (CIC):** Khách hàng đã từng có tiền sử nợ xấu trên hệ thống tín dụng quốc gia có xu hướng tái phạm cao gấp nhiều lần. |
@@ -158,4 +158,4 @@ Một trong những ưu điểm vượt trội của thuật toán Random Forest
 | **8** | `person_emp_length` | **`2.50%`** | **Độ ổn định nghề nghiệp:** Thâm niên làm việc càng lâu thể hiện sự ổn định về nguồn thu nhập. |
 | **9** | `cb_person_cred_hist_length` | **`1.20%`** | **Thâm niên tín dụng:** Khách hàng có lịch sử tín dụng dài giúp hệ thống có nhiều dữ liệu để đánh giá hơn. |
 
-**Kết luận chương:** Mô hình Random Forest Classifier trên Apache Spark MLlib không chỉ đạt được hiệu năng dự báo vượt trội với chỉ số ROC-AUC $= 0.8745$ và tỷ lệ bắt đúng nợ xấu Recall $= 84.04\%$, mà còn cung cấp cơ sở phân tích định lượng rõ ràng về các yếu tố chi phối rủi ro tín dụng. Đây là cơ sở khoa học vững chắc để xây dựng Động cơ Ra quyết định (Decision Engine) và Khung chính sách hạn mức tại Chương 5.
+**Kết luận chương:** Mô hình Random Forest Classifier trên Apache Spark MLlib không chỉ đạt được hiệu năng dự báo vượt trội với chỉ số ROC-AUC $= 0.8745$ và tỷ lệ bắt đúng nợ xấu Recall = 84.04%, mà còn cung cấp cơ sở phân tích định lượng rõ ràng về các yếu tố chi phối rủi ro tín dụng. Đây là cơ sở khoa học vững chắc để xây dựng Động cơ Ra quyết định (Decision Engine) và Khung chính sách hạn mức tại Chương 5.

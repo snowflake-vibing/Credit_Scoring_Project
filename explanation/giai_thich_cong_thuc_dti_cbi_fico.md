@@ -48,14 +48,16 @@ Theo chuẩn mực thẩm định của các ngân hàng thương mại:
 
 ### 1.4. Ví dụ Tính toán Minh họa & Cơ chế "Cứu khoản vay"
 - **Tình huống thực tế:** Khách hàng Nguyễn Văn A có thu nhập 20 triệu đồng/tháng (240 triệu đồng/năm), nộp hồ sơ xin vay 96 triệu đồng.
-  $$DTI_{\text{ban\_dau}} = \frac{96,000,000}{240,000,000} = 0.40 \quad (40\%)$$
-  Mức $DTI = 40\%$ rơi vào vùng rủi ro cao, nguy cơ bị hệ thống tự động từ chối là rất lớn.
+  $$DTI_{\text{initial}} = \frac{96,000,000}{240,000,000} = 0.40$$
+  *(tương đương 40%)*
+  Mức DTI = 40% rơi vào vùng rủi ro cao, nguy cơ bị hệ thống tự động từ chối là rất lớn.
 - **Cơ chế điều chỉnh hạn mức 70% của Nhóm 2:**
-  Hệ thống can thiệp bằng cách giảm hạn mức giải ngân xuống $70\%$ số tiền xin vay:
-  $$\text{Loan Amount}_{\text{dieu\_chinh}} = 96,000,000 \times 0.70 = 67,200,000 \text{ đồng}$$
+  Hệ thống can thiệp bằng cách giảm hạn mức giải ngân xuống 70% số tiền xin vay:
+  $$\text{Adjusted Loan Amount} = 96,000,000 \times 0.70 = 67,200,000 \text{ VND}$$
   Lúc này, chỉ số DTI mới là:
-  $$DTI_{\text{moi}} = \frac{67,200,000}{240,000,000} = 0.28 \quad (28\%)$$
-  Chỉ số $DTI$ ngay lập tức giảm từ $40\%$ xuống $28\%$, đưa hồ sơ từ vùng "Nguy cơ cao" quay trở lại vùng "An toàn chấp nhận được", giải cứu thành công khoản vay mà vẫn bảo vệ nguồn vốn ngân hàng.
+  $$DTI_{\text{adjusted}} = \frac{67,200,000}{240,000,000} = 0.28$$
+  *(tương đương 28%)*
+  Chỉ số $DTI$ ngay lập tức giảm từ 40% xuống 28%, đưa hồ sơ từ vùng "Nguy cơ cao" quay trở lại vùng "An toàn chấp nhận được", giải cứu thành công khoản vay mà vẫn bảo vệ nguồn vốn ngân hàng.
 
 ---
 
@@ -67,8 +69,8 @@ Chỉ số DTI tuy kinh điển nhưng có một nhược điểm lớn: **Chỉ
 *Hãy xem xét kịch bản so sánh:*
 - Khách hàng X và Khách hàng Y đều có thu nhập $60,000$ USD/năm và cùng xin vay $15,000$ USD $\rightarrow$ Cả hai đều có $DTI = \frac{15,000}{60,000} = 0.25$.
 - Tuy nhiên:
-  - Khách hàng X vay với lãi suất ưu đãi $8.5\%$/năm và đã làm việc ổn định **10 năm** tại một tập đoàn viễn thông lớn.
-  - Khách hàng Y vay với lãi suất cao $18.5\%$/năm và mới đi làm được **4 tháng** (thâm niên công tác xem như $0$ năm).
+  - Khách hàng X vay với lãi suất ưu đãi 8.5%/năm và đã làm việc ổn định **10 năm** tại một tập đoàn viễn thông lớn.
+  - Khách hàng Y vay với lãi suất cao 18.5%/năm và mới đi làm được **4 tháng** (thâm niên công tác xem như $0$ năm).
 - Rõ ràng rủi ro của Khách hàng Y cao hơn gấp nhiều lần Khách hàng X, nhưng chỉ số DTI không thể phân biệt được. Do đó, đề tài xây dựng chỉ số nâng cao **Credit Burden Index (CBI)**.
 
 ### 2.2. Công thức Toán học
@@ -92,7 +94,7 @@ $$CBI = \frac{\text{Loan Amount} \times (1 + \text{Interest Rate} / 100)}{\text{
 | :--- | :---: | :---: |
 | Thu nhập hàng năm (`person_income`) | $60,000$ USD | $60,000$ USD |
 | Số tiền xin vay (`loan_amnt`) | $15,000$ USD | $15,000$ USD |
-| Lãi suất vay (`loan_int_rate`) | $8.5\%$ | $18.5\%$ |
+| Lãi suất vay (`loan_int_rate`) | 8.5% | 18.5% |
 | Thâm niên công tác (`person_emp_length`)| 8 năm | 0 năm (mới đi làm) |
 | **Chỉ số DTI thông thường** | **0.25 (25%)** | **0.25 (25%)** *(Không phân biệt được)* |
 | **Tính toán Tử số CBI (Nghĩa vụ trả)** | $15,000 \times (1 + 0.085) = 16,275$ USD | $15,000 \times (1 + 0.185) = 17,775$ USD |
@@ -107,7 +109,7 @@ Nhờ có chỉ số $CBI$, mô hình Machine Learning nhận diện chính xác
 ## 📈 3. ĐIỂM TÍN DỤNG FICO SCORE (FAIR ISAAC CORPORATION)
 
 ### 3.1. Bản chất Nghiệp vụ & Khái niệm
-Trong hệ sinh thái tài chính toàn cầu, **FICO Score** là thước đo chuẩn mực được sử dụng bởi hơn $90\%$ các ngân hàng và định chế tài chính hàng đầu tại Hoa Kỳ và thế giới. Điểm FICO chuẩn dao động trong khoảng từ **300 đến 850 điểm**: Điểm số càng cao phản ánh mức độ uy tín tín dụng càng lớn và xác suất vỡ nợ càng thấp.
+Trong hệ sinh thái tài chính toàn cầu, **FICO Score** là thước đo chuẩn mực được sử dụng bởi hơn 90% các ngân hàng và định chế tài chính hàng đầu tại Hoa Kỳ và thế giới. Điểm FICO chuẩn dao động trong khoảng từ **300 đến 850 điểm**: Điểm số càng cao phản ánh mức độ uy tín tín dụng càng lớn và xác suất vỡ nợ càng thấp.
 
 Mô hình học máy Random Forest tại Tầng Gold xuất ra kết quả là xác suất vỡ nợ $p = P(\text{Default} = 1 \mid \mathbf{X}) \in [0, 1]$. Để phục vụ người dùng cuối và ban giám đốc, hệ thống phải chuyển đổi xác suất $p$ này sang thang điểm FICO tiêu chuẩn.
 
@@ -132,20 +134,22 @@ Hàm Log-Odds (Logit) có nhiệm vụ co giãn phi tuyến: chuyển đổi mi�
 Tại điểm mà cơ hội trả nợ và vỡ nợ là ngang ngửa nhau ($p = 0.50$), ta có:
 $$\text{Odds} = \frac{1 - 0.50}{0.50} = 1 \Rightarrow \ln(1) = 0$$
 Khi đó:
-$$S = 600 + 0 \times \frac{40}{\ln(2)} = 600 \text{ điểm}$$
+$$S = 600 + 0 \times \frac{40}{\ln(2)} = 600$$
+*(tương đương 600 điểm)*
 Như vậy, **600 điểm là điểm chuẩn trung tâm (Base Reference Point)** của toàn bộ thang đo.
 
 #### 4. Hệ số Thang đo (Scaling Factor): $\frac{40}{\ln(2)}$
 Hệ số này được thiết lập để hiện thực hóa nguyên tắc kinh điển của tổ chức Fair Isaac Corporation:
 > **"Quy tắc Nhân đôi Tỷ số Cược" (Double the Odds):**  
-> *Cứ mỗi khi mức độ an toàn của khách hàng tăng gấp đôi ($\text{Odds}_{\text{mới}} = 2 \times \text{Odds}_{\text{cũ}}$), điểm tín dụng FICO của khách hàng sẽ tăng thêm đúng 40 điểm.*
+> *Cứ mỗi khi mức độ an toàn của khách hàng tăng gấp đôi ($\text{Odds}_{\text{new}} = 2 \times \text{Odds}_{\text{old}}$), điểm tín dụng FICO của khách hàng sẽ tăng thêm đúng 40 điểm.*
 
 **Chứng minh toán học:**
 Giả sử khách hàng A có tỷ số cược là $\text{Odds}_A$, điểm số là $S_A$. Khách hàng B có mức độ an toàn gấp đôi khách hàng A ($\text{Odds}_B = 2 \times \text{Odds}_A$), điểm số là $S_B$.
 Khoảng chênh lệch điểm giữa hai khách hàng là:
 $$\Delta S = S_B - S_A = \left[ 600 + \frac{\ln(2 \times \text{Odds}_A)}{\ln(2)} \times 40 \right] - \left[ 600 + \frac{\ln(\text{Odds}_A)}{\ln(2)} \times 40 \right]$$
 Áp dụng tính chất logarit của một tích $\ln(a \cdot b) = \ln(a) + \ln(b)$:
-$$\Delta S = \frac{\ln(2) + \ln(\text{Odds}_A) - \ln(\text{Odds}_A)}{\ln(2)} \times 40 = \frac{\ln(2)}{\ln(2)} \times 40 = 40 \text{ điểm (Đúng chuẩn FICO!)}$$
+$$\Delta S = \frac{\ln(2) + \ln(\text{Odds}_A) - \ln(\text{Odds}_A)}{\ln(2)} \times 40 = \frac{\ln(2)}{\ln(2)} \times 40 = 40$$
+*(tăng đúng 40 điểm theo chuẩn FICO)*
 
 ### 3.4. Bảng Tra cứu Quy đổi Chi tiết từ Xác suất $p$ sang Điểm FICO
 
