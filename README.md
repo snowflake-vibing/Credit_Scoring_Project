@@ -78,8 +78,10 @@ Dự án được xây dựng theo chuẩn mực 3 tầng dữ liệu Medallion 
 │   ├── 04_chuong_4_mo_hinh_ai.tex
 │   ├── 05_chuong_5_khuyen_nghi.tex
 │   └── 06_tai_lieu_tham_khao.tex
-├── explanation/                        # Thư mục giải thích chuyên sâu cơ sở các con số xác suất & lãi suất
-│   └── giai_thich_nguong_p_va_lai_suat.md
+├── explanation/                        # Thư mục giải trình chuyên sâu: quy trình End-to-End & cơ sở định giá
+│   ├── README.md                       # Tổng quan và hướng dẫn tra cứu hồ sơ giải trình
+│   ├── quy_trinh_tinh_toan_tu_input_den_output.md  # Quy trình chi tiết từ Input -> ML Model -> Output
+│   └── giai_thich_nguong_p_va_lai_suat.md          # Cơ sở toán học & tài chính của ngưỡng p và lãi suất vay
 ├── requirements/                       # Thư mục yêu cầu & đánh giá Rubric
 │   ├── requirements.txt
 │   └── scoring.md
