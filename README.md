@@ -78,6 +78,8 @@ Dự án được xây dựng theo chuẩn mực 3 tầng dữ liệu Medallion 
 │   ├── 04_chuong_4_mo_hinh_ai.tex
 │   ├── 05_chuong_5_khuyen_nghi.tex
 │   └── 06_tai_lieu_tham_khao.tex
+├── explanation/                        # Thư mục giải thích chuyên sâu cơ sở các con số xác suất & lãi suất
+│   └── giai_thich_nguong_p_va_lai_suat.md
 ├── requirements/                       # Thư mục yêu cầu & đánh giá Rubric
 │   ├── requirements.txt
 │   └── scoring.md
