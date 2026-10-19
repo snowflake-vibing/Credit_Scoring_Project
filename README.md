@@ -68,7 +68,13 @@ Dự án được xây dựng theo chuẩn mực 3 tầng dữ liệu Medallion 
 │   ├── De_Tai_7_Databricks_Notebook.ipynb # Notebook hoàn chỉnh chạy trên Databricks
 │   ├── credit_risk_dataset_100k.csv    # Tập dữ liệu mẫu 100,000 dòng để thử nghiệm nhanh
 │   └── credit_risk_dataset_100k.parquet# Tệp Parquet nén siêu nhẹ của tập 100k
-├── doc/                                # Thư mục Báo cáo Tiểu luận học thuật đầy đủ từng Chương
+├── doc/                                # Thư mục Báo cáo Tiểu luận học thuật (Được chuẩn hóa giới hạn ≤ 40 trang)
+│   ├── images/                         # Thư mục biểu đồ trực quan hóa nhúng vào báo cáo (DPI 300)
+│   │   ├── hinh_3_1_missing_values.png # Biểu đồ tỷ lệ dữ liệu khuyết thiếu Tầng Bronze
+│   │   ├── hinh_3_2_npl_intent_home.png# Biểu đồ tỷ lệ nợ xấu NPL theo Mục đích vay & Nhà ở
+│   │   ├── hinh_4_1_roc_curve.png      # Đường cong ROC so sánh các mô hình máy học (AUC = 0.8745)
+│   │   ├── hinh_4_2_confusion_matrix.png # Ma trận nhầm lẫn trên 452,140 hồ sơ kiểm thử
+│   │   └── hinh_5_1_risk_policy_charts.png # Cơ cấu phân tầng rủi ro & Quyết định duyệt vay
 │   ├── 00_OUTLINE_VA_TRANG_BIA.md      # Trang bìa, Lời cam đoan, Lời cảm ơn, Abstract, Mục lục
 │   ├── 01_CHUONG_1_GIOI_THIEU.md       # Chương 1: Đặt vấn đề, 5Vs Big Data, Dataset 2.26M dòng
 │   ├── 02_CHUONG_2_KIEN_TRUC.md        # Chương 2: Kiến trúc Databricks Lakehouse & Delta Lake

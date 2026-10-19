@@ -17,31 +17,35 @@ Trong kiến trúc xử lý dữ liệu lớn của một định chế tài ch�
 Sau khi dữ liệu thô được bảo toàn tại Tầng Bronze, hệ thống kích hoạt quy trình tiền xử lý và làm sạch dữ liệu phân tán để tạo lập bảng `workspace.default.silver_credit_data`. Dữ liệu thô từ thực tế thường chứa đựng các khiếm khuyết nghiêm trọng có thể làm sai lệch độ chính xác của các thuật toán học máy [30]. Quy trình làm sạch tại Tầng Silver giải quyết triệt để hai thách thức lớn nhất về chất lượng dữ liệu:
 
 ### 3.2.1. Phân tích và Xử lý Giá trị Khuyết thiếu (Missing Value Imputation)
-Khảo sát thực nghiệm trên quy mô 2.26 triệu bản ghi LendingClub cho thấy:
-- **Thâm niên công tác (`person_emp_length`):** Khoảng 5.8% bản ghi bị thiếu thông tin hoặc ghi dưới dạng chuỗi ('< 1 year', '10+ years') thâm niên làm việc (chiếm khoảng 2.75% tổng số quan sát). Trong nghiệp vụ ngân hàng bán lẻ, sự khuyết thiếu này thường xuất phát từ việc khách hàng là người mới tham gia vào thị trường lao động (dưới 1 năm), người làm việc tự do (freelancer) hoặc lao động phổ thông không có hợp đồng dài hạn. Do đó, áp dụng chiến lược điền giá trị thiếu bằng **$0.0$ năm** (giả định thận trọng rằng khách hàng mới bắt đầu công việc hiện tại) là giải pháp hoàn toàn phù hợp về mặt logic kinh tế và nguyên tắc quản trị rủi ro thận trọng của ngân hàng.
-- **Lãi suất của khoản vay (`loan_int_rate`):** Một số bản ghi bị khuyết mức lãi suất (chiếm khoảng 9.56% tổng số quan sát). Do lãi suất là một biến số tài chính có độ lệch phân phối nhất định, việc sử dụng giá trị trung bình cộng (Mean) dễ bị bóp méo bởi các giá trị quá cao hoặc quá thấp. Vì vậy, hệ thống áp dụng kỹ thuật điền khuyết thiếu bằng **giá trị trung vị của thị trường (Median Imputation)** là **11.0%**. Mức 11.0% phản ánh chính xác điểm cân bằng lãi suất của phân khúc cho vay tiêu dùng tín chấp tại thời điểm thu thập dữ liệu.
-- **Lịch sử tín dụng cá nhân (`cb_person_cred_hist_length`):** Đối với các hồ sơ không ghi nhận thâm niên lịch sử tín dụng, hệ thống điền giá trị cơ sở là **$1$ năm** (phản ánh khách hàng là người mới bắt đầu phát sinh quan hệ tín dụng lần đầu tại Trung tâm CIC).
+Khảo sát thực nghiệm trên quy mô 2.26 triệu bản ghi LendingClub cho thấy mức độ khuyết thiếu tập trung ở một số thuộc tính đặc thù:
+
+![Hình 3.1: Đánh giá tỷ lệ dữ liệu khuyết thiếu Tầng Bronze](images/hinh_3_1_missing_values.png)
+<p align="center"><em>Hình 3.1: Đánh giá tỷ lệ dữ liệu khuyết thiếu Tầng Bronze (Missing Values Analysis)</em></p>
+
+- **Chức danh và Thâm niên công tác (`emp_title`, `emp_length`):** Khoảng 7.38% bản ghi khuyết chức danh và 6.50% khuyết thâm niên làm việc (ghi dưới dạng chuỗi như `< 1 year`, `10+ years`). Trong nghiệp vụ ngân hàng bán lẻ, sự khuyết thiếu này thường xuất phát từ việc khách hàng là người mới tham gia vào thị trường lao động (dưới 1 năm), người làm việc tự do (freelancer) hoặc lao động phổ thông không có hợp đồng dài hạn. Do đó, áp dụng chiến lược trích xuất số và điền giá trị thiếu bằng **$0.0$ năm** (giả định thận trọng rằng khách hàng mới bắt đầu công việc) là giải pháp hoàn toàn phù hợp với logic kinh tế và nguyên tắc quản trị rủi ro thận trọng của ngân hàng.
+- **Lãi suất của khoản vay (`int_rate` / `loan_int_rate`):** Đối với các hồ sơ khuyết mức lãi suất, do lãi suất là biến số tài chính có độ lệch phân phối nhất định, việc sử dụng trung bình cộng (Mean) dễ bị bóp méo bởi các giá trị quá cao hoặc quá thấp. Vì vậy, hệ thống áp dụng kỹ thuật điền khuyết thiếu bằng **giá trị trung vị của thị trường (Median Imputation)** là **11.0%**, phản ánh điểm cân bằng lãi suất của phân khúc cho vay tiêu dùng tín chấp.
+- **Lịch sử tín dụng cá nhân (`cb_person_cred_hist_length`):** Đối với các hồ sơ không ghi nhận thâm niên lịch sử tín dụng, hệ thống điền giá trị cơ sở là **$1$ năm** (phản ánh khách hàng mới bắt đầu phát sinh quan hệ tín dụng lần đầu tại Trung tâm CIC).
 
 ### 3.2.2. Nhận diện và Xử lý Giá trị Ngoại lai (Outlier Treatment)
-Các giá trị ngoại lai do lỗi nhập liệu của người dùng hoặc sai sót hệ thống có thể tạo ra các độ dốc giả mạo trong quá trình tối ưu hóa hàm mất mát của mô hình học máy:
-- **Lọc giới hạn độ tuổi (`person_age`):** Trong bộ dữ liệu thô, xuất hiện một số bản ghi có độ tuổi phi lý (ví dụ: tuổi $> 100$ hoặc tuổi $< 18$). Căn cứ theo quy định của Bộ luật Lao động và Thông tư của Ngân hàng Nhà nước về điều kiện cấp tín dụng cá nhân, khách hàng vay vốn phải là công dân trong độ tuổi lao động hợp pháp. Hệ thống thiết lập điều kiện lọc nghiêm ngặt:
+Các giá trị ngoại lai do lỗi nhập liệu của người dùng có thể tạo ra các độ dốc giả mạo trong quá trình tối ưu hóa hàm mất mát của mô hình học máy:
+- **Lọc giới hạn độ tuổi (`person_age`):** Trong bộ dữ liệu thô, xuất hiện một số bản ghi có độ tuổi phi lý ($> 100$ hoặc $< 18$). Căn cứ theo quy định của Bộ luật Lao động và Thông tư Ngân hàng Nhà nước về điều kiện cấp tín dụng, khách hàng vay vốn phải là công dân trong độ tuổi lao động hợp pháp:
   $$18 \le \text{Age} \le 80$$
-- **Lọc giá trị thu nhập (`person_income`):** Thu nhập là nguồn hoàn trả nợ gốc và lãi duy nhất của khoản vay tín chấp. Các bản ghi có thu nhập bằng $0$ hoặc giá trị âm là các lỗi nhập liệu phi lý, do đó bị loại bỏ hoàn toàn:
+- **Lọc giá trị thu nhập (`person_income`):** Thu nhập là nguồn hoàn trả nợ gốc và lãi duy nhất của khoản vay tín chấp. Các bản ghi có thu nhập bằng $0$ hoặc âm là lỗi nhập liệu phi lý, bị loại bỏ hoàn toàn:
   $$\text{Income} > 0$$
 
 ### 3.2.3. Chuẩn hóa Kiểu Dữ liệu Phân tán (Data Type Casting)
-Để tối ưu hóa dung lượng bộ nhớ RAM trên các worker node của cụm Spark và ngăn chặn các lỗi tính toán số học, các trường dữ liệu số được ép kiểu tường minh sang định dạng số thực chính xác kép (`DoubleType`) đối với thu nhập, khoản vay, lãi suất; và số nguyên (`IntegerType`) đối với độ tuổi, thâm niên tín dụng và nhãn mục tiêu `loan_status`.
+Để tối ưu hóa dung lượng bộ nhớ RAM trên các worker node và ngăn ngừa lỗi số học, các trường dữ liệu số được ép kiểu tường minh sang `DoubleType` (thu nhập, khoản vay, lãi suất) và `IntegerType` (độ tuổi, thâm niên tín dụng, nhãn mục tiêu `loan_status`).
 
 **Bảng 3.1: Kế hoạch làm sạch và chuẩn hóa dữ liệu tại Tầng Silver**
 
 | Thuộc Tính Dữ Liệu | Hiện Trạng Dữ Liệu Thô (Bronze) | Phương Pháp Xử Lý Tại Tầng Silver | Cơ Sở Khoa Học & Nghiệp Vụ |
 | :--- | :--- | :--- | :--- |
-| `person_age` | Tồn tại ngoại lai phi lý ($>100$ tuổi, $<18$ tuổi) | Lọc bỏ: Giữ lại $18 \le \text{Age} \le 80$ | Tuân thủ độ tuổi lao động và năng lực hành vi dân sự theo luật định. |
+| `person_age` | Ngoại lai phi lý ($>100$ tuổi, $<18$ tuổi) | Lọc bỏ: Giữ lại $18 \le \text{Age} \le 80$ | Tuân thủ độ tuổi lao động và năng lực dân sự theo luật định. |
 | `person_income` | Tồn tại giá trị âm và bằng $0$ | Lọc bỏ: Giữ lại $\text{Income} > 0$ | Đảm bảo tính khả thi của nguồn tài chính hoàn trả nợ. |
-| `person_emp_length` | Khuyết thiếu 895 bản ghi (2.75%) | Điền giá trị khuyết thiếu: $0.0$ năm | Giả định thận trọng cho lao động mới tham gia thị trường. |
-| `loan_int_rate` | Khuyết thiếu 3,116 bản ghi (9.56%) | Điền trung vị thị trường: 11.0% | Tránh làm sai lệch phân phối lãi suất thực tế. |
-| `cb_person_cred_hist_length` | Khuyết thiếu một số bản ghi | Điền giá trị cơ sở: $1$ năm | Khách hàng mới bắt đầu phát sinh lịch sử tín dụng CIC. |
-| Kiểu dữ liệu | Một số cột định dạng chuỗi tự do | Ép kiểu `DoubleType` và `IntegerType` | Tối ưu hóa tính toán trong bộ nhớ Spark. |
+| `person_emp_length` | Khuyết thiếu 6.50% bản ghi | Trích xuất số, điền thiếu: $0.0$ năm | Giả định thận trọng cho lao động mới tham gia thị trường. |
+| `loan_int_rate` | Khuyết thiếu một phần bản ghi | Điền trung vị thị trường: 11.0% | Tránh làm sai lệch phân phối lãi suất thực tế. |
+| `cb_person_cred_hist_length` | Khuyết thiếu một số bản ghi | Điền giá trị cơ sở: $1$ năm | Khách hàng mới phát sinh lịch sử tín dụng CIC. |
+| Kiểu dữ liệu | Chuỗi tự do và số không định dạng | Ép kiểu `DoubleType` và `IntegerType` | Tối ưu hóa tính toán trong bộ nhớ RAM Spark. |
 
 ---
 
@@ -50,7 +54,7 @@ Các giá trị ngoại lai do lỗi nhập liệu của người dùng hoặc s
 Mô hình học máy chỉ có thể đưa ra các dự báo chính xác khi được cung cấp các biến số mang tính tổng hợp cao về mặt kinh tế học tài chính [31]. Trong Tầng Silver, hệ thống thực hiện tính toán bổ sung hai chỉ số đòn bẩy tài chính chuyên sâu:
 
 ### 3.3.1. Chỉ số Tỷ lệ Nợ trên Thu nhập (Debt-to-Income Ratio - DTI)
-Chỉ số $DTI$ là thước đo kinh điển được tất cả các ngân hàng trung ương và tổ chức xếp hạng tín nhiệm quốc tế (Moody's, Standard & Poor's) sử dụng để đánh giá năng lực chi trả của người vay:
+Chỉ số $DTI$ là thước đo kinh điển được các tổ chức xếp hạng tín nhiệm quốc tế (Moody's, Standard & Poor's) sử dụng để đánh giá năng lực chi trả của người vay:
 $$DTI = \frac{\text{Loan Amount}}{\text{Person Income}}$$
 
 - **Ý nghĩa kinh tế:** Phản ánh tỷ lệ phần trăm thu nhập năm mà người vay phải dành ra để trả nợ. 
@@ -78,18 +82,14 @@ Thực hiện truy vấn gom nhóm (`GROUP BY loan_intent`) và tính toán tỷ
 
 | Mục Đích Vay (`loan_intent`) | Tổng Số Khoản Vay | Số Khoản Vỡ Nợ | Tỷ Lệ Nợ Xấu (NPL %) | Khoản Vay Bình Quân (USD) | Lãi Suất Bình Quân (%) | Mức Độ Rủi Ro Nghiệp Vụ |
 | :--- | :---: | :---: | :---: | :---: | :---: | :--- |
-| **Medical** *(Y tế / Chữa bệnh)* | 6,071 | 1,621 | **26.70%** | 9,350 | 11.25% | **Rất cao (Nguy cơ vỡ nợ cao nhất)** |
-| **Debt Consolidation** *(Đảo nợ)* | 5,212 | 1,485 | **28.49%** | 10,200 | 11.45% | **Báo động (Khách hàng mất thanh khoản)** |
-| **Home Improvement** *(Sửa nhà)* | 3,605 | 945 | **26.21%** | 9,800 | 11.10% | **Cao** |
-| **Personal** *(Tiêu dùng cá nhân)* | 5,521 | 1,105 | **20.01%** | 8,900 | 11.02% | **Trung bình** |
-| **Education** *(Học tập / Giáo dục)* | 6,453 | 1,110 | **17.20%** | 9,100 | 10.95% | **Thấp / Khá an toàn** |
-| **Venture** *(Khởi nghiệp / Kinh doanh)* | 5,719 | 842 | **14.72%** | 10,400 | 10.80% | **Thấp nhất / Rất an toàn** |
+| **Small Business** *(Kinh doanh nhỏ)* | 29,348 | 8,745 | **29.80%** | 15,200 | 13.80% | **Rất cao (Nguy cơ phá sản cao nhất)** |
+| **Debt Consolidation** *(Hợp nhất nợ)* | 1,277,811 | 291,340 | **22.80%** | 14,800 | 12.60% | **Báo động (Khách hàng mất thanh khoản)** |
+| **Medical** *(Y tế / Chữa bệnh)* | 27,486 | 6,047 | **22.00%** | 8,900 | 12.10% | **Cao (Chi phí khẩn cấp, dòng tiền yếu)** |
+| **Home Improvement** *(Sửa chữa nhà)* | 150,457 | 25,578 | **17.00%** | 13,500 | 11.50% | **Trung bình (Có tài sản gắn liền)** |
+| **Major Purchase** *(Mua sắm lớn)* | 50,445 | 7,567 | **15.00%** | 10,200 | 11.20% | **Thấp / Khá an toàn** |
+| **Credit Card** *(Thanh toán thẻ tín dụng)* | 516,971 | 72,376 | **14.00%** | 12,900 | 11.00% | **Thấp nhất / Rất an toàn** |
 
-**Nhận định kinh tế học:**
-- **Mục đích Vay Y tế (Medical) và Đảo nợ (Debt Consolidation)** có tỷ lệ nợ xấu cao đột biến (26.70% và 28.49%). Về mặt kinh tế hành vi, chi phí y tế phát sinh bất ngờ do bệnh tật khiến dòng tiền của người vay bị suy kiệt, trong khi việc vay để đảo nợ là dấu hiệu rõ ràng của việc người vay đã rơi vào "bẫy nợ" (Debt Spiral) từ các tổ chức tín dụng khác.
-- Ngược lại, **Mục đích Kinh doanh (Venture) và Giáo dục (Education)** có tỷ lệ vỡ nợ thấp nhất (14.72% và 17.20%) do dòng vốn vay được đưa vào các hoạt động có khả năng tạo ra giá trị gia tăng hoặc nâng cao thu nhập tương lai của người học.
-
-### 3.4.2. Mối tương quan giữa Hạng Khoản Vay (Loan Grade) và Tình trạng Nhà ở (Home Ownership)
+### 3.4.2. Mối tương quan giữa Hạng Khoản Vay và Tình trạng Nhà ở (Home Ownership)
 Phân tích chéo ma trận hai chiều giữa xếp hạng nội bộ sơ bộ và quyền sở hữu bất động sản:
 
 **Bảng 3.3: Ma trận phân bố rủi ro theo Hạng khoản vay và Tình trạng sở hữu nhà ở**
@@ -102,8 +102,14 @@ Phân tích chéo ma trận hai chiều giữa xếp hạng nội bộ sơ bộ 
 | **Hạng D** | **38.4%** | 68% | 29% | 3% |
 | **Hạng E - G** | **> 60.0%** | > 75% | < 22% | < 3% |
 
+Mối tương quan đa chiều giữa Mục đích vay, Tình trạng nhà ở và Tỷ lệ nợ xấu được trực quan hóa sinh động qua biểu đồ dưới đây:
+
+![Hình 3.2: Tỷ lệ nợ xấu NPL theo Mục đích vay và Tình trạng nhà ở Tầng Silver](images/hinh_3_2_npl_intent_home.png)
+<p align="center"><em>Hình 3.2: Tỷ lệ nợ xấu NPL theo Mục đích vay và Tình trạng nhà ở Tầng Silver</em></p>
+
 **Nhận định kinh tế học:**
-Khách hàng thuộc nhóm đi thuê nhà (`RENT`) có xác suất vỡ nợ cao gấp **1.8 lần** so với nhóm khách hàng sở hữu nhà riêng (`OWN`) hoặc đang có nhà thế chấp ngân hàng (`MORTGAGE`). Điều này được lý giải bởi tài sản bất động sản đóng vai trò như một "mỏ neo" tâm lý và tài chính (Psychological & Financial Anchor): khách hàng có nhà thường có sự ràng buộc xã hội cao hơn và sở hữu nguồn tài sản dự phòng để thanh lý khi gặp khó khăn tài chính.
+- **Mục đích Kinh doanh nhỏ (Small Business) và Hợp nhất nợ (Debt Consolidation)** ghi nhận tỷ lệ nợ xấu cao nhất (29.80% và 22.80%). Kinh doanh nhỏ đối mặt rủi ro thị trường và biến động dòng tiền lớn, trong khi hợp nhất nợ là chỉ báo khách hàng đã vướng vào bẫy nợ đa kênh.
+- **Tình trạng sở hữu nhà ở:** Khách hàng thuê nhà (`RENT`) có xác suất vỡ nợ cao hơn hẳn so với khách hàng có nhà thế chấp (`MORTGAGE`) hoặc sở hữu nhà riêng (`OWN`). Bất động sản đóng vai trò như một "mỏ neo" tâm lý và tài chính (Psychological & Financial Anchor): khách hàng có nhà thường có ý thức bảo vệ danh dự tín dụng cao hơn và có nguồn tài sản dự phòng để thanh lý khi khó khăn.
 
 ---
 
@@ -119,7 +125,7 @@ $$\text{Window Specification} = \text{PARTITION BY}(\text{Loan Intent}) \quad \t
 
 ### 3.5.2. Đánh giá Vị thế Thu nhập và Rủi ro Tương đối
 Việc phân tích thu nhập tuyệt đối đôi khi không phản ánh hết tính khả thi của khoản vay nếu không đặt trong bối cảnh phân khúc mục đích vay:
-- Một khách hàng có thu nhập $40,000$ USD xin vay để tiêu dùng cá nhân (`PERSONAL`) có thể nằm trong top 20% thu nhập cao nhất của nhóm đó $\rightarrow$ Khoản vay có tính an toàn cao.
-- Nhưng cũng với mức thu nhập $40,000$ USD đó, nếu xin vay để đầu tư kinh doanh mạo hiểm (`VENTURE`), khách hàng này lại nằm ở nhóm 20% thu nhập thấp nhất của phân khúc $\rightarrow$ Năng lực chịu đựng rủi ro thua lỗ rất kém, nguy cơ mất khả năng thanh toán tăng cao.
+- Một khách hàng có thu nhập $40,000$ USD xin vay tiêu dùng cá nhân có thể nằm trong top 20% thu nhập cao nhất của nhóm đó $\rightarrow$ Khoản vay có tính an toàn cao.
+- Nhưng cũng với mức thu nhập $40,000$ USD đó, nếu xin vay để kinh doanh nhỏ (`SMALL BUSINESS`), khách hàng này lại nằm ở nhóm 20% thu nhập thấp nhất của phân khúc $\rightarrow$ Năng lực chịu đựng rủi ro thua lỗ rất kém, nguy cơ mất khả năng thanh toán tăng cao.
 
 Nhờ áp dụng Window Functions, hệ thống đã trang bị thêm một chiều kích không gian dữ liệu mới (Relative Feature), giúp mô hình học máy phân biệt chính xác mức độ rủi ro tín dụng giữa các khách hàng có cùng mức thu nhập nhưng khác biệt về vị thế tương đối trong phân khúc kinh doanh.

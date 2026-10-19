@@ -4,10 +4,10 @@
 
 ## 2.1. Cơ sở lý luận về Kiến trúc Dữ liệu lớn: Từ Data Warehouse, Data Lake đến Lakehouse
 
-Trong lịch sử phát triển của các hệ thống quản trị dữ liệu doanh nghiệp, ngành ngân hàng luôn là một trong những lĩnh vực tiên phong áp dụng các giải pháp lưu trữ và xử lý dữ liệu quy mô lớn [16]. Tuy nhiên, sự phát triển bùng nổ của dữ liệu số hóa trong những năm gần đây đã bộc lộ những giới hạn cố hữu của các kiến trúc dữ liệu truyền thống:
+Trong lịch sử phát triển của các hệ thống quản trị dữ liệu doanh nghiệp, ngành ngân hàng luôn là một trong những lĩnh vực tiên phong áp dụng các giải pháp lưu trữ và xử lý dữ liệu quy mô lớn [16]. Tuy nhiên, sự phát triển bùng nổ của dữ liệu số hóa đã bộc lộ những giới hạn cố hữu của các kiến trúc dữ liệu truyền thống:
 
 ### 2.1.1. Kiến trúc Kho dữ liệu truyền thống (Data Warehouse)
-Kho dữ liệu truyền thống (Data Warehouse) được xây dựng trên nền tảng cơ sở dữ liệu quan hệ (RDBMS), hoạt động theo mô hình *Schema-on-Write* (cấu trúc dữ liệu phải được định nghĩa chặt chẽ trước khi nạp dữ liệu). Kiến trúc này rất mạnh mẽ trong việc thực thi các báo cáo phân tích kinh doanh thông minh (Business Intelligence - BI) và truy vấn SQL có cấu trúc. Tuy nhiên, nó có ba nhược điểm chí mạng:
+Kho dữ liệu truyền thống (Data Warehouse) được xây dựng trên nền tảng cơ sở dữ liệu quan hệ (RDBMS), hoạt động theo mô hình *Schema-on-Write* (cấu trúc dữ liệu phải được định nghĩa chặt chẽ trước khi nạp dữ liệu). Kiến trúc này rất mạnh mẽ trong việc thực thi các báo cáo kinh doanh thông minh (Business Intelligence - BI) và truy vấn SQL có cấu trúc. Tuy nhiên, nó có ba nhược điểm lớn:
 - **Chi phí lưu trữ đắt đỏ:** Khó có thể mở rộng để lưu trữ hàng petabyte dữ liệu giao dịch lịch sử và dữ liệu thô chưa qua xử lý.
 - **Không hỗ trợ dữ liệu phi cấu trúc:** Không thể xử lý trực tiếp các định dạng phi cấu trúc như hình ảnh, văn bản hợp đồng tín dụng hoặc dữ liệu chuỗi thời gian phát sinh liên tục.
 - **Hạn chế đối với Trí tuệ nhân tạo và Học máy:** Các thuật toán Machine Learning hiện đại đòi hỏi quyền truy cập trực tiếp vào các tệp dữ liệu thô ở tốc độ cao, điều mà các engine xử lý của Data Warehouse không được thiết kế để tối ưu [17].
@@ -43,7 +43,7 @@ Apache Spark là công cụ tính toán phân tán mã nguồn mở hàng đầu
 Delta Lake là lớp lưu trữ nguồn mở được xây dựng trực tiếp trên các tệp lưu trữ cột nén chuẩn Parquet, bổ sung thêm các tính năng cấp doanh nghiệp mà Data Lake truyền thống không có:
 
 1. **Đảm bảo tính toàn vẹn giao dịch ACID (ACID Transactions):** Delta Lake sử dụng cơ chế ghi nhật ký giao dịch tuần tự có thứ tự (Delta Transaction Log hay `_delta_log`). Mọi thao tác thêm mới (Append), cập nhật (Update), xóa (Delete) hoặc hợp nhất (Merge) đều được ghi nhận như một giao dịch đơn vị nguyên tử (Atomicity). Nếu một tác vụ phân tán bị lỗi giữa chừng trên một worker node, toàn bộ trạng thái sẽ tự động quay về điểm an toàn trước đó, đảm bảo không bao giờ xuất hiện dữ liệu bị hỏng trong kho dữ liệu ngân hàng [22].
-2. **Khả năng truy vết lịch sử và kiểm toán tín dụng (Time Travel / Data Versioning):** Mỗi thay đổi dữ liệu trong Delta Lake đều tạo ra một phiên bản phiên bản mới (Commit Version). Tính năng này cho phép các kiểm toán viên ngân hàng hoặc cơ quan quản lý thanh tra có thể truy vấn lại chính xác trạng thái dữ liệu của một khách hàng tại thời điểm 6 tháng hoặc 1 năm trước:
+2. **Khả năng truy vết lịch sử và kiểm toán tín dụng (Time Travel / Data Versioning):** Mỗi thay đổi dữ liệu trong Delta Lake đều tạo ra một phiên bản mới (Commit Version). Tính năng này cho phép kiểm toán viên ngân hàng hoặc cơ quan quản lý thanh tra có thể truy vấn lại chính xác trạng thái dữ liệu của một khách hàng tại bất kỳ thời điểm nào trong quá khứ:
    - Giúp tái lập chính xác môi trường dữ liệu đầu vào đã dùng để đưa ra quyết định duyệt vay tại thời điểm phê duyệt trong quá khứ.
    - Đáp ứng nghiêm ngặt các quy định về tính minh bạch và khả năng giải trình quyết định tín dụng của Ngân hàng Nhà nước và Hiệp ước Basel II [23].
 3. **Kiểm soát và tiến hóa cấu trúc dữ liệu (Schema Enforcement & Schema Evolution):** Delta Lake tự động ngăn chặn các tệp dữ liệu rác hoặc dữ liệu có định dạng sai lệch bị ghi vào bảng (Schema Enforcement). Đồng thời, khi nghiệp vụ ngân hàng cần bổ sung các trường thông tin tín dụng mới trong tương lai, hệ thống cho phép cấu trúc bảng tự động tiến hóa an toàn (Schema Evolution) mà không làm gián đoạn các luồng dữ liệu đang hoạt động.
@@ -55,45 +55,11 @@ Delta Lake là lớp lưu trữ nguồn mở được xây dựng trực tiếp 
 
 Kiến trúc Huy chương Medallion (Medallion Architecture) là một mô hình thiết kế chuẩn mực dữ liệu được khuyến nghị bởi Databricks nhằm nâng cao dần chất lượng và cấu trúc dữ liệu qua từng tầng xử lý, tạo nên một đường ống dẫn dữ liệu phân tán (Data Pipeline) có tính kiểm soát cao [25].
 
-```text
-┌────────────────────────────────────────────────────────────────────────────────────────┐
-│                          NGUỒN DỮ LIỆU ĐẦU VÀO (DATA INGESTION)                        │
-│            Dữ liệu Hồ sơ Đăng ký vay Trực tuyến / Dữ liệu Lịch sử CIC (CSV)            │
-└───────────────────────────────────────────┬────────────────────────────────────────────┘
-                                            │
-                                            ▼
-┌────────────────────────────────────────────────────────────────────────────────────────┐
-│                        TẦNG BRONZE: DỮ LIỆU NGUYÊN BẢN (RAW LAYER)                     │
-│  • Bảng Delta: workspace.default.bronze_credit_data                                    │
-│  • Nguyên tắc: Lưu trữ nguyên trạng (As-is), bảo toàn mọi thuộc tính thô              │
-│  • Vai trò: Phục vụ lưu vết lịch sử (Audit Trail), sao lưu và tái lập dữ liệu         │
-└───────────────────────────────────────────┬────────────────────────────────────────────┘
-                                            │
-                                            ▼
-┌────────────────────────────────────────────────────────────────────────────────────────┐
-│                   TẦNG SILVER: DỮ LIỆU LÀM SẠCH VÀ GIÀU THÔNG TIN (CURATED)            │
-│  • Bảng Delta: workspace.default.silver_credit_data                                    │
-│  • Xử lý: Lọc ngoại lai phi lý, điền khuyết thiếu, chuẩn hóa kiểu dữ liệu              │
-│  • Kỹ nghệ đặc trưng: Tính toán DTI, CBI, Window Functions xếp hạng thu nhập          │
-│  • Vai trò: Cung cấp nguồn dữ liệu chuẩn mực cho phân tích Spark SQL và Feature Store  │
-└───────────────────────────────────────────┬────────────────────────────────────────────┘
-                                            │
-                                            ▼
-┌────────────────────────────────────────────────────────────────────────────────────────┐
-│                  TẦNG GOLD: DỮ LIỆU RA QUYẾT ĐỊNH & MÔ HÌNH HÓA AI (BUSINESS)          │
-│  • Bảng Delta: workspace.default.gold_credit_scoring                                   │
-│  • Tích hợp Spark MLlib: VectorAssembler, StandardScaler, Random Forest Classifier     │
-│  • Động cơ Quyết định: Vector xác suất p, Điểm FICO Score, Phân tầng rủi ro 4 nhóm,   │
-│    Định giá Lãi suất theo Rủi ro (Risk-Based Pricing), Hạn mức giải ngân               │
-│  • Vai trò: Xuất kết quả phê duyệt tự động ra ứng dụng ngân hàng và Dashboard điều hành│
-└────────────────────────────────────────────────────────────────────────────────────────┘
-```
-
 **Bảng 2.2: Phân định chức năng, nguyên tắc và công nghệ giữa 3 tầng kiến trúc Medallion**
 
 | Tầng Dữ liệu | Bảng Lưu Trữ Delta | Mục Đích Nghiệp Vụ & Kỹ Thuật | Tiêu Chuẩn Chất Lượng & Quản Trị |
 | :--- | :--- | :--- | :--- |
-| **BRONZE** *(Dữ liệu Thô)* | `workspace.default.bronze_credit_data` | Tiếp nhận và nạp nguyên vẹn toàn bộ các bản ghi đăng ký vay từ tệp thô vào kho Delta Lake. Bảo toàn 100% dữ liệu gốc không chỉnh sửa. | Bất biến (Immutable), cho phép truy vết nguồn gốc (Data Lineage) và phục vụ kiểm toán toàn diện. |
+| **BRONZE** *(Dữ liệu Thô)* | `workspace.default.bronze_credit_data` | Tiếp nhận và nạp nguyên vẹn toàn bộ 2,260,701 bản ghi đăng ký vay từ tệp thô vào kho Delta Lake. Bảo toàn 100% dữ liệu gốc không chỉnh sửa. | Bất biến (Immutable), cho phép truy vết nguồn gốc (Data Lineage) và phục vụ kiểm toán toàn diện. |
 | **SILVER** *(Dữ liệu Làm Sạch)* | `workspace.default.silver_credit_data` | Áp dụng các quy tắc kiểm định dữ liệu ngân hàng: lọc bỏ các dòng có tuổi ngoại lai hoặc thu nhập phi thực tế; điền giá trị thiếu cho thâm niên làm việc và lãi suất; tính toán chỉ số tài chính nghiệp vụ (DTI, CBI). | Dữ liệu sạch, nhất quán về kiểu dữ liệu (Schema-conformed), loại bỏ trùng lặp và sẵn sàng cho phân tích. |
 | **GOLD** *(Dữ liệu Kinh Doanh & AI)* | `workspace.default.gold_credit_scoring` | Tích hợp đầu ra từ mô hình học máy phân tán Random Forest: lưu trữ nhãn dự báo, véc-tơ xác suất vỡ nợ, điểm tín dụng FICO Score, phân loại nhóm rủi ro, chính sách hạn mức và mức lãi suất đề xuất. | Dữ liệu tổng hợp cấp cao nhất, phục vụ trực tiếp cho API phê duyệt tự động của ngân hàng và Dashboard quản trị. |
 
@@ -101,13 +67,43 @@ Kiến trúc Huy chương Medallion (Medallion Architecture) là một mô hình
 
 ## 2.4. Sơ đồ luồng dữ liệu phân tán toàn diện (Data Pipeline Workflow)
 
-*[Ghi chú: Thêm Sơ đồ kiến trúc Medallion Lakehouse tại đây]*
+Luồng vận hành dữ liệu trong toàn bộ hệ thống được mô tả trực quan thông qua sơ đồ kiến trúc Medallion dưới đây:
 
-Quy trình vận hành luồng dữ liệu phân tán trong đề tài được thiết kế theo một chu trình tự động hóa khép kín gồm 6 giai đoạn logic:
+```mermaid
+flowchart TD
+    subgraph S1["1. NGUỒN DỮ LIỆU ĐẦU VÀO"]
+        A["Hồ sơ Đăng ký Vay Trực tuyến<br/>LendingClub 2.26M Bản ghi (1.6 GB)"]
+    end
 
-1. **Giai đoạn 1 - Thu thập và Tiếp nhận (Data Ingestion):** Dữ liệu hồ sơ vay vốn từ cổng tiếp nhận trực tuyến được nạp vào Catalog lưu trữ của Databricks dưới dạng các tệp dữ liệu phân tán.
-2. **Giai đoạn 2 - Đóng gói Tầng Bronze:** Động cơ PySpark đọc dữ liệu và chuyển đổi sang bảng định dạng Delta Lake thô (`bronze_credit_data`). Toàn bộ cấu trúc gốc và lịch sử giao dịch được khởi tạo với phiên bản Version 0 trong Delta Log.
-3. **Giai đoạn 3 - Tiền xử lý và Làm giàu dữ liệu Tầng Silver:** Cụm phân tán thực thi đồng thời các phép lọc dữ liệu ngoại lai phi logic, điền giá trị khuyết thiếu theo nguyên tắc trung vị thị trường, chuyển đổi kiểu dữ liệu chuẩn và tính toán các chỉ số đòn bẩy tài chính (DTI, CBI). Dữ liệu sau xử lý được ghi đè an toàn vào bảng Delta `silver_credit_data`.
+    subgraph S2["2. TẦNG BRONZE (RAW LAKEHOUSE)"]
+        B["Bảng Delta: bronze_credit_data<br/>• Lưu trữ nguyên bản (As-is)<br/>• ACID Transaction Log (_delta_log)<br/>• Audit Trail & Data Versioning"]
+    end
+
+    subgraph S3["3. TẦNG SILVER (CURATED & ENRICHED)"]
+        C["Bảng Delta: silver_credit_data<br/>• Lọc ngoại lai: 18 ≤ Tuổi ≤ 80, Thu nhập > 0<br/>• Điền khuyết thiếu: Emp_length=0, Int_rate=11%<br/>• Kỹ nghệ đặc trưng: DTI, CBI<br/>• Spark SQL Window Functions"]
+    end
+
+    subgraph S4["4. TẦNG GOLD (AI ENGINE & DECISIONING)"]
+        D["Mô hình Spark MLlib Pipeline<br/>• VectorAssembler & StandardScaler<br/>• Random Forest Classifier (AUC=0.8745)<br/>• 3-Fold Cross-Validation"]
+        E["Bảng Delta: gold_credit_scoring<br/>• Véc-tơ Xác suất Vỡ nợ (PD)<br/>• Quy đổi Điểm FICO Score (300 - 850)<br/>• Ma trận Phân tầng Rủi ro 4 Nhóm<br/>• Định giá Lãi suất theo Rủi ro (8.5% - 14.5%)"]
+    end
+
+    subgraph S5["5. ỨNG DỤNG NGHIỆP VỤ & TỰ ĐỘNG HÓA"]
+        F["Phê duyệt Tự động STP (< 3 phút)<br/>• 62.4% Duyệt Tự động 100%<br/>• 18.2% Duyệt Hạn mức 70%<br/>• 11.8% Thẩm định Thủ công & Thế chấp<br/>• 7.6% Từ chối Cho vay (Auto-Reject)"]
+    end
+
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+    E --> F
+```
+<p align="center"><em>Hình 2.1: Sơ đồ kiến trúc xử lý luồng dữ liệu Lakehouse theo mô hình Huy chương Medallion</em></p>
+
+Quy trình vận hành luồng dữ liệu phân tán gồm 6 giai đoạn logic:
+1. **Giai đoạn 1 - Thu thập và Tiếp nhận (Data Ingestion):** Dữ liệu 2.26 triệu khoản vay được nạp vào Catalog lưu trữ của Databricks dưới dạng các tệp dữ liệu phân tán.
+2. **Giai đoạn 2 - Đóng gói Tầng Bronze:** Động cơ PySpark đọc dữ liệu và chuyển đổi sang bảng Delta Lake thô (`bronze_credit_data`). Toàn bộ cấu trúc gốc và lịch sử giao dịch được khởi tạo với Version 0 trong Delta Log.
+3. **Giai đoạn 3 - Tiền xử lý và Làm giàu dữ liệu Tầng Silver:** Cụm phân tán thực thi đồng thời các phép lọc dữ liệu ngoại lai phi logic, điền giá trị khuyết thiếu theo nguyên tắc trung vị thị trường, chuyển đổi kiểu dữ liệu chuẩn và tính toán các chỉ số đòn bẩy tài chính (DTI, CBI). Dữ liệu sau xử lý được ghi vào bảng Delta `silver_credit_data`.
 4. **Giai đoạn 4 - Phân tích Thống kê Phân tán (Spark SQL Analytics):** Sử dụng ngôn ngữ Spark SQL tối ưu hóa để truy vấn tổng hợp tỷ lệ nợ xấu, phân tích ma trận tương quan giữa mục đích vay, hạng tín dụng và rủi ro chậm trả, đồng thời ứng dụng hàm cửa sổ phân vùng Window Functions để xếp hạng vị thế tài chính khách hàng.
 5. **Giai đoạn 5 - Huấn luyện Pipeline Học máy Phân tán (Spark MLlib Training):** Các thuộc tính được chuẩn hóa và đóng gói qua chuỗi công đoạn `StringIndexer`, `OneHotEncoder`, `VectorAssembler` và `StandardScaler`. Mô hình `RandomForestClassifier` được huấn luyện song song trên các worker nodes với bộ tinh chỉnh siêu tham số `CrossValidator` (3-Folds) để tìm ra mô hình tối ưu nhất.
 6. **Giai đoạn 6 - Xuất bản Tầng Gold và Ra quyết định Tự động (Gold Publication & Decisioning):** Kết quả dự báo xác suất vỡ nợ được đưa qua Động cơ Quyết định (Decision Engine) để quy đổi ra điểm FICO Score, gán phân tầng rủi ro, áp chính sách hạn mức và tính lãi suất cho vay theo rủi ro. Toàn bộ thông tin được lưu vĩnh viễn vào bảng Delta `gold_credit_scoring` sẵn sàng phục vụ các kênh giao dịch trực tuyến.

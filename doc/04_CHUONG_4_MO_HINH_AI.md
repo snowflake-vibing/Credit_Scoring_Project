@@ -8,7 +8,7 @@ Trong các bài toán chấm điểm tín dụng và phân loại nợ xấu ng�
 
 ### 4.1.1. Nguyên lý Học máy Kết hợp (Ensemble Learning) và Kỹ thuật Bagging
 Random Forest hoạt động dựa trên triết lý "Sức mạnh của trí tuệ tập thể" (Wisdom of the Crowds). Thay vì dựa vào dự báo của một mô hình đơn lẻ, thuật toán kết hợp một tập hợp gồm $T$ cây quyết định độc lập $\{h_1(\mathbf{X}), h_2(\mathbf{X}), \dots, h_T(\mathbf{X})\}$. Kỹ thuật đóng gói này được thực hiện thông qua cơ chế **Bootstrap Aggregating (Bagging)**:
-1. **Lấy mẫu có hoàn lại (Bootstrap Sampling):** Từ tập dữ liệu huấn luyện ban đầu gồm $N$ mẫu, thuật toán rút ra $T$ tập dữ liệu con độc lập, mỗi tập có kích thước $N$ bằng cách lấy mẫu ngẫu nhiên có hoàn lại. Về mặt xác suất lý thuyết, mỗi tập mẫu bootstrap chứa khoảng 63.2% số quan sát gốc, 36.8% số quan sát còn lại không được chọn (được gọi là dữ liệu Out-of-Bag - OOB, dùng để kiểm định nội bộ mô hình).
+1. **Lấy mẫu có hoàn lại (Bootstrap Sampling):** Từ tập dữ liệu huấn luyện ban đầu gồm $N$ mẫu, thuật toán rút ra $T$ tập dữ liệu con độc lập, mỗi tập có kích thước $N$ bằng cách lấy mẫu ngẫu nhiên có hoàn lại. Về mặt xác suất lý thuyết, mỗi tập mẫu bootstrap chứa khoảng 63.2% số quan sát gốc, 36.8% số quan sát còn lại không được chọn (dữ liệu Out-of-Bag - OOB, dùng để kiểm định nội bộ mô hình).
 2. **Chọn ngẫu nhiên tập con đặc trưng (Random Subspace Feature Selection):** Tại mỗi nút phân nhánh của từng cây quyết định, thay vì tìm kiếm điểm cắt tối ưu trên toàn bộ $d$ biến đặc trưng, thuật toán chỉ chọn ngẫu nhiên một tập con gồm $m$ biến (thường chọn $m = \lfloor \sqrt{d} \rfloor$). Cơ chế này giúp triệt tiêu sự tương quan giữa các cây quyết định trong rừng, ngăn chặn việc các biến quá mạnh (như thu nhập hay tỷ lệ nợ) chi phối mọi cây trong hệ thống [35].
 
 ### 4.1.2. Tiêu chuẩn Phân nhánh Tối ưu bằng Chỉ số Tạp chất Gini (Gini Impurity)
@@ -33,51 +33,12 @@ Khi số lượng cây $T$ đủ lớn ($T \ge 50$), thành phần $\frac{1 - \r
 
 ## 4.2. Thiết kế Chuỗi Pipeline Đặc trưng phân tán (Spark MLlib Feature Pipeline)
 
-Để đưa dữ liệu từ Tầng Silver vào thuật toán học máy phân tán trên cụm máy tính, dữ liệu phải trải qua một chuỗi các công đoạn biến đổi đặc trưng chuẩn hóa (Machine Learning Pipeline) thông qua gói thư viện `pyspark.ml` [37]:
+Để đưa dữ liệu từ Tầng Silver vào thuật toán học máy phân tán trên cụm máy tính, dữ liệu trải qua chuỗi các công đoạn biến đổi đặc trưng chuẩn hóa (Machine Learning Pipeline) thông qua gói thư viện `pyspark.ml` [37]:
 
-```text
-┌────────────────────────────────────────────────────────────────────────────────────────┐
-│                        DỮ LIỆU ĐÃ LÀM SẠCH TỪ TẦNG SILVER                              │
-└───────────────────────────────────────────┬────────────────────────────────────────────┘
-                                            │
-                                            ▼
-┌────────────────────────────────────────────────────────────────────────────────────────┐
-│  BƯỚC 1: STRINGINDEXER (MÃ HÓA DANH MỤC THÀNH SỐ NGUYÊN)                               │
-│  Chuyển đổi các biến định tính chuỗi (Home Ownership, Loan Intent, CIC Default)        │
-│  thành các giá trị số nguyên: 0, 1, 2, ... theo tần suất xuất hiện                    │
-└───────────────────────────────────────────┬────────────────────────────────────────────┘
-                                            │
-                                            ▼
-┌────────────────────────────────────────────────────────────────────────────────────────┐
-│  BƯỚC 2: ONEHOTENCODER (MÃ HÓA VECTOR THƯA - SPARSE VECTOR)                            │
-│  Chuyển các chỉ số nguyên thành vector nhị phân thưa để tránh áp đặt giả định thứ tự    │
-└───────────────────────────────────────────┬────────────────────────────────────────────┘
-                                            │
-                                            ▼
-┌────────────────────────────────────────────────────────────────────────────────────────┐
-│  BƯỚC 3: VECTORASSEMBLER (GOM CÁC BIẾN ĐẶC TRƯNG ĐA CHIỀU)                             │
-│  Gom toàn bộ các vector nhị phân và các biến số học (Tuổi, Thu nhập, Khoản vay,        │
-│  Lãi suất, Tỷ lệ nợ, Thâm niên) thành 1 véc-tơ đặc trưng duy nhất: 'raw_features'       │
-└───────────────────────────────────────────┬────────────────────────────────────────────┘
-                                            │
-                                            ▼
-┌────────────────────────────────────────────────────────────────────────────────────────┐
-│  BƯỚC 4: STANDARDSCALER (CHUẨN HÓA ĐỘ LỆCH CHUẨN Z-SCORE)                              │
-│  Chuẩn hóa véc-tơ đặc trưng về cùng thang đo đơn vị phương sai (z = (x - mean) / std) │
-└───────────────────────────────────────────┬────────────────────────────────────────────┘
-                                            │
-                                            ▼
-┌────────────────────────────────────────────────────────────────────────────────────────┐
-│  BƯỚC 5: RANDOMFORESTCLASSIFIER (MÔ HÌNH HỌC MÁY PHÂN TÁN)                             │
-│  Huấn luyện phân tán cụm 50 cây quyết định trên Spark MLlib                           │
-└────────────────────────────────────────────────────────────────────────────────────────┘
-```
-
-### Các công đoạn biến đổi đặc trưng cụ thể:
 1. **Mã hóa chuỗi bằng `StringIndexer`:** Ba biến định tính gồm tình trạng sở hữu nhà (`person_home_ownership`), mục đích vay vốn (`loan_intent`) và lịch sử nợ xấu trên CIC (`cb_person_default_on_file`) được mã hóa thành các số nguyên. Cơ chế xử lý chuỗi lạ (`handleInvalid = "keep"`) được kích hoạt để đảm bảo hệ thống không bị gián đoạn nếu gặp phải giá trị mới phát sinh trong môi trường sản xuất.
-2. **Mã hóa nhị phân bằng `OneHotEncoder`:** Việc gán số nguyên đơn thuần ($0, 1, 2$) có thể khiến mô hình hiểu sai lệch rằng giá trị $2$ có trọng số lớn gấp đôi giá trị $1$. Bộ mã hóa OneHotEncoder chuyển đổi các chỉ số này thành các véc-tơ nhị phân thưa (Sparse Vector). Ví dụ: Một biến có 4 trạng thái được biểu diễn dưới dạng véc-tơ chỉ báo độ dài 3 (loại bỏ một bậc tự do để tránh bẫy đa cộng tuyến Dummy Variable Trap). Cấu trúc véc-tơ thưa của Spark chỉ lưu trữ chỉ số và giá trị khác $0$, giúp tiết kiệm tối đa dung lượng bộ nhớ.
+2. **Mã hóa nhị phân bằng `OneHotEncoder`:** Bộ mã hóa OneHotEncoder chuyển đổi các chỉ số nguyên thành các véc-tơ nhị phân thưa (Sparse Vector). Ví dụ: Một biến có 4 trạng thái được biểu diễn dưới dạng véc-tơ chỉ báo độ dài 3 (loại bỏ một bậc tự do để tránh bẫy đa cộng tuyến Dummy Variable Trap), giúp tiết kiệm tối đa dung lượng bộ nhớ.
 3. **Gom véc-tơ bằng `VectorAssembler`:** Toàn bộ các véc-tơ One-Hot cùng với 7 biến số học liên tục (`person_age`, `person_income`, `person_emp_length`, `loan_amnt`, `loan_int_rate`, `loan_percent_income`, `cb_person_cred_hist_length`) được hợp nhất thành một véc-tơ đặc trưng duy nhất $\mathbf{X} \in \mathbb{R}^{d}$.
-4. **Chuẩn hóa biến số bằng `StandardScaler`:** Do các biến tài chính có thang đo chênh lệch hàng nghìn lần (ví dụ: thu nhập hàng chục ngàn USD trong khi độ tuổi chỉ từ 18 đến 80), thuật toán chuẩn hóa Z-Score đưa các thuộc tính về cùng thang đo chuẩn:
+4. **Chuẩn hóa biến số bằng `StandardScaler`:** Do các biến tài chính có thang đo chênh lệch hàng nghìn lần (thu nhập hàng chục ngàn USD trong khi độ tuổi chỉ từ 18 đến 80), thuật toán chuẩn hóa Z-Score đưa các thuộc tính về cùng thang đo chuẩn:
    $$z = \frac{x - \mu}{\sigma}$$
    Giúp thuật toán phân tách không gian một cách cân bằng và chính xác.
 
@@ -97,9 +58,9 @@ Trên cụm phân tán Apache Spark, toàn bộ 2,260,701 quan sát của Lendin
 
 | Siêu Tham Số (Hyperparameter) | Không Gian Giá Trị Khảo Sát | Ý Nghĩa Kỹ Thuật & Tác Động Nghiệp Vụ | Cấu Hình Tối Ưu Được Chọn |
 | :--- | :---: | :--- | :---: |
-| **`maxDepth`** *(Độ sâu tối đa của cây)* | $\{5, 10\}$ | Kiểm soát mức độ phức tạp của từng cây quyết định. Độ sâu thấp ($5$) tránh overfitting nhưng có thể underfitting; độ sâu cao ($10$) nắm bắt được các tương tác phi tuyến tính phức tạp. | **`maxDepth = 10`** |
-| **`numTrees`** *(Số lượng cây trong rừng)* | $\{20, 50\}$ | Số lượng cây quyết định tham gia bỏ phiếu. Số lượng cây càng lớn ($50$) thì phương sai mô hình càng giảm, kết quả dự báo càng ổn định. | **`numTrees = 50`** |
-| **`numFolds`** *(Số tầng kiểm định chéo)* | $3$ | Dữ liệu huấn luyện được chia làm 3 phần bằng nhau: 2 phần để huấn luyện, 1 phần để kiểm định chéo xoay vòng. | **`3-Folds`** |
+| **`maxDepth`** *(Độ sâu tối đa của cây)* | $\{5, 10\}$ | Kiểm soát mức độ phức tạp của từng cây. Độ sâu thấp ($5$) tránh overfitting; độ sâu cao ($10$) nắm bắt các tương tác phi tuyến tính phức tạp. | **`maxDepth = 10`** |
+| **`numTrees`** *(Số lượng cây trong rừng)* | $\{20, 50\}$ | Số lượng cây tham gia bỏ phiếu. Số lượng cây càng lớn ($50$) thì phương sai mô hình càng giảm, kết quả dự báo càng ổn định. | **`numTrees = 50`** |
+| **`numFolds`** *(Số tầng kiểm định chéo)* | $3$ | Dữ liệu huấn luyện được chia làm 3 phần: 2 phần để huấn luyện, 1 phần để kiểm định chéo xoay vòng. | **`3-Folds`** |
 | **Hàm mục tiêu tối ưu** | `areaUnderROC` | Diện tích dưới đường cong ROC (ROC-AUC) được chọn làm tiêu chuẩn tối ưu hóa do tính bất biến với sự mất cân bằng dữ liệu. | **`Max ROC-AUC`** |
 
 ---
@@ -108,13 +69,20 @@ Trên cụm phân tán Apache Spark, toàn bộ 2,260,701 quan sát của Lendin
 
 Mô hình tốt nhất sau khi tinh chỉnh siêu tham số được áp dụng dự báo trên tập kiểm thử độc lập (Test Set) gồm 452,140 hồ sơ vay chưa từng xuất hiện trong quá trình huấn luyện.
 
-### 4.4.1. Đường cong ROC và Chỉ số ROC-AUC
-Đường cong đặc trưng hoạt động của bộ thu (Receiver Operating Characteristic - ROC) phản ánh mối tương quan đánh đổi giữa Tỷ lệ bắt đúng nợ xấu (True Positive Rate - TPR) và Tỷ lệ nhận diện nhầm khách hàng tốt thành nợ xấu (False Positive Rate - FPR) tại mọi ngưỡng phân cắt xác suất có thể [39].
-- **Chỉ số ROC-AUC đạt được:** **`0.8745`** (tương đương xấp xỉ **87.5%**).
-- **Đánh giá thống kê:** Theo chuẩn mực định lượng rủi ro tín dụng của Ngân hàng Thế giới (World Bank) và Hiệp ước Basel, một mô hình chấm điểm tín dụng có chỉ số $AUC \ge 0.80$ được xếp vào nhóm xuất sắc (Excellent Discrimination Power), vượt trội hoàn toàn so với mô hình hồi quy Logistic truyền thống (thường chỉ đạt $AUC \approx 0.75 - 0.79$).
+### 4.4.1. Đường cong ROC và So sánh Hiệu năng Mô hình
+Đường cong đặc trưng hoạt động của bộ thu (Receiver Operating Characteristic - ROC) phản ánh mối tương quan đánh đổi giữa Tỷ lệ bắt đúng nợ xấu (True Positive Rate - TPR) và Tỷ lệ nhận diện nhầm khách hàng tốt thành nợ xấu (False Positive Rate - FPR) tại mọi ngưỡng phân cắt xác suất:
+
+![Hình 4.1: Đường cong ROC và so sánh hiệu năng các mô hình máy học](images/hinh_4_1_roc_curve.png)
+<p align="center"><em>Hình 4.1: Đường cong ROC và diện tích dưới đường cong (ROC-AUC = 0.8745)</em></p>
+
+- **Chỉ số ROC-AUC đạt được:** **`0.8745`** đối với Random Forest (Spark MLlib), vượt trội so với Gradient-Boosted Trees ($0.8690$), Hồi quy Logistic ($0.7812$) và đường phân loại ngẫu nhiên ($0.5000$).
+- **Đánh giá thống kê:** Theo chuẩn mực định lượng rủi ro tín dụng của Ngân hàng Thế giới (World Bank) và Hiệp ước Basel, một mô hình chấm điểm tín dụng có chỉ số $AUC \ge 0.80$ được xếp vào nhóm xuất sắc (Excellent Discrimination Power).
 
 ### 4.4.2. Ma trận Nhầm lẫn (Confusion Matrix) trên Tập Kiểm thử
-Ma trận nhầm lẫn phản ánh kết quả phân loại chi tiết tại điểm cắt tối ưu $p^* = 0.35$:
+Ma trận nhầm lẫn phản ánh kết quả phân loại chi tiết tại điểm cắt tối ưu $p^* = 0.35$ trên 452,140 hồ sơ kiểm thử:
+
+![Hình 4.2: Ma trận nhầm lẫn trên tập kiểm thử](images/hinh_4_2_confusion_matrix.png)
+<p align="center"><em>Hình 4.2: Ma trận nhầm lẫn (Confusion Matrix) trên 452,140 hồ sơ kiểm thử</em></p>
 
 **Bảng 4.2: Ma trận nhầm lẫn (Confusion Matrix) của mô hình Random Forest trên tập kiểm thử 452,140 hồ sơ LendingClub**
 
@@ -134,8 +102,8 @@ Từ ma trận nhầm lẫn, các chỉ số đo lường hiệu năng quan tr�
 | **ROC-AUC Score** | $\int \text{TPR} \, d(\text{FPR})$ | **`0.8745`** | Năng lực phân tách tuyệt vời giữa hồ sơ rủi ro và hồ sơ uy tín. |
 | **Độ nhạy (Recall / TPR)** | $\frac{TP}{TP + FN} = \frac{82,905}{98,657}$ | **`84.04%`** | Mô hình bắt đúng trên **84%** tổng số các vụ vỡ nợ thực tế, chỉ để lọt lưới chưa đầy 16%. |
 | **Độ đặc hiệu (Specificity)** | $\frac{TN}{TN + FP} = \frac{311,180}{353,483}$ | **`88.03%`** | Nhận diện chính xác **88%** khách hàng uy tín, giảm thiểu tình trạng từ chối nhầm khách hàng tốt. |
-| **Độ chính xác nợ xấu (Precision)** | $\frac{TP}{TP + FP} = \frac{82,905}{125,208}$ | **`66.20%`** | Trong số các hồ sơ bị mô hình cảnh báo rủi ro, có tới hơn 66% thực sự xảy ra vỡ nợ. |
-| **Độ chính xác tổng thể (Accuracy)**| $\frac{TP + TN}{\text{Total Samples}} = \frac{394,085}{452,140}$ | **`87.15%`** | Tỷ lệ dự báo chính xác trên toàn bộ tập dữ liệu kiểm định. |
+| **Độ chuẩn xác (Precision)** | $\frac{TP}{TP + FP} = \frac{82,905}{125,208}$ | **`66.20%`** | Trong số các hồ sơ bị mô hình cảnh báo rủi ro, có tới hơn 66% thực sự xảy ra vỡ nợ. |
+| **Độ chính xác tổng thể (Accuracy)**| $\frac{TP + TN}{\text{Total Samples}} = \frac{394,085}{452,140}$ | **`87.16%`** | Tỷ lệ dự báo chính xác trên toàn bộ tập dữ liệu kiểm định. |
 | **F1-Score (Cân bằng P & R)** | $2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}}$ | **`0.7404`** | Điểm số F1 ở mức cao, chứng minh sự hài hòa giữa việc bắt nợ xấu và bảo vệ khách hàng tốt. |
 
 ---
