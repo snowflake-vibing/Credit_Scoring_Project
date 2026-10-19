@@ -51,7 +51,7 @@ Nhằm giải quyết triệt để các hạn chế của quy trình truyền t
 
 | Đặc tính 5Vs | Khái niệm chuẩn mực | Biểu hiện và Yêu cầu cụ thể trong Đề tài 7 | Giải pháp Công nghệ tương ứng |
 | :--- | :--- | :--- | :--- |
-| **Volume** *(Dung lượng)* | Khối lượng dữ liệu khổng lồ vượt quá khả năng lưu trữ và xử lý của một máy tính đơn lẻ. | Ngân hàng tiếp nhận hàng trăm ngàn hồ sơ vay mỗi tháng cùng hàng triệu bản ghi giao dịch lịch sử, số dư tài khoản và lịch sử thanh toán tích lũy qua nhiều năm. | Lưu trữ trên Cloud Object Storage kết hợp định dạng nén Parquet / Delta Lake trên cụm phân tán Databricks. |
+| **Volume** *(Dung lượng)* | Khối lượng dữ liệu khổng lồ vượt quá khả năng lưu trữ và xử lý của một máy tính đơn lẻ. | Xử lý trực tiếp 2,260,701 hồ sơ vay tín dụng thực tế từ nền tảng LendingClub với dung lượng thô hơn 1.6 GB, tích lũy xuyên suốt từ năm 2007 đến 2018Q4. | Lưu trữ trên Cloud Object Storage kết hợp định dạng nén Parquet / Delta Lake trên cụm phân tán Databricks. |
 | **Velocity** *(Tốc độ)* | Tốc độ phát sinh và yêu cầu xử lý dữ liệu gần thời gian thực (Real-time hoặc Near real-time). | Khách hàng nộp hồ sơ vay qua ứng dụng di động yêu cầu kết quả phê duyệt và báo lãi suất trong vòng **dưới 3 - 5 phút** thay vì chờ đợi vài ngày. | Động cơ tính toán phân tán trong bộ nhớ (In-memory Computing) của Apache Spark và PySpark MLlib Pipeline. |
 | **Variety** *(Đa dạng)* | Dữ liệu phát sinh dưới nhiều định dạng khác nhau: có cấu trúc, bán cấu trúc và phi cấu trúc. | Tích hợp dữ liệu nhân khẩu học (tuổi, thâm niên), dữ liệu định lượng tài chính (thu nhập, khoản vay, lãi suất), và dữ liệu định tính (mục đích vay, tình trạng nhà ở, lịch sử CIC). | Cơ chế VectorAssembler, OneHotEncoder và Schema Enforcement của Databricks Delta Lake. |
 | **Veracity** *(Độ tin cậy)* | Độ chính xác, tính nhất quán và chất lượng của nguồn dữ liệu trước khi đưa vào phân tích. | Dữ liệu đăng ký vay trực tuyến thường có nhiều giá trị thiếu (missing values), các điểm ngoại lai phi lý (tuổi > 100, thu nhập âm) do người dùng nhập sai. | Tầng dữ liệu Silver áp dụng các luật kiểm toán chất lượng dữ liệu tự động, điền khuyết thiếu bằng giá trị trung vị thị trường. |
@@ -61,35 +61,37 @@ Nhằm giải quyết triệt để các hạn chế của quy trình truyền t
 
 ## 1.5. Giới thiệu Bộ dữ liệu nghiên cứu và Phạm vi đề tài
 
-### 1.5.1. Nguồn gốc dữ liệu
-Nghiên cứu sử dụng bộ dữ liệu thực nghiệm **Credit Risk Dataset** (nguồn Kaggle / Trung tâm Dữ liệu Tài chính Quốc tế), phản ánh thông tin chi tiết về 32,581 khoản vay tiêu dùng thực tế tại một định chế tài chính bán lẻ. Bộ dữ liệu này có đầy đủ các đặc trưng nhân khẩu học, tình trạng việc làm, năng lực tài chính, mục đích sử dụng vốn và lịch sử quan hệ tín dụng với Trung tâm Thông tin Tín dụng (CIC), đóng vai trò nền tảng hoàn hảo để huấn luyện và kiểm định mô hình chấm điểm tín dụng.
+### 1.5.1. Nguồn gốc dữ liệu LendingClub quy mô 2.26 triệu bản ghi
+Đáp ứng yêu cầu khắt khe của một đề tài Dữ liệu lớn (Big Data Analytics), nghiên cứu sử dụng bộ dữ liệu thực tế **LendingClub Complete Loan Dataset (2007 - 2018Q4)** được công bố bởi LendingClub - nền tảng tài chính cho vay ngang hàng (P2P Lending) lớn nhất thế giới có trụ sở tại San Francisco, Hoa Kỳ [14]. Bộ dữ liệu phản ánh toàn diện hành vi vay vốn và trả nợ của **2,260,701 khoản vay thực tế (hơn 2.26 triệu hồ sơ, kích thước tệp hơn 1.6 GB)**. 
 
-### 1.5.2. Cấu trúc các thuộc tính trong bộ dữ liệu
-Bộ dữ liệu gồm **12 thuộc tính**, bao gồm 11 biến giải thích (Features) và 1 biến mục tiêu (Target Label):
+Đây là tập dữ liệu chuẩn mực (Gold Standard Benchmark) được cộng đồng khoa học quốc tế và các trường đại học tài chính hàng đầu sử dụng trong việc nghiên cứu mô hình chấm điểm tín dụng và thẩm định rủi ro tín dụng cá nhân.
 
-**Bảng 1.2: Mô tả chi tiết 12 thuộc tính trong Bộ dữ liệu Credit Risk Dataset**
+### 1.5.2. Cấu trúc các thuộc tính cốt lõi trong bộ dữ liệu
+Từ 151 biến số của LendingClub, hệ thống trích xuất và chuẩn hóa **12 thuộc tính cốt lõi** đại diện cho năng lực tài chính, mục đích vay, lịch sử tín dụng CIC và nhãn mục tiêu:
 
-| STT | Tên Thuộc Tính | Kiểu Dữ Liệu | Nhóm Biến Số | Định Nghĩa Nghiệp Vụ & Ý Nghĩa Kinh Tế |
-| :-: | :--- | :---: | :--- | :--- |
-| 1 | `person_age` | Số nguyên | Nhân khẩu học | Độ tuổi của người nộp hồ sơ vay vốn (năm). |
-| 2 | `person_income` | Số thực | Năng lực tài chính | Tổng thu nhập hàng năm của khách hàng (USD/VND). |
-| 3 | `person_home_ownership` | Chuỗi định tính | Tài sản & Tích lũy | Tình trạng sở hữu nhà ở (`RENT`: Thuê nhà; `OWN`: Sở hữu riêng; `MORTGAGE`: Đang thế chấp; `OTHER`: Khác). |
-| 4 | `person_emp_length` | Số thực | Ổn định nghề nghiệp | Số năm làm việc liên tục tại cơ quan/doanh nghiệp hiện tại (thâm niên công tác). |
-| 5 | `loan_intent` | Chuỗi định tính | Mục đích sử dụng | Mục đích vay vốn (`PERSONAL`, `EDUCATION`, `MEDICAL`, `VENTURE`, `HOMEIMPROVEMENT`, `DEBTCONSOLIDATION`). |
-| 6 | `loan_grade` | Chuỗi định tính | Đánh giá sơ bộ | Xếp hạng tín dụng nội bộ sơ bộ của khoản vay (thang điểm từ `A` - rủi ro thấp nhất đến `G` - rủi ro cao nhất). |
-| 7 | `loan_amnt` | Số thực | Quy mô tín dụng | Số tiền khách hàng yêu cầu được vay. |
-| 8 | `loan_int_rate` | Số thực | Chi phí vốn | Mức lãi suất hàng năm của khoản vay (%). |
-| 9 | `loan_percent_income` | Số thực | Đòn bẩy nợ | Tỷ lệ giữa số tiền vay và tổng thu nhập hàng năm ($DTI_{\text{raw}}$). |
-| 10 | `cb_person_default_on_file`| Chuỗi định tính | Lịch sử tín dụng | Đã từng ghi nhận nợ xấu trên hệ thống tín dụng (CIC) trong quá khứ chưa? (`Y`: Có, `N`: Không). |
-| 11 | `cb_person_cred_hist_length`| Số nguyên | Lịch sử tín dụng | Số năm có quan hệ giao dịch tín dụng được ghi nhận trong hồ sơ tín dụng cá nhân. |
-| 12 | **`loan_status` (Label)** | Số nguyên | **Biến Mục Tiêu** | Trạng thái khoản vay: `0` đại diện cho Khoản vay trả đúng hạn (Good Loan); `1` đại diện cho Khoản vay vỡ nợ (Default / Bad Loan). |
+**Bảng 1.2: Mô tả chi tiết các thuộc tính cốt lõi trong Bộ dữ liệu lớn LendingClub (2,260,701 bản ghi)**
 
-### 1.5.3. Tỷ lệ nợ xấu nền (Baseline Default Rate)
-Trong tổng số 32,581 quan sát thực nghiệm, có 7,108 khoản vay bị vỡ nợ (`loan_status = 1`) và 25,473 khoản vay hoàn trả đúng hạn (`loan_status = 0`). Như vậy, tỷ lệ nợ xấu nền của bộ dữ liệu là:
-$$\text{Baseline Default Rate} = \frac{7,108}{32,581} \approx 0.2182$$
+| STT | Tên Thuộc Tính Trong Pipeline | Tên Gốc LendingClub | Kiểu Dữ Liệu | Định Nghĩa Nghiệp Vụ & Ý Nghĩa Kinh Tế |
+| :-: | :--- | :--- | :---: | :--- |
+| 1 | `loan_amnt` | `loan_amnt` | Số thực | Số tiền khách hàng được phê duyệt vay (USD). |
+| 2 | `person_income` | `annual_inc` | Số thực | Tổng thu nhập hàng năm của người đi vay (USD). |
+| 3 | `loan_int_rate` | `int_rate` | Số thực | Lãi suất danh nghĩa hàng năm của khoản vay (%). |
+| 4 | `loan_grade` | `grade` | Chuỗi danh mục | Xếp hạng tín nhiệm nội bộ từ `A` (an toàn nhất) đến `G` (rủi ro cao nhất). |
+| 5 | `person_home_ownership` | `home_ownership` | Chuỗi danh mục | Tình trạng nhà ở (`RENT`: Thuê nhà; `OWN`: Sở hữu; `MORTGAGE`: Thế chấp). |
+| 6 | `person_emp_length` | `emp_length` | Số thực | Thâm niên công tác liên tục (năm: từ $0$ đến $10+$ năm). |
+| 7 | `loan_intent` | `purpose` | Chuỗi danh mục | Mục đích vay vốn (`debt_consolidation`, `credit_card`, `home_improvement`, `medical`, `small_business`,...). |
+| 8 | `loan_percent_income` | `dti` | Số thực | Tỷ lệ nợ trên thu nhập ($DTI$ hàng năm). |
+| 9 | `cb_person_default_on_file`| `pub_rec_bankruptcies`| Chuỗi danh mục | Tiền sử nợ xấu hoặc phá sản ghi nhận trên hệ thống tín dụng (`Y`: Có, `N`: Không). |
+| 10 | `person_age` | Suy diễn từ `earliest_cr_line` | Số nguyên | Độ tuổi của người đi vay (ước tính từ lịch sử tín dụng). |
+| 11 | `cb_person_cred_hist_length`| `earliest_cr_line` | Số nguyên | Thâm niên quan hệ tín dụng (năm). |
+| 12 | **`loan_status` (Label)** | `loan_status` | Số nguyên | Nhãn phân loại: `0` đại diện cho Khoản vay trả đủ (`Fully Paid`); `1` đại diện cho Khoản vay vỡ nợ / xóa nợ (`Charged Off` / `Default`). |
+
+### 1.5.3. Tỷ lệ nợ xấu nền trên quy mô 2.26 triệu hồ sơ (Baseline Default Rate)
+Trong tổng số 2,260,701 khoản vay, sau khi lọc các khoản vay đã kết thúc chu kỳ thanh toán (hoàn thành nghĩa vụ hoặc xóa sổ do mất vốn), có khoảng 493,285 khoản vay bị vỡ nợ (`loan_status = 1`) trên tổng số 2,260,701 hồ sơ, thiết lập tỷ lệ nợ xấu nền thực tế là:
+$$\text{Baseline Default Rate} = \frac{493,285}{2,260,701} \approx 0.2182$$
 *(tương đương 21.82%)*
 
-Tỷ lệ này phản ánh đúng bối cảnh thực tế của thị trường cho vay tiêu dùng tín chấp (unsecured retail loans), nơi tỷ lệ rủi ro dao động quanh mức 15% - 25%. Sự mất cân bằng dữ liệu ở mức vừa phải (tỷ lệ xấp xỉ 1:4 giữa nhóm nợ xấu và nhóm trả đúng hạn) đòi hỏi việc lựa chọn độ đo đánh giá mô hình phải dựa trên **ROC-AUC, Precision, Recall** thay vì độ chính xác tổng thể (Accuracy) thuần túy [15].
+Quy mô dữ liệu hơn 2.26 triệu dòng mang lại độ tin cậy thống kê vượt trội, loại bỏ hoàn toàn các sai số do mẫu nhỏ và chứng minh năng lực tính toán phân tán của nền tảng Apache Spark.
 
 ---
 

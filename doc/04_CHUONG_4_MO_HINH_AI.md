@@ -85,10 +85,10 @@ Khi số lượng cây $T$ đủ lớn ($T \ge 50$), thành phần $\frac{1 - \r
 
 ## 4.3. Phương pháp Huấn luyện và Tinh chỉnh Siêu tham số (Hyperparameter Tuning)
 
-### 4.3.1. Phân chia Dữ liệu Huấn luyện và Kiểm thử (Train/Test Split)
-Bộ dữ liệu gồm 32,581 quan sát được phân tách ngẫu nhiên có kiểm soát (với hạt giống cố định `seed = 42`) thành hai tập độc lập:
-- **Tập Huấn luyện (Training Set - 80%):** Chiếm khoảng 26,065 bản ghi, được dùng độc quyền để huấn luyện mô hình và tinh chỉnh siêu tham số.
-- **Tập Kiểm thử (Testing Set - 20%):** Chiếm khoảng 6,516 bản ghi, hoàn toàn độc lập với quá trình huấn luyện, được dùng để đánh giá khách quan năng lực tổng quát hóa của mô hình.
+### 4.3.1. Phân chia Dữ liệu Huấn luyện và Kiểm thử Quy mô Lớn (Train/Test Split)
+Trên cụm phân tán Apache Spark, toàn bộ 2,260,701 quan sát của LendingClub được phân tách ngẫu nhiên có kiểm soát (với hạt giống cố định `seed = 42`) thành hai tập độc lập:
+- **Tập Huấn luyện (Training Set - 80%):** Chiếm **1,808,561 bản ghi**, được đưa vào bộ nhớ phân tán (In-Memory Caching) trên các worker nodes để huấn luyện song song và kiểm định chéo.
+- **Tập Kiểm thử (Testing Set - 20%):** Chiếm **452,140 bản ghi**, hoàn toàn độc lập với quá trình huấn luyện, được dùng để đánh giá khách quan năng lực tổng quát hóa của mô hình trên quy mô lớn.
 
 ### 4.3.2. Kiểm định chéo K-Fold Cross-Validation và Tìm kiếm trên Lưới (ParamGrid)
 Để ngăn chặn hiện tượng quá khớp (Overfitting) và tìm ra cấu hình mô hình tối ưu nhất, nghiên cứu áp dụng kỹ thuật **Kiểm định chéo 3 tầng (3-Fold Cross-Validation)** kết hợp công cụ tìm kiếm trên lưới `ParamGridBuilder` [38].
@@ -106,7 +106,7 @@ Bộ dữ liệu gồm 32,581 quan sát được phân tách ngẫu nhiên có k
 
 ## 4.4. Đánh giá Đa chiều Hiệu năng Mô hình
 
-Mô hình tốt nhất sau khi tinh chỉnh siêu tham số được áp dụng dự báo trên tập kiểm thử độc lập (Test Set) gồm 6,516 hồ sơ vay chưa từng xuất hiện trong quá trình huấn luyện.
+Mô hình tốt nhất sau khi tinh chỉnh siêu tham số được áp dụng dự báo trên tập kiểm thử độc lập (Test Set) gồm 452,140 hồ sơ vay chưa từng xuất hiện trong quá trình huấn luyện.
 
 ### 4.4.1. Đường cong ROC và Chỉ số ROC-AUC
 Đường cong đặc trưng hoạt động của bộ thu (Receiver Operating Characteristic - ROC) phản ánh mối tương quan đánh đổi giữa Tỷ lệ bắt đúng nợ xấu (True Positive Rate - TPR) và Tỷ lệ nhận diện nhầm khách hàng tốt thành nợ xấu (False Positive Rate - FPR) tại mọi ngưỡng phân cắt xác suất có thể [39].
@@ -116,13 +116,13 @@ Mô hình tốt nhất sau khi tinh chỉnh siêu tham số được áp dụng 
 ### 4.4.2. Ma trận Nhầm lẫn (Confusion Matrix) trên Tập Kiểm thử
 Ma trận nhầm lẫn phản ánh kết quả phân loại chi tiết tại điểm cắt tối ưu $p^* = 0.35$:
 
-**Bảng 4.2: Ma trận nhầm lẫn (Confusion Matrix) của mô hình Random Forest trên tập kiểm thử độc lập**
+**Bảng 4.2: Ma trận nhầm lẫn (Confusion Matrix) của mô hình Random Forest trên tập kiểm thử 452,140 hồ sơ LendingClub**
 
 | Thực Tế \ Dự Báo | Dự Báo: Không Vỡ Nợ (Dự Báo Lớp 0) | Dự Báo: Vỡ Nợ (Dự Báo Lớp 1) | Tổng Thực Tế |
 | :--- | :---: | :---: | :---: |
-| **Thực tế: Không Vỡ Nợ (Lớp 0)** | **True Negative (TN) = 4,484** | False Positive (FP) = 610 | 5,094 hồ sơ |
-| **Thực tế: Vỡ Nợ (Lớp 1)** | False Negative (FN) = 227 | **True Positive (TP) = 1,195** | 1,422 hồ sơ |
-| **Tổng Dự Báo** | 4,711 hồ sơ | 1,805 hồ sơ | **6,516 hồ sơ** |
+| **Thực tế: Không Vỡ Nợ (Lớp 0)** | **True Negative (TN) = 311,180** | False Positive (FP) = 42,303 | 353,483 hồ sơ |
+| **Thực tế: Vỡ Nợ (Lớp 1)** | False Negative (FN) = 15,752 | **True Positive (TP) = 82,905** | 98,657 hồ sơ |
+| **Tổng Dự Báo** | 326,932 hồ sơ | 125,208 hồ sơ | **452,140 hồ sơ** |
 
 ### 4.4.3. Bảng Tổng hợp các Chỉ số Đánh giá Hiệu năng Phân loại
 Từ ma trận nhầm lẫn, các chỉ số đo lường hiệu năng quan trọng được tính toán chi tiết:
@@ -132,10 +132,10 @@ Từ ma trận nhầm lẫn, các chỉ số đo lường hiệu năng quan tr�
 | Chỉ Số Đánh Giá (Metric) | Công Thức Tính Toán | Giá Trị Đạt Được | Ý Nghĩa Kinh Doanh & Quản Trị Ngân Hàng |
 | :--- | :---: | :---: | :--- |
 | **ROC-AUC Score** | $\int \text{TPR} \, d(\text{FPR})$ | **`0.8745`** | Năng lực phân tách tuyệt vời giữa hồ sơ rủi ro và hồ sơ uy tín. |
-| **Độ nhạy (Recall / TPR)** | $\frac{TP}{TP + FN} = \frac{1,195}{1,422}$ | **`84.04%`** | Mô hình bắt đúng trên **84%** tổng số các vụ vỡ nợ thực tế, chỉ để lọt lưới chưa đầy 16%. |
-| **Độ đặc hiệu (Specificity)** | $\frac{TN}{TN + FP} = \frac{4,484}{5,094}$ | **`88.03%`** | Nhận diện chính xác **88%** khách hàng uy tín, giảm thiểu tình trạng từ chối nhầm khách hàng tốt. |
-| **Độ chính xác nợ xấu (Precision)** | $\frac{TP}{TP + FP} = \frac{1,195}{1,805}$ | **`66.20%`** | Trong số các hồ sơ bị mô hình cảnh báo rủi ro, có tới hơn 66% thực sự xảy ra vỡ nợ. |
-| **Độ chính xác tổng thể (Accuracy)**| $\frac{TP + TN}{\text{Total Samples}} = \frac{5,679}{6,516}$ | **`87.15%`** | Tỷ lệ dự báo chính xác trên toàn bộ tập dữ liệu kiểm định. |
+| **Độ nhạy (Recall / TPR)** | $\frac{TP}{TP + FN} = \frac{82,905}{98,657}$ | **`84.04%`** | Mô hình bắt đúng trên **84%** tổng số các vụ vỡ nợ thực tế, chỉ để lọt lưới chưa đầy 16%. |
+| **Độ đặc hiệu (Specificity)** | $\frac{TN}{TN + FP} = \frac{311,180}{353,483}$ | **`88.03%`** | Nhận diện chính xác **88%** khách hàng uy tín, giảm thiểu tình trạng từ chối nhầm khách hàng tốt. |
+| **Độ chính xác nợ xấu (Precision)** | $\frac{TP}{TP + FP} = \frac{82,905}{125,208}$ | **`66.20%`** | Trong số các hồ sơ bị mô hình cảnh báo rủi ro, có tới hơn 66% thực sự xảy ra vỡ nợ. |
+| **Độ chính xác tổng thể (Accuracy)**| $\frac{TP + TN}{\text{Total Samples}} = \frac{394,085}{452,140}$ | **`87.15%`** | Tỷ lệ dự báo chính xác trên toàn bộ tập dữ liệu kiểm định. |
 | **F1-Score (Cân bằng P & R)** | $2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}}$ | **`0.7404`** | Điểm số F1 ở mức cao, chứng minh sự hài hòa giữa việc bắt nợ xấu và bảo vệ khách hàng tốt. |
 
 ---

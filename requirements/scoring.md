@@ -18,7 +18,7 @@ Theo quy định sản phẩm bàn giao cuối khóa của Bộ môn Phân tích
 | **2** | **Mã nguồn Báo cáo dạng LaTeX (Định dạng biên dịch .tex)** | Thư mục `latex/` (`main.tex` & các file chương `.tex`) | **ĐÃ HOÀN THÀNH 100%** | **Đạt chuẩn Biên dịch PDF** |
 | **3** | **File Databricks Notebook (.ipynb)** | `code/De_Tai_7_Databricks_Notebook.ipynb` | **ĐÃ HOÀN THÀNH 100%** | **Chứa 100% Code + Visuals** |
 | **4** | **Mã nguồn Python phân tích & Trực quan hóa rời** | `code/Credit_Scoring_Analytics.py` & `code/Credit_Scoring_Visualization.py` | **ĐÃ HOÀN THÀNH 100%** | **Chạy độc lập mượt mà** |
-| **5** | **Tệp dữ liệu thực nghiệm (Dataset)** | `code/credit_risk_dataset.csv` | **ĐÃ HOÀN THÀNH 100%** | **Dữ liệu chuẩn Kaggle** |
+| **5** | **Tệp dữ liệu thực nghiệm (Big Data Dataset)** | `code/download_lending_club.py` & LendingClub Dataset (**2,260,701 dòng, 1.6 GB**) | **ĐÃ HOÀN THÀNH 100%** | **Đạt chuẩn Big Data thực tế** |
 | **6** | **Tài liệu Hướng dẫn Thực thi Databricks & Công thức** | Thư mục `tutorial/` (`tutorial_databricks.md`, `probability_thresholds_and_formulas.md`) | **ĐÃ HOÀN THÀNH 100%** | **Hướng dẫn chi tiết từ A-Z** |
 | **7** | **Repository GitHub Công khai** | `https://github.com/snowflake-vibing/Credit_Scoring_Project` | **ĐÃ HOÀN THÀNH 100%** | **Đồng bộ mã nguồn 100%** |
 
@@ -41,7 +41,7 @@ Theo quy định sản phẩm bàn giao cuối khóa của Bộ môn Phân tích
 
 ### 🔴 Tiêu chí 1: Ý nghĩa Nghiệp vụ & Đặt vấn đề (Tỷ trọng 15% - Đạt 15/15)
 - ✅ Bài toán kinh doanh: Tự động hóa phê duyệt khoản vay tín chấp, kiểm soát nợ xấu NPL và định giá lãi suất theo rủi ro (Risk-Based Pricing).
-- ✅ Phân tích 5Vs Big Data: Volume (hàng chục ngàn hồ sơ), Velocity (duyệt <5 phút), Variety (đa dạng biến số), Veracity (làm sạch dữ liệu nhiễu), Value (tiết kiệm chi phí dự phòng & tăng lợi nhuận).
+- ✅ Phân tích 5Vs Big Data: Volume (2.26 triệu hồ sơ LendingClub, 1.6 GB), Velocity (duyệt <3 phút), Variety (đa dạng biến số), Veracity (làm sạch dữ liệu phân tán), Value (tiết kiệm chi phí dự phòng & tăng lợi nhuận).
 
 ### 🟠 Tiêu chí 2: Quản trị & Lưu trữ Dữ liệu trên Databricks (Tỷ trọng 20% - Đạt 20/20)
 - ✅ Triển khai trên Databricks Community / Serverless Edition sử dụng Unity Catalog.

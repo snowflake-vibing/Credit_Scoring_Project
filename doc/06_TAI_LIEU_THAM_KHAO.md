@@ -63,3 +63,5 @@
 ### IV. TÀI LIỆU KỸ THUẬT DOANH NGHIỆP & BẠCH THƯ
 [47] Databricks Inc. (2023). *Medallion Architecture: Best Practices for Managing Data with Bronze, Silver, and Gold Tables*. Databricks Official Technical Documentation.  
 [48] Fair Isaac Corporation (FICO). (2020). *Understanding FICO Scores: How Credit Scoring Works*. FICO Technical Whitepaper.  
+
+[49] LendingClub Corporation. (2019). *LendingClub Complete Loan Data 2007-2018Q4*. Open Financial Datasets, Kaggle.

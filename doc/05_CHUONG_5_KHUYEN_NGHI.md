@@ -147,7 +147,7 @@ Khi xác suất rủi ro rơi vào khoảng 35% <= p < 60%, việc cho vay tín 
 ### Tác động Kinh tế và Vận hành Định lượng:
 1. **Tự động hóa Quy trình Phê duyệt (Straight-Through Processing):** Hơn **75%** tổng số hồ sơ vay (bao gồm Nhóm 1, Nhóm 2 và Nhóm 4) được hệ thống ra quyết định phê duyệt hoặc từ chối hoàn toàn tự động trong thời gian **dưới 3 phút**. Rút ngắn thời gian thẩm định từ 2 - 3 ngày làm việc xuống gần như tức thì.
 2. **Cắt giảm Chi phí Vận hành (OPEX Reduction):** Cắt giảm hơn **60%** chi phí nhân sự và chi phí giấy tờ thẩm định thủ công, cho phép ngân hàng mở rộng quy mô phục vụ hàng triệu khoản vay nhỏ lẻ với biên lợi nhuận cao.
-3. **Kiểm soát và Kéo giảm Tỷ lệ Nợ xấu (NPL Control):** Loại bỏ trên **80%** các hồ sơ vỡ nợ tiềm ẩn ở nhóm Rủi ro Rất Cao, giúp kéo giảm tỷ lệ nợ xấu danh mục từ mức 21.82% trong bộ dữ liệu thô xuống mức an toàn dưới **4.2%**.
+3. **Kiểm soát và Kéo giảm Tỷ lệ Nợ xấu (NPL Control):** Loại bỏ trên **80%** các hồ sơ vỡ nợ tiềm ẩn ở nhóm Rủi ro Rất Cao, giúp kéo giảm tỷ lệ nợ xấu danh mục từ mức 21.82% trong tổng thể 2.26 triệu hồ sơ thô xuống mức an toàn dưới **4.2%**.
 4. **Tiết kiệm Chi phí Trích lập Dự phòng Tổn thất:** Việc kiểm soát tỷ lệ nợ xấu ở mức thấp giúp ngân hàng tiết kiệm hàng chục tỷ đồng chi phí trích lập dự phòng cụ thể hàng năm, giải phóng nguồn vốn tự có để mở rộng kinh doanh.
 
 ---
