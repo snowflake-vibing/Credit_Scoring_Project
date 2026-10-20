@@ -101,9 +101,11 @@ Dự án được xây dựng theo chuẩn mực 3 tầng dữ liệu Medallion 
 │   ├── requirements.txt
 │   └── scoring.md                      # Bảng đối chiếu 100% tiêu chí đạt điểm tối đa
 └── tutorial/                           # Thư mục tài liệu hướng dẫn thực hành Databricks từ A-Z
-    ├── HUONG_DAN_DE_TAI_7.md
-    ├── probability_thresholds_and_formulas.md
-    └── tutorial_databricks.md
+    ├── README.md                       # Danh mục tổng hợp tài liệu thực hành
+    ├── huong_dan_chay_databricks_va_lay_insight.md # Hướng dẫn chi tiết chạy Notebook, lấy 5 biểu đồ & insights
+    ├── HUONG_DAN_DE_TAI_7.md           # Hướng dẫn tổng quan Đề tài 7
+    ├── probability_thresholds_and_formulas.md # Bảng tóm tắt các ngưỡng xác suất & công thức
+    └── tutorial_databricks.md          # Hướng dẫn chi tiết kỹ thuật Databricks Cloud
 ```
 
 ---
