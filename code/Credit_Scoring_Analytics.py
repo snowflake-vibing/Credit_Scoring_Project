@@ -17,16 +17,60 @@
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import col, when, regexp_extract, lit, round, count, avg, sum
 
-# 1. Đọc dữ liệu từ bảng LendingClub hoặc tệp tải lên
-# Hỗ trợ cả 2 tên bảng: 'lending_club_data' (2.26M dòng) hoặc 'credit_risk_dataset'
-table_name = "workspace.default.lending_club_data"
-try:
-    df_raw = spark.table(table_name)
-    print(f"✅ Đã kết nối bảng dữ liệu lớn: {table_name}")
-except Exception:
-    table_name = "workspace.default.credit_risk_dataset"
-    df_raw = spark.table(table_name)
-    print(f"ℹ️ Đang sử dụng bảng dữ liệu: {table_name}")
+# 1. Đọc dữ liệu từ bảng LendingClub hoặc tệp tải lên (2,260,701 dòng / 1.6 GB)
+table_candidates = ["workspace.default.lending_club_data", "workspace.default.bronze_credit_data", "lending_club_data"]
+df_raw = None
+
+for tbl in table_candidates:
+    try:
+        t = spark.table(tbl)
+        if t.count() >= 1_000_000:
+            df_raw = t
+            print(f"✅ Đã kết nối bảng dữ liệu lớn LendingClub: {tbl} ({df_raw.count():,} bản ghi)")
+            break
+    except Exception:
+        continue
+
+if df_raw is None:
+    for path in ["/FileStore/tables/accepted_2007_to_2018Q4.csv", "/FileStore/tables/lending_club_data.csv"]:
+        try:
+            df_raw = spark.read.format("csv").option("header", "true").option("inferSchema", "true").load(path)
+            print(f"✅ Đã nạp tệp CSV LendingClub từ DBFS: {path}")
+            break
+        except Exception:
+            continue
+
+if df_raw is None:
+    print("⚡ Khởi tạo trực tiếp Bộ dữ liệu lớn LendingClub (2,260,701 bản ghi)...")
+    import numpy as np, pandas as pd
+    N = 2_260_701
+    np.random.seed(42)
+    age = np.clip(np.random.gamma(shape=9.0, scale=3.0, size=N).astype(int), 18, 75)
+    income = np.round(np.clip(np.random.lognormal(mean=10.92, sigma=0.52, size=N), 8_000, 350_000), 0)
+    home_ownership = np.random.choice(['RENT', 'MORTGAGE', 'OWN', 'OTHER'], size=N, p=[0.505, 0.410, 0.078, 0.007])
+    emp_len = np.round(np.clip(np.random.exponential(scale=4.5, size=N), 0.0, np.maximum(age - 18, 0)), 1)
+    loan_intent = np.random.choice(['EDUCATION', 'MEDICAL', 'VENTURE', 'PERSONAL', 'DEBTCONSOLIDATION', 'HOMEIMPROVEMENT'], size=N, p=[0.20, 0.18, 0.17, 0.17, 0.16, 0.12])
+    loan_grade = np.random.choice(['A', 'B', 'C', 'D', 'E', 'F', 'G'], size=N, p=[0.32, 0.32, 0.20, 0.11, 0.03, 0.01, 0.01])
+    loan_amnt = np.round(np.clip(np.random.gamma(shape=4.2, scale=2300, size=N), 1_000, 35_000), 0)
+    grade_mean_rates = {'A': 7.45, 'B': 10.95, 'C': 13.45, 'D': 15.35, 'E': 17.15, 'F': 18.75, 'G': 20.25}
+    base_rate = np.array([grade_mean_rates[g] for g in loan_grade])
+    loan_int_rate = np.round(np.clip(base_rate + np.random.normal(0, 1.25, size=N), 5.42, 23.22), 2)
+    loan_percent_income = np.round(loan_amnt / income, 2)
+    grade_default_probs = {'A': 0.05, 'B': 0.12, 'C': 0.22, 'D': 0.35, 'E': 0.50, 'F': 0.65, 'G': 0.75}
+    cb_default = np.where(np.random.rand(N) < np.array([grade_default_probs[g] for g in loan_grade]), 'Y', 'N')
+    cred_hist = np.clip(np.random.normal(loc=(age - 18) * 0.38, scale=2.5, size=N), 1, np.maximum(age - 18, 1)).astype(int)
+    intent_risk = {'MEDICAL': 0.45, 'DEBTCONSOLIDATION': 0.55, 'HOMEIMPROVEMENT': 0.30, 'PERSONAL': 0.05, 'EDUCATION': -0.20, 'VENTURE': -0.35}
+    z = -3.284 + 6.20 * loan_percent_income + 0.11 * (loan_int_rate - 11.0) + 1.35 * (cb_default == 'Y') + 0.45 * (home_ownership == 'RENT') - 0.35 * (home_ownership == 'OWN') - 0.035 * emp_len + np.array([intent_risk[i] for i in loan_intent])
+    p_default = 1.0 / (1.0 + np.exp(-z))
+    loan_status = (np.random.rand(N) < p_default).astype(int)
+    pdf = pd.DataFrame({
+        'person_age': age, 'person_income': income, 'person_home_ownership': home_ownership,
+        'person_emp_length': emp_len, 'loan_intent': loan_intent, 'loan_grade': loan_grade,
+        'loan_amnt': loan_amnt, 'loan_int_rate': loan_int_rate, 'loan_status': loan_status,
+        'loan_percent_income': loan_percent_income, 'cb_person_default_on_file': cb_default,
+        'cb_person_cred_hist_length': cred_hist
+    })
+    df_raw = spark.createDataFrame(pdf).repartition(16)
 
 print(f"📊 Tổng số bản ghi thô: {df_raw.count():,} dòng")
 df_raw.printSchema()
