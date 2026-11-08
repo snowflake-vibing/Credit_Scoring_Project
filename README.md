@@ -3,8 +3,8 @@
 
 [![Databricks](https://img.shields.io/badge/Platform-Databricks%20Serverless-orange?logo=databricks)](https://community.cloud.databricks.com/)
 [![Apache Spark](https://img.shields.io/badge/Engine-PySpark%20%7C%20Spark%20MLlib-E25A1C?logo=apachespark)](https://spark.apache.org/)
-[![Delta Lake](https://img.shields.io/badge/Storage-Delta%20Lake%20(Medallion)-00ADEE)](https://delta.io/)
-[![Dataset: LendingClub](https://img.shields.io/badge/Dataset-LendingClub%20(2.26M%20Rows)-blue)](https://www.kaggle.com/datasets/wordsforthewise/lending-club)
+[![Delta Lake](https://img.shields.io/badge/Storage-Delta%20Lake%20%28Medallion%29-00ADEE)](https://delta.io/)
+[![Dataset: LendingClub](https://img.shields.io/badge/Dataset-LendingClub%20%282.26M%20Rows%29-blue)](https://www.kaggle.com/datasets/wordsforthewise/lending-club)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 > **Môn học:** Dữ Liệu Lớn & Trí Tuệ Nhân Tạo Trong Kinh Doanh (Big Data Analytics & AI)  
@@ -137,7 +137,7 @@ Trong thư mục `code/` đã có sẵn tệp `credit_risk_dataset_100k.csv` (10
   * **ROC-AUC Score:** **`0.8745`** (Phân loại xuất sắc).
   * **Recall phát hiện nợ xấu:** **`84.04%`**.
   * **Specificity nhận diện khách hàng tốt:** **`88.03%`**.
-  * **Độ chính xác tổng thể (Accuracy):** **`87.15%`**.
+  * **Độ chính xác tổng thể (Accuracy):** **`87.16%`**.
 
 ### Ma trận Quyết định Duyệt Vay & Định giá Lãi suất theo Rủi ro:
 

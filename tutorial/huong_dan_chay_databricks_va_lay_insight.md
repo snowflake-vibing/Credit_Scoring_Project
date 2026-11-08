@@ -5,7 +5,7 @@
 > **Môn học:** Dữ Liệu Lớn & Trí Tuệ Nhân Tạo Trong Kinh Doanh  
 > **Giảng viên hướng dẫn:** TS. Trần Mạnh Tường  
 > **Sinh viên thực hiện:** Lê Thành Hiệu  
-> **Tài liệu tham chiếu:** Notebook [`code/De_Tai_7_Databricks_Notebook.ipynb`](file:///d:/Project_SIC/final_project/code/De_Tai_7_Databricks_Notebook.ipynb) và Báo cáo tiểu luận 40 trang tại thư mục [`doc/`](file:///d:/Project_SIC/final_project/doc/).
+> **Tài liệu tham chiếu:** Notebook [`code/De_Tai_7_Databricks_Notebook.ipynb`](../code/De_Tai_7_Databricks_Notebook.ipynb) và Báo cáo tiểu luận 40 trang tại thư mục [`doc/`](../doc/).
 
 ---
 
@@ -48,7 +48,7 @@
 
 ### Phương thức 1: Tự động khởi tạo và nạp 2,260,701 dòng trực tiếp trong Notebook (KHUYÊN DÙNG - Nhanh & Ổn định nhất)
 * **Vấn đề thực tế:** Tệp CSV gốc của LendingClub nặng hơn **1.6 GB**, việc tải về máy rồi upload thủ công qua giao diện web của Databricks Community Edition thường xuyên bị lỗi timeout mạng, đứt kết nối giữa chừng hoặc vượt quá giới hạn upload của trình duyệt.
-* **Giải pháp tự động hóa trong Notebook:** Trong **Cell 1** của file [`code/De_Tai_7_Databricks_Notebook.ipynb`](file:///d:/Project_SIC/final_project/code/De_Tai_7_Databricks_Notebook.ipynb), tác giả đã lập trình sẵn **Động cơ phân tán Big Data Ingestion Engine**:
+* **Giải pháp tự động hóa trong Notebook:** Trong **Cell 1** của file [`code/De_Tai_7_Databricks_Notebook.ipynb`](../code/De_Tai_7_Databricks_Notebook.ipynb), tác giả đã lập trình sẵn **Động cơ phân tán Big Data Ingestion Engine**:
   1. Khi bạn chạy Cell 1, hệ thống tự động kiểm tra Catalog. Nếu chưa có tệp CSV, hệ thống sẽ kích hoạt thuật toán sinh dữ liệu phân tán chuẩn xác theo đúng cấu trúc 151 biến của LendingClub, tái lập trung thực phân phối thực tế của **đúng 2,260,701 khoản vay** (Baseline Default Rate = 21.82%, đầy đủ 12 thuộc tính cốt lõi) chỉ trong **khoảng 10 giây**.
   2. Dữ liệu được tự động phân vùng (16 Spark Partitions) và ghi đè an toàn vào Delta Table `workspace.default.bronze_credit_data`.
   3. Kết quả: Bạn sở hữu ngay bảng dữ liệu lớn 2.26 triệu dòng chuẩn mực trên Delta Lake để phân tích, sẵn sàng hiển thị thông số `Total: 2,260,701 rows` cho giảng viên kiểm tra.
@@ -120,7 +120,7 @@ Khi Notebook chạy xong, phía dưới mỗi ô biểu đồ đều in ra khố
 
 ### 1. HÌNH 3.1: ĐÁNH GIÁ TỶ LỆ DỮ LIỆU KHUYẾT THIẾU TẦNG BRONZE
 * **Tệp ảnh:** `hinh_3_1_missing_values.png`
-* **Vị trí trong tiểu luận:** [Chương 3, Mục 3.2.1](file:///d:/Project_SIC/final_project/doc/03_CHUONG_3_XU_LY_DU_LIEU.md#L20-L24)
+* **Vị trí trong tiểu luận:** [Chương 3, Mục 3.2.1](../doc/03_CHUONG_3_XU_LY_DU_LIEU.md#321-phân-tích-và-xử-lý-giá-trị-khuyết-thiếu-missing-value-imputation)
 * **Ý nghĩa biểu đồ:** Đo lường tỷ lệ phần trăm các giá trị bị rỗng (`NULL`) trên tất cả các cột dữ liệu thô ban đầu để đề xuất giải pháp xử lý phân tán phù hợp.
 * **Thông tin Insight then chốt:**
   1. **Độ tin cậy của thuộc tính định lượng:** Hơn 85% các trường tài chính mang tính quyết định như Số tiền vay (`loan_amnt`), Thu nhập năm (`person_income` / `annual_inc`), Mục đích vay (`loan_intent`) và Tình trạng nhà ở đều có tỷ lệ đầy đủ 100% (0.00% missing).
@@ -133,7 +133,7 @@ Khi Notebook chạy xong, phía dưới mỗi ô biểu đồ đều in ra khố
 
 ### 2. HÌNH 3.2: TỶ LỆ NỢ XẤU THEO MỤC ĐÍCH VAY & SỞ HỮU NHÀ Ở TẦNG SILVER
 * **Tệp ảnh:** `hinh_3_2_npl_intent_home.png`
-* **Vị trí trong tiểu luận:** [Chương 3, Mục 3.4.2](file:///d:/Project_SIC/final_project/doc/03_CHUONG_3_XU_LY_DU_LIEU.md#L105-L110)
+* **Vị trí trong tiểu luận:** [Chương 3, Mục 3.4.2](../doc/03_CHUONG_3_XU_LY_DU_LIEU.md#342-mối-tương-quan-giữa-hạng-khoản-vay-và-tình-trạng-nhà-ở-home-ownership)
 * **Ý nghĩa biểu đồ:** Biểu đồ cột nhóm (Grouped Bar Chart) so sánh tỷ lệ nợ xấu thực tế (NPL Rate %) giữa các phân khúc mục đích vay vốn và hình thức sở hữu nhà ở.
 * **Thông tin Insight then chốt:**
   1. **Phân khúc mục đích vay rủi ro cao:** Khoản vay phục vụ **Kinh doanh nhỏ (Small Business)** và **Hợp nhất nợ (Debt Consolidation)** có tỷ lệ nợ xấu cao nhất, dao động từ **22.8% đến 29.8%** (đặc biệt chạm mức 32.4% đối với nhóm khách hàng đi thuê nhà). Kinh doanh nhỏ có độ bất định cao về dòng tiền, còn hợp nhất nợ phản ánh khách hàng đã chịu áp lực nợ nần từ nhiều tổ chức trước đó.
@@ -144,7 +144,7 @@ Khi Notebook chạy xong, phía dưới mỗi ô biểu đồ đều in ra khố
 
 ### 3. HÌNH 4.1: ĐƯỜNG CONG ROC SO SÁNH CÁC MÔ HÌNH MÁY HỌC TẦNG GOLD
 * **Tệp ảnh:** `hinh_4_1_roc_curve.png`
-* **Vị trí trong tiểu luận:** [Chương 4, Mục 4.4.1](file:///d:/Project_SIC/final_project/doc/04_CHUONG_4_MO_HINH_AI.md#L110-L115)
+* **Vị trí trong tiểu luận:** [Chương 4, Mục 4.4.1](../doc/04_CHUONG_4_MO_HINH_AI.md#441-đường-cong-roc-và-so-sánh-hiệu-năng-mô-hình)
 * **Ý nghĩa biểu đồ:** Đánh giá năng lực phân định (Discrimination Power) giữa khách hàng tốt và khách hàng nợ xấu tại mọi ngưỡng phân cắt xác suất.
 * **Thông tin Insight then chốt:**
   1. **Hiệu năng vượt trội của Random Forest:** Mô hình đạt **ROC-AUC = 0.8745** (xấp xỉ 87.5%). Theo chuẩn mực quốc tế của Basel II và Ngân hàng Thế giới (World Bank), mô hình có $AUC \ge 0.80$ được xếp loại **Xuất sắc (Excellent Discrimination)**.
@@ -157,7 +157,7 @@ Khi Notebook chạy xong, phía dưới mỗi ô biểu đồ đều in ra khố
 
 ### 4. HÌNH 4.2: MA TRẬN NHẦM LẪN (CONFUSION MATRIX) TRÊN TẬP KIỂM THỬ
 * **Tệp ảnh:** `hinh_4_2_confusion_matrix.png`
-* **Vị trí trong tiểu luận:** [Chương 4, Mục 4.4.2](file:///d:/Project_SIC/final_project/doc/04_CHUONG_4_MO_HINH_AI.md#L125-L130)
+* **Vị trí trong tiểu luận:** [Chương 4, Mục 4.4.2](../doc/04_CHUONG_4_MO_HINH_AI.md#442-ma-trận-nhầm-lẫn-confusion-matrix-trên-tập-kiểm-thử)
 * **Ý nghĩa biểu đồ:** Heatmap định lượng chi tiết 4 trường hợp phân loại trên tập kiểm thử độc lập gồm 452,140 hồ sơ vay.
 * **Thông tin Insight then chốt:**
   1. **Độ nhạy phát hiện nợ xấu (Recall = 84.04%):** Mô hình phát hiện chính xác **82,905 hồ sơ vỡ nợ thật** trên tổng số 98,657 hồ sơ nợ xấu thực tế ($TP = 82,905$), ngăn ngừa trực tiếp hàng ngàn tỷ đồng thất thoát vốn gốc cho ngân hàng.
@@ -169,7 +169,7 @@ Khi Notebook chạy xong, phía dưới mỗi ô biểu đồ đều in ra khố
 
 ### 5. HÌNH 5.1: CƠ CẤU PHÂN TẦNG RỦI RO & CHÍNH SÁCH PHÊ DUYỆT TÍN DỤNG TỰ ĐỘNG
 * **Tệp ảnh:** `hinh_5_1_risk_policy_charts.png`
-* **Vị trí trong tiểu luận:** [Chương 5, Mục 5.2](file:///d:/Project_SIC/final_project/doc/05_CHUONG_5_KHUYEN_NGHI.md#L45-L50)
+* **Vị trí trong tiểu luận:** [Chương 5, Mục 5.2](../doc/05_CHUONG_5_KHUYEN_NGHI.md#52-ma-trận-phân-tầng-rủi-ro-và-cơ-sở-khoa-học-xác-lập-ngưỡng-cắt)
 * **Ý nghĩa biểu đồ:**
   - Biểu đồ Donut (Hình 5.1A): Cơ cấu tỷ lệ 4 phân tầng rủi ro tín dụng.
   - Biểu đồ Cột ngang (Hình 5.1B): Số lượng hồ sơ được áp dụng các chính sách phê duyệt tự động.
