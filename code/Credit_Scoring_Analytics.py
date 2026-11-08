@@ -32,10 +32,10 @@ for tbl in table_candidates:
         continue
 
 if df_raw is None:
-    for path in ["/FileStore/tables/accepted_2007_to_2018Q4.csv", "/FileStore/tables/lending_club_data.csv"]:
+    for path in ["/Volumes/workspace/default/credit_data/accepted_2007_to_2018Q4.csv", "/Volumes/main/default/credit_data/accepted_2007_to_2018Q4.csv"]:
         try:
             df_raw = spark.read.format("csv").option("header", "true").option("inferSchema", "true").load(path)
-            print(f"✅ Đã nạp tệp CSV LendingClub từ DBFS: {path}")
+            print(f"✅ Đã nạp tệp CSV LendingClub từ Unity Catalog Volume: {path}")
             break
         except Exception:
             continue

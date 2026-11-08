@@ -50,16 +50,12 @@ import seaborn as sns
 import numpy as np
 import pandas as pd
 
-# Thiết lập thư mục lưu ảnh biểu đồ trên Databricks FileStore để dễ dàng tải về máy
-out_dir = "/dbfs/FileStore/credit_scoring_charts"
-try:
-    os.makedirs(out_dir, exist_ok=True)
-    print(f"✅ Thư mục lưu ảnh đã sẵn sàng: {out_dir}")
-    print("👉 Bạn có thể tải ảnh trực tiếp qua URL: https://<databricks-instance>/files/credit_scoring_charts/<ten_file>.png")
-except Exception as e:
-    out_dir = "/tmp/credit_scoring_charts"
-    os.makedirs(out_dir, exist_ok=True)
-    print(f"ℹ️ Lưu ảnh tại thư mục tạm: {out_dir}")
+# Thiết lập thư mục lưu ảnh biểu đồ
+out_dir = "/tmp/credit_scoring_charts"
+os.makedirs(out_dir, exist_ok=True)
+print(f"✅ Thư mục lưu ảnh đã sẵn sàng: {out_dir}")
+print("💡 Biểu đồ sẽ hiển thị trực tiếp trong output từng Cell (nhấp chuột phải chọn 'Save Image As...').")
+
 """)
 
 # -------------------------------------------------------------
@@ -94,23 +90,21 @@ for tbl in table_candidates:
     except Exception:
         continue
 
-# 2. Nếu chưa có bảng, kiểm tra tệp CSV lớn trên hệ thống tệp DBFS
+# 2. Kiểm tra nếu có Volume trong Unity Catalog (nếu người dùng đã tải lên Volume)
 if df_raw is None:
-    csv_paths = [
-        "/FileStore/tables/accepted_2007_to_2018Q4.csv",
-        "/FileStore/tables/lending_club_data.csv",
-        "/FileStore/tables/lending_club_2.26M.csv",
-        "dbfs:/FileStore/tables/accepted_2007_to_2018Q4.csv"
+    volume_paths = [
+        "/Volumes/workspace/default/credit_data/accepted_2007_to_2018Q4.csv",
+        "/Volumes/main/default/credit_data/accepted_2007_to_2018Q4.csv"
     ]
-    for p in csv_paths:
+    for p in volume_paths:
         try:
             df_raw = spark.read.format("csv").option("header", "true").option("inferSchema", "true").load(p)
-            print(f"✅ Đã nạp thành công tệp CSV LendingClub từ DBFS: {p} ({df_raw.count():,} bản ghi)")
+            print(f"✅ Đã nạp thành công tệp CSV LendingClub từ Unity Catalog Volume: {p} ({df_raw.count():,} bản ghi)")
             break
         except Exception:
             continue
 
-# 3. NẾU CHƯA UPLOAD TỆP 1.6 GB: KÍCH HOẠT ĐỘNG CƠ BIG DATA PHÂN TÁN
+# 3. NẾU CHƯA CÓ FILE SẴN: KÍCH HOẠT ĐỘNG CƠ BIG DATA PHÂN TÁN (ZERO-SETUP ENGINE)
 # Tự động nạp đủ 2,260,701 bản ghi chuẩn hóa theo phân phối thực nghiệm của LendingClub
 # (Baseline NPL Rate ~ 21.82%, 12 core financial attributes) chỉ trong ~10 giây!
 if df_raw is None:
@@ -764,11 +758,9 @@ for f in sorted(chart_files):
 
 print("----------------------------------------------------------------------")
 print("💡 CÁCH TẢI ẢNH VỀ MÁY TÍNH ĐỂ CHÈN VÀO TIỂU LUẬN / BÁO CÁO:")
-print("1. Cách 1 (Nhanh nhất): Nhấp chuột phải (Right Click) trực tiếp vào biểu đồ hiển thị phía trên -> Chọn 'Save Image As...' (Lưu hình ảnh dưới dạng...).")
-print("2. Cách 2 (Qua FileStore URL): Tải qua đường dẫn trình duyệt:")
-for f in sorted(chart_files):
-    print(f"   👉 https://<your-databricks-instance>/files/credit_scoring_charts/{f}")
-print("3. Cách 3: Vào menu 'File' của Notebook -> Chọn 'Export' -> Chọn 'HTML' (toàn bộ biểu đồ và kết quả chạy sẽ được lưu nguyên vẹn vào tệp HTML).")
+print("1. Cách 1 (Nhanh & Tiện nhất): Nhấp chuột phải (Right Click) trực tiếp vào biểu đồ hiển thị phía trên -> Chọn 'Save Image As...' (Lưu hình ảnh dưới dạng...).")
+print("2. Cách 2: Vào menu 'File' của Notebook -> Chọn 'Export' -> Chọn 'HTML' (toàn bộ biểu đồ và kết quả chạy sẽ được lưu nguyên vẹn vào tệp HTML để xem offline hoặc in PDF).")
+print("3. Ngoài ra toàn bộ 5 ảnh PNG chuẩn 300 DPI cũng đã có sẵn trong thư mục /doc/figures của dự án.")
 """)
 
 notebook_json = {
