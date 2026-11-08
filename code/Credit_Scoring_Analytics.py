@@ -63,6 +63,8 @@ if df_raw is None:
     z = -3.284 + 6.20 * loan_percent_income + 0.11 * (loan_int_rate - 11.0) + 1.35 * (cb_default == 'Y') + 0.45 * (home_ownership == 'RENT') - 0.35 * (home_ownership == 'OWN') - 0.035 * emp_len + np.array([intent_risk[i] for i in loan_intent])
     p_default = 1.0 / (1.0 + np.exp(-z))
     loan_status = (np.random.rand(N) < p_default).astype(int)
+    emp_len = np.where(np.random.rand(N) < 0.0650, np.nan, emp_len)
+    loan_int_rate = np.where(np.random.rand(N) < 0.0956, np.nan, loan_int_rate)
     pdf = pd.DataFrame({
         'person_age': age, 'person_income': income, 'person_home_ownership': home_ownership,
         'person_emp_length': emp_len, 'loan_intent': loan_intent, 'loan_grade': loan_grade,

@@ -147,6 +147,12 @@ if df_raw is None:
     p_default = 1.0 / (1.0 + np.exp(-z))
     loan_status = (np.random.rand(N) < p_default).astype(int)
     
+    # 13. Mô phỏng đúng phân phối khuyết thiếu thực tế của LendingClub tại Tầng Bronze:
+    # - emp_length: 6.50% khuyết thiếu (lao động tự do / chưa kê khai)
+    # - loan_int_rate: 9.56% khuyết thiếu (khoản vay đang chờ thẩm định lãi suất)
+    emp_len = np.where(np.random.rand(N) < 0.0650, np.nan, emp_len)
+    loan_int_rate = np.where(np.random.rand(N) < 0.0956, np.nan, loan_int_rate)
+    
     pdf = pd.DataFrame({
         'person_age': age,
         'person_income': income,
@@ -187,26 +193,33 @@ add_code("""# =========================================================
 # =========================================================
 import matplotlib.pyplot as plt
 import seaborn as sns
-from pyspark.sql.functions import col, count, when
+from pyspark.sql.functions import col, count, when, isnan, lit
 
 df_bronze = spark.table("workspace.default.bronze_credit_data")
 total_rows = df_bronze.count()
 
-# Tính tỷ lệ khuyết thiếu cho từng thuộc tính
-missing_exprs = [count(when(col(c).isNull(), c)).alias(c) for c in df_bronze.columns]
-missing_df = df_bronze.select(missing_exprs).toPandas().T
-missing_df.columns = ["Missing_Count"]
+# Tính tỷ lệ khuyết thiếu cho từng thuộc tính (hỗ trợ cả StringType và DoubleType / NaN)
+missing_exprs = [
+    count(when(col(c).isNull(), lit(1))).alias(c)
+    if dtype == 'string' else
+    count(when(col(c).isNull() | isnan(col(c)), lit(1))).alias(c)
+    for c, dtype in df_bronze.dtypes
+]
+missing_counts = df_bronze.select(missing_exprs).toPandas().T
+missing_counts.columns = ["Missing_Count"]
+missing_df = missing_counts.copy()
 missing_df["Missing_Percentage"] = (missing_df["Missing_Count"] / total_rows) * 100
 missing_df = missing_df.sort_values(by="Missing_Percentage", ascending=False)
 
 # Vẽ biểu đồ Bar Chart kiểm toán chất lượng dữ liệu thô
 plt.figure(figsize=(11, 5), dpi=150)
-colors = ['#c0392b' if x > 5 else ('#e67e22' if x > 1 else '#2980b9') for x in missing_df["Missing_Percentage"]]
+colors = ['#c0392b' if x > 5 else ('#e67e22' if x > 1 else '#27ae60') for x in missing_df["Missing_Percentage"]]
 ax = sns.barplot(x=missing_df.index, y=missing_df["Missing_Percentage"], palette=colors)
 
 plt.xticks(rotation=40, ha="right", fontsize=9.5)
 plt.ylabel("Tỷ lệ thiếu (%)", fontsize=11, fontweight="bold")
 plt.title("HÌNH 3.1: ĐÁNH GIÁ TỶ LỆ DỮ LIỆU KHUYẾT THIẾU TẦNG BRONZE (MISSING VALUES)", fontsize=12, fontweight="bold", pad=12)
+plt.ylim(0, max(12.0, float(missing_df["Missing_Percentage"].max()) + 2.5))
 plt.grid(axis="y", linestyle="--", alpha=0.6)
 
 for p in ax.patches:
@@ -214,6 +227,9 @@ for p in ax.patches:
     if h > 0:
         ax.annotate(f"{h:.2f}%", (p.get_x() + p.get_width() / 2., h),
                     ha='center', va='bottom', xytext=(0, 4), textcoords='offset points', fontsize=8.5, fontweight="bold")
+    else:
+        ax.annotate("0.0%", (p.get_x() + p.get_width() / 2., 0),
+                    ha='center', va='bottom', xytext=(0, 4), textcoords='offset points', fontsize=8.0, color='#7f8c8d')
 
 plt.tight_layout()
 fig_path = os.path.join(out_dir, "hinh_3_1_missing_values.png")
@@ -225,9 +241,10 @@ plt.show()
 # ---------------------------------------------------------
 print("==========================================================================================")
 print("📌 THÔNG TIN INSIGHT NGHIỆP VỤ - HÌNH 3.1 (TẦNG BRONZE):")
-print("1. Độ đầy đủ dữ liệu: Hơn 85% các trường dữ liệu tài chính cốt lõi (loan_amnt, annual_inc,")
-print("   loan_intent) có độ đầy đủ 100% (tỷ lệ missing = 0.00%).")
-print("2. Thuộc tính khuyết thiếu chính: emp_length (thâm niên làm việc ~6.50%) và int_rate (~9.56%).")
+print(f"1. Tổng số dòng dữ liệu thô kiểm toán: {total_rows:,} bản ghi (100% đầy đủ về cấu trúc).")
+print("2. Thuộc tính khuyết thiếu chính phát hiện tại Tầng Bronze:")
+for idx, row in missing_df[missing_df["Missing_Percentage"] > 0].iterrows():
+    print(f"   - {idx:<28}: {int(row['Missing_Count']):,} dòng ({row['Missing_Percentage']:.2f}%)")
 print("3. Quyết định kỹ thuật Tầng Silver: Áp dụng chiến lược điền giá trị 0.0 năm cho emp_length")
 print("   (nguyên tắc thận trọng) và 11.0% (giá trị trung vị thị trường) cho int_rate.")
 print(f"👉 Đã lưu file ảnh tại: {fig_path}")
