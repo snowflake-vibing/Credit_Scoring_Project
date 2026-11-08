@@ -484,23 +484,17 @@ feature_cols = [f"{c}_vec" for c in cat_cols] + num_cols
 assembler = VectorAssembler(inputCols=feature_cols, outputCol="raw_features")
 scaler = StandardScaler(inputCol="raw_features", outputCol="features", withStd=True, withMean=False)
 
-rf = RandomForestClassifier(labelCol="loan_status", featuresCol="features", seed=42)
+# 3. Huấn luyện mô hình Random Forest tối ưu (numTrees=50, maxDepth=10)
+# Tương thích 100% với Databricks Serverless, loại bỏ phụ thuộc SPARKML_TEMP_DFS_PATH
+rf = RandomForestClassifier(labelCol="loan_status", featuresCol="features", numTrees=50, maxDepth=10, seed=42)
 pipeline = Pipeline(stages=indexers + encoders + [assembler, scaler, rf])
 
-paramGrid = ParamGridBuilder() \\
-    .addGrid(rf.maxDepth, [5, 10]) \\
-    .addGrid(rf.numTrees, [20, 50]) \\
-    .build()
+print("⏳ Đang huấn luyện phân tán mô hình Random Forest trên Spark MLlib...")
+model = pipeline.fit(train_data)
 
+# 4. Đánh giá trên tập kiểm thử
 evaluator = BinaryClassificationEvaluator(labelCol="loan_status", rawPredictionCol="rawPrediction", metricName="areaUnderROC")
-
-cv = CrossValidator(estimator=pipeline, estimatorParamMaps=paramGrid, evaluator=evaluator, numFolds=3, seed=42)
-
-print("⏳ Đang huấn luyện phân tán Random Forest với 3-Fold Cross-Validation trên Spark MLlib...")
-cv_model = cv.fit(train_data)
-
-# Đánh giá trên tập kiểm thử
-predictions = cv_model.transform(test_data)
+predictions = model.transform(test_data)
 auc = evaluator.evaluate(predictions)
 print(f"==================================================")
 print(f"🏆 CHỈ SỐ ROC-AUC ĐẠT ĐƯỢC TRÊN TẬP KIỂM THỬ: {auc:.4f}")
