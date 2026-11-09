@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Chương 1: Tổng Quan Về Bài Toán &amp; Đặt Vấn Đề – Đề Tài 7: Mô Hình Chấm Điểm Tín Dụng &amp; Thẩm Định Rủi Ro Vỡ Nợ</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./02_CHUONG_2_KIEN_TRUC.html" rel="next">
+<link href="./index.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-de63f62b328812d8e578a4d74e282472.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-ff39eb75f09dfe1eb0ac836af7385c3d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01_CHUONG_1_GIOI_THIEU.html"><span class="chapter-title">Chương 1: Tổng Quan Về Bài Toán &amp; Đặt Vấn Đề</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Đề Tài 7: Mô Hình Chấm Điểm Tín Dụng &amp; Thẩm Định Rủi Ro Vỡ Nợ</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Báo Cáo Tiểu Luận Kết Thúc Học Phần</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01_CHUONG_1_GIOI_THIEU.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Chương 1: Tổng Quan Về Bài Toán &amp; Đặt Vấn Đề</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02_CHUONG_2_KIEN_TRUC.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Chương 2: Kiến Trúc Luồng Dữ Liệu Lakehouse (Medallion Architecture)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03_CHUONG_3_XU_LY_DU_LIEU.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Chương 3: Xử Lý &amp; Phân Tích Dữ Liệu Lớn Với PySpark và Spark SQL</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04_CHUONG_4_MO_HINH_AI.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Chương 4: Xây Dựng Mô Hình Học Máy Phân Tán Với Spark MLlib</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05_CHUONG_5_KHUYEN_NGHI.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Chương 5: Phân Tích Ý Nghĩa Nghiệp Vụ &amp; Đề Xuất Chiến Lược Quản Trị</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06_TAI_LIEU_THAM_KHAO.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Tài Liệu Tham Khảo</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#chương-1-tổng-quan-về-bài-toán-đặt-vấn-đề" id="toc-chương-1-tổng-quan-về-bài-toán-đặt-vấn-đề" class="nav-link active" data-scroll-target="#chương-1-tổng-quan-về-bài-toán-đặt-vấn-đề">CHƯƠNG 1: TỔNG QUAN VỀ BÀI TOÁN &amp; ĐẶT VẤN ĐỀ</a>
+  <ul class="collapse">
+  <li><a href="#bối-cảnh-ngành-tài-chính---ngân-hàng-và-fintech-trong-kỷ-nguyên-số" id="toc-bối-cảnh-ngành-tài-chính---ngân-hàng-và-fintech-trong-kỷ-nguyên-số" class="nav-link" data-scroll-target="#bối-cảnh-ngành-tài-chính---ngân-hàng-và-fintech-trong-kỷ-nguyên-số">1.1. Bối cảnh ngành Tài chính - Ngân hàng và FinTech trong kỷ nguyên số</a></li>
+  <li><a href="#hạn-chế-của-phương-pháp-thẩm-định-tín-dụng-truyền-thống" id="toc-hạn-chế-của-phương-pháp-thẩm-định-tín-dụng-truyền-thống" class="nav-link" data-scroll-target="#hạn-chế-của-phương-pháp-thẩm-định-tín-dụng-truyền-thống">1.2. Hạn chế của phương pháp thẩm định tín dụng truyền thống</a></li>
+  <li><a href="#tính-cấp-thiết-của-đề-tài-và-mục-tiêu-nghiên-cứu" id="toc-tính-cấp-thiết-của-đề-tài-và-mục-tiêu-nghiên-cứu" class="nav-link" data-scroll-target="#tính-cấp-thiết-của-đề-tài-và-mục-tiêu-nghiên-cứu">1.3. Tính cấp thiết của đề tài và Mục tiêu nghiên cứu</a>
+  <ul class="collapse">
+  <li><a href="#tính-cấp-thiết-của-đề-tài" id="toc-tính-cấp-thiết-của-đề-tài" class="nav-link" data-scroll-target="#tính-cấp-thiết-của-đề-tài">1.3.1. Tính cấp thiết của đề tài</a></li>
+  <li><a href="#mục-tiêu-nghiên-cứu" id="toc-mục-tiêu-nghiên-cứu" class="nav-link" data-scroll-target="#mục-tiêu-nghiên-cứu">1.3.2. Mục tiêu nghiên cứu</a></li>
+  </ul></li>
+  <li><a href="#phân-tích-đặc-tính-dữ-liệu-lớn-big-data-theo-mô-hình-5vs" id="toc-phân-tích-đặc-tính-dữ-liệu-lớn-big-data-theo-mô-hình-5vs" class="nav-link" data-scroll-target="#phân-tích-đặc-tính-dữ-liệu-lớn-big-data-theo-mô-hình-5vs">1.4. Phân tích đặc tính Dữ liệu lớn (Big Data) theo mô hình 5Vs</a></li>
+  <li><a href="#giới-thiệu-bộ-dữ-liệu-nghiên-cứu-và-phạm-vi-đề-tài" id="toc-giới-thiệu-bộ-dữ-liệu-nghiên-cứu-và-phạm-vi-đề-tài" class="nav-link" data-scroll-target="#giới-thiệu-bộ-dữ-liệu-nghiên-cứu-và-phạm-vi-đề-tài">1.5. Giới thiệu Bộ dữ liệu nghiên cứu và Phạm vi đề tài</a>
+  <ul class="collapse">
+  <li><a href="#nguồn-gốc-dữ-liệu-lendingclub-quy-mô-2.26-triệu-bản-ghi" id="toc-nguồn-gốc-dữ-liệu-lendingclub-quy-mô-2.26-triệu-bản-ghi" class="nav-link" data-scroll-target="#nguồn-gốc-dữ-liệu-lendingclub-quy-mô-2.26-triệu-bản-ghi">1.5.1. Nguồn gốc dữ liệu LendingClub quy mô 2.26 triệu bản ghi</a></li>
+  <li><a href="#cấu-trúc-các-thuộc-tính-cốt-lõi-trong-bộ-dữ-liệu" id="toc-cấu-trúc-các-thuộc-tính-cốt-lõi-trong-bộ-dữ-liệu" class="nav-link" data-scroll-target="#cấu-trúc-các-thuộc-tính-cốt-lõi-trong-bộ-dữ-liệu">1.5.2. Cấu trúc các thuộc tính cốt lõi trong bộ dữ liệu</a></li>
+  <li><a href="#tỷ-lệ-nợ-xấu-nền-trên-quy-mô-2.26-triệu-hồ-sơ-baseline-default-rate" id="toc-tỷ-lệ-nợ-xấu-nền-trên-quy-mô-2.26-triệu-hồ-sơ-baseline-default-rate" class="nav-link" data-scroll-target="#tỷ-lệ-nợ-xấu-nền-trên-quy-mô-2.26-triệu-hồ-sơ-baseline-default-rate">1.5.3. Tỷ lệ nợ xấu nền trên quy mô 2.26 triệu hồ sơ (Baseline Default Rate)</a></li>
+  </ul></li>
+  <li><a href="#kết-cấu-tổng-quan-của-bài-tiểu-luận" id="toc-kết-cấu-tổng-quan-của-bài-tiểu-luận" class="nav-link" data-scroll-target="#kết-cấu-tổng-quan-của-bài-tiểu-luận">1.6. Kết cấu tổng quan của bài tiểu luận</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-title">Chương 1: Tổng Quan Về Bài Toán &amp; Đặt Vấn Đề</span></h1>
+<p class="subtitle lead">Bối cảnh Ngân hàng số, FinTech và Mô hình 5Vs Dữ liệu lớn</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="chương-1-tổng-quan-về-bài-toán-đặt-vấn-đề" class="level1">
+<h1>CHƯƠNG 1: TỔNG QUAN VỀ BÀI TOÁN &amp; ĐẶT VẤN ĐỀ</h1>
+<hr>
+<section id="bối-cảnh-ngành-tài-chính---ngân-hàng-và-fintech-trong-kỷ-nguyên-số" class="level2">
+<h2 class="anchored" data-anchor-id="bối-cảnh-ngành-tài-chính---ngân-hàng-và-fintech-trong-kỷ-nguyên-số">1.1. Bối cảnh ngành Tài chính - Ngân hàng và FinTech trong kỷ nguyên số</h2>
+<p>Trong nền kinh tế thị trường hiện đại, hệ thống tài chính - ngân hàng giữ vai trò huyết mạch trong việc dẫn truyền dòng vốn từ các chủ thể tiết kiệm đến các chủ thể có nhu cầu đầu tư và tiêu dùng [1]. Phân khúc tín dụng bán lẻ (Retail Banking) và cho vay tiêu dùng cá nhân (Consumer Lending) đã chứng kiến tốc độ tăng trưởng bùng nổ, đặc biệt là khi chuyển dịch từ các kênh giao dịch tại quầy sang các nền tảng số hóa (Digital Banking, Mobile Banking và các ứng dụng FinTech) [2]. Khách hàng ngày nay kỳ vọng những trải nghiệm vay vốn tức thì (Instant Credit / Buy Now Pay Later - BNPL), quy trình đăng ký 100% trực tuyến và thời gian phê duyệt giải ngân chỉ tính bằng phút [3].</p>
+<p>Tuy nhiên, song hành cùng cơ hội mở rộng biên lãi thuần (Net Interest Margin - NIM), hoạt động cấp tín dụng luôn tiềm ẩn bản chất cố hữu là <strong>rủi ro tín dụng (Credit Risk)</strong> mà đỉnh điểm là <strong>biến cố vỡ nợ (Loan Default)</strong> [4]. Theo Ủy ban Basel về Giám sát Ngân hàng (BCBS), biến cố vỡ nợ xảy ra khi người vay không thực hiện nghĩa vụ trả nợ gốc hoặc lãi theo thỏa thuận hợp đồng sau thời hạn quy định (quá hạn từ 90 ngày trở lên) [5]. Sự gia tăng của tỷ lệ nợ xấu (Non-Performing Loans - NPL) không chỉ bào mòn nguồn vốn tự có của ngân hàng thông qua chi phí trích lập dự phòng tổn thất, mà còn đe dọa hệ số an toàn vốn (Capital Adequacy Ratio - CAR) và tính thanh khoản của toàn hệ thống [6].</p>
+<p>Trước áp lực đó, các định chế tài chính đối mặt với bài toán chiến lược: <em>Làm thế nào để vừa tối đa hóa tốc độ phê duyệt và mở rộng tệp khách hàng vay tiêu dùng số, vừa kiểm soát chặt chẽ tỷ lệ nợ xấu và bảo toàn nguồn vốn của ngân hàng?</em> Lời giải nằm ở việc ứng dụng công nghệ Dữ liệu lớn (Big Data) và Trí tuệ nhân tạo (AI/Machine Learning) nhằm tự động hóa quy trình thẩm định rủi ro và chấm điểm tín dụng [7].</p>
+<hr>
+</section>
+<section id="hạn-chế-của-phương-pháp-thẩm-định-tín-dụng-truyền-thống" class="level2">
+<h2 class="anchored" data-anchor-id="hạn-chế-của-phương-pháp-thẩm-định-tín-dụng-truyền-thống">1.2. Hạn chế của phương pháp thẩm định tín dụng truyền thống</h2>
+<p>Trong nhiều thập kỷ, quy trình thẩm định tín dụng tại các ngân hàng thương mại truyền thống chủ yếu dựa trên phương pháp phán đoán chuyên gia (Expert Judgment) và bảng điểm tín dụng truyền thống (Traditional Scorecards dựa trên hồi quy Logistic cổ điển) [8]. Những phương pháp này bộc lộ nhiều điểm nghẽn hệ thống khi đối mặt với kỷ nguyên số:</p>
+<ol type="1">
+<li><strong>Thời gian thẩm định kéo dài (High Latency):</strong> Khách hàng phải cung cấp nhiều loại hồ sơ giấy tờ (sao kê ngân hàng, hợp đồng lao động, hóa đơn tiện ích), tiếp đó là quá trình xác minh thực địa và phê duyệt qua nhiều cấp thẩm quyền. Thời gian xử lý trung bình từ 2 đến 5 ngày làm việc, hoàn toàn không tương thích với nhu cầu vay tức thì trên các nền tảng số [9].</li>
+<li><strong>Chi phí vận hành đắt đỏ (High Operational Costs):</strong> Việc duy trì đội ngũ chuyên viên tín dụng đông đảo để thẩm định thủ công dẫn đến chi phí vận hành (OPEX) trên mỗi khoản vay rất cao, khiến ngân hàng không thể phục vụ hiệu quả các khoản vay nhỏ lẻ (Micro-loans) [10].</li>
+<li><strong>Tính chủ quan và thiếu nhất quán (Subjective Biases):</strong> Quyết định tín dụng phụ thuộc lớn vào kinh nghiệm và tâm lý chủ quan của cán bộ thẩm định, dẫn đến sự thiếu đồng nhất giữa các chi nhánh trong cùng một hệ thống.</li>
+<li><strong>Khả năng nắm bắt quan hệ phi tuyến tính hạn chế (Non-linear Patterns):</strong> Các mô hình tuyến tính cổ điển giả định mối quan hệ độc lập giữa các biến số. Trong thực tế, tương tác giữa các thuộc tính tài chính và nhân khẩu học (ví dụ: tuổi trẻ kết hợp thâm niên ngắn nhưng tỷ lệ nợ trên thu nhập cao) có tính phi tuyến tính phức tạp mà chỉ các thuật toán học máy hiện đại mới có thể nắm bắt chính xác [11].</li>
+<li><strong>Giới hạn khả năng mở rộng (Scalability Bottleneck):</strong> Cơ sở dữ liệu quan hệ (RDBMS) không được thiết kế để xử lý khối lượng dữ liệu khổng lồ phát sinh từ hàng triệu hồ sơ vay trực tuyến, gây nghẽn cổ chai khi mở rộng kinh doanh [12].</li>
+</ol>
+<hr>
+</section>
+<section id="tính-cấp-thiết-của-đề-tài-và-mục-tiêu-nghiên-cứu" class="level2">
+<h2 class="anchored" data-anchor-id="tính-cấp-thiết-của-đề-tài-và-mục-tiêu-nghiên-cứu">1.3. Tính cấp thiết của đề tài và Mục tiêu nghiên cứu</h2>
+<section id="tính-cấp-thiết-của-đề-tài" class="level3">
+<h3 class="anchored" data-anchor-id="tính-cấp-thiết-của-đề-tài">1.3.1. Tính cấp thiết của đề tài</h3>
+<p>Nhằm khắc phục triệt để các hạn chế của quy trình truyền thống, việc xây dựng hệ thống chấm điểm tín dụng thế hệ mới dựa trên kiến trúc <strong>Dữ liệu lớn phân tán (Distributed Big Data Architecture)</strong> và <strong>Mô hình học máy tiên tiến (Advanced Machine Learning)</strong> là yêu cầu cấp thiết chiến lược. Hệ thống này giúp chuyển đổi toàn bộ quy trình thẩm định sang cơ chế tự động hóa hoàn toàn (Straight-Through Processing - STP), nâng cao độ chính xác dự báo vỡ nợ, bảo vệ ngân hàng trước rủi ro tổn thất tín dụng và tối ưu hóa hiệu quả kinh doanh [13].</p>
+</section>
+<section id="mục-tiêu-nghiên-cứu" class="level3">
+<h3 class="anchored" data-anchor-id="mục-tiêu-nghiên-cứu">1.3.2. Mục tiêu nghiên cứu</h3>
+<p>Đề tài <strong>“Mô hình chấm điểm tín dụng và thẩm định rủi ro vỡ nợ trong lĩnh vực Ngân hàng và FinTech”</strong> hướng tới các mục tiêu cụ thể sau:</p>
+<ol type="1">
+<li><strong>Xây dựng Kiến trúc Hồ Dữ liệu Lakehouse phân tán:</strong> Thiết lập luồng dữ liệu tự động theo mô hình Huy chương Medallion (Bronze <span class="math inline">\(\rightarrow\)</span> Silver <span class="math inline">\(\rightarrow\)</span> Gold) trên nền tảng Databricks Serverless và Delta Lake, bảo đảm tính toàn vẹn giao dịch ACID và khả năng xử lý dữ liệu lớn.</li>
+<li><strong>Tiền xử lý và Kỹ nghệ đặc trưng tài chính phân tán:</strong> Xây dựng quy trình làm sạch dữ liệu lớn, xử lý ngoại lai, làm giàu dữ liệu và thiết lập các chỉ số tài chính chuyên sâu (DTI, CBI, Window Functions) bằng Spark SQL.</li>
+<li><strong>Phát triển Mô hình Học máy phân tán hiệu năng cao:</strong> Huấn luyện thuật toán Random Forest Classifier trên Spark MLlib, tinh chỉnh siêu tham số bằng 3-Fold Cross-Validation, hướng đến chỉ số ROC-AUC vượt trội (<span class="math inline">\(&gt; 0.85\)</span>) và cân bằng tối ưu giữa Precision và Recall.</li>
+<li><strong>Thiết kế Động cơ Ra quyết định (Decision Engine) và Khung định giá theo rủi ro:</strong> Chuẩn hóa xác suất vỡ nợ thành điểm FICO tiêu chuẩn (<span class="math inline">\(300 - 850\)</span>), thiết lập ma trận 4 phân tầng rủi ro dựa trên chỉ số Youden’s J và chuẩn mực Basel II, đồng thời xây dựng mô hình định giá lãi suất theo rủi ro (Risk-Based Pricing Model: 8.5%, 11.5%, 14.5%).</li>
+<li><strong>Đánh giá hiệu quả kinh tế và đề xuất chiến lược quản trị:</strong> Định lượng tác động tài chính đối với việc kéo giảm tỷ lệ nợ xấu NPL, cắt giảm chi phí dự phòng rủi ro và nâng cao năng lực cạnh tranh số của tổ chức tài chính.</li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="phân-tích-đặc-tính-dữ-liệu-lớn-big-data-theo-mô-hình-5vs" class="level2">
+<h2 class="anchored" data-anchor-id="phân-tích-đặc-tính-dữ-liệu-lớn-big-data-theo-mô-hình-5vs">1.4. Phân tích đặc tính Dữ liệu lớn (Big Data) theo mô hình 5Vs</h2>
+<p>Để chứng minh tính xác đáng của việc áp dụng công nghệ xử lý dữ liệu lớn phân tán (Apache Spark) thay cho các công cụ đơn luồng truyền thống, bài toán chấm điểm tín dụng được phân tích qua khung chuẩn <strong>5Vs của Dữ liệu lớn</strong> [14]:</p>
+<p><strong>Bảng 1.1: Phân tích đặc tính Dữ liệu lớn theo mô hình 5Vs trong Đề tài Chấm điểm Tín dụng</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Đặc tính 5Vs</th>
+<th style="text-align: left;">Khái niệm chuẩn mực</th>
+<th style="text-align: left;">Biểu hiện cụ thể trong Đề tài 7</th>
+<th style="text-align: left;">Giải pháp Công nghệ tương ứng</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Volume</strong> <em>(Dung lượng)</em></td>
+<td style="text-align: left;">Khối lượng dữ liệu khổng lồ vượt quá khả năng lưu trữ và xử lý của máy tính đơn lẻ.</td>
+<td style="text-align: left;">Xử lý trực tiếp 2,260,701 hồ sơ vay tín dụng thực tế từ nền tảng LendingClub với dung lượng 1.6 GB.</td>
+<td style="text-align: left;">Lưu trữ trên Cloud Object Storage kết hợp định dạng nén Parquet / Delta Lake trên cụm Databricks.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Velocity</strong> <em>(Tốc độ)</em></td>
+<td style="text-align: left;">Tốc độ phát sinh và yêu cầu xử lý dữ liệu gần thời gian thực (Real-time).</td>
+<td style="text-align: left;">Khách hàng đăng ký vay qua ứng dụng di động yêu cầu phê duyệt và báo lãi suất trong vòng <strong>dưới 3 phút</strong>.</td>
+<td style="text-align: left;">Động cơ tính toán phân tán trong bộ nhớ (In-memory Computing) của Apache Spark và Spark MLlib Pipeline.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Variety</strong> <em>(Đa dạng)</em></td>
+<td style="text-align: left;">Dữ liệu phát sinh dưới nhiều định dạng: có cấu trúc, bán cấu trúc và phi cấu trúc.</td>
+<td style="text-align: left;">Tích hợp dữ liệu nhân khẩu học (tuổi, thâm niên), dữ liệu tài chính (thu nhập, khoản vay), và dữ liệu định tính (mục đích vay, nhà ở).</td>
+<td style="text-align: left;">Cơ chế VectorAssembler, OneHotEncoder và Schema Enforcement của Databricks Delta Lake.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Veracity</strong> <em>(Độ tin cậy)</em></td>
+<td style="text-align: left;">Độ chính xác, tính nhất quán và chất lượng của dữ liệu trước khi phân tích.</td>
+<td style="text-align: left;">Dữ liệu đăng ký vay trực tuyến chứa nhiều giá trị khuyết thiếu, điểm ngoại lai do người dùng nhập sai.</td>
+<td style="text-align: left;">Tầng dữ liệu Silver áp dụng luật kiểm toán dữ liệu tự động, điền khuyết thiếu bằng giá trị trung vị thị trường.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Value</strong> <em>(Giá trị kinh tế)</em></td>
+<td style="text-align: left;">Khả năng chuyển hóa dữ liệu thô thành lợi ích tài chính và giá trị kinh doanh thực tiễn.</td>
+<td style="text-align: left;">Chuyển đổi dữ liệu hồ sơ thành quyết định duyệt vay tự động, cắt giảm nợ xấu và chi phí trích lập dự phòng rủi ro.</td>
+<td style="text-align: left;">Động cơ Phân tầng Rủi ro, Quy đổi FICO Score và Mô hình Định giá Lãi suất theo rủi ro (Risk-Based Pricing).</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="giới-thiệu-bộ-dữ-liệu-nghiên-cứu-và-phạm-vi-đề-tài" class="level2">
+<h2 class="anchored" data-anchor-id="giới-thiệu-bộ-dữ-liệu-nghiên-cứu-và-phạm-vi-đề-tài">1.5. Giới thiệu Bộ dữ liệu nghiên cứu và Phạm vi đề tài</h2>
+<section id="nguồn-gốc-dữ-liệu-lendingclub-quy-mô-2.26-triệu-bản-ghi" class="level3">
+<h3 class="anchored" data-anchor-id="nguồn-gốc-dữ-liệu-lendingclub-quy-mô-2.26-triệu-bản-ghi">1.5.1. Nguồn gốc dữ liệu LendingClub quy mô 2.26 triệu bản ghi</h3>
+<p>Nghiên cứu sử dụng bộ dữ liệu thực tế <strong>LendingClub Complete Loan Dataset (2007 - 2018Q4)</strong> được công bố bởi LendingClub - nền tảng tài chính cho vay ngang hàng (P2P Lending) lớn nhất thế giới có trụ sở tại San Francisco, Hoa Kỳ [14]. Bộ dữ liệu phản ánh toàn diện hành vi vay vốn và hoàn trả của <strong>2,260,701 khoản vay thực tế (hơn 2.26 triệu hồ sơ, kích thước 1.6 GB)</strong>. Đây là tập dữ liệu chuẩn mực (Gold Standard Benchmark) được cộng đồng khoa học quốc tế sử dụng trong nghiên cứu chấm điểm tín dụng và thẩm định rủi ro cá nhân.</p>
+</section>
+<section id="cấu-trúc-các-thuộc-tính-cốt-lõi-trong-bộ-dữ-liệu" class="level3">
+<h3 class="anchored" data-anchor-id="cấu-trúc-các-thuộc-tính-cốt-lõi-trong-bộ-dữ-liệu">1.5.2. Cấu trúc các thuộc tính cốt lõi trong bộ dữ liệu</h3>
+<p>Từ 151 biến số của LendingClub, hệ thống trích xuất và chuẩn hóa <strong>12 thuộc tính cốt lõi</strong> đại diện cho năng lực tài chính, mục đích vay, lịch sử tín dụng CIC và nhãn mục tiêu:</p>
+<p><strong>Bảng 1.2: Mô tả chi tiết các thuộc tính cốt lõi trong Bộ dữ liệu lớn LendingClub (2,260,701 bản ghi)</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 25%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">STT</th>
+<th style="text-align: left;">Tên Thuộc Tính Trong Pipeline</th>
+<th style="text-align: left;">Tên Gốc LendingClub</th>
+<th style="text-align: center;">Kiểu Dữ Liệu</th>
+<th style="text-align: left;">Định Nghĩa Nghiệp Vụ &amp; Ý Nghĩa Kinh Tế</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: left;"><code>loan_amnt</code></td>
+<td style="text-align: left;"><code>loan_amnt</code></td>
+<td style="text-align: center;">Số thực</td>
+<td style="text-align: left;">Số tiền khách hàng được phê duyệt vay (USD).</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td style="text-align: left;"><code>person_income</code></td>
+<td style="text-align: left;"><code>annual_inc</code></td>
+<td style="text-align: center;">Số thực</td>
+<td style="text-align: left;">Tổng thu nhập hàng năm của người đi vay (USD).</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">3</td>
+<td style="text-align: left;"><code>loan_int_rate</code></td>
+<td style="text-align: left;"><code>int_rate</code></td>
+<td style="text-align: center;">Số thực</td>
+<td style="text-align: left;">Lãi suất danh nghĩa hàng năm của khoản vay (%).</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">4</td>
+<td style="text-align: left;"><code>loan_grade</code></td>
+<td style="text-align: left;"><code>grade</code></td>
+<td style="text-align: center;">Chuỗi danh mục</td>
+<td style="text-align: left;">Xếp hạng tín nhiệm nội bộ từ <code>A</code> (an toàn nhất) đến <code>G</code> (rủi ro cao nhất).</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">5</td>
+<td style="text-align: left;"><code>person_home_ownership</code></td>
+<td style="text-align: left;"><code>home_ownership</code></td>
+<td style="text-align: center;">Chuỗi danh mục</td>
+<td style="text-align: left;">Tình trạng nhà ở (<code>RENT</code>: Thuê nhà; <code>OWN</code>: Sở hữu; <code>MORTGAGE</code>: Thế chấp).</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">6</td>
+<td style="text-align: left;"><code>person_emp_length</code></td>
+<td style="text-align: left;"><code>emp_length</code></td>
+<td style="text-align: center;">Số thực</td>
+<td style="text-align: left;">Thâm niên công tác liên tục (năm: từ <span class="math inline">\(0\)</span> đến <span class="math inline">\(10+\)</span> năm).</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">7</td>
+<td style="text-align: left;"><code>loan_intent</code></td>
+<td style="text-align: left;"><code>purpose</code></td>
+<td style="text-align: center;">Chuỗi danh mục</td>
+<td style="text-align: left;">Mục đích vay vốn (<code>debt_consolidation</code>, <code>credit_card</code>, <code>home_improvement</code>,…).</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">8</td>
+<td style="text-align: left;"><code>loan_percent_income</code></td>
+<td style="text-align: left;"><code>dti</code></td>
+<td style="text-align: center;">Số thực</td>
+<td style="text-align: left;">Tỷ lệ nợ trên thu nhập (<span class="math inline">\(DTI\)</span> hàng năm).</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">9</td>
+<td style="text-align: left;"><code>cb_person_default_on_file</code></td>
+<td style="text-align: left;"><code>pub_rec_bankruptcies</code></td>
+<td style="text-align: center;">Chuỗi danh mục</td>
+<td style="text-align: left;">Tiền sử nợ xấu hoặc phá sản ghi nhận trên hệ thống tín dụng (<code>Y</code>: Có, <code>N</code>: Không).</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">10</td>
+<td style="text-align: left;"><code>person_age</code></td>
+<td style="text-align: left;">Suy diễn từ <code>earliest_cr_line</code></td>
+<td style="text-align: center;">Số nguyên</td>
+<td style="text-align: left;">Độ tuổi của người đi vay (ước tính từ lịch sử tín dụng).</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">11</td>
+<td style="text-align: left;"><code>cb_person_cred_hist_length</code></td>
+<td style="text-align: left;"><code>earliest_cr_line</code></td>
+<td style="text-align: center;">Số nguyên</td>
+<td style="text-align: left;">Thâm niên quan hệ tín dụng (năm).</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">12</td>
+<td style="text-align: left;"><strong><code>loan_status</code> (Label)</strong></td>
+<td style="text-align: left;"><code>loan_status</code></td>
+<td style="text-align: center;">Số nguyên</td>
+<td style="text-align: left;">Nhãn phân loại: <code>0</code> đại diện cho Khoản vay trả đủ (<code>Fully Paid</code>); <code>1</code> đại diện cho Khoản vay vỡ nợ / xóa nợ (<code>Charged Off</code> / <code>Default</code>).</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="tỷ-lệ-nợ-xấu-nền-trên-quy-mô-2.26-triệu-hồ-sơ-baseline-default-rate" class="level3">
+<h3 class="anchored" data-anchor-id="tỷ-lệ-nợ-xấu-nền-trên-quy-mô-2.26-triệu-hồ-sơ-baseline-default-rate">1.5.3. Tỷ lệ nợ xấu nền trên quy mô 2.26 triệu hồ sơ (Baseline Default Rate)</h3>
+<p>Trong tổng số 2,260,701 khoản vay, có khoảng 493,285 khoản vay bị vỡ nợ (<code>loan_status = 1</code>), thiết lập tỷ lệ nợ xấu nền thực tế là: <span class="math display">\[\text{Baseline Default Rate} = \frac{493,285}{2,260,701} \approx 0.2182\]</span> <em>(tương đương 21.82%)</em></p>
+<p>Quy mô dữ liệu hơn 2.26 triệu dòng mang lại độ tin cậy thống kê vượt trội, loại bỏ các sai số do mẫu nhỏ và chứng minh năng lực tính toán phân tán của nền tảng Apache Spark.</p>
+<hr>
+</section>
+</section>
+<section id="kết-cấu-tổng-quan-của-bài-tiểu-luận" class="level2">
+<h2 class="anchored" data-anchor-id="kết-cấu-tổng-quan-của-bài-tiểu-luận">1.6. Kết cấu tổng quan của bài tiểu luận</h2>
+<p>Báo cáo tiểu luận được tổ chức chặt chẽ thành 5 chương nghiên cứu chính:</p>
+<ul>
+<li><strong>Chương 1: Tổng quan về bài toán &amp; Đặt vấn đề:</strong> Trình bày bối cảnh kinh tế, các hạn chế của quy trình thẩm định tín dụng truyền thống, tính cấp thiết, mục tiêu nghiên cứu, phân tích bài toán theo khung 5Vs của Dữ liệu lớn và giới thiệu tổng quan bộ dữ liệu nghiên cứu.</li>
+<li><strong>Chương 2: Kiến trúc luồng dữ liệu Lakehouse (Medallion Architecture):</strong> Phân tích nền tảng lý thuyết của kiến trúc Databricks Lakehouse, các ưu điểm công nghệ của Delta Lake (ACID, Time Travel, Parquet), chi tiết thiết kế 3 tầng Bronze - Silver - Gold và cơ chế quản trị dữ liệu theo chuẩn Basel II/III.</li>
+<li><strong>Chương 3: Xử lý &amp; Phân tích dữ liệu lớn với PySpark và Spark SQL:</strong> Trình bày phương pháp luận và kỹ thuật làm sạch dữ liệu lớn, xử lý khuyết thiếu và ngoại lai, kỹ nghệ đặc trưng tài chính (DTI, CBI), phân tích khám phá dữ liệu (EDA) và ứng dụng Window Functions để đánh giá tương đối rủi ro tín dụng.</li>
+<li><strong>Chương 4: Xây dựng mô hình học máy phân tán với Spark MLlib:</strong> Trình bày cơ sở lý thuyết của thuật toán Random Forest Classifier, chuỗi pipeline đóng gói đặc trưng phân tán, quy trình tối ưu hóa siêu tham số bằng kiểm định chéo K-Fold Cross-Validation, đánh giá toàn diện hiệu năng phân loại qua đường cong ROC, ma trận nhầm lẫn và phân tích độ quan trọng của đặc trưng.</li>
+<li><strong>Chương 5: Phân tích ý nghĩa nghiệp vụ &amp; Đề xuất chiến lược quản trị:</strong> Trình bày thuật toán quy đổi điểm tín dụng FICO Score, ma trận phân tầng 4 nhóm rủi ro dựa trên cơ sở Youden’s J và Basel II, mô hình định giá lãi suất theo rủi ro (Risk-Based Pricing), chính sách hạn mức tín dụng linh hoạt, định lượng tác động tài chính (ROI) và các khuyến nghị quản trị chiến lược cho ban điều hành ngân hàng.</li>
+</ul>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./index.html" class="pagination-link" aria-label="Báo Cáo Tiểu Luận Kết Thúc Học Phần">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Báo Cáo Tiểu Luận Kết Thúc Học Phần</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./02_CHUONG_2_KIEN_TRUC.html" class="pagination-link" aria-label="Chương 2: Kiến Trúc Luồng Dữ Liệu Lakehouse (Medallion Architecture)">
+        <span class="nav-page-text"><span class="chapter-title">Chương 2: Kiến Trúc Luồng Dữ Liệu Lakehouse (Medallion Architecture)</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

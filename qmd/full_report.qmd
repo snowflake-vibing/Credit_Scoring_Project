@@ -1,0 +1,44 @@
+---
+title: "BÁO CÁO TIỂU LUẬN KẾT THÚC HỌC PHẦN"
+subtitle: "MÔ HÌNH CHẤM ĐIỂM TÍN DỤNG VÀ THẨM ĐỊNH RỦI RO VỠ NỢ TRONG LĨNH VỰC NGÂN HÀNG VÀ FINTECH"
+author:
+  - name: "Lê Thành Hiệu"
+    affiliation: "Trường Đại học Kinh tế - Đại học Quốc gia"
+date: "2026"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    number-sections: false
+    theme: cosmo
+    code-copy: true
+    embed-resources: true
+  pdf:
+    documentclass: report
+    papersize: a4
+    geometry:
+      - top=20mm
+      - bottom=20mm
+      - left=30mm
+      - right=20mm
+    toc: true
+    toc-depth: 3
+    number-sections: false
+    colorlinks: true
+    linestretch: 1.5
+    fontsize: 13pt
+---
+
+{{< include 00_OUTLINE_VA_TRANG_BIA.qmd >}}
+
+{{< include 01_CHUONG_1_GIOI_THIEU.qmd >}}
+
+{{< include 02_CHUONG_2_KIEN_TRUC.qmd >}}
+
+{{< include 03_CHUONG_3_XU_LY_DU_LIEU.qmd >}}
+
+{{< include 04_CHUONG_4_MO_HINH_AI.qmd >}}
+
+{{< include 05_CHUONG_5_KHUYEN_NGHI.qmd >}}
+
+{{< include 06_TAI_LIEU_THAM_KHAO.qmd >}}

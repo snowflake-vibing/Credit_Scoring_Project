@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Tài Liệu Tham Khảo – Đề Tài 7: Mô Hình Chấm Điểm Tín Dụng &amp; Thẩm Định Rủi Ro Vỡ Nợ</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./05_CHUONG_5_KHUYEN_NGHI.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-de63f62b328812d8e578a4d74e282472.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-ff39eb75f09dfe1eb0ac836af7385c3d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./06_TAI_LIEU_THAM_KHAO.html"><span class="chapter-title">Tài Liệu Tham Khảo</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Đề Tài 7: Mô Hình Chấm Điểm Tín Dụng &amp; Thẩm Định Rủi Ro Vỡ Nợ</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Báo Cáo Tiểu Luận Kết Thúc Học Phần</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01_CHUONG_1_GIOI_THIEU.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Chương 1: Tổng Quan Về Bài Toán &amp; Đặt Vấn Đề</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02_CHUONG_2_KIEN_TRUC.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Chương 2: Kiến Trúc Luồng Dữ Liệu Lakehouse (Medallion Architecture)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03_CHUONG_3_XU_LY_DU_LIEU.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Chương 3: Xử Lý &amp; Phân Tích Dữ Liệu Lớn Với PySpark và Spark SQL</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04_CHUONG_4_MO_HINH_AI.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Chương 4: Xây Dựng Mô Hình Học Máy Phân Tán Với Spark MLlib</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05_CHUONG_5_KHUYEN_NGHI.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Chương 5: Phân Tích Ý Nghĩa Nghiệp Vụ &amp; Đề Xuất Chiến Lược Quản Trị</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06_TAI_LIEU_THAM_KHAO.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Tài Liệu Tham Khảo</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#tài-liệu-tham-khảo" id="toc-tài-liệu-tham-khảo" class="nav-link active" data-scroll-target="#tài-liệu-tham-khảo">TÀI LIỆU THAM KHẢO</a>
+  <ul class="collapse">
+  <li><a href="#i.-văn-bản-quy-phạm-pháp-luật-chuẩn-mực-quốc-tế" id="toc-i.-văn-bản-quy-phạm-pháp-luật-chuẩn-mực-quốc-tế" class="nav-link" data-scroll-target="#i.-văn-bản-quy-phạm-pháp-luật-chuẩn-mực-quốc-tế">I. VĂN BẢN QUY PHẠM PHÁP LUẬT &amp; CHUẨN MỰC QUỐC TẾ</a></li>
+  <li><a href="#ii.-sách-chuyên-khảo-và-giáo-trình-học-thuật" id="toc-ii.-sách-chuyên-khảo-và-giáo-trình-học-thuật" class="nav-link" data-scroll-target="#ii.-sách-chuyên-khảo-và-giáo-trình-học-thuật">II. SÁCH CHUYÊN KHẢO VÀ GIÁO TRÌNH HỌC THUẬT</a></li>
+  <li><a href="#iii.-bài-báo-khoa-học-báo-cáo-hội-nghị-quốc-tế" id="toc-iii.-bài-báo-khoa-học-báo-cáo-hội-nghị-quốc-tế" class="nav-link" data-scroll-target="#iii.-bài-báo-khoa-học-báo-cáo-hội-nghị-quốc-tế">III. BÀI BÁO KHOA HỌC &amp; BÁO CÁO HỘI NGHỊ QUỐC TẾ</a></li>
+  <li><a href="#iv.-tài-liệu-kỹ-thuật-doanh-nghiệp-bạch-thư" id="toc-iv.-tài-liệu-kỹ-thuật-doanh-nghiệp-bạch-thư" class="nav-link" data-scroll-target="#iv.-tài-liệu-kỹ-thuật-doanh-nghiệp-bạch-thư">IV. TÀI LIỆU KỸ THUẬT DOANH NGHIỆP &amp; BẠCH THƯ</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-title">Tài Liệu Tham Khảo</span></h1>
+<p class="subtitle lead">Quy chuẩn Văn bản pháp luật, Giáo trình, Bài báo khoa học &amp; Kỹ thuật</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="tài-liệu-tham-khảo" class="level1">
+<h1>TÀI LIỆU THAM KHẢO</h1>
+<hr>
+<section id="i.-văn-bản-quy-phạm-pháp-luật-chuẩn-mực-quốc-tế" class="level3">
+<h3 class="anchored" data-anchor-id="i.-văn-bản-quy-phạm-pháp-luật-chuẩn-mực-quốc-tế">I. VĂN BẢN QUY PHẠM PHÁP LUẬT &amp; CHUẨN MỰC QUỐC TẾ</h3>
+<p>[1] Basel Committee on Banking Supervision (BCBS). (2006). <em>International Convergence of Capital Measurement and Capital Standards: A Revised Framework (Basel II)</em>. Bank for International Settlements (BIS).<br>
+[2] Basel Committee on Banking Supervision (BCBS). (2017). <em>Basel III: Finalising post-crisis reforms</em>. Bank for International Settlements (BIS).<br>
+[3] Basel Committee on Banking Supervision (BCBS). (2019). <em>Standardised approach for credit risk: Guidance and implementation</em>. Bank for International Settlements (BIS).<br>
+[4] Ngân hàng Nhà nước Việt Nam. (2016). <em>Thông tư số 41/2016/TT-NHNN: Quy định tỷ lệ an toàn vốn đối với ngân hàng thương mại, chi nhánh ngân hàng nước ngoài</em>. Hà Nội.<br>
+[5] Ngân hàng Nhà nước Việt Nam. (2021). <em>Thông tư số 11/2021/TT-NHNN: Quy định về phân loại tài sản có, mức trích, phương pháp trích lập dự phòng rủi ro và việc sử dụng dự phòng để xử lý rủi ro trong hoạt động của tổ chức tín dụng</em>. Hà Nội.</p>
+<hr>
+</section>
+<section id="ii.-sách-chuyên-khảo-và-giáo-trình-học-thuật" class="level3">
+<h3 class="anchored" data-anchor-id="ii.-sách-chuyên-khảo-và-giáo-trình-học-thuật">II. SÁCH CHUYÊN KHẢO VÀ GIÁO TRÌNH HỌC THUẬT</h3>
+<p>[6] Anderson, R. (2007). <em>The Credit Scoring Toolkit: Theory and Practice for Retail Credit Risk Management and Decision Automation</em>. Oxford University Press.<br>
+[7] Berger, J. O. (1985). <em>Statistical Decision Theory and Bayesian Analysis (2nd ed.)</em>. Springer-Verlag.<br>
+[8] Chambers, B., &amp; Zaharia, M. (2018). <em>Spark: The Definitive Guide: Big Data Processing Made Simple</em>. O’Reilly Media.<br>
+[9] Crouhy, M., Galai, D., &amp; Mark, R. (2006). <em>The Essentials of Risk Management</em>. McGraw-Hill.<br>
+[10] DAMA International. (2017). <em>DAMA-DMBOK: Data Management Body of Knowledge (2nd ed.)</em>. Technics Publications.<br>
+[11] Han, J., Kamber, M., &amp; Pei, J. (2011). <em>Data Mining: Concepts and Techniques (3rd ed.)</em>. Morgan Kaufmann.<br>
+[12] Hastie, T., Tibshirani, R., &amp; Friedman, J. (2009). <em>The Elements of Statistical Learning: Data Mining, Inference, and Prediction (2nd ed.)</em>. Springer.<br>
+[13] Inmon, W. H. (2005). <em>Building the Data Warehouse (4th ed.)</em>. John Wiley &amp; Sons.<br>
+[14] Karau, H., Konwinski, A., Wendell, P., &amp; Zaharia, M. (2015). <em>Learning Spark: Lightning-Fast Big Data Analysis</em>. O’Reilly Media.<br>
+[15] Kimball, R., &amp; Ross, M. (2013). <em>The Data Warehouse Toolkit: The Definitive Guide to Dimensional Modeling (3rd ed.)</em>. Wiley.<br>
+[16] Kleppmann, M. (2017). <em>Designing Data-Intensive Applications: The Big Ideas Behind Reliable, Scalable, and Maintainable Systems</em>. O’Reilly Media.<br>
+[17] Mishkin, F. S. (2018). <em>The Economics of Money, Banking, and Financial Markets (12th ed.)</em>. Pearson.<br>
+[18] Saunders, A., &amp; Cornett, M. M. (2018). <em>Financial Institutions Management: A Risk Management Approach (9th ed.)</em>. McGraw-Hill Education.<br>
+[19] Siddiqi, N. (2017). <em>Intelligent Credit Scoring: Building and Implementing Better Credit Risk Scorecards (2nd ed.)</em>. John Wiley &amp; Sons.<br>
+[20] Thomas, L. C., Edelman, D. B., &amp; Crook, J. N. (2002). <em>Credit Scoring and Its Applications</em>. SIAM Monographs on Mathematical Modeling and Computation.<br>
+[21] White, T. (2015). <em>Hadoop: The Definitive Guide: Storage and Analysis at Internet Scale (4th ed.)</em>. O’Reilly Media.</p>
+<hr>
+</section>
+<section id="iii.-bài-báo-khoa-học-báo-cáo-hội-nghị-quốc-tế" class="level3">
+<h3 class="anchored" data-anchor-id="iii.-bài-báo-khoa-học-báo-cáo-hội-nghị-quốc-tế">III. BÀI BÁO KHOA HỌC &amp; BÁO CÁO HỘI NGHỊ QUỐC TẾ</h3>
+<p>[22] Altman, E. I. (1968). <em>Financial ratios, discriminant analysis and the prediction of corporate bankruptcy</em>. The Journal of Finance, 23(4), 589-609.<br>
+[23] Armbrust, M., Xin, R. S., Lian, C., Huai, Y., Liu, D., Bradley, J. K., … &amp; Zaharia, M. (2015). <em>Spark SQL: Relational data processing in Spark</em>. Proceedings of the 2015 ACM SIGMOD International Conference on Management of Data, 1383-1394.<br>
+[24] Armbrust, M., Das, T., Sun, L., Yavuz, B., Zhu, S., Murthy, M., … &amp; Zaharia, M. (2020). <em>Delta Lake: High-Performance ACID Table Storage over Cloud Object Stores</em>. Proceedings of the VLDB Endowment, 13(12), 3411-3424.<br>
+[25] Armbrust, M., Ghodsi, A., Xin, R., &amp; Zaharia, M. (2021). <em>Lakehouse: A New Generation of Open Platforms that Unify Data Warehousing and Advanced Analytics</em>. Proceedings of CIDR 2021.<br>
+[26] Arner, D. W., Barberis, J., &amp; Buckley, R. P. (2015). <em>The Evolution of FinTech: A New Post-Crisis Paradigm?</em> Georgetown Journal of International Law, 47, 1271-1319.<br>
+[27] Baesens, B., Van Gestel, T., Viaene, S., Stepanova, M., Suykens, J., &amp; Vanthienen, J. (2003). <em>Benchmarking state-of-the-art classification algorithms for credit scoring</em>. Journal of the Operational Research Society, 54(6), 627-635.<br>
+[28] Biau, G., &amp; Scornet, E. (2016). <em>A random forest guided tour</em>. TEST, 25(2), 197-227.<br>
+[29] Breiman, L. (2001). <em>Random Forests</em>. Machine Learning, 45(1), 5-32.<br>
+[30] Chawla, N. V., Bowyer, K. W., Hall, L. O., &amp; Kegelmeyer, W. P. (2002). <em>SMOTE: synthetic minority over-sampling technique</em>. Journal of Artificial Intelligence Research, 16, 321-357.<br>
+[31] DeYoung, R., Glennon, D., &amp; Nigro, P. (2008). <em>Borrower-lender distance, credit scoring, and loan performance: Evidence from informational-opaque small business borrowers</em>. Journal of Financial Intermediation, 17(1), 113-143.<br>
+[32] Fawcett, T. (2006). <em>An introduction to ROC analysis</em>. Pattern Recognition Letters, 27(8), 861-874.<br>
+[33] Fuster, A., Plosser, M., Schnabl, P., &amp; Vickery, J. (2019). <em>The role of technology in mortgage lending</em>. The Review of Financial Studies, 32(5), 1854-1899.<br>
+[34] Gandomi, A., &amp; Haider, M. (2015). <em>Beyond the hype: Big data concepts, methods, and analytics</em>. International Journal of Information Management, 35(2), 137-144.<br>
+[35] Hand, D. J., &amp; Henley, W. E. (1997). <em>Statistical classification methods in consumer credit scoring: a review</em>. Journal of the Royal Statistical Society: Series A (Statistics in Society), 160(3), 523-541.<br>
+[36] Ho, T. K. (1998). <em>The random subspace method for constructing decision forests</em>. IEEE Transactions on Pattern Analysis and Machine Intelligence, 20(8), 832-844.<br>
+[37] Jagtiani, J., &amp; Lemieux, C. (2019). <em>The roles of alternative data and machine learning in fintech lending: evidence from the LendingClub consumer platform</em>. Financial Management, 48(4), 1009-1029.<br>
+[38] Kohavi, R. (1995). <em>A study of cross-validation and bootstrap for accuracy estimation and model selection</em>. Proceedings of the 14th International Joint Conference on Artificial Intelligence (IJCAI), 2, 1137-1145.<br>
+[39] Lessmann, S., Baesens, B., Seow, H. V., &amp; Thomas, L. C. (2015). <em>Benchmarking state-of-the-art classification algorithms for credit scoring: An update of research</em>. European Journal of Operational Research, 247(1), 124-136.<br>
+[40] Louppe, G., Wehenkel, L., Sutera, A., &amp; Geurts, P. (2013). <em>Understanding variable importances in forests of randomized trees</em>. Advances in Neural Information Processing Systems (NeurIPS), 26, 431-439.<br>
+[41] Meng, X., Bradley, J., Yavuz, B., Sparks, E., Venkataraman, S., Liu, D., … &amp; Zaharia, M. (2016). <em>MLlib: Machine learning in Apache Spark</em>. The Journal of Machine Learning Research, 17(1), 1235-1241.<br>
+[42] O’Leary, D. E. (2014). <em>‘Big data’, the ‘Internet of things’ and the ‘Internet of signs’</em>. Intelligent Systems in Accounting, Finance and Management, 21(3), 141-165.<br>
+[43] Stiglitz, J. E., &amp; Weiss, A. (1981). <em>Credit Rationing in Markets with Imperfect Information</em>. The American Economic Review, 71(3), 393-410.<br>
+[44] Strunk, C. R., &amp; Sankar, R. (2012). <em>Risk-Based Pricing in Retail Banking: Methodologies and Implementation</em>. Journal of Risk Management in Financial Institutions, 5(4), 415-429.<br>
+[45] Youden, W. J. (1950). <em>Index for rating diagnostic tests</em>. Cancer, 3(1), 32-35.<br>
+[46] Zaharia, M., Xin, R. S., Wendell, P., Das, T., Armbrust, M., Dave, A., … &amp; Stoica, I. (2016). <em>Apache Spark: a unified engine for big data processing</em>. Communications of the ACM, 59(11), 56-65.</p>
+<hr>
+</section>
+<section id="iv.-tài-liệu-kỹ-thuật-doanh-nghiệp-bạch-thư" class="level3">
+<h3 class="anchored" data-anchor-id="iv.-tài-liệu-kỹ-thuật-doanh-nghiệp-bạch-thư">IV. TÀI LIỆU KỸ THUẬT DOANH NGHIỆP &amp; BẠCH THƯ</h3>
+<p>[47] Databricks Inc.&nbsp;(2023). <em>Medallion Architecture: Best Practices for Managing Data with Bronze, Silver, and Gold Tables</em>. Databricks Official Technical Documentation.<br>
+[48] Fair Isaac Corporation (FICO). (2020). <em>Understanding FICO Scores: How Credit Scoring Works</em>. FICO Technical Whitepaper.</p>
+<p>[49] LendingClub Corporation. (2019). <em>LendingClub Complete Loan Data 2007-2018Q4</em>. Open Financial Datasets, Kaggle.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./05_CHUONG_5_KHUYEN_NGHI.html" class="pagination-link" aria-label="Chương 5: Phân Tích Ý Nghĩa Nghiệp Vụ &amp; Đề Xuất Chiến Lược Quản Trị">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Chương 5: Phân Tích Ý Nghĩa Nghiệp Vụ &amp; Đề Xuất Chiến Lược Quản Trị</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

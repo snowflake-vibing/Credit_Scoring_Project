@@ -52,3 +52,7 @@ desktop.ini
 # Logs and databases
 *.log
 *.sqlite3
+
+# Quarto
+.quarto/
+
