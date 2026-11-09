@@ -50,11 +50,22 @@ import seaborn as sns
 import numpy as np
 import pandas as pd
 
-# Thiết lập thư mục lưu ảnh biểu đồ
-out_dir = "/tmp/credit_scoring_charts"
-os.makedirs(out_dir, exist_ok=True)
-print(f"✅ Thư mục lưu ảnh đã sẵn sàng: {out_dir}")
-print("💡 Biểu đồ sẽ hiển thị trực tiếp trong output từng Cell (nhấp chuột phải chọn 'Save Image As...').")
+# CẤU HÌNH THƯ MỤC WORKSPACE RIÊNG BIỆT ĐỂ LƯU TOÀN BỘ ẢNH BIỂU ĐỒ & BÁO CÁO
+try:
+    user_email = spark.sql("SELECT current_user()").collect()[0][0]
+    out_dir = f"/Workspace/Users/{user_email}/credit_scoring_outputs"
+except Exception:
+    out_dir = "/Workspace/Shared/credit_scoring_outputs"
+
+try:
+    os.makedirs(out_dir, exist_ok=True)
+    print(f"✅ ĐÃ THIẾT LẬP THƯ MỤC WORKSPACE RIÊNG BIỆT: {out_dir}")
+    print("👉 Bạn có thể xem và tải trực tiếp các file ảnh trong menu Workspace bên trái.")
+except Exception:
+    out_dir = "/tmp/credit_scoring_charts"
+    os.makedirs(out_dir, exist_ok=True)
+    print(f"ℹ️ Thư mục lưu trữ: {out_dir}")
+
 
 """)
 

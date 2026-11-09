@@ -15,10 +15,16 @@ import seaborn as sns
 import numpy as np
 import pandas as pd
 
-out_dir = "/dbfs/FileStore/credit_scoring_charts"
+# Thiết lập thư mục lưu trữ Workspace riêng biệt
+try:
+    user_email = spark.sql("SELECT current_user()").collect()[0][0]
+    out_dir = f"/Workspace/Users/{user_email}/credit_scoring_outputs"
+except Exception:
+    out_dir = "/Workspace/Shared/credit_scoring_outputs"
+
 try:
     os.makedirs(out_dir, exist_ok=True)
-    print(f"✅ Thư mục lưu trữ biểu đồ: {out_dir}")
+    print(f"✅ Thư mục lưu trữ Workspace riêng biệt: {out_dir}")
 except Exception:
     out_dir = "/tmp/credit_scoring_charts"
     os.makedirs(out_dir, exist_ok=True)
