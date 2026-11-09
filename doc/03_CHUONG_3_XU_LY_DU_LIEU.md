@@ -4,7 +4,7 @@
 
 ## 3.1. Quy trình Thu thập và Nạp dữ liệu thô (Bronze Layer Ingestion)
 
-Trong kiến trúc xử lý dữ liệu lớn của một định chế tài chính, khâu tiếp nhận dữ liệu đầu vào (Data Ingestion) đòi hỏi phải đảm bảo tính liên tục, tính vẹn toàn và khả năng lưu vết lịch sử không thể chỉnh sửa [29]. Tại Tầng Bronze, toàn bộ tệp dữ liệu lớn LendingClub bao gồm 2,260,701 bản ghi (1.6 GB) được nạp vào hệ thống thông qua giao diện quản trị Catalog Explorer của Databricks và chuyển đổi thành bảng dữ liệu phân tán chuẩn Delta Lake mang tên `workspace.default.bronze_credit_data`.
+Trong kiến trúc xử lý dữ liệu lớn của một định chế tài chính, khâu tiếp nhận dữ liệu đầu vào (Data Ingestion) đòi hỏi phải đảm bảo tính liên tục, tính vẹn toàn và khả năng lưu vết lịch sử không thể chỉnh sửa [24], [47]. Tại Tầng Bronze, toàn bộ tệp dữ liệu lớn LendingClub bao gồm 2,260,701 bản ghi (1.6 GB) được nạp vào hệ thống thông qua giao diện quản trị Catalog Explorer của Databricks và chuyển đổi thành bảng dữ liệu phân tán chuẩn Delta Lake mang tên `workspace.default.bronze_credit_data`.
 
 ### Các nguyên tắc kỹ thuật áp dụng tại Tầng Bronze:
 1. **Nguyên tắc Bảo toàn Nguyên vẹn (Data Immutability):** Dữ liệu thô sau khi nạp vào Tầng Bronze được bảo toàn 100% về cấu trúc ban đầu, bao gồm cả các trường giá trị trống (`NULL`), các ký tự định dạng chuỗi và các điểm ngoại lai. Tuyệt đối không thực hiện bất kỳ thao tác lọc bỏ, chỉnh sửa hay suy diễn dữ liệu nào ở tầng này nhằm đảm bảo tính toàn vẹn cho mục đích kiểm toán (Audit Trail) và làm nguồn dự phòng phục vụ việc tái lập dữ liệu khi có sự cố.
@@ -14,7 +14,7 @@ Trong kiến trúc xử lý dữ liệu lớn của một định chế tài ch�
 
 ## 3.2. Phương pháp Tiền xử lý và Nâng cao chất lượng Dữ liệu phân tán (Silver Layer)
 
-Sau khi dữ liệu thô được bảo toàn tại Tầng Bronze, hệ thống kích hoạt quy trình tiền xử lý và làm sạch dữ liệu phân tán để tạo lập bảng `workspace.default.silver_credit_data`. Dữ liệu thô từ thực tế thường chứa đựng các khiếm khuyết nghiêm trọng có thể làm sai lệch độ chính xác của các thuật toán học máy [30]. Quy trình làm sạch tại Tầng Silver giải quyết triệt để hai thách thức lớn nhất về chất lượng dữ liệu:
+Sau khi dữ liệu thô được bảo toàn tại Tầng Bronze, hệ thống kích hoạt quy trình tiền xử lý và làm sạch dữ liệu phân tán để tạo lập bảng `workspace.default.silver_credit_data`. Dữ liệu thô từ thực tế thường chứa đựng các khiếm khuyết nghiêm trọng có thể làm sai lệch độ chính xác của các thuật toán học máy [10], [11]. Quy trình làm sạch tại Tầng Silver giải quyết triệt để hai thách thức lớn nhất về chất lượng dữ liệu:
 
 ### 3.2.1. Phân tích và Xử lý Giá trị Khuyết thiếu (Missing Value Imputation)
 Khảo sát thực nghiệm trên quy mô 2.26 triệu bản ghi LendingClub cho thấy mức độ khuyết thiếu tập trung ở một số thuộc tính đặc thù:
@@ -22,9 +22,9 @@ Khảo sát thực nghiệm trên quy mô 2.26 triệu bản ghi LendingClub cho
 ![Hình 3.1: Đánh giá tỷ lệ dữ liệu khuyết thiếu Tầng Bronze](images/hinh_3_1_missing_values.png)
 <p align="center"><em>Hình 3.1: Đánh giá tỷ lệ dữ liệu khuyết thiếu Tầng Bronze (Missing Values Analysis)</em></p>
 
-- **Chức danh và Thâm niên công tác (`emp_title`, `emp_length`):** Khoảng 7.38% bản ghi khuyết chức danh và 6.50% khuyết thâm niên làm việc (ghi dưới dạng chuỗi như `< 1 year`, `10+ years`). Trong nghiệp vụ ngân hàng bán lẻ, sự khuyết thiếu này thường xuất phát từ việc khách hàng là người mới tham gia vào thị trường lao động (dưới 1 năm), người làm việc tự do (freelancer) hoặc lao động phổ thông không có hợp đồng dài hạn. Do đó, áp dụng chiến lược trích xuất số và điền giá trị thiếu bằng **$0.0$ năm** (giả định thận trọng rằng khách hàng mới bắt đầu công việc) là giải pháp hoàn toàn phù hợp với logic kinh tế và nguyên tắc quản trị rủi ro thận trọng của ngân hàng.
-- **Lãi suất của khoản vay (`int_rate` / `loan_int_rate`):** Đối với các hồ sơ khuyết mức lãi suất, do lãi suất là biến số tài chính có độ lệch phân phối nhất định, việc sử dụng trung bình cộng (Mean) dễ bị bóp méo bởi các giá trị quá cao hoặc quá thấp. Vì vậy, hệ thống áp dụng kỹ thuật điền khuyết thiếu bằng **giá trị trung vị của thị trường (Median Imputation)** là **11.0%**, phản ánh điểm cân bằng lãi suất của phân khúc cho vay tiêu dùng tín chấp.
-- **Lịch sử tín dụng cá nhân (`cb_person_cred_hist_length`):** Đối với các hồ sơ không ghi nhận thâm niên lịch sử tín dụng, hệ thống điền giá trị cơ sở là **$1$ năm** (phản ánh khách hàng mới bắt đầu phát sinh quan hệ tín dụng lần đầu tại Trung tâm CIC).
+- **Chức danh và Thâm niên công tác (`emp_title`, `emp_length`):** Khoảng 7.38% bản ghi khuyết chức danh và 6.50% (tương đương 146,945 bản ghi) khuyết thâm niên làm việc (ghi dưới dạng chuỗi như `< 1 year`, `10+ years`). Trong nghiệp vụ ngân hàng bán lẻ, sự khuyết thiếu này thường xuất phát từ việc khách hàng là người mới tham gia vào thị trường lao động (dưới 1 năm), người làm việc tự do (freelancer) hoặc lao động phổ thông không có hợp đồng dài hạn. Do đó, áp dụng chiến lược trích xuất số và điền giá trị thiếu bằng **$0.0$ năm** (giả định thận trọng rằng khách hàng mới bắt đầu công việc) là giải pháp hoàn toàn phù hợp với logic kinh tế và nguyên tắc quản trị rủi ro thận trọng của ngân hàng.
+- **Lãi suất của khoản vay (`int_rate` / `loan_int_rate`):** Tỷ lệ khuyết thiếu lãi suất ghi nhận ở mức **9.56% (216,123 bản ghi)**. Trong nghiệp vụ tín dụng, đây là các hồ sơ mới tiếp nhận đang chờ kết quả thẩm định sơ bộ hoặc các chương trình ưu đãi linh hoạt. Do lãi suất là biến số tài chính có độ lệch phân phối nhất định, việc sử dụng trung bình cộng (Mean) dễ bị bóp méo bởi các giá trị quá cao hoặc quá thấp. Vì vậy, hệ thống áp dụng kỹ thuật điền khuyết thiếu bằng **giá trị trung vị của thị trường (Median Imputation)** là **11.0%**, phản ánh điểm cân bằng lãi suất của phân khúc cho vay tiêu dùng tín chấp.
+- **Lịch sử tín dụng cá nhân (`cb_person_cred_hist_length`):** Khoảng **2.21% (49,961 bản ghi)** không ghi nhận thâm niên lịch sử tín dụng. Hệ thống điền giá trị cơ sở là **$1$ năm** (phản ánh khách hàng mới bắt đầu phát sinh quan hệ tín dụng lần đầu tại Trung tâm CIC, chưa tích lũy lịch sử tín dụng qua nhiều chu kỳ).
 
 ### 3.2.2. Nhận diện và Xử lý Giá trị Ngoại lai (Outlier Treatment)
 Các giá trị ngoại lai do lỗi nhập liệu của người dùng có thể tạo ra các độ dốc giả mạo trong quá trình tối ưu hóa hàm mất mát của mô hình học máy:
@@ -42,16 +42,16 @@ Các giá trị ngoại lai do lỗi nhập liệu của người dùng có th�
 | :--- | :--- | :--- | :--- |
 | `person_age` | Ngoại lai phi lý ($>100$ tuổi, $<18$ tuổi) | Lọc bỏ: Giữ lại $18 \le \text{Age} \le 80$ | Tuân thủ độ tuổi lao động và năng lực dân sự theo luật định. |
 | `person_income` | Tồn tại giá trị âm và bằng $0$ | Lọc bỏ: Giữ lại $\text{Income} > 0$ | Đảm bảo tính khả thi của nguồn tài chính hoàn trả nợ. |
-| `person_emp_length` | Khuyết thiếu 6.50% bản ghi | Trích xuất số, điền thiếu: $0.0$ năm | Giả định thận trọng cho lao động mới tham gia thị trường. |
-| `loan_int_rate` | Khuyết thiếu một phần bản ghi | Điền trung vị thị trường: 11.0% | Tránh làm sai lệch phân phối lãi suất thực tế. |
-| `cb_person_cred_hist_length` | Khuyết thiếu một số bản ghi | Điền giá trị cơ sở: $1$ năm | Khách hàng mới phát sinh lịch sử tín dụng CIC. |
+| `person_emp_length` | Khuyết thiếu 6.50% (146,945 bản ghi) | Trích xuất số, điền thiếu: $0.0$ năm | Giả định thận trọng cho lao động mới tham gia thị trường. |
+| `loan_int_rate` | Khuyết thiếu 9.56% (216,123 bản ghi) | Điền trung vị thị trường: 11.0% | Tránh làm sai lệch phân phối lãi suất thực tế. |
+| `cb_person_cred_hist_length` | Khuyết thiếu 2.21% (49,961 bản ghi) | Điền giá trị cơ sở: $1$ năm | Khách hàng mới phát sinh lịch sử tín dụng CIC. |
 | Kiểu dữ liệu | Chuỗi tự do và số không định dạng | Ép kiểu `DoubleType` và `IntegerType` | Tối ưu hóa tính toán trong bộ nhớ RAM Spark. |
 
 ---
 
 ## 3.3. Kỹ nghệ đặc trưng tài chính (Financial Feature Engineering)
 
-Mô hình học máy chỉ có thể đưa ra các dự báo chính xác khi được cung cấp các biến số mang tính tổng hợp cao về mặt kinh tế học tài chính [31]. Trong Tầng Silver, hệ thống thực hiện tính toán bổ sung hai chỉ số đòn bẩy tài chính chuyên sâu:
+Mô hình học máy chỉ có thể đưa ra các dự báo chính xác khi được cung cấp các biến số mang tính tổng hợp cao về mặt kinh tế học tài chính [22], [31]. Trong Tầng Silver, hệ thống thực hiện tính toán bổ sung hai chỉ số đòn bẩy tài chính chuyên sâu:
 
 ### 3.3.1. Chỉ số Tỷ lệ Nợ trên Thu nhập (Debt-to-Income Ratio - DTI)
 Chỉ số $DTI$ là thước đo kinh điển được các tổ chức xếp hạng tín nhiệm quốc tế (Moody's, Standard & Poor's) sử dụng để đánh giá năng lực chi trả của người vay:
@@ -73,7 +73,7 @@ $$CBI = \frac{\text{Loan Amount} \times (1 + \text{Interest Rate} / 100)}{\text{
 
 ## 3.4. Phân tích Khám phá Dữ liệu lớn (Exploratory Data Analysis - EDA) bằng Spark SQL
 
-Bằng việc tận dụng công cụ tối ưu hóa truy vấn Spark SQL trên Tầng Silver, hệ thống thực thi các câu lệnh phân tích thống kê đa chiều nhằm phát hiện các quy luật kinh doanh tiềm ẩn:
+Bằng việc tận dụng công cụ tối ưu hóa truy vấn Spark SQL trên Tầng Silver, hệ thống thực thi các câu lệnh phân tích thống kê đa chiều nhằm phát hiện các quy luật kinh doanh tiềm ẩn [23]:
 
 ### 3.4.1. Mối quan hệ giữa Mục đích Vay (Loan Intent) và Tỷ lệ Nợ xấu
 Thực hiện truy vấn gom nhóm (`GROUP BY loan_intent`) và tính toán tỷ lệ nợ xấu thực tế trên toàn bộ danh mục dữ liệu:
@@ -115,13 +115,19 @@ Mối tương quan đa chiều giữa Mục đích vay, Tình trạng nhà ở v
 
 ## 3.5. Ứng dụng Window Functions trong phân tích vị thế thu nhập và rủi ro tín dụng tương đối
 
-Trong môi trường điện toán phân tán của Apache Spark, các hàm cửa sổ (Window Functions) cung cấp năng lực phân tích dữ liệu đa chiều mà không cần phải thực hiện các phép gom nhóm (Group By) làm mất đi cấu trúc chi tiết của từng dòng dữ liệu [32].
+Trong môi trường điện toán phân tán của Apache Spark, các hàm cửa sổ (Window Functions) cung cấp năng lực phân tích dữ liệu đa chiều mà không cần phải thực hiện các phép gom nhóm (Group By) làm mất đi cấu trúc chi tiết của từng dòng dữ liệu [8], [23].
 
 ### 3.5.1. Cơ chế Hoạt động của Window Functions trên Spark SQL
 Hệ thống thiết lập một khung cửa sổ phân vùng theo Mục đích vay (`loan_intent`) và sắp xếp thu nhập giảm dần:
 $$\text{Window Specification} = \text{PARTITION BY}(\text{Loan Intent}) \quad \text{ORDER BY}(\text{Income} \quad \text{DESC})$$
 
-- Hàm xếp hạng `DENSE_RANK()` được tính toán song song trên từng phân vùng dữ liệu để xác định **Xếp hạng Thu nhập Nội bộ (Income Rank)** của mỗi khách hàng so với các đối thủ cùng phân khúc mục đích vay.
+Đoạn mã PySpark thực thi trên cụm Databricks:
+```python
+windowSpec = Window.partitionBy("loan_intent").orderBy(col("person_income").desc())
+df_silver = df_silver.withColumn("income_rank_in_intent", dense_rank().over(windowSpec))
+```
+
+- Hàm xếp hạng `dense_rank()` được tính toán song song trên từng phân vùng dữ liệu để xác định **Xếp hạng Thu nhập Nội bộ (Income Rank)** của mỗi khách hàng so với các đối thủ cùng phân khúc mục đích vay.
 
 ### 3.5.2. Đánh giá Vị thế Thu nhập và Rủi ro Tương đối
 Việc phân tích thu nhập tuyệt đối đôi khi không phản ánh hết tính khả thi của khoản vay nếu không đặt trong bối cảnh phân khúc mục đích vay:
