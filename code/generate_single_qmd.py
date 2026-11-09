@@ -64,9 +64,11 @@ for file_path in doc_files:
 # Nối các chương lại với nhau bằng phân trang chuẩn LaTeX và gạch ngang Markdown
 full_content = yaml_frontmatter + "\n\n\\newpage\n\n---\n\n".join(sections)
 
-# Ghi ra 2 tệp: BAO_CAO_TOAN_VAN.qmd và full_report.qmd
+# Ghi ra tất cả các tệp mục tiêu nguyên khối
 target_files = [
     "qmd/BAO_CAO_TOAN_VAN.qmd",
+    "qmd/De_Tai_7_Bao_Cao_Toan_Van.qmd",
+    "qmd/main.qmd",
     "qmd/full_report.qmd"
 ]
 

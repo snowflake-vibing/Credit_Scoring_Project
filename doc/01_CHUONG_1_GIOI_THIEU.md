@@ -59,7 +59,7 @@ Nhằm khắc phục triệt để các hạn chế của quy trình truyền th
 ## 1.5. Giới thiệu Bộ dữ liệu nghiên cứu và Phạm vi đề tài
 
 ### 1.5.1. Nguồn gốc dữ liệu LendingClub quy mô 2.26 triệu bản ghi
-Nghiên cứu sử dụng bộ dữ liệu thực tế **LendingClub Complete Loan Dataset (2007 - 2018Q4)** được công bố bởi LendingClub - nền tảng tài chính cho vay ngang hàng (P2P Lending) lớn nhất thế giới có trụ sở tại San Francisco, Hoa Kỳ [14]. Bộ dữ liệu phản ánh toàn diện hành vi vay vốn và hoàn trả của **2,260,701 khoản vay thực tế (hơn 2.26 triệu hồ sơ, kích thước 1.6 GB)**. Đây là tập dữ liệu chuẩn mực (Gold Standard Benchmark) được cộng đồng khoa học quốc tế sử dụng trong nghiên cứu chấm điểm tín dụng và thẩm định rủi ro cá nhân.
+Nghiên cứu sử dụng bộ dữ liệu thực tế **LendingClub Complete Loan Dataset (2007 - 2018Q4)** được công bố bởi LendingClub - nền tảng tài chính cho vay ngang hàng (P2P Lending) lớn nhất thế giới có trụ sở tại San Francisco, Hoa Kỳ [14]. Bộ dữ liệu phản ánh toàn diện hành vi vay vốn và hoàn trả của **2,260,701 khoản vay thực tế (hơn 2.26 triệu hồ sơ, kích thước 1.6 GB)**. Đây là tập dữ liệu chuẩn mực (Gold Standard Benchmark) được cộng đồng khoa học quốc tế sử dụng trong nghiên cứu chấm điểm tín dụng và thẩm định rủi ro cá nhân. Toàn bộ mã nguồn phân tán, pipeline học máy và dữ liệu thực nghiệm được quản lý tập trung và công khai tại kho lưu trữ GitHub của đề tài: [https://github.com/snowflake-vibing/Credit_Scoring_Project](https://github.com/snowflake-vibing/Credit_Scoring_Project).
 
 ### 1.5.2. Cấu trúc các thuộc tính cốt lõi trong bộ dữ liệu
 Từ 151 biến số của LendingClub, hệ thống trích xuất và chuẩn hóa **12 thuộc tính cốt lõi** đại diện cho năng lực tài chính, mục đích vay, lịch sử tín dụng CIC và nhãn mục tiêu:

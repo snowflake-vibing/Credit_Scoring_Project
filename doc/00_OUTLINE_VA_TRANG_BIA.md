@@ -23,6 +23,7 @@
 **Mã số sinh viên:** [Điền MSSV tại đây]  
 **Lớp / Khóa học:** Big Data Analytics & AI - Khóa 2026  
 **Chuyên ngành:** Hệ thống Thông tin Quản lý / Phân tích Kinh doanh  
+**Kho lưu trữ mã nguồn (GitHub):** [https://github.com/snowflake-vibing/Credit_Scoring_Project](https://github.com/snowflake-vibing/Credit_Scoring_Project)  
 
 ---
 
