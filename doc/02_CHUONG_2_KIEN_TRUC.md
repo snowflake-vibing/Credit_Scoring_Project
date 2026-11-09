@@ -69,35 +69,7 @@ Kiến trúc Huy chương Medallion (Medallion Architecture) là một mô hình
 
 Luồng vận hành dữ liệu trong toàn bộ hệ thống được mô tả trực quan thông qua sơ đồ kiến trúc Medallion dưới đây:
 
-```mermaid
-flowchart TD
-    subgraph S1["1. NGUỒN DỮ LIỆU ĐẦU VÀO"]
-        A["Hồ sơ Đăng ký Vay Trực tuyến<br/>LendingClub 2.26M Bản ghi (1.6 GB)"]
-    end
-
-    subgraph S2["2. TẦNG BRONZE (RAW LAKEHOUSE)"]
-        B["Bảng Delta: bronze_credit_data<br/>• Lưu trữ nguyên bản (As-is)<br/>• ACID Transaction Log (_delta_log)<br/>• Audit Trail & Data Versioning"]
-    end
-
-    subgraph S3["3. TẦNG SILVER (CURATED & ENRICHED)"]
-        C["Bảng Delta: silver_credit_data<br/>• Lọc ngoại lai: 18 ≤ Tuổi ≤ 80, Thu nhập > 0<br/>• Điền khuyết thiếu: Emp_length=0, Int_rate=11%<br/>• Kỹ nghệ đặc trưng: DTI, CBI<br/>• Spark SQL Window Functions"]
-    end
-
-    subgraph S4["4. TẦNG GOLD (AI ENGINE & DECISIONING)"]
-        D["Mô hình Spark MLlib Pipeline<br/>• VectorAssembler & StandardScaler<br/>• Random Forest Classifier (AUC=0.8745)<br/>• 3-Fold Cross-Validation"]
-        E["Bảng Delta: gold_credit_scoring<br/>• Véc-tơ Xác suất Vỡ nợ (PD)<br/>• Quy đổi Điểm FICO Score (300 - 850)<br/>• Ma trận Phân tầng Rủi ro 4 Nhóm<br/>• Định giá Lãi suất theo Rủi ro (8.5% - 14.5%)"]
-    end
-
-    subgraph S5["5. ỨNG DỤNG NGHIỆP VỤ & TỰ ĐỘNG HÓA"]
-        F["Phê duyệt Tự động STP (< 3 phút)<br/>• 62.4% Duyệt Tự động 100%<br/>• 18.2% Duyệt Hạn mức 70%<br/>• 11.8% Thẩm định Thủ công & Thế chấp<br/>• 7.6% Từ chối Cho vay (Auto-Reject)"]
-    end
-
-    A --> B
-    B --> C
-    C --> D
-    D --> E
-    E --> F
-```
+![Hình 2.1: Sơ đồ kiến trúc xử lý luồng dữ liệu Lakehouse theo mô hình Huy chương Medallion](images/hinh_2_1_medallion_architecture.png)
 <p align="center"><em>Hình 2.1: Sơ đồ kiến trúc xử lý luồng dữ liệu Lakehouse theo mô hình Huy chương Medallion</em></p>
 
 Quy trình vận hành luồng dữ liệu phân tán gồm 6 giai đoạn logic:

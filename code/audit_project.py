@@ -50,6 +50,7 @@ for nb in nb_files:
 # 4. Kiểm tra các ảnh trong doc/images/
 print("\n--- 3. KIỂM TRA CÁC BIỂU ĐỒ ẢNH TRONG doc/images/ ---")
 expected_images = [
+    'hinh_2_1_medallion_architecture.png',
     'hinh_3_1_missing_values.png',
     'hinh_3_2_npl_intent_home.png',
     'hinh_4_1_roc_curve.png',

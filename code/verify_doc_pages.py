@@ -13,7 +13,7 @@ print("|" + "-"*34 + "|" + "-"*9 + "|" + "-"*9 + "|" + "-"*20 + "|" + "-"*32 + "
 chart_map = {
     '00_OUTLINE_VA_TRANG_BIA.md': 'Front matter (Bìa, Mục lục, DS)',
     '01_CHUONG_1_GIOI_THIEU.md': '2 Bảng biểu (Bảng 1.1, 1.2)',
-    '02_CHUONG_2_KIEN_TRUC.md': 'Hình 2.1 (Mermaid) + 2 Bảng biểu',
+    '02_CHUONG_2_KIEN_TRUC.md': 'Hình 2.1 (Medallion) + 2 Bảng biểu',
     '03_CHUONG_3_XU_LY_DU_LIEU.md': 'Hình 3.1, Hình 3.2 + 3 Bảng biểu',
     '04_CHUONG_4_MO_HINH_AI.md': 'Hình 4.1, Hình 4.2 + 4 Bảng biểu',
     '05_CHUONG_5_KHUYEN_NGHI.md': 'Hình 5.1 + 4 Bảng biểu',
