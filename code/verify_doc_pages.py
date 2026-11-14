@@ -7,27 +7,29 @@ if hasattr(sys.stdout, 'reconfigure'):
 
 files = sorted(glob.glob('doc/*.md'))
 total_words = 0
-print(f"| {'File':<32} | {'Lines':<7} | {'Words':<7} | {'Est. Text Pages':<18} | {'Embedded Figures / Tables':<30} |")
-print("|" + "-"*34 + "|" + "-"*9 + "|" + "-"*9 + "|" + "-"*20 + "|" + "-"*32 + "|")
+print(f"| {'File':<36} | {'Lines':<7} | {'Words':<7} | {'Est. Text Pages':<18} | {'Embedded Figures / Tables':<30} |")
+print("|" + "-"*38 + "|" + "-"*9 + "|" + "-"*9 + "|" + "-"*20 + "|" + "-"*32 + "|")
 
 chart_map = {
-    '00_OUTLINE_VA_TRANG_BIA.md': 'Front matter (Bìa, Mục lục, DS)',
-    '01_CHUONG_1_GIOI_THIEU.md': '2 Bảng biểu (Bảng 1.1, 1.2)',
-    '02_CHUONG_2_KIEN_TRUC.md': 'Hình 2.1 (Medallion) + 2 Bảng biểu',
-    '03_CHUONG_3_XU_LY_DU_LIEU.md': 'Hình 3.1, Hình 3.2 + 3 Bảng biểu',
-    '04_CHUONG_4_MO_HINH_AI.md': 'Hình 4.1, Hình 4.2 + 4 Bảng biểu',
-    '05_CHUONG_5_KHUYEN_NGHI.md': 'Hình 5.1 + 4 Bảng biểu',
-    '06_TAI_LIEU_THAM_KHAO.md': '49 Tài liệu tham khảo'
+    '00_TRANG_BIA_VA_MUC_LUC.md': 'Bìa, Cảm ơn, Cam đoan, Tóm lược, DS',
+    '01_CHUONG_1_GIOI_THIEU.md': '1 Bảng biểu (Bảng 1.1)',
+    '02_CHUONG_2_LUOC_KHAO_TAI_LIEU.md': 'Hình 2.1 (Medallion) + 2 Bảng biểu',
+    '03_CHUONG_3_PHUONG_PHAP_NGHIEN_CUU.md': '3 Bảng biểu (Bảng 3.1, 3.2, 3.3)',
+    '04_CHUONG_4_KET_QUA_VA_THAO_LUAN.md': '4 Hình (4.1 -> 4.5) + 10 Bảng biểu',
+    '05_CHUONG_5_KET_LUAN_VA_KIEN_NGHI.md': 'Kết luận & Khuyến nghị chính sách',
+    '06_TAI_LIEU_THAM_KHAO.md': '52 Tài liệu tham khảo (Việt & Anh)',
+    '07_PHU_LUC.md': 'Sơ đồ luồng & Mã nguồn GitHub'
 }
 
 page_breakdown = {
-    '00_OUTLINE_VA_TRANG_BIA.md': 4.0,  # Bìa (1), Cam đoan & Cảm ơn (1), Abstract (1), Mục lục & DS (1)
-    '01_CHUONG_1_GIOI_THIEU.md': 5.0,
-    '02_CHUONG_2_KIEN_TRUC.md': 5.5,
-    '03_CHUONG_3_XU_LY_DU_LIEU.md': 6.5,
-    '04_CHUONG_4_MO_HINH_AI.md': 7.5,
-    '05_CHUONG_5_KHUYEN_NGHI.md': 6.5,
-    '06_TAI_LIEU_THAM_KHAO.md': 2.0
+    '00_TRANG_BIA_VA_MUC_LUC.md': 4.0,  # Bìa (1), Lời cảm ơn (1), Cam đoan & Tóm lược (1), Mục lục & DS (1)
+    '01_CHUONG_1_GIOI_THIEU.md': 4.5,
+    '02_CHUONG_2_LUOC_KHAO_TAI_LIEU.md': 5.5,
+    '03_CHUONG_3_PHUONG_PHAP_NGHIEN_CUU.md': 5.5,
+    '04_CHUONG_4_KET_QUA_VA_THAO_LUAN.md': 10.5,
+    '05_CHUONG_5_KET_LUAN_VA_KIEN_NGHI.md': 3.0,
+    '06_TAI_LIEU_THAM_KHAO.md': 2.5,
+    '07_PHU_LUC.md': 1.5
 }
 
 for f in files:
@@ -37,10 +39,10 @@ for f in files:
     lines = len(text.splitlines())
     total_words += words
     base = os.path.basename(f)
-    print(f"| {base:<32} | {lines:<7} | {words:<7} | {words/350:<18.1f} | {chart_map.get(base, ''):<30} |")
+    print(f"| {base:<36} | {lines:<7} | {words:<7} | {words/350:<18.1f} | {chart_map.get(base, ''):<30} |")
 
-print("-" * 110)
+print("-" * 114)
 print(f"Tổng số từ: {total_words:,} từ.")
 total_allocated = sum(page_breakdown.values())
-print(f"Tổng số trang ấn bản A4 ước tính theo quy chuẩn Bộ GD&ĐT (Font 13, giãn dòng 1.5, lề 3-2-2-2 cm):")
+print(f"Tổng số trang ấn bản A4 ước tính theo quy chuẩn Đại học Việt Nam (Font 13, giãn dòng 1.2, lề 3-2-2-2 cm):")
 print(f"=> Tổng cộng: {total_allocated:.1f} TRANG (ĐÁP ỨNG CHÍNH XÁC GIỚI HẠN DƯỚI 40 TRANG)")

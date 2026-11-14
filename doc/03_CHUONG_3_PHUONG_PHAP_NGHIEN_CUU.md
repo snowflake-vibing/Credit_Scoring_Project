@@ -1,0 +1,113 @@
+# CHƯƠNG 3: PHƯƠNG PHÁP NGHIÊN CỨU
+
+---
+
+## 3.1 Phương tiện nghiên cứu
+
+### 3.1.1 Bộ dữ liệu lớn LendingClub quy mô 2.26 triệu hồ sơ
+Nghiên cứu sử dụng tập dữ liệu thực tế **LendingClub Complete Loan Dataset (2007 - 2018Q4)** được công bố bởi LendingClub - nền tảng cho vay ngang hàng trực tuyến lớn nhất thế giới [28]. Dữ liệu bao gồm 2,260,701 khoản vay (1.6 GB) với 12 thuộc tính cốt lõi được trích xuất và chuẩn hóa:
+
+**Bảng 3.1 Mô tả chi tiết 12 thuộc tính cốt lõi trong Bộ dữ liệu lớn LendingClub (2,260,701 bản ghi)**
+
+| STT | Tên Biến Trong Pipeline | Tên Gốc LendingClub | Kiểu Dữ Liệu | Định Nghĩa Nghiệp Vụ & Ý Nghĩa Kinh Tế |
+| :-: | :--- | :--- | :---: | :--- |
+| 1 | `loan_amnt` | `loan_amnt` | Double | Số tiền khoản vay được phê duyệt giải ngân (USD). |
+| 2 | `person_income` | `annual_inc` | Double | Tổng thu nhập hàng năm của người đi vay (USD). |
+| 3 | `loan_int_rate` | `int_rate` | Double | Mức lãi suất danh nghĩa hàng năm áp dụng cho khoản vay (%). |
+| 4 | `loan_grade` | `grade` | String | Xếp hạng tín nhiệm nội bộ từ `A` (an toàn nhất) đến `G` (rủi ro cao nhất). |
+| 5 | `person_home_ownership` | `home_ownership` | String | Tình trạng sở hữu nhà ở (`RENT`: Thuê, `OWN`: Sở hữu riêng, `MORTGAGE`: Thế chấp). |
+| 6 | `person_emp_length` | `emp_length` | Double | Thâm niên công tác liên tục của người vay (tính bằng năm). |
+| 7 | `loan_intent` | `purpose` | String | Mục đích sử dụng vốn vay (`debt_consolidation`, `credit_card`, `small_business`,...). |
+| 8 | `loan_percent_income` | `dti` | Double | Tỷ lệ tổng nghĩa vụ nợ trên thu nhập hàng năm ($DTI$). |
+| 9 | `cb_person_default_on_file` | `pub_rec_bankruptcies` | String | Lịch sử nợ xấu hoặc phá sản ghi nhận tại trung tâm thông tin tín dụng (`Y`: Có, `N`: Không). |
+| 10 | `person_age` | Suy diễn từ `earliest_cr_line` | Integer | Độ tuổi của người đi vay vốn (năm). |
+| 11 | `cb_person_cred_hist_length` | `earliest_cr_line` | Integer | Độ dài thâm niên quan hệ tín dụng chính thức (năm). |
+| 12 | **`loan_status` (Label)** | `loan_status` | Integer | Nhãn mục tiêu: `0` đại diện cho Trả nợ đầy đủ (`Fully Paid`); `1` đại diện cho Vỡ nợ (`Charged Off`). |
+
+<p align="left"><em>(Nguồn: Tổng hợp từ LendingClub Corporation, 2019)</em></p>
+
+### 3.1.2 Nền tảng hạ tầng tính toán Databricks Serverless và Apache Spark
+Nghiên cứu được triển khai trên nền tảng **Databricks Serverless Cloud Environment** với cấu hình cụm tính toán tự động co giãn (Auto-scaling Multi-node Cluster):
+- Động cơ thực thi: Apache Spark 3.5.0 (Spark Core, Spark SQL, Spark MLlib).
+- Tầng lưu trữ phân tán: Delta Lake 3.0.0 trên nền tảng lưu trữ đám mây DBFS.
+- Môi trường lập trình: PySpark API kết hợp Python 3.10+ và các thư viện hỗ trợ (NumPy, Pandas, Seaborn, Matplotlib).
+
+---
+
+## 3.2 Phương pháp nghiên cứu
+
+### 3.2.1 Quy trình thu thập và nạp dữ liệu thô Tầng Bronze
+Khâu tiếp nhận dữ liệu đầu vào (Data Ingestion) đòi hỏi phải bảo đảm tính toàn vẹn và khả năng lưu vết lịch sử không thể chỉnh sửa [21]:
+1. **Nguyên tắc bảo toàn nguyên vẹn (Data Immutability):** Dữ liệu thô từ file CSV được nạp thẳng vào bảng Delta `workspace.default.bronze_credit_data`, giữ nguyên mọi trường giá trị trống (`NULL`), kiểu chuỗi và các điểm ngoại lai nhằm phục vụ mục đích kiểm toán (Audit Trail).
+2. **Khởi tạo Delta Transaction Log:** Hệ thống tự động thiết lập nhật ký giao dịch tuần tự (`_delta_log/00000000000000000000.json`) để ghi nhận siêu dữ liệu, lược đồ (schema) và vị trí các tệp con Parquet phân tán.
+
+### 3.2.2 Phương pháp tiền xử lý và làm sạch dữ liệu Tầng Silver
+Dữ liệu từ Tầng Bronze được kích hoạt quy trình làm sạch phân tán để tạo lập bảng `workspace.default.silver_credit_data` [29]:
+
+**Bảng 3.2 Kế hoạch làm sạch và chuẩn hóa dữ liệu tại Tầng Silver**
+
+| Thuộc Tính Dữ Liệu | Hiện Trạng Dữ Liệu Thô (Bronze) | Phương Pháp Xử Lý Tại Tầng Silver | Cơ Sở Khoa Học & Nghiệp Vụ |
+| :--- | :--- | :--- | :--- |
+| `person_age` | Ngoại lai phi lý ($> 100$ tuổi, $< 18$ tuổi) | Lọc bỏ: Giữ lại $18 \le \text{Age} \le 80$ | Tuân thủ độ tuổi lao động và năng lực hành vi dân sự theo luật định. |
+| `person_income` | Tồn tại giá trị âm và bằng $0$ | Lọc bỏ: Giữ lại $\text{Income} > 0$ | Đảm bảo tính khả thi của nguồn tài chính hoàn trả nợ gốc và lãi. |
+| `person_emp_length` | Khuyết thiếu 6.50% (146,945 bản ghi) | Trích xuất số, điền thiếu: $0.0$ năm | Giả định thận trọng đối với lao động mới tham gia thị trường hoặc tự do. |
+| `loan_int_rate` | Khuyết thiếu 9.56% (216,123 bản ghi) | Điền trung vị thị trường: $11.0\%$ | Tránh làm sai lệch phân phối lãi suất thực tế trong cho vay tiêu dùng. |
+| `cb_person_cred_hist_length` | Khuyết thiếu 2.21% (49,961 bản ghi) | Điền giá trị cơ sở: $1$ năm | Khách hàng mới phát sinh quan hệ tín dụng lần đầu tại Trung tâm CIC. |
+| Kiểu dữ liệu | Chuỗi tự do và số không định dạng | Ép kiểu `DoubleType` và `IntegerType` | Tối ưu hóa tính toán trong bộ nhớ RAM và ngăn ngừa lỗi số học. |
+
+<p align="left"><em>(Nguồn: Tác giả đề xuất dựa trên phân tích đặc tính dữ liệu thực tế)</em></p>
+
+### 3.2.3 Phương pháp kỹ nghệ đặc trưng tài chính
+Nhằm cung cấp các biến số tổng hợp mang hàm lượng thông tin kinh tế cao, nghiên cứu xây dựng hai chỉ số đòn bẩy tài chính chuyên sâu [23], [30]:
+
+1. **Chỉ số Tỷ lệ Nợ trên Thu nhập (Debt-to-Income Ratio - DTI):**
+   $$DTI = \frac{\text{Loan Amount}}{\text{Person Income}}$$
+   Phản ánh tỷ lệ phần trăm thu nhập năm mà người vay phải dành ra để trả nợ. Mức $DTI > 0.35$ (> 35%) được xếp vào nhóm rủi ro cao.
+
+2. **Chỉ số Gánh nặng Tín dụng có Trọng số Thâm niên (Credit Burden Index - CBI):**
+   $$CBI = \frac{\text{Loan Amount} \times (1 + \text{Interest Rate} / 100)}{\text{Person Income} \times \max(\text{Emp Length}, 1)}$$
+   Tử số đại diện cho tổng nghĩa vụ nợ cả gốc và lãi; Mẫu số đại diện cho thu nhập có trọng số theo mức độ ổn định nghề nghiệp. Chỉ số $CBI$ càng cao cảnh báo áp lực tài chính càng lớn.
+
+### 3.2.4 Phương pháp phân tích khám phá dữ liệu bằng Spark SQL và Window Functions
+Sử dụng công cụ tối ưu hóa truy vấn Spark SQL để phân tích thống kê đa chiều theo Mục đích vay (`loan_intent`), Hạng khoản vay (`loan_grade`) và Tình trạng nhà ở (`home_ownership`) [31]. Đồng thời, áp dụng các hàm cửa sổ (Window Functions) để xác định vị thế thu nhập tương đối của khách hàng trong từng phân khúc vay vốn:
+```python
+windowSpec = Window.partitionBy("loan_intent").orderBy(col("person_income").desc())
+df_silver = df_silver.withColumn("income_rank_in_intent", dense_rank().over(windowSpec))
+```
+
+### 3.2.5 Thiết kế chuỗi Pipeline học máy phân tán Spark MLlib
+Toàn bộ quy trình biến đổi dữ liệu được đóng gói thành một `Pipeline` duy nhất gồm 5 công đoạn kế tiếp nhau:
+1. `StringIndexer`: Mã hóa các biến phân loại danh mục (`person_home_ownership`, `loan_intent`, `cb_person_default_on_file`, `loan_grade`) thành các chỉ số số nguyên (`index`).
+2. `OneHotEncoder`: Chuyển đổi các chỉ số danh mục thành vector nhị phân thưa (Sparse Vector).
+3. `VectorAssembler`: Gộp toàn bộ các vector đặc trưng danh mục và các trường số liên tục (`person_age`, `person_income`, `person_emp_length`, `loan_amnt`, `loan_int_rate`, `loan_percent_income`, `cb_person_cred_hist_length`) thành một vector đặc trưng duy nhất mang tên `raw_features`.
+4. `StandardScaler`: Chuẩn hóa độ lệch chuẩn của các biến số về phân phối có phương sai đơn vị.
+5. `RandomForestClassifier`: Thuật toán máy học phân tán ước tính xác suất vỡ nợ.
+
+### 3.2.6 Thuật toán phân loại Random Forest Classifier
+Thuật toán Rừng Ngẫu nhiên (Random Forest) là phương pháp học kết hợp (Ensemble Learning) dựa trên kỹ thuật đóng bao (Bagging) và không gian ngẫu nhiên con (Random Subspace) [32], [33]. Mô hình xây dựng một tập hợp gồm $B$ cây quyết định độc lập:
+$$\hat{p}(x) = \frac{1}{B} \sum_{b=1}^{B} p_b(x)$$
+Ưu điểm vượt trội của thuật toán trên môi trường Spark MLlib:
+- Hạn chế tối đa hiện tượng quá khớp (Overfitting) nhờ cơ chế lấy mẫu ngẫu nhiên có hoàn lại (Bootstrap Sampling).
+- Tương thích tự nhiên với tính toán phân tán: Các cây quyết định được phân bổ huấn luyện song song trên các worker node mà không cần chia sẻ trạng thái bộ nhớ.
+- Cung cấp trực tiếp độ quan trọng của các đặc trưng (Feature Importance) dựa trên mức giảm độ đo bất thuần Gini (Mean Decrease Gini).
+
+### 3.2.7 Phương pháp kiểm định chéo và tối ưu hóa siêu tham số
+Để tìm ra cấu hình mô hình tối ưu nhất, nghiên cứu sử dụng `ParamGridBuilder` kết hợp bộ kiểm định chéo 3 nếp gấp (`CrossValidator` với $K=3$ folds) [34]:
+
+**Bảng 3.3 Không gian tìm kiếm siêu tham số trong bộ tinh chỉnh ParamGridBuilder**
+
+| Siêu Tham Số (Hyperparameter) | Không Gian Giá Trị Thử Nghiệm | Ý Nghĩa Kỹ Thuật & Nghiệp Vụ | Cấu Hình Tối Ưu Lựa Chọn |
+| :--- | :--- | :--- | :---: |
+| `numTrees` *(Số lượng cây)* | $[20, 50, 100]$ | Số lượng cây quyết định trong rừng. Càng nhiều cây mô hình càng ổn định nhưng tốn thời gian tính toán. | **$50$ cây** |
+| `maxDepth` *(Độ sâu tối đa của cây)* | $[5, 10, 15]$ | Giới hạn chiều sâu của mỗi cây để kiểm soát tính phức tạp và ngăn ngừa hiện tượng quá khớp dữ liệu. | **$10$ tầng** |
+| `featureSubsetStrategy` | `auto` ($\sqrt{M}$) | Số lượng thuộc tính ngẫu nhiên được chọn tại mỗi nút phân nhánh để bảo đảm tính đa dạng giữa các cây. | **`auto`** |
+
+<p align="left"><em>(Nguồn: Thiết lập thực nghiệm trên cụm Databricks MLlib)</em></p>
+
+### 3.2.8 Phương pháp đánh giá mô hình và xác lập ngưỡng cắt rủi ro
+Hiệu năng của mô hình được đánh giá toàn diện qua tập kiểm thử độc lập gồm **452,140 hồ sơ (chiếm 20% dữ liệu)** dựa trên các chỉ số:
+- **Diện tích dưới đường cong ROC (ROC-AUC):** Đo lường năng lực phân biệt tổng thể giữa hồ sơ tốt và hồ sơ vỡ nợ [35].
+- **Ma trận nhầm lẫn (Confusion Matrix):** Xác định các đại lượng True Positive (TP), False Positive (FP), True Negative (TN), False Negative (FN).
+- **Độ nhạy phát hiện nợ xấu (Recall) và Độ chính xác (Precision):** Đánh giá khả năng không bỏ sót rủi ro tín dụng.
+- **Chỉ số Youden's J Statistic:** Xác định ngưỡng cắt xác suất tối ưu nhằm cực đại hóa hiệu quả phân loại:
+  $$J = \text{Sensitivity} + \text{Specificity} - 1$$

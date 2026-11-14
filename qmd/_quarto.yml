@@ -13,11 +13,12 @@ book:
   chapters:
     - index.qmd
     - 01_CHUONG_1_GIOI_THIEU.qmd
-    - 02_CHUONG_2_KIEN_TRUC.qmd
-    - 03_CHUONG_3_XU_LY_DU_LIEU.qmd
-    - 04_CHUONG_4_MO_HINH_AI.qmd
-    - 05_CHUONG_5_KHUYEN_NGHI.qmd
+    - 02_CHUONG_2_LUOC_KHAO_TAI_LIEU.qmd
+    - 03_CHUONG_3_PHUONG_PHAP_NGHIEN_CUU.qmd
+    - 04_CHUONG_4_KET_QUA_VA_THAO_LUAN.qmd
+    - 05_CHUONG_5_KET_LUAN_VA_KIEN_NGHI.qmd
     - 06_TAI_LIEU_THAM_KHAO.qmd
+    - 07_PHU_LUC.qmd
 
 format:
   html:
@@ -29,17 +30,6 @@ format:
     code-copy: true
     code-fold: show
     highlight-style: github
-  pdf:
-    documentclass: report
-    papersize: a4
-    geometry:
-      - top=20mm
-      - bottom=20mm
-      - left=30mm
-      - right=20mm
+  docx:
     toc: true
-    toc-depth: 3
     number-sections: false
-    colorlinks: true
-    linestretch: 1.5
-    fontsize: 13pt
