@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Chương 1: Giới Thiệu – Đề Tài 7: Mô Hình Chấm Điểm Tín Dụng &amp; Thẩm Định Rủi Ro Vỡ NỢ</title>
+<title>4 Phần 2: Quản trị và lưu trữ dữ liệu trên Databricks (20% điểm) – Đề Tài 7: Mô Hình Chấm Điểm Tín Dụng &amp; Thẩm Định Rủi Ro Vỡ Nợ</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -23,6 +23,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -33,8 +68,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./02_CHUONG_2_LUOC_KHAO_TAI_LIEU.html" rel="next">
-<link href="./index.html" rel="prev">
+<link href="./03_PHAN_3_LAM_SACH_VA_EDA.html" rel="next">
+<link href="./01_PHAN_1_BAI_TOAN_KINH_DOANH.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -73,35 +108,6 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -115,7 +121,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01_CHUONG_1_GIOI_THIEU.html"><span class="chapter-title">Chương 1: Giới Thiệu</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./02_PHAN_2_QUAN_TRI_DATABRICKS.html"><span class="chapter-title">4 Phần 2: Quản trị và lưu trữ dữ liệu trên Databricks (20% điểm)</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -130,7 +136,7 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Đề Tài 7: Mô Hình Chấm Điểm Tín Dụng &amp; Thẩm Định Rủi Ro Vỡ NỢ</a> 
+      <a href="./">Đề Tài 7: Mô Hình Chấm Điểm Tín Dụng &amp; Thẩm Định Rủi Ro Vỡ Nợ</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -142,42 +148,39 @@ window.Quarto = {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Trang Bìa, Tóm Lược và Danh Mục Báo Cáo</span></a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Giới thiệu chung</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./01_CHUONG_1_GIOI_THIEU.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Chương 1: Giới Thiệu</span></a>
+  <a href="./01_PHAN_1_BAI_TOAN_KINH_DOANH.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">3 Phần 1: Bài toán kinh doanh và dữ liệu nghiên cứu (15% điểm)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02_CHUONG_2_LUOC_KHAO_TAI_LIEU.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Chương 2: Lược Khảo Tài Liệu</span></a>
+  <a href="./02_PHAN_2_QUAN_TRI_DATABRICKS.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">4 Phần 2: Quản trị và lưu trữ dữ liệu trên Databricks (20% điểm)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03_CHUONG_3_PHUONG_PHAP_NGHIEN_CUU.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Chương 3: Phương Pháp Nghiên Cứu</span></a>
+  <a href="./03_PHAN_3_LAM_SACH_VA_EDA.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">5 Phần 3: Làm sạch và phân tích khám phá dữ liệu (25% điểm)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04_CHUONG_4_KET_QUA_VA_THAO_LUAN.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Chương 4: Kết Quả và Thảo Luận</span></a>
+  <a href="./04_PHAN_4_MO_HINH_AI_SPARK_MLLIB.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">6 Phần 4: Xây dựng mô hình AI với Spark MLlib Pipeline (25% điểm)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05_CHUONG_5_KET_LUAN_VA_KIEN_NGHI.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Chương 5: Kết Luận và Kiến Nghị</span></a>
+  <a href="./05_PHAN_5_THONG_DIEP_QUAN_TRI.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">7 Phần 5: Thông điệp quản trị và khuyến nghị hành động thực tế (15% điểm)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06_TAI_LIEU_THAM_KHAO.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Tài Liệu Tham Khảo</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./07_PHU_LUC.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Phụ Lục</span></a>
+  <a href="./06_DANH_MUC_TAI_LIEU_THAM_KHAO.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tài liệu tham khảo</span></a>
   </div>
 </li>
     </ul>
@@ -190,27 +193,8 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#chương-1-giới-thiệu" id="toc-chương-1-giới-thiệu" class="nav-link active" data-scroll-target="#chương-1-giới-thiệu">CHƯƠNG 1: GIỚI THIỆU</a>
-  <ul class="collapse">
-  <li><a href="#đặt-vấn-đề-và-lý-do-chọn-đề-tài" id="toc-đặt-vấn-đề-và-lý-do-chọn-đề-tài" class="nav-link" data-scroll-target="#đặt-vấn-đề-và-lý-do-chọn-đề-tài">1.1 Đặt vấn đề và Lý do chọn đề tài</a></li>
-  <li><a href="#mục-tiêu-nghiên-cứu" id="toc-mục-tiêu-nghiên-cứu" class="nav-link" data-scroll-target="#mục-tiêu-nghiên-cứu">1.2 Mục tiêu nghiên cứu</a>
-  <ul class="collapse">
-  <li><a href="#mục-tiêu-tổng-quát" id="toc-mục-tiêu-tổng-quát" class="nav-link" data-scroll-target="#mục-tiêu-tổng-quát">1.2.1 Mục tiêu tổng quát</a></li>
-  <li><a href="#mục-tiêu-cụ-thể" id="toc-mục-tiêu-cụ-thể" class="nav-link" data-scroll-target="#mục-tiêu-cụ-thể">1.2.2 Mục tiêu cụ thể</a></li>
-  </ul></li>
-  <li><a href="#nội-dung-nghiên-cứu" id="toc-nội-dung-nghiên-cứu" class="nav-link" data-scroll-target="#nội-dung-nghiên-cứu">1.3 Nội dung nghiên cứu</a></li>
-  <li><a href="#đối-tượng-và-phạm-vi-nghiên-cứu" id="toc-đối-tượng-và-phạm-vi-nghiên-cứu" class="nav-link" data-scroll-target="#đối-tượng-và-phạm-vi-nghiên-cứu">1.4 Đối tượng và phạm vi nghiên cứu</a>
-  <ul class="collapse">
-  <li><a href="#đối-tượng-nghiên-cứu" id="toc-đối-tượng-nghiên-cứu" class="nav-link" data-scroll-target="#đối-tượng-nghiên-cứu">1.4.1 Đối tượng nghiên cứu</a></li>
-  <li><a href="#phạm-vi-nghiên-cứu" id="toc-phạm-vi-nghiên-cứu" class="nav-link" data-scroll-target="#phạm-vi-nghiên-cứu">1.4.2 Phạm vi nghiên cứu</a></li>
-  </ul></li>
-  <li><a href="#ý-nghĩa-khoa-học-và-thực-tiễn-của-đề-tài" id="toc-ý-nghĩa-khoa-học-và-thực-tiễn-của-đề-tài" class="nav-link" data-scroll-target="#ý-nghĩa-khoa-học-và-thực-tiễn-của-đề-tài">1.5 Ý nghĩa khoa học và thực tiễn của đề tài</a>
-  <ul class="collapse">
-  <li><a href="#ý-nghĩa-khoa-học" id="toc-ý-nghĩa-khoa-học" class="nav-link" data-scroll-target="#ý-nghĩa-khoa-học">1.5.1 Ý nghĩa khoa học</a></li>
-  <li><a href="#ý-nghĩa-thực-tiễn" id="toc-ý-nghĩa-thực-tiễn" class="nav-link" data-scroll-target="#ý-nghĩa-thực-tiễn">1.5.2 Ý nghĩa thực tiễn</a></li>
-  </ul></li>
-  <li><a href="#phân-tích-đặc-tính-dữ-liệu-lớn-theo-mô-hình-5vs" id="toc-phân-tích-đặc-tính-dữ-liệu-lớn-theo-mô-hình-5vs" class="nav-link" data-scroll-target="#phân-tích-đặc-tính-dữ-liệu-lớn-theo-mô-hình-5vs">1.6 Phân tích đặc tính Dữ liệu lớn theo mô hình 5Vs</a></li>
-  </ul></li>
+  <li><a href="#nạp-dữ-liệu-vào-dbfs-databricks-file-system" id="toc-nạp-dữ-liệu-vào-dbfs-databricks-file-system" class="nav-link active" data-scroll-target="#nạp-dữ-liệu-vào-dbfs-databricks-file-system">4.1 Nạp dữ liệu vào DBFS (Databricks File System)</a></li>
+  <li><a href="#tạo-bảng-dữ-liệu-thô-bronze-layer---delta-lake" id="toc-tạo-bảng-dữ-liệu-thô-bronze-layer---delta-lake" class="nav-link" data-scroll-target="#tạo-bảng-dữ-liệu-thô-bronze-layer---delta-lake">4.2 Tạo bảng dữ liệu thô (Bronze Layer - Delta Lake)</a></li>
   </ul>
 </nav>
     </div>
@@ -219,7 +203,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">Chương 1: Giới Thiệu</span></h1>
+<h1 class="title"><span class="chapter-title">4 Phần 2: Quản trị và lưu trữ dữ liệu trên Databricks (20% điểm)</span></h1>
 </div>
 
 
@@ -236,135 +220,48 @@ window.Quarto = {
 </header>
 
 
-<section id="chương-1-giới-thiệu" class="level1">
-<h1>CHƯƠNG 1: GIỚI THIỆU</h1>
-<hr>
-<section id="đặt-vấn-đề-và-lý-do-chọn-đề-tài" class="level2">
-<h2 class="anchored" data-anchor-id="đặt-vấn-đề-và-lý-do-chọn-đề-tài">1.1 Đặt vấn đề và Lý do chọn đề tài</h2>
-<p>Trong nền kinh tế thị trường hiện đại, hệ thống tài chính - ngân hàng giữ vai trò huyết mạch trong việc dẫn truyền dòng vốn từ các chủ thể tiết kiệm đến các chủ thể có nhu cầu đầu tư và tiêu dùng [1]. Phân khúc tín dụng bán lẻ (Retail Banking) và cho vay tiêu dùng cá nhân (Consumer Lending) đã chứng kiến tốc độ tăng trưởng bùng nổ, đặc biệt là khi chuyển dịch từ các kênh giao dịch tại quầy sang các nền tảng số hóa (Digital Banking, Mobile Banking và các ứng dụng FinTech) [2]. Khách hàng ngày nay kỳ vọng những trải nghiệm vay vốn tức thì (Instant Credit / Buy Now Pay Later - BNPL), quy trình đăng ký 100% trực tuyến và thời gian phê duyệt giải ngân chỉ tính bằng phút [3].</p>
-<p>Tuy nhiên, song hành cùng cơ hội mở rộng biên lãi thuần (Net Interest Margin - NIM), hoạt động cấp tín dụng luôn tiềm ẩn bản chất cố hữu là <strong>rủi ro tín dụng (Credit Risk)</strong> mà đỉnh điểm là <strong>biến cố vỡ nợ (Loan Default)</strong> [4]. Theo Ủy ban Basel về Giám sát Ngân hàng (BCBS), biến cố vỡ nợ xảy ra khi người vay không thực hiện nghĩa vụ trả nợ gốc hoặc lãi theo thỏa thuận hợp đồng sau thời hạn quy định (quá hạn từ 90 ngày trở lên) [5]. Sự gia tăng của tỷ lệ nợ xấu (Non-Performing Loans - NPL) không chỉ bào mòn nguồn vốn tự có của ngân hàng thông qua chi phí trích lập dự phòng tổn thất, mà còn đe dọa hệ số an toàn vốn (Capital Adequacy Ratio - CAR) và tính thanh khoản của toàn hệ thống [6].</p>
-<p>Trước áp lực đó, các định chế tài chính đối mặt với bài toán chiến lược: <em>Làm thế nào để vừa tối đa hóa tốc độ phê duyệt và mở rộng tệp khách hàng vay tiêu dùng số, vừa kiểm soát chặt chẽ tỷ lệ nợ xấu và bảo toàn nguồn vốn của ngân hàng?</em> Lời giải nằm ở việc ứng dụng công nghệ Dữ liệu lớn (Big Data) và Trí tuệ nhân tạo (AI/Machine Learning) nhằm tự động hóa quy trình thẩm định rủi ro và chấm điểm tín dụng [7].</p>
-<hr>
+<section id="nạp-dữ-liệu-vào-dbfs-databricks-file-system" class="level2">
+<h2 class="anchored" data-anchor-id="nạp-dữ-liệu-vào-dbfs-databricks-file-system">4.1 Nạp dữ liệu vào DBFS (Databricks File System)</h2>
+<p>Dữ liệu được nạp vào hệ thống tệp lưu trữ phân tán DBFS tại đường dẫn <code>dbfs:/FileStore/tables/</code> hoặc thông qua Databricks Unity Catalog Volume:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Đọc tập dữ liệu thô từ DBFS / Databricks Storage</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>raw_path <span class="op">=</span> <span class="st">"dbfs:/FileStore/tables/accepted_2007_to_2018Q4.csv"</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>df_raw <span class="op">=</span> spark.read.<span class="bu">format</span>(<span class="st">"csv"</span>) <span class="op">\</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    .option(<span class="st">"header"</span>, <span class="st">"true"</span>) <span class="op">\</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    .option(<span class="st">"inferSchema"</span>, <span class="st">"true"</span>) <span class="op">\</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    .load(raw_path)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Hiển thị số lượng bản ghi và cấu trúc schema dữ liệu ban đầu</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Tổng số dòng nạp thành công: </span><span class="sc">{</span>df_raw<span class="sc">.</span>count()<span class="sc">:,}</span><span class="ss">"</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>df_raw.printSchema()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="mục-tiêu-nghiên-cứu" class="level2">
-<h2 class="anchored" data-anchor-id="mục-tiêu-nghiên-cứu">1.2 Mục tiêu nghiên cứu</h2>
-<section id="mục-tiêu-tổng-quát" class="level3">
-<h3 class="anchored" data-anchor-id="mục-tiêu-tổng-quát">1.2.1 Mục tiêu tổng quát</h3>
-<p>Nghiên cứu, thiết kế và phát triển hệ thống tự động hóa chấm điểm tín dụng và dự báo xác suất vỡ nợ quy mô lớn dựa trên nền tảng điện toán phân tán Databricks Lakehouse và thuật toán học máy Spark MLlib, phục vụ hoạt động thẩm định và định giá rủi ro tín dụng trong ngân hàng thương mại và FinTech.</p>
-</section>
-<section id="mục-tiêu-cụ-thể" class="level3">
-<h3 class="anchored" data-anchor-id="mục-tiêu-cụ-thể">1.2.2 Mục tiêu cụ thể</h3>
-<ol type="1">
-<li><strong>Xây dựng Kiến trúc Hồ Dữ liệu Lakehouse phân tán:</strong> Thiết lập luồng dữ liệu tự động theo mô hình Huy chương Medallion (Bronze -&gt; Silver -&gt; Gold) trên nền tảng Databricks Serverless và Delta Lake, bảo đảm tính toàn vẹn giao dịch ACID và khả năng xử lý dữ liệu lớn.</li>
-<li><strong>Tiền xử lý và Kỹ nghệ đặc trưng tài chính phân tán:</strong> Xây dựng quy trình làm sạch dữ liệu lớn, xử lý ngoại lai, làm giàu dữ liệu và thiết lập các chỉ số tài chính chuyên sâu (DTI, CBI, Window Functions) bằng Spark SQL.</li>
-<li><strong>Phát triển Mô hình Học máy phân tán hiệu năng cao:</strong> Huấn luyện thuật toán Random Forest Classifier trên Spark MLlib, tinh chỉnh siêu tham số bằng 3-Fold Cross-Validation, hướng đến chỉ số ROC-AUC vượt trội (<span class="math inline">\(&gt; 0.85\)</span>) và cân bằng tối ưu giữa Precision và Recall.</li>
-<li><strong>Thiết kế Động cơ Ra quyết định (Decision Engine) và Khung định giá theo rủi ro:</strong> Chuẩn hóa xác suất vỡ nợ thành điểm FICO tiêu chuẩn (300 - 850), thiết lập ma trận 4 phân tầng rủi ro dựa trên chỉ số Youden’s J và chuẩn mực Basel II, đồng thời xây dựng mô hình định giá lãi suất theo rủi ro (Risk-Based Pricing Model: 8.5%, 11.5%, 14.5%).</li>
-<li><strong>Đánh giá hiệu quả kinh tế và đề xuất chiến lược quản trị:</strong> Định lượng tác động tài chính đối với việc kéo giảm tỷ lệ nợ xấu NPL, cắt giảm chi phí dự phòng rủi ro và nâng cao năng lực cạnh tranh số của tổ chức tài chính.</li>
-</ol>
-<hr>
-</section>
-</section>
-<section id="nội-dung-nghiên-cứu" class="level2">
-<h2 class="anchored" data-anchor-id="nội-dung-nghiên-cứu">1.3 Nội dung nghiên cứu</h2>
-<p>Để thực hiện các mục tiêu trên, đề tài triển khai 4 nội dung nghiên cứu cốt lõi: 1. Thu thập, nạp và quản trị bộ dữ liệu lớn LendingClub gồm 2,260,701 hồ sơ tín dụng (1.6 GB) vào kho lưu trữ phân tán Delta Lake trên Databricks. 2. Phân tích thực trạng khiếm khuyết dữ liệu, thiết kế quy trình tiền xử lý làm sạch phân tán tại Tầng Silver và tính toán các đặc trưng tài chính phái sinh. 3. Huấn luyện mô hình Random Forest phân tán trên Tầng Gold, thực thi K-Fold Cross-Validation và đánh giá đa chỉ số (ROC-AUC, Confusion Matrix, Feature Importance). 4. Thiết lập khung quy đổi FICO Score, xây dựng chính sách phê duyệt tự động Straight-Through Processing (STP) và lượng hóa lợi ích kinh tế (ROI) giảm nợ xấu.</p>
-<hr>
-</section>
-<section id="đối-tượng-và-phạm-vi-nghiên-cứu" class="level2">
-<h2 class="anchored" data-anchor-id="đối-tượng-và-phạm-vi-nghiên-cứu">1.4 Đối tượng và phạm vi nghiên cứu</h2>
-<section id="đối-tượng-nghiên-cứu" class="level3">
-<h3 class="anchored" data-anchor-id="đối-tượng-nghiên-cứu">1.4.1 Đối tượng nghiên cứu</h3>
+<section id="tạo-bảng-dữ-liệu-thô-bronze-layer---delta-lake" class="level2">
+<h2 class="anchored" data-anchor-id="tạo-bảng-dữ-liệu-thô-bronze-layer---delta-lake">4.2 Tạo bảng dữ liệu thô (Bronze Layer - Delta Lake)</h2>
+<p>Lưu trữ dữ liệu thô ban đầu dưới định dạng bảng Delta Table tại Tầng Bronze nhằm bảo đảm tính toàn vẹn và khả năng truy vấn phân tán tốc độ cao:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ghi dữ liệu thô vào bảng Bronze Delta Lake</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>bronze_table_name <span class="op">=</span> <span class="st">"workspace.default.bronze_credit_data"</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>df_raw.write.<span class="bu">format</span>(<span class="st">"delta"</span>) <span class="op">\</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    .mode(<span class="st">"overwrite"</span>) <span class="op">\</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    .option(<span class="st">"overwriteSchema"</span>, <span class="st">"true"</span>) <span class="op">\</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    .saveAsTable(bronze_table_name)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Đã lưu thành công 2,260,701 bản ghi vào bảng </span><span class="sc">{</span>bronze_table_name<span class="sc">}</span><span class="ss"> tại Tầng Bronze."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Giải thích ý nghĩa:</strong> Tại sao chúng ta cần lưu trữ dữ liệu dưới định dạng Delta Lake thay vì để file CSV thông thường?</p>
 <ul>
-<li>Đối tượng nghiên cứu trọng tâm là <strong>hành vi vỡ nợ tín dụng (Loan Default)</strong> của khách hàng cá nhân vay tiêu dùng tín chấp.</li>
-<li>Các thuộc tính kinh tế, tài chính, nhân khẩu học và lịch sử tín dụng của khách hàng ảnh hưởng trực tiếp đến xác suất hoàn trả nợ gốc và lãi.</li>
+<li><strong>Hỗ trợ giao dịch ACID:</strong> Đảm bảo mọi giao dịch ghi dữ liệu đều tuân thủ nguyên tử (Atomicity), nhất quán (Consistency), cô lập (Isolation) và bền vững (Durability), tránh hiện tượng lỗi file khi cụm worker đang ghi phân tán dở dang.</li>
+<li><strong>Tối ưu hóa tốc độ truy vấn:</strong> Delta Lake tự động nén dữ liệu dưới dạng định dạng cột Apache Parquet, loại bỏ các phân vùng không cần thiết (Data Skipping) và hỗ trợ cơ chế quay ngược thời gian (Time Travel Audit).</li>
 </ul>
-</section>
-<section id="phạm-vi-nghiên-cứu" class="level3">
-<h3 class="anchored" data-anchor-id="phạm-vi-nghiên-cứu">1.4.2 Phạm vi nghiên cứu</h3>
-<ul>
-<li><strong>Phạm vi không gian &amp; dữ liệu:</strong> Bộ dữ liệu thực tế 2,260,701 khoản vay từ nền tảng tín dụng LendingClub (San Francisco, Hoa Kỳ), phản ánh toàn diện các chu kỳ kinh tế giai đoạn 2007 - 2018Q4.</li>
-<li><strong>Phạm vi công nghệ:</strong> Nền tảng Databricks Lakehouse (Apache Spark 3.5+, Delta Lake 3.0+, Spark MLlib) triển khai trên môi trường điện toán đám mây Serverless.</li>
-<li><strong>Phạm vi nghiệp vụ:</strong> Hoạt động cấp tín dụng bán lẻ, cho vay tiêu dùng không có tài sản bảo đảm và quản trị rủi ro tín dụng tại các ngân hàng thương mại và công ty FinTech.</li>
-</ul>
-<hr>
-</section>
-</section>
-<section id="ý-nghĩa-khoa-học-và-thực-tiễn-của-đề-tài" class="level2">
-<h2 class="anchored" data-anchor-id="ý-nghĩa-khoa-học-và-thực-tiễn-của-đề-tài">1.5 Ý nghĩa khoa học và thực tiễn của đề tài</h2>
-<section id="ý-nghĩa-khoa-học" class="level3">
-<h3 class="anchored" data-anchor-id="ý-nghĩa-khoa-học">1.5.1 Ý nghĩa khoa học</h3>
-<ul>
-<li>Đề tài hiện thực hóa việc kết hợp giữa lý thuyết kinh tế học tài chính (mô hình thông tin bất cân xứng của Stiglitz &amp; Weiss, chỉ số đòn bẩy DTI, CBI) với công nghệ xử lý dữ liệu lớn phân tán (Distributed Big Data) và học máy hiện đại (Ensemble Learning).</li>
-<li>Cung cấp phương pháp luận chuẩn mực về quy trình xây dựng Pipeline học máy phân tán trên nền tảng Lakehouse, bảo đảm tính tái lập (Reproducibility) và khả năng mở rộng (Scalability) ở quy mô hàng triệu bản ghi.</li>
-</ul>
-</section>
-<section id="ý-nghĩa-thực-tiễn" class="level3">
-<h3 class="anchored" data-anchor-id="ý-nghĩa-thực-tiễn">1.5.2 Ý nghĩa thực tiễn</h3>
-<ul>
-<li>Giúp các tổ chức tín dụng rút ngắn thời gian thẩm định từ 2 - 5 ngày xuống dưới 3 phút thông qua cơ chế phê duyệt tự động hóa thông suốt (STP).</li>
-<li>Cải thiện độ chính xác dự báo nợ xấu, giúp giảm tỷ lệ NPL danh mục xuống dưới 4.2% và tiết kiệm hàng tỷ đồng chi phí trích lập dự phòng theo Thông tư 11/2021/TT-NHNN.</li>
-<li>Toàn bộ mã nguồn phân tán và dữ liệu thực nghiệm được lưu trữ công khai tại GitHub: https://github.com/snowflake-vibing/Credit_Scoring_Project, đóng góp tài liệu tham khảo thực tiễn cho cộng đồng tài chính số.</li>
-</ul>
-<hr>
-</section>
-</section>
-<section id="phân-tích-đặc-tính-dữ-liệu-lớn-theo-mô-hình-5vs" class="level2">
-<h2 class="anchored" data-anchor-id="phân-tích-đặc-tính-dữ-liệu-lớn-theo-mô-hình-5vs">1.6 Phân tích đặc tính Dữ liệu lớn theo mô hình 5Vs</h2>
-<p>Để chứng minh tính tương thích và sự cần thiết của nền tảng Big Data đối với bài toán tín dụng, nghiên cứu phân tích đề tài dựa trên khung lý thuyết 5Vs kinh điển [8]:</p>
-<p><strong>Bảng 1.1 Phân tích đặc tính Dữ liệu lớn theo mô hình 5Vs trong Đề tài Chấm điểm Tín dụng</strong></p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">Chiều Kích 5Vs</th>
-<th style="text-align: left;">Khái Niệm Lý Thuyết</th>
-<th style="text-align: left;">Thách Thức Trong Nghiệp Vụ Tín Dụng Bán Lẻ</th>
-<th style="text-align: left;">Giải Pháp Kỹ Thuật Đề Xuất Trong Đề Tài</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;"><strong>Volume</strong> <em>(Quy mô dung lượng)</em></td>
-<td style="text-align: left;">Khối lượng dữ liệu khổng lồ vượt quá khả năng lưu trữ và xử lý của hệ thống máy đơn (Single-node RDBMS).</td>
-<td style="text-align: left;">Quy mô 2.26 triệu hồ sơ (1.6 GB) với hàng chục biến số tài chính; hệ thống RDBMS truyền thống bị tràn RAM khi xử lý.</td>
-<td style="text-align: left;">Lưu trữ phân tán trên Databricks Delta Lake, nạp dữ liệu vào Tầng Bronze và phân vùng (Partitioning) 16 luồng song song.</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><strong>Velocity</strong> <em>(Tốc độ xử lý)</em></td>
-<td style="text-align: left;">Tốc độ phát sinh, thu thập và đòi hỏi phản hồi kết quả trong thời gian thực hoặc gần thời gian thực.</td>
-<td style="text-align: left;">Khách hàng số kỳ vọng phê duyệt giải ngân tức thì (&lt; 3 phút); thẩm định thủ công mất từ 2 đến 5 ngày làm việc.</td>
-<td style="text-align: left;">Tận dụng công cụ Apache Spark tính toán trong bộ nhớ RAM (In-memory computing), tự động hóa dự báo bằng Spark MLlib Pipeline.</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><strong>Variety</strong> <em>(Đa dạng định dạng)</em></td>
-<td style="text-align: left;">Sự kết hợp phức tạp giữa các dạng dữ liệu số, dữ liệu chuỗi danh mục và thông tin hành vi.</td>
-<td style="text-align: left;">Dữ liệu chứa thuộc tính số (thu nhập, dư nợ), danh mục (mục đích vay, nhà ở) và chuỗi tự do (chức danh công việc).</td>
-<td style="text-align: left;">Kỹ nghệ đặc trưng Spark MLlib: <code>StringIndexer</code> mã hóa nhãn, <code>OneHotEncoder</code> xử lý danh mục, <code>VectorAssembler</code> gộp vector đặc trưng.</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><strong>Veracity</strong> <em>(Độ tin cậy dữ liệu)</em></td>
-<td style="text-align: left;">Mức độ nhiễu, sai sót, thiếu hụt hoặc mâu thuẫn trong dữ liệu khai báo thực tế của người vay.</td>
-<td style="text-align: left;">Dữ liệu thực nghiệm chứa nhiều điểm ngoại lai phi lý (tuổi &gt; 100, thu nhập &lt;= 0) và tỷ lệ khuyết thiếu lãi suất, thâm niên cao.</td>
-<td style="text-align: left;">Thiết kế Tầng Silver làm sạch phân tán: Lọc ngoại lai <span class="math inline">\(18 \le \text{Age} \le 80\)</span>, <span class="math inline">\(\text{Income} &gt; 0\)</span>; điền khuyết bằng trung vị (Median) và giá trị thận trọng.</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><strong>Value</strong> <em>(Giá trị kinh tế)</em></td>
-<td style="text-align: left;">Khả năng chuyển hóa dữ liệu thô thành lợi ích tài chính và giá trị kinh doanh thực tiễn.</td>
-<td style="text-align: left;">Ngân hàng đối mặt nguy cơ thâm hụt vốn do nợ xấu hoặc đánh mất khách hàng tốt do chính sách lãi suất cào bằng.</td>
-<td style="text-align: left;">Động cơ Phân tầng Rủi ro 4 cấp độ, Quy đổi FICO Score (300 - 850) và Mô hình Định giá Lãi suất theo rủi ro (Risk-Based Pricing).</td>
-</tr>
-</tbody>
-</table>
-<p align="left">
-<em>(Nguồn: Tác giả tổng hợp và phân tích dựa trên chuẩn mực Dữ liệu lớn)</em>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/hinh_2_1_medallion_architecture.png" class="img-fluid figure-img"></p>
+<figcaption>Hình 2.1 Kiến trúc tổng thể luồng dữ liệu Medallion trên Databricks Lakehouse</figcaption>
+</figure>
+</div>
+<p align="center">
+<strong>Hình 2.1 Kiến trúc tổng thể luồng dữ liệu Medallion trên Databricks Lakehouse</strong>
 </p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -770,13 +667,13 @@ window.Quarto = {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./index.html" class="pagination-link" aria-label="Trang Bìa, Tóm Lược và Danh Mục Báo Cáo">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Trang Bìa, Tóm Lược và Danh Mục Báo Cáo</span></span>
+      <a href="./01_PHAN_1_BAI_TOAN_KINH_DOANH.html" class="pagination-link" aria-label="3 Phần 1: Bài toán kinh doanh và dữ liệu nghiên cứu (15% điểm)">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">3 Phần 1: Bài toán kinh doanh và dữ liệu nghiên cứu (15% điểm)</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./02_CHUONG_2_LUOC_KHAO_TAI_LIEU.html" class="pagination-link" aria-label="Chương 2: Lược Khảo Tài Liệu">
-        <span class="nav-page-text"><span class="chapter-title">Chương 2: Lược Khảo Tài Liệu</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./03_PHAN_3_LAM_SACH_VA_EDA.html" class="pagination-link" aria-label="5 Phần 3: Làm sạch và phân tích khám phá dữ liệu (25% điểm)">
+        <span class="nav-page-text"><span class="chapter-title">5 Phần 3: Làm sạch và phân tích khám phá dữ liệu (25% điểm)</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

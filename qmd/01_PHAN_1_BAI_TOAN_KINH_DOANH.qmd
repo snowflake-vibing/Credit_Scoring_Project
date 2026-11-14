@@ -1,0 +1,38 @@
+# 3 Phần 1: Bài toán kinh doanh và dữ liệu nghiên cứu (15% điểm)
+
+## 3.1 Bối cảnh và vấn đề của doanh nghiệp
+
+Trong kỷ nguyên kinh tế số, hoạt động cho vay tiêu dùng tín chấp và tín dụng bán lẻ (Retail Banking / FinTech) đối mặt với nghịch lý chiến lược: Khách hàng kỳ vọng được phê duyệt giải ngân tức thì trong vài phút (Instant Credit / Buy Now Pay Later - BNPL), nhưng việc mở rộng quy mô tín dụng ồ ạt nếu không kiểm soát rủi ro sẽ trực tiếp dẫn đến bùng nổ nợ xấu (Non-Performing Loans - NPL) [1], [2].
+
+* **Doanh nghiệp đang gặp khó khăn gì?** Các ngân hàng thương mại và công ty FinTech đối mặt với tỷ lệ nợ xấu lịch sử lên đến **21.82%** trong tập khách hàng vay tín chấp cá nhân. Quy trình phê duyệt truyền thống dựa vào thẩm định hồ sơ giấy tờ mất từ 2 đến 5 ngày, tốn kém chi phí nhân sự nhưng vẫn mắc sai lầm do hiện tượng bất cân xứng thông tin (Information Asymmetry) [3], [4].
+* **Hậu quả nếu không giải quyết:** Tổn thất hàng trăm tỷ đồng vốn gốc và lãi không thể thu hồi, làm gia tăng chi phí trích lập dự phòng rủi ro tín dụng theo Thông tư 11/2021/TT-NHNN, bào mòn nghiêm trọng tỷ lệ an toàn vốn (CAR) và lợi nhuận ròng của ngân hàng [5].
+* **Mục tiêu của dự án:** Xây dựng hệ thống tự động hóa chấm điểm tín dụng quy mô dữ liệu lớn trên nền tảng Databricks Lakehouse, ứng dụng thuật toán học máy phân tán Spark MLlib để phân loại chính xác hồ sơ vỡ nợ, kéo giảm tỷ lệ nợ xấu xuống dưới 4.2% và phê duyệt tự động trên 75% hồ sơ trong thời gian dưới 3 phút.
+
+## 3.2 Đặc tính dữ liệu lớn theo mô hình 5Vs
+
+Đề tài khai thác tập dữ liệu lớn LendingClub gồm 2.26 triệu hồ sơ, thể hiện trọn vẹn 5 đặc tính Big Data:
+
+* **Volume (Quy mô):** Tập dữ liệu gồm **2,260,701 dòng**, 12 thuộc tính tài chính cốt lõi với tổng dung lượng lưu trữ thô **1.6 GB**, vượt quá khả năng xử lý trong bộ nhớ RAM của máy tính cá nhân thông thường.
+* **Velocity (Tốc độ):** Dữ liệu giao dịch vay được ghi nhận liên tục theo thời gian thực (Streaming/Micro-batch). Hệ thống phân tán Databricks cho phép chấm điểm và trả lời kết quả phê duyệt cho khách hàng trong thời gian dưới 3 phút.
+* **Variety (Đa dạng):** Dữ liệu kết hợp đa dạng các nhóm biến định lượng (thu nhập hàng năm, số tiền vay, lãi suất, tỷ lệ DTI), biến danh mục định tính (mục đích vay, tình trạng nhà ở) và nhãn lịch sử quá hạn nợ.
+* **Veracity (Độ tin cậy):** Dữ liệu thực tế phát sinh nhiều điểm dị biệt (tuổi > 100, thu nhập âm/bằng 0) và tỷ lệ khuyết thiếu lãi suất, thâm niên làm việc cao. Tầng Silver của Databricks thực hiện chuẩn hóa nghiêm ngặt.
+* **Value (Giá trị mang lại):** Cung cấp động cơ chấm điểm FICO Score chuẩn hóa ($300 - 850$), phân tầng rủi ro tự động và Khung định giá lãi suất theo rủi ro (Risk-Based Pricing), tiết kiệm hàng tỷ đồng dự phòng rủi ro tín dụng.
+
+## 3.3 Mô tả tập dữ liệu và từ điển biến
+
+Dưới đây là từ điển các thuộc tính tài chính quan trọng nhất được sử dụng trong bài phân tích:
+
+| Tên biến | Kiểu dữ liệu | Ý nghĩa nghiệp vụ | Ví dụ minh họa |
+| :--- | :--- | :--- | :--- |
+| `person_age` | Integer | Độ tuổi của người nộp đơn vay vốn | 28 |
+| `person_income` | Double | Tổng thu nhập hàng năm của khách hàng (USD) | 65,000.0 |
+| `person_home_ownership` | String | Tình trạng nhà ở: Thuê (RENT), Thế chấp (MORTGAGE), Sở hữu (OWN) | RENT |
+| `person_emp_length` | Double | Thâm niên công tác của người vay (năm) | 4.5 |
+| `loan_intent` | String | Mục đích vay: Giáo dục, Y tế, Kinh doanh, Tiêu dùng cá nhân | PERSONAL |
+| `loan_grade` | String | Hạng xếp hạng tín dụng khoản vay (A, B, C, D, E, F, G) | B |
+| `loan_amnt` | Double | Tổng số tiền khách hàng đề nghị vay (USD) | 12,000.0 |
+| `loan_int_rate` | Double | Mức lãi suất danh nghĩa áp dụng cho khoản vay (%) | 11.25 |
+| `dti_ratio` | Double | Chỉ số Tỷ lệ Nợ trên Thu nhập ($DTI = \text{Loan} / \text{Income}$) | 0.1846 |
+| `cbi_index` | Double | Chỉ số Gánh nặng Tín dụng ($CBI = \text{Loan} \times \text{Rate} / \text{Income}$) | 0.0208 |
+| `cb_person_default_on_file` | String | Lịch sử từng có nợ xấu trên hệ thống (Y/N) | N |
+| `loan_status` | Integer | **Biến mục tiêu (Label):** 1 là Vỡ nợ (Default / NPL), 0 là Trả nợ tốt | 0 |

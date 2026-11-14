@@ -1,0 +1,10 @@
+# Tài liệu tham khảo {.unnumbered}
+
+# 8 Danh mục tài liệu tham khảo
+
+1. Databricks Documentation (2024), *Introduction to Delta Lake, Medallion Architecture and Apache Spark MLlib*, Databricks Technical Whitepaper.
+2. Apache Spark Organization (2023), *Spark SQL, DataFrames and MLlib Machine Learning Guide*, The Apache Software Foundation.
+3. Giáo trình học phần (2026), *Dữ liệu lớn và Trí tuệ nhân tạo trong kinh doanh*, Chương trình đào tạo Samsung Innovation Campus (SIC) phối hợp cùng Trường Đại học Tài chính - Marketing (UFM) và Trung tâm Đổi mới sáng tạo Quốc gia (NIC).
+4. LendingClub Corporation (2019), *LendingClub Complete Loan Dataset 2007-2018Q4 (2,260,701 records)*, Open Financial Data Repository.
+5. Ngân hàng Nhà nước Việt Nam (2021), *Thông tư số 11/2021/TT-NHNN: Quy định về phân loại tài sản có, mức trích, phương pháp trích lập dự phòng rủi ro tín dụng*, Hà Nội.
+

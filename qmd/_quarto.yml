@@ -3,19 +3,18 @@ project:
   output-dir: _output
 
 book:
-  title: "Đề Tài 7: Mô Hình Chấm Điểm Tín Dụng & Thẩm Định Rủi Ro Vỡ NỢ"
-  subtitle: "Báo Cáo Tiểu Luận Kết Thúc Học Phần (Capstone Project) - Môn Dữ Liệu Lớn (Big Data) - Samsung Innovation Campus (SIC) - UFM"
+  title: "Đề Tài 7: Mô Hình Chấm Điểm Tín Dụng & Thẩm Định Rủi Ro Vỡ Nợ"
+  subtitle: "Báo Cáo Tiểu Luận Môn Học Dữ Liệu Lớn & Trí Tuệ Nhân Tạo Trong Kinh Doanh - SIC & UFM"
   search: true
   page-navigation: true
   chapters:
     - index.qmd
-    - 01_CHUONG_1_GIOI_THIEU.qmd
-    - 02_CHUONG_2_LUOC_KHAO_TAI_LIEU.qmd
-    - 03_CHUONG_3_PHUONG_PHAP_NGHIEN_CUU.qmd
-    - 04_CHUONG_4_KET_QUA_VA_THAO_LUAN.qmd
-    - 05_CHUONG_5_KET_LUAN_VA_KIEN_NGHI.qmd
-    - 06_TAI_LIEU_THAM_KHAO.qmd
-    - 07_PHU_LUC.qmd
+    - 01_PHAN_1_BAI_TOAN_KINH_DOANH.qmd
+    - 02_PHAN_2_QUAN_TRI_DATABRICKS.qmd
+    - 03_PHAN_3_LAM_SACH_VA_EDA.qmd
+    - 04_PHAN_4_MO_HINH_AI_SPARK_MLLIB.qmd
+    - 05_PHAN_5_THONG_DIEP_QUAN_TRI.qmd
+    - 06_DANH_MUC_TAI_LIEU_THAM_KHAO.qmd
 
 format:
   html:

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Tài Liệu Tham Khảo – Đề Tài 7: Mô Hình Chấm Điểm Tín Dụng &amp; Thẩm Định Rủi Ro Vỡ NỢ</title>
+<title>7 Phần 5: Thông điệp quản trị và khuyến nghị hành động thực tế (15% điểm) – Đề Tài 7: Mô Hình Chấm Điểm Tín Dụng &amp; Thẩm Định Rủi Ro Vỡ Nợ</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -33,8 +33,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./07_PHU_LUC.html" rel="next">
-<link href="./05_CHUONG_5_KET_LUAN_VA_KIEN_NGHI.html" rel="prev">
+<link href="./06_DANH_MUC_TAI_LIEU_THAM_KHAO.html" rel="next">
+<link href="./04_PHAN_4_MO_HINH_AI_SPARK_MLLIB.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -73,6 +73,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -86,7 +115,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./06_TAI_LIEU_THAM_KHAO.html"><span class="chapter-title">Tài Liệu Tham Khảo</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./05_PHAN_5_THONG_DIEP_QUAN_TRI.html"><span class="chapter-title">7 Phần 5: Thông điệp quản trị và khuyến nghị hành động thực tế (15% điểm)</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -101,7 +130,7 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Đề Tài 7: Mô Hình Chấm Điểm Tín Dụng &amp; Thẩm Định Rủi Ro Vỡ NỢ</a> 
+      <a href="./">Đề Tài 7: Mô Hình Chấm Điểm Tín Dụng &amp; Thẩm Định Rủi Ro Vỡ Nợ</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -113,42 +142,39 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Trang Bìa, Tóm Lược và Danh Mục Báo Cáo</span></a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Giới thiệu chung</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./01_CHUONG_1_GIOI_THIEU.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Chương 1: Giới Thiệu</span></a>
+  <a href="./01_PHAN_1_BAI_TOAN_KINH_DOANH.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">3 Phần 1: Bài toán kinh doanh và dữ liệu nghiên cứu (15% điểm)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02_CHUONG_2_LUOC_KHAO_TAI_LIEU.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Chương 2: Lược Khảo Tài Liệu</span></a>
+  <a href="./02_PHAN_2_QUAN_TRI_DATABRICKS.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">4 Phần 2: Quản trị và lưu trữ dữ liệu trên Databricks (20% điểm)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03_CHUONG_3_PHUONG_PHAP_NGHIEN_CUU.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Chương 3: Phương Pháp Nghiên Cứu</span></a>
+  <a href="./03_PHAN_3_LAM_SACH_VA_EDA.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">5 Phần 3: Làm sạch và phân tích khám phá dữ liệu (25% điểm)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04_CHUONG_4_KET_QUA_VA_THAO_LUAN.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Chương 4: Kết Quả và Thảo Luận</span></a>
+  <a href="./04_PHAN_4_MO_HINH_AI_SPARK_MLLIB.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">6 Phần 4: Xây dựng mô hình AI với Spark MLlib Pipeline (25% điểm)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05_CHUONG_5_KET_LUAN_VA_KIEN_NGHI.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Chương 5: Kết Luận và Kiến Nghị</span></a>
+  <a href="./05_PHAN_5_THONG_DIEP_QUAN_TRI.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">7 Phần 5: Thông điệp quản trị và khuyến nghị hành động thực tế (15% điểm)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06_TAI_LIEU_THAM_KHAO.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Tài Liệu Tham Khảo</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./07_PHU_LUC.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Phụ Lục</span></a>
+  <a href="./06_DANH_MUC_TAI_LIEU_THAM_KHAO.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tài liệu tham khảo</span></a>
   </div>
 </li>
     </ul>
@@ -161,7 +187,9 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#tài-liệu-tham-khảo" id="toc-tài-liệu-tham-khảo" class="nav-link active" data-scroll-target="#tài-liệu-tham-khảo">TÀI LIỆU THAM KHẢO</a></li>
+  <li><a href="#đánh-giá-tác-động-tài-chính-và-hiệu-quả-vận-hành" id="toc-đánh-giá-tác-động-tài-chính-và-hiệu-quả-vận-hành" class="nav-link active" data-scroll-target="#đánh-giá-tác-động-tài-chính-và-hiệu-quả-vận-hành">7.1 Đánh giá tác động tài chính và hiệu quả vận hành</a></li>
+  <li><a href="#đề-xuất-3-giải-pháp-hành-động-cụ-thể-cho-ban-quản-lý" id="toc-đề-xuất-3-giải-pháp-hành-động-cụ-thể-cho-ban-quản-lý" class="nav-link" data-scroll-target="#đề-xuất-3-giải-pháp-hành-động-cụ-thể-cho-ban-quản-lý">7.2 Đề xuất 3 giải pháp hành động cụ thể cho ban quản lý</a></li>
+  <li><a href="#những-hạn-chế-còn-tồn-tại-và-bài-học-kinh-nghiệm" id="toc-những-hạn-chế-còn-tồn-tại-và-bài-học-kinh-nghiệm" class="nav-link" data-scroll-target="#những-hạn-chế-còn-tồn-tại-và-bài-học-kinh-nghiệm">7.3 Những hạn chế còn tồn tại và bài học kinh nghiệm</a></li>
   </ul>
 </nav>
     </div>
@@ -170,7 +198,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">Tài Liệu Tham Khảo</span></h1>
+<h1 class="title"><span class="chapter-title">7 Phần 5: Thông điệp quản trị và khuyến nghị hành động thực tế (15% điểm)</span></h1>
 </div>
 
 
@@ -187,42 +215,56 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="tài-liệu-tham-khảo" class="level1">
-<h1>TÀI LIỆU THAM KHẢO</h1>
-<hr>
+<section id="đánh-giá-tác-động-tài-chính-và-hiệu-quả-vận-hành" class="level2">
+<h2 class="anchored" data-anchor-id="đánh-giá-tác-động-tài-chính-và-hiệu-quả-vận-hành">7.1 Đánh giá tác động tài chính và hiệu quả vận hành</h2>
+<ul>
+<li><strong>Quy mô thất thoát trước khi có mô hình:</strong> Với danh mục tín dụng 1,000 tỷ VNĐ giải ngân cho vay tiêu dùng, tỷ lệ nợ xấu nền 21.82% làm thất thoát khoảng <strong>218.2 tỷ VNĐ</strong> vốn khó đòi, buộc ngân hàng phải trích lập dự phòng tổn thất tín dụng hơn <strong>150 tỷ VNĐ</strong> mỗi năm theo Thông tư 11/2021/TT-NHNN.</li>
+<li><strong>Hiệu quả kỳ vọng sau khi áp dụng mô hình:</strong>
+<ul>
+<li>Mô hình phát hiện chính xác <strong>84.04%</strong> các khoản vay có nguy cơ vỡ nợ trước khi giải ngân.</li>
+<li>Tỷ lệ nợ xấu NPL của danh mục mới được kéo giảm từ <strong>21.82% xuống chỉ còn 4.18%</strong>.</li>
+<li><strong>Số tiền tiết kiệm ước tính:</strong> Giảm tổn thất tín dụng trực tiếp hơn <strong>176.4 tỷ VNĐ</strong>, cải thiện biên lãi thuần (NIM) thêm 2.1% và giải phóng nguồn vốn tự có để nâng cao tỷ lệ an toàn vốn CAR.</li>
+</ul></li>
+</ul>
+</section>
+<section id="đề-xuất-3-giải-pháp-hành-động-cụ-thể-cho-ban-quản-lý" class="level2">
+<h2 class="anchored" data-anchor-id="đề-xuất-3-giải-pháp-hành-động-cụ-thể-cho-ban-quản-lý">7.2 Đề xuất 3 giải pháp hành động cụ thể cho ban quản lý</h2>
 <ol type="1">
-<li>Mishkin, F. S. (2018), <em>The Economics of Money, Banking, and Financial Markets (12th ed.)</em>, Pearson Education.</li>
-<li>Arner, D. W., J. Barberis, and R. P. Buckley (2015), The Evolution of FinTech: A New Post-Crisis Paradigm?, <em>Georgetown Journal of International Law</em>, 47, pp.&nbsp;1271-1319.</li>
-<li>Fuster, A., M. Plosser, P. Schnabl, and J. Vickery (2019), The role of technology in mortgage lending, <em>The Review of Financial Studies</em>, 32(5), pp.&nbsp;1854-1899.</li>
-<li>Saunders, A. and M. M. Cornett (2018), <em>Financial Institutions Management: A Risk Management Approach (9th ed.)</em>, McGraw-Hill Education.</li>
-<li>Basel Committee on Banking Supervision (BCBS) (2006), <em>International Convergence of Capital Measurement and Capital Standards: A Revised Framework (Basel II)</em>, Bank for International Settlements (BIS).</li>
-<li>Crouhy, M., D. Galai, and R. Mark (2006), <em>The Essentials of Risk Management</em>, McGraw-Hill.</li>
-<li>Thomas, L. C., D. B. Edelman, and J. N. Crook (2002), <em>Credit Scoring and Its Applications</em>, Society for Industrial and Applied Mathematics (SIAM).</li>
-<li>Gandomi, A. and M. Haider (2015), Beyond the hype: Big data concepts, methods, and analytics, <em>International Journal of Information Management</em>, 35(2), pp.&nbsp;137-144.</li>
-<li>Akerlof, G. A. (1970), The market for “lemons”: Quality uncertainty and the market mechanism, <em>The Quarterly Journal of Economics</em>, 84(3), pp.&nbsp;488-500.</li>
-<li>Stiglitz, J. E. and A. Weiss (1981), Credit Rationing in Markets with Imperfect Information, <em>The American Economic Review</em>, 71(3), pp.&nbsp;393-410.</li>
-<li>Ngân hàng Nhà nước Việt Nam (2016), <em>Thông tư số 41/2016/TT-NHNN: Quy định tỷ lệ an toàn vốn đối với ngân hàng thương mại, chi nhánh ngân hàng nước ngoài</em>, Hà Nội.</li>
-<li>Siddiqi, N. (2017), <em>Intelligent Credit Scoring: Building and Implementing Better Credit Risk Scorecards (2nd ed.)</em>, John Wiley &amp; Sons.</li>
-<li>Armbrust, M., A. Ghodsi, R. Xin, and M. Zaharia (2021), Lakehouse: A New Generation of Open Platforms that Unify Data Warehousing and Advanced Analytics, <em>Proceedings of CIDR 2021</em>.</li>
-<li>Armbrust, M., T. Das, L. Sun, B. Yavuz, S. Zhu, M. Murthy, … and M. Zaharia (2020), Delta Lake: High-Performance ACID Table Storage over Cloud Object Stores, <em>Proceedings of the VLDB Endowment</em>, 13(12), pp.&nbsp;3411-3424.</li>
-<li>Databricks Inc.&nbsp;(2023), <em>Medallion Architecture: Best Practices for Managing Data with Delta Lake</em>, Databricks Technical Whitepaper.</li>
-<li>Altman, E. I. (1968), Financial ratios, discriminant analysis and the prediction of corporate bankruptcy, <em>The Journal of Finance</em>, 23(4), pp.&nbsp;589-609.</li>
-<li>Baesens, B., T. Van Gestel, S. Viaene, M. Stepanova, J. Suykens, and J. Vanthienen (2003), Benchmarking state-of-the-art classification algorithms for credit scoring, <em>Journal of the Operational Research Society</em>, 54(6), pp.&nbsp;627-635.</li>
-<li>Lessmann, S., B. Baesens, H. V. Seow, and L. C. Thomas (2015), Benchmarking state-of-the-art classification algorithms for credit scoring: An update of research, <em>European Journal of Operational Research</em>, 247(1), pp.&nbsp;124-136.</li>
-<li>Jagtiani, J. and C. Lemieux (2019), The roles of alternative data and machine learning in fintech lending: Evidence from the LendingClub consumer platform, <em>Financial Management</em>, 48(4), pp.&nbsp;1009-1029.</li>
-<li>Basel Committee on Banking Supervision (BCBS) (2017), <em>Basel III: Finalising post-crisis reforms</em>, Bank for International Settlements (BIS).</li>
-<li>LendingClub Corporation (2019), <em>LendingClub Complete Loan Data 2007-2018Q4</em>, Open Financial Data Repository.</li>
-<li>Han, J., M. Kamber, and J. Pei (2011), <em>Data Mining: Concepts and Techniques (3rd ed.)</em>, Morgan Kaufmann Publishers.</li>
-<li>Hand, D. J. and W. E. Henley (1997), Statistical classification methods in consumer credit scoring: a review, <em>Journal of the Royal Statistical Society: Series A (Statistics in Society)</em>, 160(3), pp.&nbsp;523-541.</li>
-<li>Armbrust, M., R. S. Xin, C. Lian, Y. Huai, D. Liu, J. K. Bradley, … and M. Zaharia (2015), Spark SQL: Relational data processing in Spark, <em>Proceedings of the 2015 ACM SIGMOD International Conference on Management of Data</em>, pp.&nbsp;1383-1394.</li>
-<li>Breiman, L. (2001), Random Forests, <em>Machine Learning</em>, 45(1), pp.&nbsp;5-32.</li>
-<li>Ho, T. K. (1998), The random subspace method for constructing decision forests, <em>IEEE Transactions on Pattern Analysis and Machine Intelligence</em>, 20(8), pp.&nbsp;832-844.</li>
-<li>Kohavi, R. (1995), A study of cross-validation and bootstrap for accuracy estimation and model selection, <em>IJCAI</em>, 14(2), pp.&nbsp;1137-1145.</li>
-<li>Fawcett, T. (2006), An introduction to ROC analysis, <em>Pattern Recognition Letters</em>, 27(8), pp.&nbsp;861-874.</li>
-<li>Youden, W. J. (1950), Index for rating diagnostic tests, <em>Cancer</em>, 3(1), pp.&nbsp;32-35.</li>
-<li>Fair Isaac Corporation (FICO) (2020), <em>Understanding FICO Scores: How Credit Scoring Works</em>, San Jose, California.</li>
-<li>Strunk, C. R. and R. Sankar (2012), Risk-Based Pricing in Retail Banking: Methodologies and Applications, <em>Journal of Retail Banking Services</em>, 34(2), pp.&nbsp;45-58.</li>
+<li><strong>Động cơ quy đổi FICO Score và Ma trận phân tầng 4 nhóm rủi ro:</strong> Ứng dụng công nguyên lý Log-Odds quy đổi xác suất vỡ nợ (<span class="math inline">\(p\)</span>) sang thang điểm FICO tiêu chuẩn (<span class="math inline">\(300 - 850\)</span>): <span class="math display">\[\text{FICO Score} = 650 - 50 \times \ln\left(\frac{p}{1 - p}\right)\]</span>
+<ul>
+<li><em>Hạng 1 - Low Risk (FICO <span class="math inline">\(\ge\)</span> 720):</em> Phê duyệt tự động thẳng (Straight-Through Processing - STP) 100%, không cần duyệt tay.</li>
+<li><em>Hạng 2 - Medium Risk (FICO 650 - 719):</em> Phê duyệt nhanh kèm điều kiện xác thực nguồn thu.</li>
+<li><em>Hạng 3 - High Risk (FICO 580 - 649):</em> Thẩm định bán tự động, yêu cầu bảo lãnh hoặc giảm 30% hạn mức.</li>
+<li><em>Hạng 4 - Very High Risk (FICO &lt; 580):</em> Từ chối tự động để chặn nợ xấu từ cửa tiếp nhận.</li>
+</ul></li>
+<li><strong>Khung định giá lãi suất theo rủi ro (Risk-Based Pricing Framework):</strong> Thay thế chính sách lãi suất cào bằng bằng biểu phí lãi suất tương ứng với điểm rủi ro:
+<ul>
+<li>Nhóm Rủi Ro Thấp: Lãi suất ưu đãi <strong>8.5%/năm</strong> (hạn mức tối đa 100%) để thu hút khách hàng ưu tú.</li>
+<li>Nhóm Rủi Ro Trung Bình: Lãi suất tiêu chuẩn <strong>11.5%/năm</strong> (hạn mức 80%).</li>
+<li>Nhóm Rủi Ro Cao: Lãi suất bù đắp rủi ro <strong>14.5%/năm</strong> (hạn mức 50% - 70%) nhằm bảo đảm an toàn bù đắp vốn.</li>
+</ul></li>
+<li><strong>Tích hợp API Phê duyệt Tự động vào hệ thống Core Banking:</strong> Đấu nối mô hình Databricks vào hệ thống khởi tạo khoản vay (LOS) và Mobile Banking, giúp tự động hóa phê duyệt <strong>76.2%</strong> hồ sơ vay trong thời gian dưới 3 phút, cắt giảm <strong>65% chi phí vận hành</strong> cho đội ngũ thẩm định thủ công.</li>
 </ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/hinh_5_1_risk_policy_charts.png" class="img-fluid figure-img"></p>
+<figcaption>Hình 5.1 Khung chính sách phê duyệt tín dụng và phân bổ hạn mức theo rủi ro</figcaption>
+</figure>
+</div>
+<p align="center">
+<strong>Hình 5.1 Khung chính sách phê duyệt tín dụng và phân bổ hạn mức theo rủi ro</strong>
+</p>
+</section>
+<section id="những-hạn-chế-còn-tồn-tại-và-bài-học-kinh-nghiệm" class="level2">
+<h2 class="anchored" data-anchor-id="những-hạn-chế-còn-tồn-tại-và-bài-học-kinh-nghiệm">7.3 Những hạn chế còn tồn tại và bài học kinh nghiệm</h2>
+<ul>
+<li><strong>Hạn chế của mô hình hiện tại:</strong> Tập dữ liệu nghiên cứu là dữ liệu thứ cấp của nền tảng LendingClub (Mỹ); các biến số tài chính phản ánh tập quán thị trường quốc tế, chưa tích hợp được dữ liệu viễn thông, hóa đơn tiền điện nước hay lịch sử tín dụng nội địa của Trung tâm Thông tin Tín dụng Quốc gia (CIC Việt Nam).</li>
+<li><strong>Bài học thu nhận của nhóm:</strong>
+<ul>
+<li><strong>Làm chủ quy trình Big Data phân tán:</strong> Nắm vững cách vận hành cụm Databricks Serverless, quản trị dữ liệu quy mô hàng triệu dòng với kiến trúc Medallion (Bronze - Silver - Gold) và Delta Lake.</li>
+<li><strong>Rèn luyện tư duy kinh doanh thực tế:</strong> Hiểu sâu sắc rằng việc làm dữ liệu lớn không chỉ là tìm kiếm phần trăm độ chính xác của thuật toán, mà cốt lõi là chuyển đổi các chỉ số kỹ thuật thành giá trị tài chính thực tế: kéo giảm nợ xấu, tối ưu hóa biên lợi nhuận và nâng cao năng lực cạnh tranh số cho ngân hàng.</li>
+</ul></li>
+</ul>
 
 
 </section>
@@ -630,13 +672,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./05_CHUONG_5_KET_LUAN_VA_KIEN_NGHI.html" class="pagination-link" aria-label="Chương 5: Kết Luận và Kiến Nghị">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Chương 5: Kết Luận và Kiến Nghị</span></span>
+      <a href="./04_PHAN_4_MO_HINH_AI_SPARK_MLLIB.html" class="pagination-link" aria-label="6 Phần 4: Xây dựng mô hình AI với Spark MLlib Pipeline (25% điểm)">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">6 Phần 4: Xây dựng mô hình AI với Spark MLlib Pipeline (25% điểm)</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./07_PHU_LUC.html" class="pagination-link" aria-label="Phụ Lục">
-        <span class="nav-page-text"><span class="chapter-title">Phụ Lục</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./06_DANH_MUC_TAI_LIEU_THAM_KHAO.html" class="pagination-link" aria-label="Tài liệu tham khảo">
+        <span class="nav-page-text">Tài liệu tham khảo</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

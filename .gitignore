@@ -56,3 +56,6 @@ desktop.ini
 # Quarto
 .quarto/
 
+
+/.quarto/
+**/*.quarto_ipynb
