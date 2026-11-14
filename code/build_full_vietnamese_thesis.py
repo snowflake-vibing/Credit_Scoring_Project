@@ -1042,20 +1042,6 @@ format:
   docx:
     toc: true
     number-sections: false
-  pdf:
-    documentclass: report
-    papersize: a4
-    geometry:
-      - top=20mm
-      - bottom=20mm
-      - left=30mm
-      - right=20mm
-    toc: true
-    toc-depth: 3
-    number-sections: false
-    colorlinks: true
-    linestretch: 1.2
-    fontsize: 13pt
 ---
 
 """
