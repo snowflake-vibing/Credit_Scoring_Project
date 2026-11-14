@@ -10,6 +10,12 @@ book:
       affiliation: "Trường Đại học Kinh tế - Đại học Quốc gia"
   date: "2026"
   search: true
+  page-navigation: true
+  page-footer:
+    left: "Báo cáo Tiểu luận: Hệ thống Chấm điểm Tín dụng & Thẩm định Rủi ro Vỡ nợ"
+    center: "Đánh số trang ở giữa trang (Cỡ chữ 13pt)"
+    right: "GVHD: TS. Trần Mạnh Tường • SV: Lê Thành Hiệu"
+    border: true
   chapters:
     - index.qmd
     - 01_CHUONG_1_GIOI_THIEU.qmd
@@ -30,6 +36,9 @@ format:
     code-copy: true
     code-fold: show
     highlight-style: github
+    css: styles.css
+    include-before-body: header.html
+    include-after-body: footer.html
   docx:
     toc: true
     number-sections: false

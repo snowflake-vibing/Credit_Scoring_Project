@@ -103,82 +103,390 @@ Dựa trên xác suất vỡ nợ dự báo, đề tài xây dựng động cơ 
 
 ## MỤC LỤC
 
-| Đề mục nội dung | Trang |
-| :--- | :---: |
-| **TRANG PHỤ BÌA** | **i** |
-| **LỜI CẢM ƠN** | **ii** |
-| **LỜI CAM ĐOAN** | **iii** |
-| **TÓM LƯỢC** | **iv** |
-| **MỤC LỤC** | **v** |
-| **DANH SÁCH CÁC TỪ VIẾT TẮT** | **vi** |
-| **DANH SÁCH BẢNG** | **vii** |
-| **DANH SÁCH HÌNH** | **viii** |
-| **CHƯƠNG 1: GIỚI THIỆU** | **1** |
-| 1.1 Đặt vấn đề và Lý do chọn đề tài | 1 |
-| 1.2 Mục tiêu nghiên cứu | 2 |
-| &nbsp;&nbsp;&nbsp;&nbsp;1.2.1 Mục tiêu tổng quát | 2 |
-| &nbsp;&nbsp;&nbsp;&nbsp;1.2.2 Mục tiêu cụ thể | 2 |
-| 1.3 Nội dung nghiên cứu | 3 |
-| 1.4 Đối tượng và phạm vi nghiên cứu | 3 |
-| &nbsp;&nbsp;&nbsp;&nbsp;1.4.1 Đối tượng nghiên cứu | 3 |
-| &nbsp;&nbsp;&nbsp;&nbsp;1.4.2 Phạm vi nghiên cứu | 3 |
-| 1.5 Ý nghĩa khoa học và thực tiễn của đề tài | 4 |
-| &nbsp;&nbsp;&nbsp;&nbsp;1.5.1 Ý nghĩa khoa học | 4 |
-| &nbsp;&nbsp;&nbsp;&nbsp;1.5.2 Ý nghĩa thực tiễn | 4 |
-| 1.6 Phân tích đặc tính Dữ liệu lớn theo mô hình 5Vs | 5 |
-| **CHƯƠNG 2: LƯỢC KHẢO TÀI LIỆU** | **7** |
-| 2.1 Tổng quan về rủi ro tín dụng và phương pháp thẩm định truyền thống | 7 |
-| &nbsp;&nbsp;&nbsp;&nbsp;2.1.1 Bản chất kinh tế của rủi ro tín dụng và biến cố vỡ nợ | 7 |
-| &nbsp;&nbsp;&nbsp;&nbsp;2.1.2 Các hạn chế của phương pháp thẩm định truyền thống | 8 |
-| 2.2 Cơ sở lý thuyết về Kiến trúc Hồ dữ liệu Databricks Lakehouse | 9 |
-| &nbsp;&nbsp;&nbsp;&nbsp;2.2.1 Sự tiến hóa từ Data Warehouse đến Lakehouse | 9 |
-| &nbsp;&nbsp;&nbsp;&nbsp;2.2.2 Định dạng lưu trữ phân tán Delta Lake và Apache Spark | 10 |
-| 2.3 Thiết kế kiến trúc phân tầng Medallion trong định chế tài chính | 11 |
-| &nbsp;&nbsp;&nbsp;&nbsp;2.3.1 Phân định chức năng ba tầng Bronze, Silver và Gold | 11 |
-| &nbsp;&nbsp;&nbsp;&nbsp;2.3.2 Sơ đồ luồng xử lý dữ liệu phân tán toàn diện | 12 |
-| 2.4 Khung quản trị dữ liệu và Chuẩn mực an toàn vốn Basel II/III | 13 |
-| &nbsp;&nbsp;&nbsp;&nbsp;2.4.1 Tổng quan các nghiên cứu thực nghiệm trong và ngoài nước | 13 |
-| &nbsp;&nbsp;&nbsp;&nbsp;2.4.2 Yêu cầu tuân thủ an toàn vốn theo chuẩn Basel II/III | 14 |
-| **CHƯƠNG 3: PHƯƠNG PHÁP NGHIÊN CỨU** | **16** |
-| 3.1 Phương tiện nghiên cứu | 16 |
-| &nbsp;&nbsp;&nbsp;&nbsp;3.1.1 Bộ dữ liệu lớn LendingClub quy mô 2.26 triệu hồ sơ | 16 |
-| &nbsp;&nbsp;&nbsp;&nbsp;3.1.2 Nền tảng hạ tầng tính toán Databricks Serverless | 18 |
-| 3.2 Phương pháp nghiên cứu | 18 |
-| &nbsp;&nbsp;&nbsp;&nbsp;3.2.1 Quy trình thu thập và nạp dữ liệu thô Tầng Bronze | 18 |
-| &nbsp;&nbsp;&nbsp;&nbsp;3.2.2 Phương pháp tiền xử lý và làm sạch dữ liệu Tầng Silver | 19 |
-| &nbsp;&nbsp;&nbsp;&nbsp;3.2.3 Phương pháp kỹ nghệ đặc trưng tài chính (DTI, CBI) | 20 |
-| &nbsp;&nbsp;&nbsp;&nbsp;3.2.4 Phương pháp phân tích khám phá dữ liệu bằng Spark SQL | 21 |
-| &nbsp;&nbsp;&nbsp;&nbsp;3.2.5 Thiết kế chuỗi Pipeline học máy phân tán Spark MLlib | 22 |
-| &nbsp;&nbsp;&nbsp;&nbsp;3.2.6 Thuật toán phân loại Random Forest Classifier | 23 |
-| &nbsp;&nbsp;&nbsp;&nbsp;3.2.7 Phương pháp kiểm định chéo và tối ưu hóa siêu tham số | 24 |
-| &nbsp;&nbsp;&nbsp;&nbsp;3.2.8 Phương pháp đánh giá mô hình và xác lập ngưỡng cắt rủi ro | 25 |
-| **CHƯƠNG 4: KẾT QUẢ VÀ THẢO LUẬN** | **26** |
-| 4.1 Kết quả tiền xử lý và phân tích khám phá dữ liệu lớn | 26 |
-| &nbsp;&nbsp;&nbsp;&nbsp;4.1.1 Hiện trạng dữ liệu khuyết thiếu Tầng Bronze | 26 |
-| &nbsp;&nbsp;&nbsp;&nbsp;4.1.2 Mối quan hệ giữa mục đích vay và tỷ lệ nợ xấu thực tế | 27 |
-| &nbsp;&nbsp;&nbsp;&nbsp;4.1.3 Mối tương quan giữa hạng khoản vay và tình trạng nhà ở | 28 |
-| 4.2 Kết quả huấn luyện và đánh giá mô hình học máy phân tán | 29 |
-| &nbsp;&nbsp;&nbsp;&nbsp;4.2.1 Kết quả tối ưu hóa siêu tham số bằng CrossValidator | 29 |
-| &nbsp;&nbsp;&nbsp;&nbsp;4.2.2 Đánh giá hiệu năng phân loại qua đường cong ROC | 30 |
-| &nbsp;&nbsp;&nbsp;&nbsp;4.2.3 Đánh giá ma trận nhầm lẫn và các chỉ số đo lường | 31 |
-| &nbsp;&nbsp;&nbsp;&nbsp;4.2.4 Phân tích mức độ quan trọng của các đặc trưng tài chính | 32 |
-| 4.3 Thảo luận và Đề xuất ứng dụng nghiệp vụ ngân hàng | 33 |
-| &nbsp;&nbsp;&nbsp;&nbsp;4.3.1 Động cơ quy đổi điểm tín dụng FICO Score tiêu chuẩn | 33 |
-| &nbsp;&nbsp;&nbsp;&nbsp;4.3.2 Ma trận phân tầng rủi ro và chính sách phê duyệt tự động | 34 |
-| &nbsp;&nbsp;&nbsp;&nbsp;4.3.3 Mô hình định giá lãi suất theo rủi ro (Risk-Based Pricing) | 35 |
-| &nbsp;&nbsp;&nbsp;&nbsp;4.3.4 Chính sách hạn mức linh hoạt và minh họa hồ sơ thực tế | 36 |
-| &nbsp;&nbsp;&nbsp;&nbsp;4.3.5 Đánh giá tác động tài chính, tỷ lệ nợ xấu NPL và ROI | 37 |
-| **CHƯƠNG 5: KẾT LUẬN VÀ KIẾN NGHỊ** | **39** |
-| 5.1 Kết luận | 39 |
-| 5.2 Kiến nghị | 40 |
-| &nbsp;&nbsp;&nbsp;&nbsp;5.2.1 Khuyến nghị quản trị chiến lược cho Ban Điều hành Ngân hàng | 40 |
-| &nbsp;&nbsp;&nbsp;&nbsp;5.2.2 Hướng nghiên cứu và phát triển tiếp theo | 41 |
-| **TÀI LIỆU THAM KHẢO** | **42** |
-| &nbsp;&nbsp;&nbsp;&nbsp;I. Tiếng Việt | 42 |
-| &nbsp;&nbsp;&nbsp;&nbsp;II. Tiếng Anh | 43 |
-| **PHỤ LỤC** | **46** |
-| &nbsp;&nbsp;&nbsp;&nbsp;Phụ lục 1: Sơ đồ chi tiết luồng xử lý dữ liệu Lakehouse Medallion | 46 |
-| &nbsp;&nbsp;&nbsp;&nbsp;Phụ lục 2: Kho lưu trữ mã nguồn GitHub và Hướng dẫn thực nghiệm | 47 |
+<div class="academic-toc">
+<div class="toc-head-row">
+  <span></span>
+  <span class="toc-head-right">Trang</span>
+</div>
+
+<div class="toc-item front-matter">
+  <span class="toc-label">Trang phụ bìa</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page"></span>
+</div>
+<div class="toc-item front-matter">
+  <span class="toc-label">Lời cảm ơn</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">ii</span>
+</div>
+<div class="toc-item front-matter">
+  <span class="toc-label">Lời cam đoan</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">iii</span>
+</div>
+<div class="toc-item front-matter">
+  <span class="toc-label">Tóm lược</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">iv</span>
+</div>
+<div class="toc-item front-matter">
+  <span class="toc-label">Mục lục</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">v</span>
+</div>
+<div class="toc-item front-matter">
+  <span class="toc-label">Danh sách các từ viết tắt</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">vi</span>
+</div>
+<div class="toc-item front-matter">
+  <span class="toc-label">Danh sách bảng</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">vii</span>
+</div>
+<div class="toc-item front-matter">
+  <span class="toc-label">Danh sách hình</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">viii</span>
+</div>
+
+<div class="toc-item chapter-row">
+  <span class="toc-label">CHƯƠNG 1: GIỚI THIỆU</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">1</span>
+</div>
+<div class="toc-item sub-1">
+  <span class="toc-label">1.1 Đặt vấn đề và Lý do chọn đề tài</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">1</span>
+</div>
+<div class="toc-item sub-1">
+  <span class="toc-label">1.2 Mục tiêu nghiên cứu</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">2</span>
+</div>
+<div class="toc-item sub-2">
+  <span class="toc-label">1.2.1 Mục tiêu tổng quát</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">2</span>
+</div>
+<div class="toc-item sub-2">
+  <span class="toc-label">1.2.2 Mục tiêu cụ thể</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">2</span>
+</div>
+<div class="toc-item sub-1">
+  <span class="toc-label">1.3 Nội dung nghiên cứu</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">3</span>
+</div>
+<div class="toc-item sub-1">
+  <span class="toc-label">1.4 Đối tượng và phạm vi nghiên cứu</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">3</span>
+</div>
+<div class="toc-item sub-2">
+  <span class="toc-label">1.4.1 Đối tượng nghiên cứu</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">3</span>
+</div>
+<div class="toc-item sub-2">
+  <span class="toc-label">1.4.2 Phạm vi nghiên cứu</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">3</span>
+</div>
+<div class="toc-item sub-1">
+  <span class="toc-label">1.5 Ý nghĩa khoa học và thực tiễn của đề tài</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">4</span>
+</div>
+<div class="toc-item sub-2">
+  <span class="toc-label">1.5.1 Ý nghĩa khoa học</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">4</span>
+</div>
+<div class="toc-item sub-2">
+  <span class="toc-label">1.5.2 Ý nghĩa thực tiễn</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">4</span>
+</div>
+<div class="toc-item sub-1">
+  <span class="toc-label">1.6 Phân tích đặc tính Dữ liệu lớn theo mô hình 5Vs</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">5</span>
+</div>
+
+<div class="toc-item chapter-row">
+  <span class="toc-label">CHƯƠNG 2: LƯỢC KHẢO TÀI LIỆU</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">7</span>
+</div>
+<div class="toc-item sub-1">
+  <span class="toc-label">2.1 Tổng quan về rủi ro tín dụng và phương pháp thẩm định truyền thống</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">7</span>
+</div>
+<div class="toc-item sub-2">
+  <span class="toc-label">2.1.1 Bản chất kinh tế của rủi ro tín dụng và biến cố vỡ nợ</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">7</span>
+</div>
+<div class="toc-item sub-2">
+  <span class="toc-label">2.1.2 Các hạn chế của phương pháp thẩm định truyền thống</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">8</span>
+</div>
+<div class="toc-item sub-1">
+  <span class="toc-label">2.2 Cơ sở lý thuyết về Kiến trúc Hồ dữ liệu Databricks Lakehouse</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">9</span>
+</div>
+<div class="toc-item sub-2">
+  <span class="toc-label">2.2.1 Sự tiến hóa từ Data Warehouse đến Lakehouse</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">9</span>
+</div>
+<div class="toc-item sub-2">
+  <span class="toc-label">2.2.2 Định dạng lưu trữ phân tán Delta Lake và Apache Spark</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">10</span>
+</div>
+<div class="toc-item sub-1">
+  <span class="toc-label">2.3 Thiết kế kiến trúc phân tầng Medallion trong định chế tài chính</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">11</span>
+</div>
+<div class="toc-item sub-2">
+  <span class="toc-label">2.3.1 Phân định chức năng ba tầng Bronze, Silver và Gold</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">11</span>
+</div>
+<div class="toc-item sub-2">
+  <span class="toc-label">2.3.2 Sơ đồ luồng xử lý dữ liệu phân tán toàn diện</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">12</span>
+</div>
+<div class="toc-item sub-1">
+  <span class="toc-label">2.4 Khung quản trị dữ liệu và Chuẩn mực an toàn vốn Basel II/III</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">13</span>
+</div>
+<div class="toc-item sub-2">
+  <span class="toc-label">2.4.1 Tổng quan các nghiên cứu thực nghiệm trong và ngoài nước</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">13</span>
+</div>
+<div class="toc-item sub-2">
+  <span class="toc-label">2.4.2 Yêu cầu tuân thủ an toàn vốn theo chuẩn Basel II/III</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">14</span>
+</div>
+
+<div class="toc-item chapter-row">
+  <span class="toc-label">CHƯƠNG 3: PHƯƠNG PHÁP NGHIÊN CỨU</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">16</span>
+</div>
+<div class="toc-item sub-1">
+  <span class="toc-label">3.1 Phương tiện nghiên cứu</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">16</span>
+</div>
+<div class="toc-item sub-2">
+  <span class="toc-label">3.1.1 Bộ dữ liệu lớn LendingClub quy mô 2.26 triệu hồ sơ</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">16</span>
+</div>
+<div class="toc-item sub-2">
+  <span class="toc-label">3.1.2 Nền tảng hạ tầng tính toán Databricks Serverless</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">18</span>
+</div>
+<div class="toc-item sub-1">
+  <span class="toc-label">3.2 Phương pháp nghiên cứu</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">18</span>
+</div>
+<div class="toc-item sub-2">
+  <span class="toc-label">3.2.1 Quy trình thu thập và nạp dữ liệu thô Tầng Bronze</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">18</span>
+</div>
+<div class="toc-item sub-2">
+  <span class="toc-label">3.2.2 Phương pháp tiền xử lý và làm sạch dữ liệu Tầng Silver</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">19</span>
+</div>
+<div class="toc-item sub-2">
+  <span class="toc-label">3.2.3 Phương pháp kỹ nghệ đặc trưng tài chính (DTI, CBI)</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">20</span>
+</div>
+<div class="toc-item sub-2">
+  <span class="toc-label">3.2.4 Phương pháp phân tích khám phá dữ liệu bằng Spark SQL</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">21</span>
+</div>
+<div class="toc-item sub-2">
+  <span class="toc-label">3.2.5 Thiết kế chuỗi Pipeline học máy phân tán Spark MLlib</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">22</span>
+</div>
+<div class="toc-item sub-2">
+  <span class="toc-label">3.2.6 Thuật toán phân loại Random Forest Classifier</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">23</span>
+</div>
+<div class="toc-item sub-2">
+  <span class="toc-label">3.2.7 Phương pháp kiểm định chéo và tối ưu hóa siêu tham số</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">24</span>
+</div>
+<div class="toc-item sub-2">
+  <span class="toc-label">3.2.8 Phương pháp đánh giá mô hình và xác lập ngưỡng cắt rủi ro</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">25</span>
+</div>
+
+<div class="toc-item chapter-row">
+  <span class="toc-label">CHƯƠNG 4: KẾT QUẢ VÀ THẢO LUẬN</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">26</span>
+</div>
+<div class="toc-item sub-1">
+  <span class="toc-label">4.1 Kết quả tiền xử lý và phân tích khám phá dữ liệu lớn</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">26</span>
+</div>
+<div class="toc-item sub-2">
+  <span class="toc-label">4.1.1 Hiện trạng dữ liệu khuyết thiếu Tầng Bronze</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">26</span>
+</div>
+<div class="toc-item sub-2">
+  <span class="toc-label">4.1.2 Mối quan hệ giữa mục đích vay và tỷ lệ nợ xấu thực tế</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">27</span>
+</div>
+<div class="toc-item sub-2">
+  <span class="toc-label">4.1.3 Mối tương quan giữa hạng khoản vay và tình trạng nhà ở</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">28</span>
+</div>
+<div class="toc-item sub-1">
+  <span class="toc-label">4.2 Kết quả huấn luyện và đánh giá mô hình học máy phân tán</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">29</span>
+</div>
+<div class="toc-item sub-2">
+  <span class="toc-label">4.2.1 Kết quả tối ưu hóa siêu tham số bằng CrossValidator</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">29</span>
+</div>
+<div class="toc-item sub-2">
+  <span class="toc-label">4.2.2 Đánh giá hiệu năng phân loại qua đường cong ROC</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">30</span>
+</div>
+<div class="toc-item sub-2">
+  <span class="toc-label">4.2.3 Đánh giá ma trận nhầm lẫn và các chỉ số đo lường</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">31</span>
+</div>
+<div class="toc-item sub-2">
+  <span class="toc-label">4.2.4 Phân tích mức độ quan trọng của các đặc trưng tài chính</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">32</span>
+</div>
+<div class="toc-item sub-1">
+  <span class="toc-label">4.3 Thảo luận và Đề xuất ứng dụng nghiệp vụ ngân hàng</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">33</span>
+</div>
+<div class="toc-item sub-2">
+  <span class="toc-label">4.3.1 Động cơ quy đổi điểm tín dụng FICO Score tiêu chuẩn</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">33</span>
+</div>
+<div class="toc-item sub-2">
+  <span class="toc-label">4.3.2 Ma trận phân tầng rủi ro và chính sách phê duyệt tự động</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">34</span>
+</div>
+<div class="toc-item sub-2">
+  <span class="toc-label">4.3.3 Mô hình định giá lãi suất theo rủi ro (Risk-Based Pricing)</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">35</span>
+</div>
+<div class="toc-item sub-2">
+  <span class="toc-label">4.3.4 Chính sách hạn mức linh hoạt và minh họa hồ sơ thực tế</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">36</span>
+</div>
+<div class="toc-item sub-2">
+  <span class="toc-label">4.3.5 Đánh giá tác động tài chính, tỷ lệ nợ xấu NPL và ROI</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">37</span>
+</div>
+
+<div class="toc-item chapter-row">
+  <span class="toc-label">CHƯƠNG 5: KẾT LUẬN VÀ KIẾN NGHỊ</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">39</span>
+</div>
+<div class="toc-item sub-1">
+  <span class="toc-label">5.1 Kết luận</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">39</span>
+</div>
+<div class="toc-item sub-1">
+  <span class="toc-label">5.2 Kiến nghị</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">40</span>
+</div>
+<div class="toc-item sub-2">
+  <span class="toc-label">5.2.1 Khuyến nghị quản trị chiến lược cho Ban Điều hành Ngân hàng</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">40</span>
+</div>
+<div class="toc-item sub-2">
+  <span class="toc-label">5.2.2 Hướng nghiên cứu và phát triển tiếp theo</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">41</span>
+</div>
+
+<div class="toc-item chapter-row">
+  <span class="toc-label">TÀI LIỆU THAM KHẢO</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">42</span>
+</div>
+<div class="toc-item sub-1">
+  <span class="toc-label">I. Tiếng Việt</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">42</span>
+</div>
+<div class="toc-item sub-1">
+  <span class="toc-label">II. Tiếng Anh</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">43</span>
+</div>
+
+<div class="toc-item chapter-row">
+  <span class="toc-label">PHỤ LỤC</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">46</span>
+</div>
+<div class="toc-item sub-1">
+  <span class="toc-label">Phụ lục 1: Sơ đồ chi tiết luồng xử lý dữ liệu Lakehouse Medallion</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">46</span>
+</div>
+<div class="toc-item sub-1">
+  <span class="toc-label">Phụ lục 2: Kho lưu trữ mã nguồn GitHub và Hướng dẫn thực nghiệm</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">47</span>
+</div>
+</div>
 
 \newpage
 
@@ -222,24 +530,109 @@ Dựa trên xác suất vỡ nợ dự báo, đề tài xây dựng động cơ 
 
 ## DANH SÁCH BẢNG
 
-| Bảng | Tên bảng | Trang |
-| :---: | :--- | :---: |
-| **1.1** | Phân tích đặc tính Dữ liệu lớn (Big Data) theo mô hình 5Vs trong Đề tài Chấm điểm Tín dụng | 6 |
-| **2.1** | So sánh ưu nhược điểm giữa Data Warehouse, Data Lake và Databricks Lakehouse | 10 |
-| **2.2** | Phân định chức năng, nguyên tắc và công nghệ giữa 3 tầng kiến trúc Medallion | 12 |
-| **3.1** | Mô tả chi tiết 12 thuộc tính cốt lõi trong Bộ dữ liệu lớn LendingClub (2,260,701 bản ghi) | 17 |
-| **3.2** | Kế hoạch làm sạch và chuẩn hóa dữ liệu tại Tầng Silver | 20 |
-| **3.3** | Không gian tìm kiếm siêu tham số trong bộ tinh chỉnh ParamGridBuilder | 24 |
-| **4.1** | Thống kê tỷ lệ nợ xấu (NPL Rate) và quy mô tín dụng theo Mục đích sử dụng vốn | 27 |
-| **4.2** | Ma trận phân bố rủi ro theo Hạng khoản vay và Tình trạng sở hữu nhà ở | 28 |
-| **4.3** | Kết quả huấn luyện và tinh chỉnh siêu tham số mô hình Random Forest qua 3-Fold Cross-Validation | 29 |
-| **4.4** | Ma trận nhầm lẫn của mô hình Random Forest trên tập kiểm thử 452,140 hồ sơ | 31 |
-| **4.5** | Bảng tổng hợp các chỉ số đánh giá hiệu năng phân loại (Accuracy, Precision, Recall, F1, ROC-AUC) | 31 |
-| **4.6** | Xếp hạng mức độ quan trọng của các biến đặc trưng (Feature Importance Ranking) | 32 |
-| **4.7** | Bảng quy đổi Log-Odds từ xác suất vỡ nợ sang Thang điểm tín dụng FICO Score | 33 |
-| **4.8** | Ma trận Phê duyệt Tín dụng Tự động và Chính sách Hạn mức theo 4 Phân tầng Rủi ro | 34 |
-| **4.9** | Cấu thành chi phí lãi suất theo mô hình Risk-Based Pricing chuẩn mực ngân hàng | 35 |
-| **4.10** | Minh họa kết quả phê duyệt và giải ngân tự động trên 4 hồ sơ khách hàng thực tế tại Tầng Gold | 36 |
+<div class="academic-toc">
+<div class="toc-item table-head">
+  <span style="width: 75px; font-weight: bold;">Bảng</span>
+  <span style="flex-grow: 1; font-weight: bold;">Tên bảng</span>
+  <span style="min-width: 45px; text-align: right; font-weight: bold;">Trang</span>
+</div>
+<div class="toc-item">
+  <span style="width: 75px; font-weight: bold;">1.1</span>
+  <span class="toc-label">Phân tích đặc tính Dữ liệu lớn (Big Data) theo mô hình 5Vs trong Đề tài Chấm điểm Tín dụng</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">6</span>
+</div>
+<div class="toc-item">
+  <span style="width: 75px; font-weight: bold;">2.1</span>
+  <span class="toc-label">So sánh ưu nhược điểm giữa Data Warehouse, Data Lake và Databricks Lakehouse</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">10</span>
+</div>
+<div class="toc-item">
+  <span style="width: 75px; font-weight: bold;">2.2</span>
+  <span class="toc-label">Phân định chức năng, nguyên tắc và công nghệ giữa 3 tầng kiến trúc Medallion</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">12</span>
+</div>
+<div class="toc-item">
+  <span style="width: 75px; font-weight: bold;">3.1</span>
+  <span class="toc-label">Mô tả chi tiết 12 thuộc tính cốt lõi trong Bộ dữ liệu lớn LendingClub (2,260,701 bản ghi)</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">17</span>
+</div>
+<div class="toc-item">
+  <span style="width: 75px; font-weight: bold;">3.2</span>
+  <span class="toc-label">Kế hoạch làm sạch và chuẩn hóa dữ liệu tại Tầng Silver</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">20</span>
+</div>
+<div class="toc-item">
+  <span style="width: 75px; font-weight: bold;">3.3</span>
+  <span class="toc-label">Không gian tìm kiếm siêu tham số trong bộ tinh chỉnh ParamGridBuilder</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">24</span>
+</div>
+<div class="toc-item">
+  <span style="width: 75px; font-weight: bold;">4.1</span>
+  <span class="toc-label">Thống kê tỷ lệ nợ xấu (NPL Rate) và quy mô tín dụng theo Mục đích sử dụng vốn</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">27</span>
+</div>
+<div class="toc-item">
+  <span style="width: 75px; font-weight: bold;">4.2</span>
+  <span class="toc-label">Ma trận phân bố rủi ro theo Hạng khoản vay và Tình trạng sở hữu nhà ở</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">28</span>
+</div>
+<div class="toc-item">
+  <span style="width: 75px; font-weight: bold;">4.3</span>
+  <span class="toc-label">Kết quả huấn luyện và tinh chỉnh siêu tham số mô hình Random Forest qua 3-Fold Cross-Validation</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">29</span>
+</div>
+<div class="toc-item">
+  <span style="width: 75px; font-weight: bold;">4.4</span>
+  <span class="toc-label">Ma trận nhầm lẫn của mô hình Random Forest trên tập kiểm thử 452,140 hồ sơ</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">31</span>
+</div>
+<div class="toc-item">
+  <span style="width: 75px; font-weight: bold;">4.5</span>
+  <span class="toc-label">Bảng tổng hợp các chỉ số đánh giá hiệu năng phân loại (Accuracy, Precision, Recall, F1, ROC-AUC)</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">31</span>
+</div>
+<div class="toc-item">
+  <span style="width: 75px; font-weight: bold;">4.6</span>
+  <span class="toc-label">Xếp hạng mức độ quan trọng của các biến đặc trưng (Feature Importance Ranking)</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">32</span>
+</div>
+<div class="toc-item">
+  <span style="width: 75px; font-weight: bold;">4.7</span>
+  <span class="toc-label">Bảng quy đổi Log-Odds từ xác suất vỡ nợ sang Thang điểm tín dụng FICO Score</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">33</span>
+</div>
+<div class="toc-item">
+  <span style="width: 75px; font-weight: bold;">4.8</span>
+  <span class="toc-label">Ma trận Phê duyệt Tín dụng Tự động và Chính sách Hạn mức theo 4 Phân tầng Rủi ro</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">34</span>
+</div>
+<div class="toc-item">
+  <span style="width: 75px; font-weight: bold;">4.9</span>
+  <span class="toc-label">Cấu thành chi phí lãi suất theo mô hình Risk-Based Pricing chuẩn mực ngân hàng</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">35</span>
+</div>
+<div class="toc-item">
+  <span style="width: 75px; font-weight: bold;">4.10</span>
+  <span class="toc-label">Minh họa kết quả phê duyệt và giải ngân tự động trên 4 hồ sơ khách hàng thực tế tại Tầng Gold</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">36</span>
+</div>
+</div>
 
 \newpage
 
@@ -247,11 +640,46 @@ Dựa trên xác suất vỡ nợ dự báo, đề tài xây dựng động cơ 
 
 ## DANH SÁCH HÌNH
 
-| Hình | Tên hình | Trang |
-| :---: | :--- | :---: |
-| **2.1** | Sơ đồ kiến trúc xử lý luồng dữ liệu Lakehouse theo mô hình Huy chương Medallion | 13 |
-| **4.1** | Đánh giá tỷ lệ dữ liệu khuyết thiếu Tầng Bronze (Missing Values Analysis) | 26 |
-| **4.2** | Tỷ lệ nợ xấu NPL theo Mục đích vay và Tình trạng nhà ở Tầng Silver | 29 |
-| **4.3** | Đường cong ROC và so sánh hiệu năng các mô hình máy học (ROC-AUC = 0.8745) | 30 |
-| **4.4** | Ma trận nhầm lẫn (Confusion Matrix) của mô hình trên 452,140 hồ sơ kiểm thử | 31 |
-| **4.5** | Cơ cấu phân tầng rủi ro tín dụng (Donut Chart) và Quyết định phê duyệt tự động (Bar Chart) | 35 |
+<div class="academic-toc">
+<div class="toc-item table-head">
+  <span style="width: 75px; font-weight: bold;">Hình</span>
+  <span style="flex-grow: 1; font-weight: bold;">Tên hình</span>
+  <span style="min-width: 45px; text-align: right; font-weight: bold;">Trang</span>
+</div>
+<div class="toc-item">
+  <span style="width: 75px; font-weight: bold;">2.1</span>
+  <span class="toc-label">Sơ đồ kiến trúc xử lý luồng dữ liệu Lakehouse theo mô hình Huy chương Medallion</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">13</span>
+</div>
+<div class="toc-item">
+  <span style="width: 75px; font-weight: bold;">4.1</span>
+  <span class="toc-label">Đánh giá tỷ lệ dữ liệu khuyết thiếu Tầng Bronze (Missing Values Analysis)</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">26</span>
+</div>
+<div class="toc-item">
+  <span style="width: 75px; font-weight: bold;">4.2</span>
+  <span class="toc-label">Tỷ lệ nợ xấu NPL theo Mục đích vay và Tình trạng nhà ở Tầng Silver</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">29</span>
+</div>
+<div class="toc-item">
+  <span style="width: 75px; font-weight: bold;">4.3</span>
+  <span class="toc-label">Đường cong ROC và so sánh hiệu năng các mô hình máy học (ROC-AUC = 0.8745)</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">30</span>
+</div>
+<div class="toc-item">
+  <span style="width: 75px; font-weight: bold;">4.4</span>
+  <span class="toc-label">Ma trận nhầm lẫn (Confusion Matrix) của mô hình trên 452,140 hồ sơ kiểm thử</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">31</span>
+</div>
+<div class="toc-item">
+  <span style="width: 75px; font-weight: bold;">4.5</span>
+  <span class="toc-label">Cơ cấu phân tầng rủi ro tín dụng (Donut Chart) và Quyết định phê duyệt tự động (Bar Chart)</span>
+  <span class="toc-dots"></span>
+  <span class="toc-page">35</span>
+</div>
+</div>
