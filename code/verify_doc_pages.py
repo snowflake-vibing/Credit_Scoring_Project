@@ -17,7 +17,7 @@ chart_map = {
     '03_CHUONG_3_PHUONG_PHAP_NGHIEN_CUU.md': '3 Bảng biểu (Bảng 3.1, 3.2, 3.3)',
     '04_CHUONG_4_KET_QUA_VA_THAO_LUAN.md': '4 Hình (4.1 -> 4.5) + 10 Bảng biểu',
     '05_CHUONG_5_KET_LUAN_VA_KIEN_NGHI.md': 'Kết luận & Khuyến nghị chính sách',
-    '06_TAI_LIEU_THAM_KHAO.md': '52 Tài liệu tham khảo (Việt & Anh)',
+    '06_TAI_LIEU_THAM_KHAO.md': '31 Tài liệu tham khảo (trích dẫn 1-1)',
     '07_PHU_LUC.md': 'Sơ đồ luồng & Mã nguồn GitHub'
 }
 

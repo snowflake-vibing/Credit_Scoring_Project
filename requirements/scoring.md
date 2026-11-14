@@ -3,8 +3,10 @@
 
 ---
 
-> **Môn học:** Dữ Liệu Lớn & Trí Tuệ Nhân Tạo Trong Kinh Doanh (Big Data Analytics & AI)  
+> **Môn học:** Dữ liệu lớn (Big Data Analytics & AI) - Chương trình Samsung Innovation Campus (SIC) - UFM  
 > **Nền tảng thực thi:** Databricks Community / Serverless Edition (PySpark, Spark SQL, Spark MLlib, Delta Lake)  
+> **Kho lưu trữ Databricks:** [Databricks Cloud Workspace](https://dbc-4d46c653-6b7e.cloud.databricks.com/browse/folders/907137357494385?o=7474645074756875)  
+> **Kho lưu trữ GitHub:** [github.com/snowflake-vibing/Credit_Scoring_Project](https://github.com/snowflake-vibing/Credit_Scoring_Project)  
 
 ---
 

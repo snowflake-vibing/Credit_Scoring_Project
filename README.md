@@ -7,12 +7,15 @@
 [![Dataset: LendingClub](https://img.shields.io/badge/Dataset-LendingClub%20%282.26M%20Rows%29-blue)](https://www.kaggle.com/datasets/wordsforthewise/lending-club)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-> **Môn học:** Dữ Liệu Lớn & Trí Tuệ Nhân Tạo Trong Kinh Doanh (Big Data Analytics & AI)  
+> **Trường đại học:** Trường Đại học Tài chính - Marketing (UFM)  
+> **Chương trình:** Samsung Innovation Campus (SIC)  
+> **Môn học:** Dữ liệu lớn (Big Data Analytics & AI) - Báo cáo Capstone Project  
 > **Sinh viên thực hiện:** Lê Thành Hiệu  
 > **Giảng viên hướng dẫn:** TS. Trần Mạnh Tường  
 > **Bộ dữ liệu thực nghiệm:** LendingClub Complete Loan Dataset (2,260,701 khoản vay, 1.6 GB)  
 > **Nền tảng thực thi:** Databricks Serverless Cloud Platform (PySpark, Spark SQL, Spark MLlib, Delta Lake)  
-> **Không gian làm việc Databricks:** [Databricks Cloud Workspace](https://dbc-4d46c653-6b7e.cloud.databricks.com/browse/folders/907137357494385?o=7474645074756875)
+> **Không gian làm việc Databricks:** [Databricks Cloud Workspace](https://dbc-4d46c653-6b7e.cloud.databricks.com/browse/folders/907137357494385?o=7474645074756875)  
+> **Kho lưu trữ GitHub:** [github.com/snowflake-vibing/Credit_Scoring_Project](https://github.com/snowflake-vibing/Credit_Scoring_Project)
 
 ---
 
