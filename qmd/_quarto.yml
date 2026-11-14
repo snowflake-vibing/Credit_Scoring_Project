@@ -5,10 +5,6 @@ project:
 book:
   title: "Đề Tài 7: Mô Hình Chấm Điểm Tín Dụng & Thẩm Định Rủi Ro Vỡ NỢ"
   subtitle: "Báo Cáo Tiểu Luận Kết Thúc Học Phần (Capstone Project) - Môn Dữ Liệu Lớn (Big Data) - Samsung Innovation Campus (SIC) - UFM"
-  author:
-    - name: "Lê Thành Hiệu"
-      affiliation: "Trường Đại học Tài chính - Marketing (UFM)"
-  date: "2026"
   search: true
   page-navigation: true
   chapters:

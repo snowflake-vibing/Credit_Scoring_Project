@@ -1029,10 +1029,6 @@ with open("qmd/05_CHUONG_5_KHUYEN_NGHI.qmd", "w", encoding="utf-8") as f:
 monolithic_yaml = """---
 title: "BÁO CÁO TIỂU LUẬN KẾT THÚC HỌC PHẦN"
 subtitle: "MÔ HÌNH CHẤM ĐIỂM TÍN DỤNG VÀ THẨM ĐỊNH RỦI RO VỠ NỢ TRONG LĨNH VỰC NGÂN HÀNG VÀ FINTECH"
-author:
-  - name: "Lê Thành Hiệu"
-    affiliation: "Trường Đại học Tài chính - Marketing (UFM)"
-date: "2026"
 format:
   html:
     toc: true
@@ -1102,10 +1098,6 @@ quarto_yml = """project:
 book:
   title: "Đề Tài 7: Mô Hình Chấm Điểm Tín Dụng & Thẩm Định Rủi Ro Vỡ NỢ"
   subtitle: "Báo Cáo Tiểu Luận Kết Thúc Học Phần (Capstone Project) - Môn Dữ Liệu Lớn (Big Data) - Samsung Innovation Campus (SIC) - UFM"
-  author:
-    - name: "Lê Thành Hiệu"
-      affiliation: "Trường Đại học Tài chính - Marketing (UFM)"
-  date: "2026"
   search: true
   page-navigation: true
   chapters:

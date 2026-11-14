@@ -145,12 +145,17 @@ body {
 }
 
 /* ==============================================================================
-   HEADER & FOOTER (ĐÃ ẨN THEO YÊU CẦU NGƯỜI DÙNG)
+   HEADER & FOOTER & METADATA (ĐÃ ẨN THEO YÊU CẦU NGƯỜI DÙNG)
    ============================================================================== */
 .academic-header-bar,
 .academic-footer-bar,
 .nav-page-footer,
-.page-footer {
+.page-footer,
+.quarto-title-meta,
+.quarto-title-meta-author,
+.quarto-title-meta-contents,
+.quarto-title-meta-heading,
+.quarto-title-block .quarto-title-meta {
   display: none !important;
 }
 
