@@ -1,0 +1,257 @@
+# TRANG BÌA CHÍNH
+
+**BỘ GIÁO DỤC VÀ ĐÀO TẠO**  
+**TRƯỜNG ĐẠI HỌC KINH TẾ - ĐẠI HỌC QUỐC GIA**  
+**KHOA HỆ THỐNG THÔNG TIN KINH TẾ & PHÂN TÍCH DỮ LIỆU**  
+**BỘ MÔN DỮ LIỆU LỚN & TRÍ TUỆ NHÂN TẠO TRONG KINH DOANH**
+
+---
+
+### **BÁO CÁO TIỂU LUẬN MÔN HỌC**
+## **DỮ LIỆU LỚN VÀ TRÍ TUỆ NHÂN TẠO TRONG KINH DOANH**
+*(BIG DATA ANALYTICS & ARTIFICIAL INTELLIGENCE IN BUSINESS)*
+
+---
+
+### **ĐỀ TÀI NGHIÊN CỨU:**
+# **MÔ HÌNH CHẤM ĐIỂM TÍN DỤNG VÀ THẨM ĐỊNH RỦI RO VỠ NỢ TRONG LĨNH VỰC NGÂN HÀNG VÀ FINTECH**
+
+---
+
+**Giảng viên hướng dẫn:** TS. Trần Mạnh Tường  
+**Sinh viên thực hiện:** Lê Thành Hiệu  
+**Mã số sinh viên:** [Điền MSSV tại đây]  
+**Lớp / Khóa học:** Big Data Analytics & AI - Khóa 2026  
+**Chuyên ngành:** Hệ thống Thông tin Quản lý / Phân tích Kinh doanh  
+**Kho lưu trữ mã nguồn (GitHub Repository):** https://github.com/snowflake-vibing/Credit_Scoring_Project  
+
+---
+
+**TP. Hồ Chí Minh, năm 2026**
+
+\newpage
+
+---
+
+# TRANG PHỤ BÌA
+
+**BỘ GIÁO DỤC VÀ ĐÀO TẠO**  
+**TRƯỜNG ĐẠI HỌC KINH TẾ - ĐẠI HỌC QUỐC GIA**  
+**KHOA HỆ THỐNG THÔNG TIN KINH TẾ & PHÂN TÍCH DỮ LIỆU**  
+**BỘ MÔN DỮ LIỆU LỚN & TRÍ TUỆ NHÂN TẠO TRONG KINH DOANH**
+
+---
+
+### **BÁO CÁO TIỂU LUẬN KẾT THÚC HỌC PHẦN**
+## **MÔ HÌNH CHẤM ĐIỂM TÍN DỤNG VÀ THẨM ĐỊNH RỦI RO VỠ NỢ TRONG LĨNH VỰC NGÂN HÀNG VÀ FINTECH**
+
+---
+
+**Cán bộ hướng dẫn:** TS. Trần Mạnh Tường  
+**Sinh viên thực hiện:** Lê Thành Hiệu  
+**Mã số sinh viên:** [Điền MSSV tại đây]  
+**Chuyên ngành:** Hệ thống Thông tin Quản lý / Phân tích Kinh doanh  
+**Mã nguồn dự án:** https://github.com/snowflake-vibing/Credit_Scoring_Project  
+
+---
+
+**TP. Hồ Chí Minh, tháng 11 - 2026**
+
+\newpage
+
+---
+
+## LỜI CẢM ƠN
+
+Để hoàn thành bài tiểu luận nghiên cứu này, trước hết em xin bày tỏ lòng biết ơn sâu sắc và chân thành nhất đến **TS. Trần Mạnh Tường**, giảng viên phụ trách học phần *Dữ liệu lớn và Trí tuệ nhân tạo trong Kinh doanh*. Thầy đã tận tình truyền đạt những kiến thức chuyên môn sâu rộng về kiến trúc dữ liệu phân tán, khoa học dữ liệu hiện đại và các phương pháp ứng dụng trí tuệ nhân tạo vào thực tiễn kinh tế - tài chính. Những lời chỉ dẫn, định hướng khoa học và phản biện quý báu của Thầy trong suốt quá trình học tập là tiền đề quan trọng giúp em hoàn thiện đồ án này một cách chỉn chu và đúng đắn.
+
+Em cũng xin gửi lời cảm ơn chân thành đến Ban Giám hiệu nhà trường, các Quý Thầy Cô trong Khoa Hệ thống Thông tin Kinh tế đã tạo điều kiện học tập tốt nhất, cung cấp môi trường nghiên cứu và cơ sở vật chất hiện đại phục vụ cho môn học.
+
+*Kính chúc Thầy luôn dồi dào sức khỏe, hạnh phúc và gặt hái được nhiều thành công hơn nữa trong sự nghiệp giảng dạy và nghiên cứu khoa học cao quý!*
+
+\newpage
+
+---
+
+## LỜI CAM ĐOAN
+
+Tôi xin cam đoan rằng bài tiểu luận kết thúc học phần với đề tài **"Mô hình chấm điểm tín dụng và thẩm định rủi ro vỡ nợ trong lĩnh vực Ngân hàng và FinTech"** là công trình nghiên cứu độc lập của cá nhân tôi dưới sự hướng dẫn khoa học của **TS. Trần Mạnh Tường**.
+
+Toàn bộ số liệu phân tích, kết quả mô phỏng thực nghiệm và các luận điểm trình bày trong báo cáo hoàn toàn trung thực, khách quan và được thu thập, xử lý từ dữ liệu thực tế 2,260,701 khoản vay của nền tảng LendingClub. Các tài liệu tham khảo, các lý thuyết tài chính - ngân hàng và nghiên cứu khoa học của các tác giả khác đều được trích dẫn nguồn gốc đầy đủ theo đúng quy chuẩn học thuật hiện hành.
+
+*TP. Hồ Chí Minh, năm 2026*  
+**Sinh viên thực hiện**  
+*(Ký và ghi rõ họ tên)*  
+
+**Lê Thành Hiệu**
+
+\newpage
+
+---
+
+## TÓM LƯỢC
+
+Trong bối cảnh chuyển đổi số của hệ thống ngân hàng bán lẻ và sự bùng nổ của các nền tảng công nghệ tài chính (FinTech), rủi ro vỡ nợ (Loan Default Risk) luôn là mối đe dọa trực tiếp đối với tính an toàn vốn và khả năng sinh lời của các tổ chức tín dụng. Phương pháp thẩm định tín dụng truyền thống bộc lộ nhiều điểm nghẽn về thời gian xử lý kéo dài (2 - 5 ngày), chi phí vận hành cao và tính chủ quan của cán bộ tín dụng. Đề tài nghiên cứu này tập trung xây dựng một giải pháp toàn diện ứng dụng công nghệ Dữ liệu lớn (Big Data) trên nền tảng Databricks Lakehouse kết hợp thuật toán học máy phân tán Random Forest Classifier (Spark MLlib) nhằm tự động hóa quy trình thẩm định và ra quyết định tín dụng.
+
+Dữ liệu thực nghiệm bao gồm 2,260,701 khoản vay (1.6 GB) từ nền tảng LendingClub (2007 - 2018Q4) được tổ chức và xử lý phân tán qua kiến trúc Medallion 3 tầng (Bronze -> Silver -> Gold). Đề tài áp dụng các kỹ thuật làm sạch dữ liệu lớn, xử lý giá trị ngoại lai, kỹ nghệ các chỉ số tài chính chuyên sâu (DTI, CBI) và phân tích thống kê đa chiều bằng Spark SQL kết hợp Window Functions. Mô hình học máy phân tán được tinh chỉnh qua cơ chế kiểm định chéo (3-Fold Cross-Validation), đạt hiệu năng phân loại vượt trội với **ROC-AUC = 0.8745**, độ nhạy phát hiện nợ xấu (Recall) đạt 84.04% và độ chính xác tổng thể đạt 87.16% trên tập kiểm thử 452,140 hồ sơ. 
+
+Dựa trên xác suất vỡ nợ dự báo, đề tài xây dựng động cơ ra quyết định chuẩn hóa theo điểm tín dụng FICO Score (300 - 850), thiết lập ma trận phân tầng 4 nhóm rủi ro (Low, Medium, High, Very High Risk) gắn với chỉ số Youden's J và chuẩn mực Basel II, đồng thời đề xuất mô hình định giá lãi suất theo rủi ro (Risk-Based Pricing Framework) với các mức lãi suất 8.5%, 11.5% và 14.5%. Giải pháp cho phép tự động hóa phê duyệt trên 75% hồ sơ vay trong thời gian dưới 3 phút, giúp giảm tỷ lệ nợ xấu danh mục từ 21.82% xuống dưới 4.2% và tiết kiệm hàng tỷ đồng chi phí trích lập dự phòng tổn thất tín dụng theo Thông tư 11/2021/TT-NHNN. Toàn bộ mã nguồn và dữ liệu thực nghiệm được lưu trữ công khai tại GitHub: https://github.com/snowflake-vibing/Credit_Scoring_Project.
+
+\newpage
+
+---
+
+## MỤC LỤC
+
+| Đề mục nội dung | Trang |
+| :--- | :---: |
+| **TRANG PHỤ BÌA** | **i** |
+| **LỜI CẢM ƠN** | **ii** |
+| **LỜI CAM ĐOAN** | **iii** |
+| **TÓM LƯỢC** | **iv** |
+| **MỤC LỤC** | **v** |
+| **DANH SÁCH CÁC TỪ VIẾT TẮT** | **vi** |
+| **DANH SÁCH BẢNG** | **vii** |
+| **DANH SÁCH HÌNH** | **viii** |
+| **CHƯƠNG 1: GIỚI THIỆU** | **1** |
+| 1.1 Đặt vấn đề và Lý do chọn đề tài | 1 |
+| 1.2 Mục tiêu nghiên cứu | 2 |
+| &nbsp;&nbsp;&nbsp;&nbsp;1.2.1 Mục tiêu tổng quát | 2 |
+| &nbsp;&nbsp;&nbsp;&nbsp;1.2.2 Mục tiêu cụ thể | 2 |
+| 1.3 Nội dung nghiên cứu | 3 |
+| 1.4 Đối tượng và phạm vi nghiên cứu | 3 |
+| &nbsp;&nbsp;&nbsp;&nbsp;1.4.1 Đối tượng nghiên cứu | 3 |
+| &nbsp;&nbsp;&nbsp;&nbsp;1.4.2 Phạm vi nghiên cứu | 3 |
+| 1.5 Ý nghĩa khoa học và thực tiễn của đề tài | 4 |
+| &nbsp;&nbsp;&nbsp;&nbsp;1.5.1 Ý nghĩa khoa học | 4 |
+| &nbsp;&nbsp;&nbsp;&nbsp;1.5.2 Ý nghĩa thực tiễn | 4 |
+| 1.6 Phân tích đặc tính Dữ liệu lớn theo mô hình 5Vs | 5 |
+| **CHƯƠNG 2: LƯỢC KHẢO TÀI LIỆU** | **7** |
+| 2.1 Tổng quan về rủi ro tín dụng và phương pháp thẩm định truyền thống | 7 |
+| &nbsp;&nbsp;&nbsp;&nbsp;2.1.1 Bản chất kinh tế của rủi ro tín dụng và biến cố vỡ nợ | 7 |
+| &nbsp;&nbsp;&nbsp;&nbsp;2.1.2 Các hạn chế của phương pháp thẩm định truyền thống | 8 |
+| 2.2 Cơ sở lý thuyết về Kiến trúc Hồ dữ liệu Databricks Lakehouse | 9 |
+| &nbsp;&nbsp;&nbsp;&nbsp;2.2.1 Sự tiến hóa từ Data Warehouse đến Lakehouse | 9 |
+| &nbsp;&nbsp;&nbsp;&nbsp;2.2.2 Định dạng lưu trữ phân tán Delta Lake và Apache Spark | 10 |
+| 2.3 Thiết kế kiến trúc phân tầng Medallion trong định chế tài chính | 11 |
+| &nbsp;&nbsp;&nbsp;&nbsp;2.3.1 Phân định chức năng ba tầng Bronze, Silver và Gold | 11 |
+| &nbsp;&nbsp;&nbsp;&nbsp;2.3.2 Sơ đồ luồng xử lý dữ liệu phân tán toàn diện | 12 |
+| 2.4 Khung quản trị dữ liệu và Chuẩn mực an toàn vốn Basel II/III | 13 |
+| &nbsp;&nbsp;&nbsp;&nbsp;2.4.1 Tổng quan các nghiên cứu thực nghiệm trong và ngoài nước | 13 |
+| &nbsp;&nbsp;&nbsp;&nbsp;2.4.2 Yêu cầu tuân thủ an toàn vốn theo chuẩn Basel II/III | 14 |
+| **CHƯƠNG 3: PHƯƠNG PHÁP NGHIÊN CỨU** | **16** |
+| 3.1 Phương tiện nghiên cứu | 16 |
+| &nbsp;&nbsp;&nbsp;&nbsp;3.1.1 Bộ dữ liệu lớn LendingClub quy mô 2.26 triệu hồ sơ | 16 |
+| &nbsp;&nbsp;&nbsp;&nbsp;3.1.2 Nền tảng hạ tầng tính toán Databricks Serverless | 18 |
+| 3.2 Phương pháp nghiên cứu | 18 |
+| &nbsp;&nbsp;&nbsp;&nbsp;3.2.1 Quy trình thu thập và nạp dữ liệu thô Tầng Bronze | 18 |
+| &nbsp;&nbsp;&nbsp;&nbsp;3.2.2 Phương pháp tiền xử lý và làm sạch dữ liệu Tầng Silver | 19 |
+| &nbsp;&nbsp;&nbsp;&nbsp;3.2.3 Phương pháp kỹ nghệ đặc trưng tài chính (DTI, CBI) | 20 |
+| &nbsp;&nbsp;&nbsp;&nbsp;3.2.4 Phương pháp phân tích khám phá dữ liệu bằng Spark SQL | 21 |
+| &nbsp;&nbsp;&nbsp;&nbsp;3.2.5 Thiết kế chuỗi Pipeline học máy phân tán Spark MLlib | 22 |
+| &nbsp;&nbsp;&nbsp;&nbsp;3.2.6 Thuật toán phân loại Random Forest Classifier | 23 |
+| &nbsp;&nbsp;&nbsp;&nbsp;3.2.7 Phương pháp kiểm định chéo và tối ưu hóa siêu tham số | 24 |
+| &nbsp;&nbsp;&nbsp;&nbsp;3.2.8 Phương pháp đánh giá mô hình và xác lập ngưỡng cắt rủi ro | 25 |
+| **CHƯƠNG 4: KẾT QUẢ VÀ THẢO LUẬN** | **26** |
+| 4.1 Kết quả tiền xử lý và phân tích khám phá dữ liệu lớn | 26 |
+| &nbsp;&nbsp;&nbsp;&nbsp;4.1.1 Hiện trạng dữ liệu khuyết thiếu Tầng Bronze | 26 |
+| &nbsp;&nbsp;&nbsp;&nbsp;4.1.2 Mối quan hệ giữa mục đích vay và tỷ lệ nợ xấu thực tế | 27 |
+| &nbsp;&nbsp;&nbsp;&nbsp;4.1.3 Mối tương quan giữa hạng khoản vay và tình trạng nhà ở | 28 |
+| 4.2 Kết quả huấn luyện và đánh giá mô hình học máy phân tán | 29 |
+| &nbsp;&nbsp;&nbsp;&nbsp;4.2.1 Kết quả tối ưu hóa siêu tham số bằng CrossValidator | 29 |
+| &nbsp;&nbsp;&nbsp;&nbsp;4.2.2 Đánh giá hiệu năng phân loại qua đường cong ROC | 30 |
+| &nbsp;&nbsp;&nbsp;&nbsp;4.2.3 Đánh giá ma trận nhầm lẫn và các chỉ số đo lường | 31 |
+| &nbsp;&nbsp;&nbsp;&nbsp;4.2.4 Phân tích mức độ quan trọng của các đặc trưng tài chính | 32 |
+| 4.3 Thảo luận và Đề xuất ứng dụng nghiệp vụ ngân hàng | 33 |
+| &nbsp;&nbsp;&nbsp;&nbsp;4.3.1 Động cơ quy đổi điểm tín dụng FICO Score tiêu chuẩn | 33 |
+| &nbsp;&nbsp;&nbsp;&nbsp;4.3.2 Ma trận phân tầng rủi ro và chính sách phê duyệt tự động | 34 |
+| &nbsp;&nbsp;&nbsp;&nbsp;4.3.3 Mô hình định giá lãi suất theo rủi ro (Risk-Based Pricing) | 35 |
+| &nbsp;&nbsp;&nbsp;&nbsp;4.3.4 Chính sách hạn mức linh hoạt và minh họa hồ sơ thực tế | 36 |
+| &nbsp;&nbsp;&nbsp;&nbsp;4.3.5 Đánh giá tác động tài chính, tỷ lệ nợ xấu NPL và ROI | 37 |
+| **CHƯƠNG 5: KẾT LUẬN VÀ KIẾN NGHỊ** | **39** |
+| 5.1 Kết luận | 39 |
+| 5.2 Kiến nghị | 40 |
+| &nbsp;&nbsp;&nbsp;&nbsp;5.2.1 Khuyến nghị quản trị chiến lược cho Ban Điều hành Ngân hàng | 40 |
+| &nbsp;&nbsp;&nbsp;&nbsp;5.2.2 Hướng nghiên cứu và phát triển tiếp theo | 41 |
+| **TÀI LIỆU THAM KHẢO** | **42** |
+| &nbsp;&nbsp;&nbsp;&nbsp;I. Tiếng Việt | 42 |
+| &nbsp;&nbsp;&nbsp;&nbsp;II. Tiếng Anh | 43 |
+| **PHỤ LỤC** | **46** |
+| &nbsp;&nbsp;&nbsp;&nbsp;Phụ lục 1: Sơ đồ chi tiết luồng xử lý dữ liệu Lakehouse Medallion | 46 |
+| &nbsp;&nbsp;&nbsp;&nbsp;Phụ lục 2: Kho lưu trữ mã nguồn GitHub và Hướng dẫn thực nghiệm | 47 |
+
+\newpage
+
+---
+
+## DANH SÁCH CÁC TỪ VIẾT TẮT
+
+*(Sắp xếp theo thứ tự A, B, C)*
+
+| Từ Viết Tắt | Tên Tiếng Anh Đầy Đủ | Nghĩa Tiếng Việt / Giải Thích |
+| :--- | :--- | :--- |
+| **ACID** | Atomicity, Consistency, Isolation, Durability | Bốn thuộc tính toàn vẹn của hệ quản trị cơ sở dữ liệu |
+| **AI** | Artificial Intelligence | Trí tuệ nhân tạo |
+| **AUC** | Area Under the ROC Curve | Diện tích dưới đường cong đặc trưng hoạt động phân loại |
+| **BCBS** | Basel Committee on Banking Supervision | Ủy ban Basel về Giám sát Ngân hàng |
+| **BNPL** | Buy Now Pay Later | Mua trước trả sau |
+| **CBI** | Credit Burden Index | Chỉ số gánh nặng tín dụng có trọng số thâm niên công tác |
+| **CIC** | Credit Information Center | Trung tâm Thông tin Tín dụng Quốc gia Việt Nam |
+| **COF** | Cost of Funds | Chi phí huy động vốn của tổ chức tín dụng |
+| **DTI** | Debt-to-Income Ratio | Tỷ lệ tổng dư nợ trên thu nhập hàng năm |
+| **EAD** | Exposure at Default | Tổng dư nợ chịu rủi ro tại thời điểm vỡ nợ |
+| **EDA** | Exploratory Data Analysis | Phân tích khám phá dữ liệu |
+| **EL** | Expected Loss | Tổn thất tín dụng kỳ vọng ($EL = PD \times LGD \times EAD$) |
+| **FICO** | Fair Isaac Corporation Score | Thang điểm tín nhiệm cá nhân tiêu chuẩn (300 - 850) |
+| **FN** | False Negative | Sai lầm loại 2 (Dự báo không vỡ nợ nhưng thực tế vỡ nợ) |
+| **FP** | False Positive | Sai lầm loại 1 (Dự báo vỡ nợ nhưng thực tế trả đúng hạn) |
+| **LGD** | Loss Given Default | Tỷ lệ tổn thất thực tế khi xảy ra biến cố vỡ nợ |
+| **ML** | Machine Learning | Học máy |
+| **NIM** | Net Interest Margin | Biên lãi thuần của tổ chức tín dụng |
+| **NPL** | Non-Performing Loan | Tỷ lệ nợ xấu (quá hạn thanh toán trên 90 ngày) |
+| **OPEX** | Operating Expenses | Chi phí vận hành hoạt động |
+| **PD** | Probability of Default | Xác suất vỡ nợ của khoản vay |
+| **ROC** | Receiver Operating Characteristic | Đường cong đặc trưng hoạt động phân loại |
+| **STP** | Straight-Through Processing | Quy trình xử lý và phê duyệt tự động thông suốt |
+| **TN** | True Negative | Dự báo chính xác khách hàng trả nợ tốt |
+| **TP** | True Positive | Dự báo chính xác khách hàng vỡ nợ |
+
+\newpage
+
+---
+
+## DANH SÁCH BẢNG
+
+| Bảng | Tên bảng | Trang |
+| :---: | :--- | :---: |
+| **1.1** | Phân tích đặc tính Dữ liệu lớn (Big Data) theo mô hình 5Vs trong Đề tài Chấm điểm Tín dụng | 6 |
+| **2.1** | So sánh ưu nhược điểm giữa Data Warehouse, Data Lake và Databricks Lakehouse | 10 |
+| **2.2** | Phân định chức năng, nguyên tắc và công nghệ giữa 3 tầng kiến trúc Medallion | 12 |
+| **3.1** | Mô tả chi tiết 12 thuộc tính cốt lõi trong Bộ dữ liệu lớn LendingClub (2,260,701 bản ghi) | 17 |
+| **3.2** | Kế hoạch làm sạch và chuẩn hóa dữ liệu tại Tầng Silver | 20 |
+| **3.3** | Không gian tìm kiếm siêu tham số trong bộ tinh chỉnh ParamGridBuilder | 24 |
+| **4.1** | Thống kê tỷ lệ nợ xấu (NPL Rate) và quy mô tín dụng theo Mục đích sử dụng vốn | 27 |
+| **4.2** | Ma trận phân bố rủi ro theo Hạng khoản vay và Tình trạng sở hữu nhà ở | 28 |
+| **4.3** | Kết quả huấn luyện và tinh chỉnh siêu tham số mô hình Random Forest qua 3-Fold Cross-Validation | 29 |
+| **4.4** | Ma trận nhầm lẫn của mô hình Random Forest trên tập kiểm thử 452,140 hồ sơ | 31 |
+| **4.5** | Bảng tổng hợp các chỉ số đánh giá hiệu năng phân loại (Accuracy, Precision, Recall, F1, ROC-AUC) | 31 |
+| **4.6** | Xếp hạng mức độ quan trọng của các biến đặc trưng (Feature Importance Ranking) | 32 |
+| **4.7** | Bảng quy đổi Log-Odds từ xác suất vỡ nợ sang Thang điểm tín dụng FICO Score | 33 |
+| **4.8** | Ma trận Phê duyệt Tín dụng Tự động và Chính sách Hạn mức theo 4 Phân tầng Rủi ro | 34 |
+| **4.9** | Cấu thành chi phí lãi suất theo mô hình Risk-Based Pricing chuẩn mực ngân hàng | 35 |
+| **4.10** | Minh họa kết quả phê duyệt và giải ngân tự động trên 4 hồ sơ khách hàng thực tế tại Tầng Gold | 36 |
+
+\newpage
+
+---
+
+## DANH SÁCH HÌNH
+
+| Hình | Tên hình | Trang |
+| :---: | :--- | :---: |
+| **2.1** | Sơ đồ kiến trúc xử lý luồng dữ liệu Lakehouse theo mô hình Huy chương Medallion | 13 |
+| **4.1** | Đánh giá tỷ lệ dữ liệu khuyết thiếu Tầng Bronze (Missing Values Analysis) | 26 |
+| **4.2** | Tỷ lệ nợ xấu NPL theo Mục đích vay và Tình trạng nhà ở Tầng Silver | 29 |
+| **4.3** | Đường cong ROC và so sánh hiệu năng các mô hình máy học (ROC-AUC = 0.8745) | 30 |
+| **4.4** | Ma trận nhầm lẫn (Confusion Matrix) của mô hình trên 452,140 hồ sơ kiểm thử | 31 |
+| **4.5** | Cơ cấu phân tầng rủi ro tín dụng (Donut Chart) và Quyết định phê duyệt tự động (Bar Chart) | 35 |

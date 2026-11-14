@@ -120,89 +120,82 @@ Dựa trên xác suất vỡ nợ dự báo, đề tài xây dựng động cơ 
 
 ## MỤC LỤC
 
-Trang
-
-* Trang phụ bìa .................................................................................... i
-* Lời cảm ơn ........................................................................................ ii
-* Lời cam đoan ..................................................................................... iii
-* Tóm lược ........................................................................................... iv
-* Mục lục ............................................................................................. v
-* Danh sách các từ viết tắt .................................................................... vi
-* Danh sách bảng ................................................................................. vii
-* Danh sách hình .................................................................................. viii
-
-**CHƯƠNG 1: GIỚI THIỆU** ................................................................. 1
-* 1.1 Đặt vấn đề và Lý do chọn đề tài ................................................... 1
-* 1.2 Mục tiêu nghiên cứu ..................................................................... 2
-  * 1.2.1 Mục tiêu tổng quát ................................................................. 2
-  * 1.2.2 Mục tiêu cụ thể ..................................................................... 2
-* 1.3 Nội dung nghiên cứu .................................................................... 3
-* 1.4 Đối tượng và phạm vi nghiên cứu ................................................. 3
-  * 1.4.1 Đối tượng nghiên cứu ............................................................ 3
-  * 1.4.2 Phạm vi nghiên cứu ............................................................... 3
-* 1.5 Ý nghĩa khoa học và thực tiễn của đề tài ...................................... 4
-  * 1.5.1 Ý nghĩa khoa học ................................................................... 4
-  * 1.5.2 Ý nghĩa thực tiễn ................................................................... 4
-* 1.6 Phân tích đặc tính Dữ liệu lớn theo mô hình 5Vs ......................... 5
-
-**CHƯƠNG 2: LƯỢC KHẢO TÀI LIỆU** ............................................ 7
-* 2.1 Tổng quan về rủi ro tín dụng và phương pháp thẩm định truyền thống . 7
-  * 2.1.1 Bản chất kinh tế của rủi ro tín dụng và biến cố vỡ nợ ............ 7
-  * 2.1.2 Các hạn chế của phương pháp thẩm định truyền thống ........... 8
-* 2.2 Cơ sở lý thuyết về Kiến trúc Hồ dữ liệu Databricks Lakehouse ..... 9
-  * 2.2.1 Sự tiến hóa từ Data Warehouse đến Lakehouse ..................... 9
-  * 2.2.2 Định dạng lưu trữ phân tán Delta Lake và Apache Spark ....... 10
-* 2.3 Thiết kế kiến trúc phân tầng Medallion trong định chế tài chính ..... 11
-  * 2.3.1 Phân định chức năng ba tầng Bronze, Silver và Gold ............. 11
-  * 2.3.2 Sơ đồ luồng xử lý dữ liệu phân tán toàn diện ........................ 12
-* 2.4 Khung quản trị dữ liệu và Chuẩn mực an toàn vốn Basel II/III ........ 13
-  * 2.4.1 Tổng quan các nghiên cứu thực nghiệm trong và ngoài nước .... 13
-  * 2.4.2 Yêu cầu tuân thủ an toàn vốn theo chuẩn Basel II/III .............. 14
-
-**CHƯƠNG 3: PHƯƠNG PHÁP NGHIÊN CỨU** ................................... 16
-* 3.1 Phương tiện nghiên cứu ................................................................ 16
-  * 3.1.1 Bộ dữ liệu lớn LendingClub quy mô 2.26 triệu hồ sơ .............. 16
-  * 3.1.2 Nền tảng hạ tầng tính toán Databricks Serverless ................... 18
-* 3.2 Phương pháp nghiên cứu .............................................................. 18
-  * 3.2.1 Quy trình thu thập và nạp dữ liệu thô Tầng Bronze ................ 18
-  * 3.2.2 Phương pháp tiền xử lý và làm sạch dữ liệu Tầng Silver .......... 19
-  * 3.2.3 Phương pháp kỹ nghệ đặc trưng tài chính (DTI, CBI) ............ 20
-  * 3.2.4 Phương pháp phân tích khám phá dữ liệu bằng Spark SQL ...... 21
-  * 3.2.5 Thiết kế chuỗi Pipeline học máy phân tán Spark MLlib ......... 22
-  * 3.2.6 Thuật toán phân loại Random Forest Classifier ...................... 23
-  * 3.2.7 Phương pháp kiểm định chéo và tối ưu hóa siêu tham số ........ 24
-  * 3.2.8 Phương pháp đánh giá mô hình và xác lập ngưỡng cắt rủi ro ... 25
-
-**CHƯƠNG 4: KẾT QUẢ VÀ THẢO LUẬN** ....................................... 26
-* 4.1 Kết quả tiền xử lý và phân tích khám phá dữ liệu lớn .................... 26
-  * 4.1.1 Hiện trạng dữ liệu khuyết thiếu Tầng Bronze .......................... 26
-  * 4.1.2 Mối quan hệ giữa mục đích vay và tỷ lệ nợ xấu thực tế ......... 27
-  * 4.1.3 Mối tương quan giữa hạng khoản vay và tình trạng nhà ở ....... 28
-* 4.2 Kết quả huấn luyện và đánh giá mô hình học máy phân tán ........... 29
-  * 4.2.1 Kết quả tối ưu hóa siêu tham số bằng CrossValidator .............. 29
-  * 4.2.2 Đánh giá hiệu năng phân loại qua đường cong ROC ................ 30
-  * 4.2.3 Đánh giá ma trận nhầm lẫn và các chỉ số đo lường ................. 31
-  * 4.2.4 Phân tích mức độ quan trọng của các đặc trưng tài chính ........ 32
-* 4.3 Thảo luận và Đề xuất ứng dụng nghiệp vụ ngân hàng .................... 33
-  * 4.3.1 Động cơ quy đổi điểm tín dụng FICO Score tiêu chuẩn .......... 33
-  * 4.3.2 Ma trận phân tầng rủi ro và chính sách phê duyệt tự động ....... 34
-  * 4.3.3 Mô hình định giá lãi suất theo rủi ro (Risk-Based Pricing) ...... 35
-  * 4.3.4 Chính sách hạn mức linh hoạt và minh họa hồ sơ thực tế ........ 36
-  * 4.3.5 Đánh giá tác động tài chính, tỷ lệ nợ xấu NPL và ROI ............ 37
-
-**CHƯƠNG 5: KẾT LUẬN VÀ KIẾN NGHỊ** ....................................... 39
-* 5.1 Kết luận ........................................................................................ 39
-* 5.2 Kiến nghị ...................................................................................... 40
-  * 5.2.1 Khuyến nghị quản trị chiến lược cho Ban Điều hành Ngân hàng . 40
-  * 5.2.2 Hướng nghiên cứu và phát triển tiếp theo ............................... 41
-
-**TÀI LIỆU THAM KHẢO** ................................................................. 42
-* I. Tiếng Việt ....................................................................................... 42
-* II. Tiếng Anh ...................................................................................... 43
-
-**PHỤ LỤC** ........................................................................................ 46
-* Phụ lục 1: Sơ đồ chi tiết luồng xử lý dữ liệu Lakehouse Medallion ....... 46
-* Phụ lục 2: Kho lưu trữ mã nguồn GitHub và Hướng dẫn thực nghiệm .... 47
+| Đề mục nội dung | Trang |
+| :--- | :---: |
+| **TRANG PHỤ BÌA** | **i** |
+| **LỜI CẢM ƠN** | **ii** |
+| **LỜI CAM ĐOAN** | **iii** |
+| **TÓM LƯỢC** | **iv** |
+| **MỤC LỤC** | **v** |
+| **DANH SÁCH CÁC TỪ VIẾT TẮT** | **vi** |
+| **DANH SÁCH BẢNG** | **vii** |
+| **DANH SÁCH HÌNH** | **viii** |
+| **CHƯƠNG 1: GIỚI THIỆU** | **1** |
+| 1.1 Đặt vấn đề và Lý do chọn đề tài | 1 |
+| 1.2 Mục tiêu nghiên cứu | 2 |
+| &nbsp;&nbsp;&nbsp;&nbsp;1.2.1 Mục tiêu tổng quát | 2 |
+| &nbsp;&nbsp;&nbsp;&nbsp;1.2.2 Mục tiêu cụ thể | 2 |
+| 1.3 Nội dung nghiên cứu | 3 |
+| 1.4 Đối tượng và phạm vi nghiên cứu | 3 |
+| &nbsp;&nbsp;&nbsp;&nbsp;1.4.1 Đối tượng nghiên cứu | 3 |
+| &nbsp;&nbsp;&nbsp;&nbsp;1.4.2 Phạm vi nghiên cứu | 3 |
+| 1.5 Ý nghĩa khoa học và thực tiễn của đề tài | 4 |
+| &nbsp;&nbsp;&nbsp;&nbsp;1.5.1 Ý nghĩa khoa học | 4 |
+| &nbsp;&nbsp;&nbsp;&nbsp;1.5.2 Ý nghĩa thực tiễn | 4 |
+| 1.6 Phân tích đặc tính Dữ liệu lớn theo mô hình 5Vs | 5 |
+| **CHƯƠNG 2: LƯỢC KHẢO TÀI LIỆU** | **7** |
+| 2.1 Tổng quan về rủi ro tín dụng và phương pháp thẩm định truyền thống | 7 |
+| &nbsp;&nbsp;&nbsp;&nbsp;2.1.1 Bản chất kinh tế của rủi ro tín dụng và biến cố vỡ nợ | 7 |
+| &nbsp;&nbsp;&nbsp;&nbsp;2.1.2 Các hạn chế của phương pháp thẩm định truyền thống | 8 |
+| 2.2 Cơ sở lý thuyết về Kiến trúc Hồ dữ liệu Databricks Lakehouse | 9 |
+| &nbsp;&nbsp;&nbsp;&nbsp;2.2.1 Sự tiến hóa từ Data Warehouse đến Lakehouse | 9 |
+| &nbsp;&nbsp;&nbsp;&nbsp;2.2.2 Định dạng lưu trữ phân tán Delta Lake và Apache Spark | 10 |
+| 2.3 Thiết kế kiến trúc phân tầng Medallion trong định chế tài chính | 11 |
+| &nbsp;&nbsp;&nbsp;&nbsp;2.3.1 Phân định chức năng ba tầng Bronze, Silver và Gold | 11 |
+| &nbsp;&nbsp;&nbsp;&nbsp;2.3.2 Sơ đồ luồng xử lý dữ liệu phân tán toàn diện | 12 |
+| 2.4 Khung quản trị dữ liệu và Chuẩn mực an toàn vốn Basel II/III | 13 |
+| &nbsp;&nbsp;&nbsp;&nbsp;2.4.1 Tổng quan các nghiên cứu thực nghiệm trong và ngoài nước | 13 |
+| &nbsp;&nbsp;&nbsp;&nbsp;2.4.2 Yêu cầu tuân thủ an toàn vốn theo chuẩn Basel II/III | 14 |
+| **CHƯƠNG 3: PHƯƠNG PHÁP NGHIÊN CỨU** | **16** |
+| 3.1 Phương tiện nghiên cứu | 16 |
+| &nbsp;&nbsp;&nbsp;&nbsp;3.1.1 Bộ dữ liệu lớn LendingClub quy mô 2.26 triệu hồ sơ | 16 |
+| &nbsp;&nbsp;&nbsp;&nbsp;3.1.2 Nền tảng hạ tầng tính toán Databricks Serverless | 18 |
+| 3.2 Phương pháp nghiên cứu | 18 |
+| &nbsp;&nbsp;&nbsp;&nbsp;3.2.1 Quy trình thu thập và nạp dữ liệu thô Tầng Bronze | 18 |
+| &nbsp;&nbsp;&nbsp;&nbsp;3.2.2 Phương pháp tiền xử lý và làm sạch dữ liệu Tầng Silver | 19 |
+| &nbsp;&nbsp;&nbsp;&nbsp;3.2.3 Phương pháp kỹ nghệ đặc trưng tài chính (DTI, CBI) | 20 |
+| &nbsp;&nbsp;&nbsp;&nbsp;3.2.4 Phương pháp phân tích khám phá dữ liệu bằng Spark SQL | 21 |
+| &nbsp;&nbsp;&nbsp;&nbsp;3.2.5 Thiết kế chuỗi Pipeline học máy phân tán Spark MLlib | 22 |
+| &nbsp;&nbsp;&nbsp;&nbsp;3.2.6 Thuật toán phân loại Random Forest Classifier | 23 |
+| &nbsp;&nbsp;&nbsp;&nbsp;3.2.7 Phương pháp kiểm định chéo và tối ưu hóa siêu tham số | 24 |
+| &nbsp;&nbsp;&nbsp;&nbsp;3.2.8 Phương pháp đánh giá mô hình và xác lập ngưỡng cắt rủi ro | 25 |
+| **CHƯƠNG 4: KẾT QUẢ VÀ THẢO LUẬN** | **26** |
+| 4.1 Kết quả tiền xử lý và phân tích khám phá dữ liệu lớn | 26 |
+| &nbsp;&nbsp;&nbsp;&nbsp;4.1.1 Hiện trạng dữ liệu khuyết thiếu Tầng Bronze | 26 |
+| &nbsp;&nbsp;&nbsp;&nbsp;4.1.2 Mối quan hệ giữa mục đích vay và tỷ lệ nợ xấu thực tế | 27 |
+| &nbsp;&nbsp;&nbsp;&nbsp;4.1.3 Mối tương quan giữa hạng khoản vay và tình trạng nhà ở | 28 |
+| 4.2 Kết quả huấn luyện và đánh giá mô hình học máy phân tán | 29 |
+| &nbsp;&nbsp;&nbsp;&nbsp;4.2.1 Kết quả tối ưu hóa siêu tham số bằng CrossValidator | 29 |
+| &nbsp;&nbsp;&nbsp;&nbsp;4.2.2 Đánh giá hiệu năng phân loại qua đường cong ROC | 30 |
+| &nbsp;&nbsp;&nbsp;&nbsp;4.2.3 Đánh giá ma trận nhầm lẫn và các chỉ số đo lường | 31 |
+| &nbsp;&nbsp;&nbsp;&nbsp;4.2.4 Phân tích mức độ quan trọng của các đặc trưng tài chính | 32 |
+| 4.3 Thảo luận và Đề xuất ứng dụng nghiệp vụ ngân hàng | 33 |
+| &nbsp;&nbsp;&nbsp;&nbsp;4.3.1 Động cơ quy đổi điểm tín dụng FICO Score tiêu chuẩn | 33 |
+| &nbsp;&nbsp;&nbsp;&nbsp;4.3.2 Ma trận phân tầng rủi ro và chính sách phê duyệt tự động | 34 |
+| &nbsp;&nbsp;&nbsp;&nbsp;4.3.3 Mô hình định giá lãi suất theo rủi ro (Risk-Based Pricing) | 35 |
+| &nbsp;&nbsp;&nbsp;&nbsp;4.3.4 Chính sách hạn mức linh hoạt và minh họa hồ sơ thực tế | 36 |
+| &nbsp;&nbsp;&nbsp;&nbsp;4.3.5 Đánh giá tác động tài chính, tỷ lệ nợ xấu NPL và ROI | 37 |
+| **CHƯƠNG 5: KẾT LUẬN VÀ KIẾN NGHỊ** | **39** |
+| 5.1 Kết luận | 39 |
+| 5.2 Kiến nghị | 40 |
+| &nbsp;&nbsp;&nbsp;&nbsp;5.2.1 Khuyến nghị quản trị chiến lược cho Ban Điều hành Ngân hàng | 40 |
+| &nbsp;&nbsp;&nbsp;&nbsp;5.2.2 Hướng nghiên cứu và phát triển tiếp theo | 41 |
+| **TÀI LIỆU THAM KHẢO** | **42** |
+| &nbsp;&nbsp;&nbsp;&nbsp;I. Tiếng Việt | 42 |
+| &nbsp;&nbsp;&nbsp;&nbsp;II. Tiếng Anh | 43 |
+| **PHỤ LỤC** | **46** |
+| &nbsp;&nbsp;&nbsp;&nbsp;Phụ lục 1: Sơ đồ chi tiết luồng xử lý dữ liệu Lakehouse Medallion | 46 |
+| &nbsp;&nbsp;&nbsp;&nbsp;Phụ lục 2: Kho lưu trữ mã nguồn GitHub và Hướng dẫn thực nghiệm | 47 |
 
 \\newpage
 
