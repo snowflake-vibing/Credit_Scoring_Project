@@ -54,7 +54,7 @@ def format_document(path):
         header_p = header.paragraphs[0] if header.paragraphs else header.add_paragraph()
         header_p.alignment = WD_ALIGN_PARAGRAPH.RIGHT
         header_p.text = ""
-        run_h = header_p.add_run("TRƯỜNG ĐH KINH TẾ - ĐHQG • BÁO CÁO TIỂU LUẬN DỮ LIỆU LỚN & AI")
+        run_h = header_p.add_run("TRƯỜNG ĐH TÀI CHÍNH - MARKETING (UFM) • TIỂU LUẬN DỮ LIỆU LỚN & AI")
         run_h.font.name = "Times New Roman"
         run_h.font.size = Pt(10)
         run_h.font.italic = True

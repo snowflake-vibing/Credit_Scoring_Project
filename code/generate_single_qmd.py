@@ -9,7 +9,7 @@ title: "BÁO CÁO TIỂU LUẬN KẾT THÚC HỌC PHẦN"
 subtitle: "MÔ HÌNH CHẤM ĐIỂM TÍN DỤNG VÀ THẨM ĐỊNH RỦI RO VỠ NỢ TRONG LĨNH VỰC NGÂN HÀNG VÀ FINTECH"
 author:
   - name: "Lê Thành Hiệu"
-    affiliation: "Trường Đại học Kinh tế - Đại học Quốc gia"
+    affiliation: "Trường Đại học Tài chính - Marketing (UFM)"
 date: "2026"
 format:
   html:

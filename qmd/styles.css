@@ -1,17 +1,9 @@
 /* ==============================================================================
-   QUY CHUẨN ĐỊNH DẠNG HỌC THUẬT ĐẠI HỌC VIỆT NAM (THEO CHUẨN ĐẠI HỌC CẦN THƠ)
+   QUY CHUẨN ĐỊNH DẠNG HỌC THUẬT UFM (TRƯỜNG ĐẠI HỌC TÀI CHÍNH - MARKETING)
    Font: Times New Roman, Cỡ chữ 13pt, Giãn dòng 1.2 lines
-   Lề: Top 2cm, Bottom 2cm, Left 3cm, Right 2cm
-   Header & Footer: 1.27cm, Đánh số trang ở giữa trang
    ============================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Times+New+Roman&display=swap');
-
-:root {
-  --primary-navy: #1a365d;
-  --text-dark: #222222;
-  --border-gray: #cbd5e0;
-}
 
 body {
   font-family: "Times New Roman", Times, Georgia, serif !important;
@@ -21,17 +13,139 @@ body {
   background-color: #fafafa;
 }
 
-/* Khổ giấy & Canh lề học thuật khi In hoặc Xuất PDF */
-@page {
-  size: A4 portrait;
-  margin-top: 2cm;
-  margin-bottom: 2cm;
-  margin-left: 3cm;
-  margin-right: 2cm;
+/* ==============================================================================
+   TRANG BÌA HỌC THUẬT UFM (TRANG BÌA CHÍNH CÓ KHUNG VIỀN ĐÔI & TRANG PHỤ BÌA)
+   ============================================================================== */
+.academic-cover-page {
+  background: #ffffff;
+  padding: 40px 30px;
+  margin: 25px auto 45px auto;
+  max-width: 800px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+  border-radius: 4px;
+  text-align: center;
+  font-family: "Times New Roman", Times, serif;
+}
+
+.academic-cover-page.border-frame {
+  border: 4px double #1a365d;
+  outline: 1.5px solid #1a365d;
+  outline-offset: 4px;
+}
+
+.academic-cover-page.inner-cover {
+  border: 1.5px dashed #94a3b8;
+  position: relative;
+  background: #fdfdfd;
+}
+
+.cover-badge {
+  display: inline-block;
+  background: #1a365d;
+  color: #ffffff;
+  font-size: 9.5pt;
+  font-weight: bold;
+  padding: 4px 14px;
+  border-radius: 3px;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+}
+
+.cover-header .gov-title {
+  font-size: 13pt;
+  font-weight: bold;
+  color: #334155;
+  letter-spacing: 0.5px;
+}
+
+.cover-header .univ-title {
+  font-size: 16pt;
+  font-weight: bold;
+  color: #1a365d;
+  margin: 4px 0;
+}
+
+.cover-header .faculty-title {
+  font-size: 13pt;
+  font-weight: bold;
+  color: #2563eb;
+}
+
+.cover-header .dept-title {
+  font-size: 11pt;
+  font-weight: 600;
+  color: #64748b;
+  margin-top: 2px;
+}
+
+.cover-body {
+  margin: 35px 0;
+  padding: 20px 0;
+  border-top: 1px solid #e2e8f0;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.cover-body .report-type {
+  font-size: 13pt;
+  font-weight: bold;
+  color: #475569;
+  letter-spacing: 0.5px;
+}
+
+.cover-body .course-name {
+  font-size: 16pt;
+  font-weight: bold;
+  color: #0f172a;
+  margin: 6px 0;
+}
+
+.cover-body .course-sub {
+  font-size: 11pt;
+  font-style: italic;
+  color: #64748b;
+}
+
+.cover-body .topic-box {
+  margin-top: 25px;
+}
+
+.cover-body .topic-label {
+  font-size: 12pt;
+  font-weight: bold;
+  color: #d97706;
+  letter-spacing: 1px;
+}
+
+.cover-body .topic-title {
+  font-size: 17pt;
+  font-weight: bold;
+  color: #1e3a8a;
+  line-height: 1.35;
+  margin-top: 8px;
+}
+
+.cover-footer {
+  text-align: left;
+  max-width: 620px;
+  margin: 0 auto;
+  font-size: 12pt;
+  line-height: 1.6;
+}
+
+.cover-footer .info-row {
+  margin-bottom: 6px;
+}
+
+.cover-footer .location-date {
+  text-align: center;
+  font-weight: bold;
+  font-size: 12.5pt;
+  color: #334155;
+  margin-top: 35px;
 }
 
 /* ==============================================================================
-   HEADER HỌC THUẬT (RUNNING HEADER - 1.27 cm)
+   HEADER HỌC THUẬT UFM (RUNNING HEADER)
    ============================================================================== */
 .academic-header-bar {
   border-bottom: 2px solid #1a365d;
@@ -59,7 +173,7 @@ body {
 }
 
 /* ==============================================================================
-   FOOTER HỌC THUẬT (RUNNING FOOTER - 1.27 cm, ĐÁNH SỐ TRANG Ở GIỮA TRANG)
+   FOOTER HỌC THUẬT UFM (RUNNING FOOTER - KHÔNG SỐ TRANG GIẢ TRÊN FILE QMD)
    ============================================================================== */
 .academic-footer-bar {
   border-top: 1.5px solid #cbd5e1;
@@ -78,18 +192,18 @@ body {
 }
 
 .academic-footer-bar .footer-center {
-  flex: 1;
+  flex: 1.5;
   text-align: center;
 }
 
 .academic-footer-bar .page-number-box {
   display: inline-block;
-  font-size: 13pt;
-  font-weight: bold;
-  color: #0f172a;
+  font-size: 11pt;
+  font-weight: 600;
+  color: #1e3a8a;
   background: #f1f5f9;
   border: 1px solid #cbd5e1;
-  padding: 3px 18px;
+  padding: 4px 16px;
   border-radius: 4px;
 }
 
@@ -100,82 +214,54 @@ body {
 }
 
 /* ==============================================================================
-   MỤC LỤC HỌC THUẬT VỚI DẤU CHẤM DẪN DÒNG (DOT LEADERS) CHUẨN
+   MỤC LỤC ĐIỀU HƯỚNG QMD (DẠNG DANH MỤC LIÊN KẾT, KHÔNG ĐÁNH SỐ TRANG GIẢ)
    ============================================================================== */
-.academic-toc {
-  max-width: 860px;
-  margin: 25px auto;
+.academic-toc-outline {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 25px 35px;
+  margin: 25px 0;
   font-family: "Times New Roman", Times, serif;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.toc-nav-list {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.toc-nav-list > li {
+  margin-bottom: 12px;
   font-size: 13pt;
+  line-height: 1.5;
 }
 
-.toc-head-row {
-  display: flex;
-  justify-content: flex-end;
+.toc-nav-list > li > a {
+  text-decoration: none;
+  color: #1e3a8a;
   font-weight: bold;
-  font-style: italic;
-  padding-right: 4px;
-  margin-bottom: 10px;
-  border-bottom: 1px solid #e2e8f0;
-  padding-bottom: 4px;
 }
 
-.toc-item {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  margin-bottom: 6px;
-  line-height: 1.4;
+.toc-nav-list > li > a:hover {
+  text-decoration: underline;
+  color: #2563eb;
 }
 
-.toc-item.chapter-row {
-  font-weight: bold;
-  font-size: 13pt;
-  margin-top: 16px;
-  color: #0f172a;
-}
-
-.toc-item.sub-1 {
-  padding-left: 22px;
-  font-weight: normal;
-}
-
-.toc-item.sub-2 {
-  padding-left: 45px;
-  font-style: italic;
+.toc-nav-list ul {
+  list-style-type: circle;
+  margin-top: 6px;
+  padding-left: 28px;
   font-size: 12pt;
   color: #334155;
 }
 
-.toc-item.front-matter {
-  font-weight: 500;
-}
-
-.toc-label {
-  flex-shrink: 0;
-  max-width: 80%;
-}
-
-.toc-dots {
-  flex-grow: 1;
-  border-bottom: 1px dotted #64748b;
-  margin: 0 10px;
-  height: 1em;
-}
-
-.toc-page {
-  flex-shrink: 0;
-  min-width: 28px;
-  text-align: right;
-  font-weight: 600;
-  font-variant-numeric: tabular-nums;
-}
-
-.toc-item.table-head {
-  font-weight: bold;
-  border-bottom: 1.5px solid #000;
-  margin-bottom: 10px;
-  padding-bottom: 4px;
+.toc-nav-list ul ul {
+  list-style-type: square;
+  padding-left: 24px;
+  font-style: italic;
+  font-size: 11.5pt;
+  color: #475569;
 }
 
 /* Định dạng bảng học thuật */
