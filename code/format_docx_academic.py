@@ -13,10 +13,11 @@ if hasattr(sys.stdout, 'reconfigure'):
 
 print("Bắt đầu chuẩn hóa file Word (.docx) theo Quy định Luận văn / Tiểu luận ĐH Việt Nam (ĐH Cần Thơ)...")
 
-target_docx_paths = [
-    os.path.join("qmd", "_output", "Đề-Tài-7--Mô-Hình-Chấm-Điểm-Tín-Dụng---Thẩm-Định-Rủi-Ro-Vỡ-Nợ.docx"),
-    os.path.join("qmd", "BAO_CAO_TOAN_VAN.docx")
-]
+import glob
+
+target_docx_paths = glob.glob("qmd/**/*.docx", recursive=True) + glob.glob("qmd/*.docx")
+target_docx_paths = list(set([os.path.normpath(p) for p in target_docx_paths]))
+print(f"Tìm thấy các file docx cần chuẩn hóa: {target_docx_paths}")
 
 def add_page_number_to_section(footer, align=WD_ALIGN_PARAGRAPH.CENTER):
     p = footer.paragraphs[0] if footer.paragraphs else footer.add_paragraph()
@@ -49,7 +50,10 @@ def format_document(path):
         section.header_distance = Cm(1.27)
         section.footer_distance = Cm(1.27)
         
-        # Thiết lập Header
+        # Trang đầu tiên (Trang bìa) không hiển thị Header và Footer
+        section.different_first_page_header_footer = True
+        
+        # Thiết lập Header cho các trang sau trang bìa
         header = section.header
         header_p = header.paragraphs[0] if header.paragraphs else header.add_paragraph()
         header_p.alignment = WD_ALIGN_PARAGRAPH.RIGHT
@@ -79,42 +83,145 @@ def format_document(path):
         run_f2.font.name = "Times New Roman"
         run_f2.font.size = Pt(13)
 
-    # 2. Chuẩn hóa font và paragraph spacing cho toàn bộ văn bản
+    # 2. Chuẩn hóa font, căn lề và khoảng cách cho từng đoạn văn
     prev_was_sig_note = False
+    in_cover_page = True
+    
     for p in doc.paragraphs:
-        p.paragraph_format.line_spacing = 1.2
-        p.paragraph_format.space_before = Pt(6)
-        p.paragraph_format.space_after = Pt(6)
+        txt = p.text.strip()
+        
+        # Thiết lập font Times New Roman mặc định
         for r in p.runs:
             if not r.font.name:
                 r.font.name = "Times New Roman"
 
-        # Căn phải và chừa khoảng trống chữ ký theo chuẩn văn bản hành chính & luận văn VN
-        txt = p.text.strip()
-        if "TP. Hồ Chí Minh" in txt and ("năm" in txt or "tháng" in txt):
+        # Nhận diện kết thúc trang bìa khi gặp LỜI CẢM ƠN
+        if "LỜI CẢM ƠN" in txt:
+            in_cover_page = False
+
+        if in_cover_page:
+            # Định dạng trang trọng cho Trang Bìa UFM
+            if any(term in txt for term in ["BỘ TÀI CHÍNH", "TRƯỜNG ĐẠI HỌC TÀI CHÍNH - MARKETING", "KHOA CÔNG NGHỆ THÔNG TIN", "BỘ MÔN HỆ THỐNG THÔNG TIN QUẢN LÝ"]):
+                p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+                p.paragraph_format.space_before = Pt(2)
+                p.paragraph_format.space_after = Pt(2)
+                for r in p.runs:
+                    r.font.name = "Times New Roman"
+                    r.font.bold = True
+                    r.font.size = Pt(12)
+            elif "BÁO CÁO TIỂU LUẬN MÔN HỌC" in txt:
+                p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+                p.paragraph_format.space_before = Pt(24)
+                p.paragraph_format.space_after = Pt(4)
+                for r in p.runs:
+                    r.font.name = "Times New Roman"
+                    r.font.bold = True
+                    r.font.size = Pt(13)
+            elif "DỮ LIỆU LỚN VÀ TRÍ TUỆ NHÂN TẠO TRONG KINH DOANH" in txt:
+                p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+                p.paragraph_format.space_before = Pt(4)
+                p.paragraph_format.space_after = Pt(2)
+                for r in p.runs:
+                    r.font.name = "Times New Roman"
+                    r.font.bold = True
+                    r.font.size = Pt(15)
+            elif "BIG DATA ANALYTICS & ARTIFICIAL INTELLIGENCE IN BUSINESS" in txt:
+                p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+                p.paragraph_format.space_before = Pt(2)
+                p.paragraph_format.space_after = Pt(20)
+                for r in p.runs:
+                    r.font.name = "Times New Roman"
+                    r.font.italic = True
+                    r.font.size = Pt(11)
+            elif "ĐỀ TÀI NGHIÊN CỨU:" in txt:
+                p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+                p.paragraph_format.space_before = Pt(16)
+                p.paragraph_format.space_after = Pt(4)
+                for r in p.runs:
+                    r.font.name = "Times New Roman"
+                    r.font.bold = True
+                    r.font.size = Pt(13)
+            elif "MÔ HÌNH CHẤM ĐIỂM TÍN DỤNG VÀ THẨM ĐỊNH RỦI RO VỠ NỢ" in txt:
+                p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+                p.paragraph_format.space_before = Pt(4)
+                p.paragraph_format.space_after = Pt(24)
+                for r in p.runs:
+                    r.font.name = "Times New Roman"
+                    r.font.bold = True
+                    r.font.size = Pt(16)
+            elif any(txt.startswith(prefix) for prefix in ["Giảng viên hướng dẫn:", "Sinh viên thực hiện:", "Mã số sinh viên:", "Lớp / Khóa học:", "Chuyên ngành:", "Kho lưu trữ mã nguồn:", "Không gian làm việc Databricks:"]):
+                p.alignment = WD_ALIGN_PARAGRAPH.LEFT
+                p.paragraph_format.left_indent = Cm(1.5)
+                p.paragraph_format.space_before = Pt(3)
+                p.paragraph_format.space_after = Pt(3)
+                p.paragraph_format.line_spacing = 1.15
+                for r in p.runs:
+                    r.font.name = "Times New Roman"
+                    r.font.size = Pt(12)
+            elif "TP. HỒ CHÍ MINH, NĂM 2026" in txt:
+                p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+                p.paragraph_format.space_before = Pt(30)
+                p.paragraph_format.space_after = Pt(6)
+                for r in p.runs:
+                    r.font.name = "Times New Roman"
+                    r.font.bold = True
+                    r.font.size = Pt(13)
+            continue
+
+        # Đoạn văn phần nội dung (sau trang bìa)
+        p.paragraph_format.line_spacing = 1.2
+        p.paragraph_format.space_before = Pt(6)
+        p.paragraph_format.space_after = Pt(6)
+
+        # Căn phải và chừa khoảng trống chữ ký theo đúng Hình 3 (Image 3)
+        if "TP. Hồ Chí Minh" in txt and "Sinh viên thực hiện" in txt:
             p.alignment = WD_ALIGN_PARAGRAPH.RIGHT
-            p.paragraph_format.space_before = Pt(20)
+            p.paragraph_format.space_before = Pt(24)
+            p.paragraph_format.space_after = Pt(72) # Chừa ~2.5cm để ký tên
+            for r in p.runs:
+                r.font.name = "Times New Roman"
+            prev_was_sig_note = True
+            continue
+        elif "TP. Hồ Chí Minh" in txt and ("năm" in txt or "tháng" in txt or "2026" in txt):
+            p.alignment = WD_ALIGN_PARAGRAPH.RIGHT
+            p.paragraph_format.space_before = Pt(24)
             p.paragraph_format.space_after = Pt(2)
+            for r in p.runs:
+                r.font.name = "Times New Roman"
+                r.font.italic = True
         elif txt in ["Sinh viên thực hiện", "Sinh viên cam đoan"]:
             p.alignment = WD_ALIGN_PARAGRAPH.RIGHT
             p.paragraph_format.space_before = Pt(2)
             p.paragraph_format.space_after = Pt(2)
+            for r in p.runs:
+                r.font.name = "Times New Roman"
+                r.font.bold = True
         elif "(Ký và ghi rõ họ tên)" in txt:
             p.alignment = WD_ALIGN_PARAGRAPH.RIGHT
             p.paragraph_format.space_before = Pt(2)
             p.paragraph_format.space_after = Pt(72) # Chừa ~2.5cm để ký tên
+            for r in p.runs:
+                r.font.name = "Times New Roman"
+                r.font.italic = True
             prev_was_sig_note = True
             continue
-        elif prev_was_sig_note and "Lê Thành Hiệu" in txt:
+        elif txt == "Lê Thành Hiệu" or (prev_was_sig_note and "Lê Thành Hiệu" in txt):
             p.alignment = WD_ALIGN_PARAGRAPH.RIGHT
             p.paragraph_format.space_before = Pt(0)
             p.paragraph_format.space_after = Pt(12)
+            for r in p.runs:
+                r.font.name = "Times New Roman"
+                r.font.bold = True
             prev_was_sig_note = False
             continue
-        prev_was_sig_note = False
 
-    doc.save(path)
-    print(f"✅ Đã chuẩn hóa thành công: {path} (Header 1.27cm, Footer 1.27cm số trang giữa, Margin 3-2-2-2cm, Font 13pt)")
+    try:
+        doc.save(path)
+        print(f"✅ Đã chuẩn hóa thành công: {path} (Header 1.27cm, Footer 1.27cm số trang giữa, Margin 3-2-2-2cm, Font 13pt)")
+    except PermissionError:
+        print(f"⚠️ Cảnh báo: Tệp {path} đang được mở trong Microsoft Word hoặc ứng dụng khác. Vui lòng đóng tệp để cập nhật.")
+    except Exception as e:
+        print(f"❌ Lỗi khi lưu {path}: {e}")
 
 for p in target_docx_paths:
     format_document(p)

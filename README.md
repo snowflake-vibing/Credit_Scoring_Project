@@ -11,7 +11,8 @@
 > **Sinh viên thực hiện:** Lê Thành Hiệu  
 > **Giảng viên hướng dẫn:** TS. Trần Mạnh Tường  
 > **Bộ dữ liệu thực nghiệm:** LendingClub Complete Loan Dataset (2,260,701 khoản vay, 1.6 GB)  
-> **Nền tảng thực thi:** Databricks Serverless Cloud Platform (PySpark, Spark SQL, Spark MLlib, Delta Lake)
+> **Nền tảng thực thi:** Databricks Serverless Cloud Platform (PySpark, Spark SQL, Spark MLlib, Delta Lake)  
+> **Không gian làm việc Databricks:** [Databricks Cloud Workspace](https://dbc-4d46c653-6b7e.cloud.databricks.com/browse/folders/907137357494385?o=7474645074756875)
 
 ---
 

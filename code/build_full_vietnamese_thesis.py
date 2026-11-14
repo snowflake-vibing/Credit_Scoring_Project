@@ -15,8 +15,9 @@ print("Bắt đầu tạo nội dung các chương chuẩn Đại học Việt N
 # ==============================================================================
 # PHẦN 0: TRANG BÌA, PHỤ BÌA, LỜI CẢM ƠN, CAM ĐOAN, TÓM LƯỢC, MỤC LỤC & DANH MỤC
 # ==============================================================================
-text_00 = """# TRANG BÌA CHÍNH
+text_00 = """# TRANG BÌA
 
+::: {.content-visible when-format="html"}
 ```{=html}
 <div class="academic-cover-page border-frame">
   <div class="cover-header">
@@ -44,46 +45,47 @@ text_00 = """# TRANG BÌA CHÍNH
     <div class="info-row"><strong>Lớp / Khóa học:</strong> Big Data Analytics &amp; AI - Khóa 2026</div>
     <div class="info-row"><strong>Chuyên ngành:</strong> Hệ thống Thông tin Quản lý (MIS)</div>
     <div class="info-row"><strong>Kho lưu trữ mã nguồn:</strong> <a href="https://github.com/snowflake-vibing/Credit_Scoring_Project">github.com/snowflake-vibing/Credit_Scoring_Project</a></div>
+    <div class="info-row"><strong>Không gian làm việc Databricks:</strong> <a href="https://dbc-4d46c653-6b7e.cloud.databricks.com/browse/folders/907137357494385?o=7474645074756875">Databricks Cloud Workspace (Folder 907137357494385)</a></div>
     
     <div class="location-date">TP. HỒ CHÍ MINH, NĂM 2026</div>
   </div>
 </div>
 ```
+:::
 
-\\newpage
+::: {.content-visible when-format="docx"}
+# TRANG BÌA {.unnumbered .unlisted}
+
+**BỘ TÀI CHÍNH**  
+**TRƯỜNG ĐẠI HỌC TÀI CHÍNH - MARKETING (UFM)**  
+**KHOA CÔNG NGHỆ THÔNG TIN**  
+**BỘ MÔN HỆ THỐNG THÔNG TIN QUẢN LÝ & KHOA HỌC DỮ LIỆU**  
 
 ---
 
-# TRANG PHỤ BÌA
+### **BÁO CÁO TIỂU LUẬN MÔN HỌC**
+## **DỮ LIỆU LỚN VÀ TRÍ TUỆ NHÂN TẠO TRONG KINH DOANH**
+*(BIG DATA ANALYTICS & ARTIFICIAL INTELLIGENCE IN BUSINESS)*
 
-```{=html}
-<div class="academic-cover-page inner-cover">
-  <div class="cover-badge">TRANG PHỤ BÌA (BÌA TRONG)</div>
-  <div class="cover-header">
-    <div class="gov-title">BỘ TÀI CHÍNH</div>
-    <div class="univ-title">TRƯỜNG ĐẠI HỌC TÀI CHÍNH - MARKETING (UFM)</div>
-    <div class="faculty-title">KHOA CÔNG NGHỆ THÔNG TIN</div>
-    <div class="dept-title">BỘ MÔN HỆ THỐNG THÔNG TIN QUẢN LÝ &amp; KHOA HỌC DỮ LIỆU</div>
-  </div>
+---
 
-  <div class="cover-body">
-    <div class="report-type">BÁO CÁO TIỂU LUẬN KẾT THÚC HỌC PHẦN</div>
-    <div class="topic-box">
-      <div class="topic-title">MÔ HÌNH CHẤM ĐIỂM TÍN DỤNG VÀ THẨM ĐỊNH RỦI RO VỠ NỢ TRONG LĨNH VỰC NGÂN HÀNG VÀ FINTECH</div>
-    </div>
-  </div>
+### **ĐỀ TÀI NGHIÊN CỨU:**
+# **MÔ HÌNH CHẤM ĐIỂM TÍN DỤNG VÀ THẨM ĐỊNH RỦI RO VỠ NỢ TRONG LĨNH VỰC NGÂN HÀNG VÀ FINTECH**
 
-  <div class="cover-footer">
-    <div class="info-row"><strong>Cán bộ hướng dẫn:</strong> TS. Trần Mạnh Tường</div>
-    <div class="info-row"><strong>Sinh viên thực hiện:</strong> Lê Thành Hiệu</div>
-    <div class="info-row"><strong>Mã số sinh viên:</strong> [Điền MSSV tại đây]</div>
-    <div class="info-row"><strong>Chuyên ngành:</strong> Hệ thống Thông tin Quản lý / Phân tích Kinh doanh</div>
-    <div class="info-row"><strong>Mã nguồn dự án:</strong> <a href="https://github.com/snowflake-vibing/Credit_Scoring_Project">https://github.com/snowflake-vibing/Credit_Scoring_Project</a></div>
-    
-    <div class="location-date">TP. HỒ CHÍ MINH, THÁNG 11 - 2026</div>
-  </div>
-</div>
-```
+---
+
+**Giảng viên hướng dẫn:** TS. Trần Mạnh Tường  
+**Sinh viên thực hiện:** Lê Thành Hiệu  
+**Mã số sinh viên:** [Điền MSSV tại đây]  
+**Lớp / Khóa học:** Big Data Analytics & AI - Khóa 2026  
+**Chuyên ngành:** Hệ thống Thông tin Quản lý (MIS)  
+**Kho lưu trữ mã nguồn:** https://github.com/snowflake-vibing/Credit_Scoring_Project  
+**Không gian làm việc Databricks:** https://dbc-4d46c653-6b7e.cloud.databricks.com/browse/folders/907137357494385?o=7474645074756875  
+
+---
+
+**TP. HỒ CHÍ MINH, NĂM 2026**
+:::
 
 \\newpage
 
@@ -97,16 +99,6 @@ Em cũng xin gửi lời cảm ơn chân thành đến Ban Giám hiệu nhà tr�
 
 *Kính chúc Thầy luôn dồi dào sức khỏe, hạnh phúc và gặt hái được nhiều thành công hơn nữa trong sự nghiệp giảng dạy và nghiên cứu khoa học cao quý!*
 
-<div class="signature-container" style="display: flex; justify-content: flex-end; margin-top: 35px; margin-bottom: 25px;">
-<div class="signature-box" style="width: 330px; text-align: center; font-family: 'Times New Roman', Times, serif;">
-<p class="sig-date" style="margin: 0; font-style: italic; font-size: 13pt;">TP. Hồ Chí Minh, ngày &hellip; tháng 11 năm 2026</p>
-<p class="sig-title" style="margin: 6px 0 2px 0; font-weight: bold; font-size: 13pt; text-transform: uppercase;">Sinh viên thực hiện</p>
-<p class="sig-note" style="margin: 0; font-style: italic; font-size: 11pt; color: #555555;">(Ký và ghi rõ họ tên)</p>
-<div class="sig-space" style="height: 95px;"></div>
-<p class="sig-name" style="margin: 0; font-weight: bold; font-size: 13.5pt;">Lê Thành Hiệu</p>
-</div>
-</div>
-
 \\newpage
 
 ---
@@ -117,15 +109,26 @@ Tôi xin cam đoan rằng bài tiểu luận kết thúc học phần với đ�
 
 Toàn bộ số liệu phân tích, kết quả mô phỏng thực nghiệm và các luận điểm trình bày trong báo cáo hoàn toàn trung thực, khách quan và được thu thập, xử lý từ dữ liệu thực tế 2,260,701 khoản vay của nền tảng LendingClub. Các tài liệu tham khảo, các lý thuyết tài chính - ngân hàng và nghiên cứu khoa học của các tác giả khác đều được trích dẫn nguồn gốc đầy đủ theo đúng quy chuẩn học thuật hiện hành.
 
+::: {.content-visible when-format="html"}
 <div class="signature-container" style="display: flex; justify-content: flex-end; margin-top: 35px; margin-bottom: 25px;">
 <div class="signature-box" style="width: 330px; text-align: center; font-family: 'Times New Roman', Times, serif;">
-<p class="sig-date" style="margin: 0; font-style: italic; font-size: 13pt;">TP. Hồ Chí Minh, ngày &hellip; tháng 11 năm 2026</p>
-<p class="sig-title" style="margin: 6px 0 2px 0; font-weight: bold; font-size: 13pt; text-transform: uppercase;">Sinh viên cam đoan</p>
+<p class="sig-date" style="margin: 0; font-style: italic; font-size: 13pt;">TP. Hồ Chí Minh, năm 2026</p>
+<p class="sig-title" style="margin: 6px 0 2px 0; font-weight: bold; font-size: 13pt;">Sinh viên thực hiện</p>
 <p class="sig-note" style="margin: 0; font-style: italic; font-size: 11pt; color: #555555;">(Ký và ghi rõ họ tên)</p>
 <div class="sig-space" style="height: 95px;"></div>
 <p class="sig-name" style="margin: 0; font-weight: bold; font-size: 13.5pt;">Lê Thành Hiệu</p>
 </div>
 </div>
+:::
+
+::: {.content-visible when-format="docx"}
+*TP. Hồ Chí Minh, năm 2026*  
+**Sinh viên thực hiện**  
+*(Ký và ghi rõ họ tên)*  
+
+
+**Lê Thành Hiệu**
+:::
 
 \\newpage
 
@@ -145,8 +148,7 @@ Dựa trên xác suất vỡ nợ dự báo, đề tài xây dựng động cơ 
 
 ## MỤC LỤC
 
-* [TRANG BÌA CHÍNH](#trang-bìa-chính)
-* [TRANG PHỤ BÌA](#trang-phụ-bìa)
+* [TRANG BÌA](#trang-bìa)
 * [LỜI CẢM ƠN](#lời-cảm-ơn)
 * [LỜI CAM ĐOAN](#lời-cam-đoan)
 * [TÓM LƯỢC](#tóm-lược)
@@ -933,6 +935,7 @@ Quy trình luồng dữ liệu tổng thể qua ba tầng Bronze, Silver và Gol
 Toàn bộ các tệp mã nguồn phân tán, tệp cấu hình môi trường và tài liệu hướng dẫn thực thi được tổ chức trong kho lưu trữ GitHub chính thức:
 
 * **Đường dẫn GitHub Repository:** https://github.com/snowflake-vibing/Credit_Scoring_Project
+* **Không gian làm việc Databricks (Cloud Workspace):** https://dbc-4d46c653-6b7e.cloud.databricks.com/browse/folders/907137357494385?o=7474645074756875
 * **Cấu trúc mã nguồn chính:**
   - `code/De_Tai_7_Databricks_Notebook.ipynb`: Sổ tay thực thi chính trên Databricks Serverless.
   - `code/De_Tai_7_Databricks_Notebook.html`: Kết quả thực thi thực tế đầy đủ bảng biểu và biểu đồ trực quan.
@@ -948,6 +951,9 @@ print("Đã soạn thảo xong Phụ lục.")
 # ==============================================================================
 
 doc_text_00 = text_00
+import re
+doc_text_00 = re.sub(r'::: \{\.content-visible when-format="docx"\}[\s\S]*?:::', '', doc_text_00)
+doc_text_00 = doc_text_00.replace('::: {.content-visible when-format="html"}', '').replace(':::', '')
 for old_link, new_link in [
     ("01_CHUONG_1_GIOI_THIEU.html", "01_CHUONG_1_GIOI_THIEU.md"),
     ("02_CHUONG_2_LUOC_KHAO_TAI_LIEU.html", "02_CHUONG_2_LUOC_KHAO_TAI_LIEU.md"),
@@ -959,7 +965,7 @@ for old_link, new_link in [
 ]:
     doc_text_00 = doc_text_00.replace(old_link, new_link)
 
-chapters_dict = {
+chapters_dict_doc = {
     "00_TRANG_BIA_VA_MUC_LUC": doc_text_00,
     "01_CHUONG_1_GIOI_THIEU": text_01,
     "02_CHUONG_2_LUOC_KHAO_TAI_LIEU": text_02,
@@ -970,8 +976,19 @@ chapters_dict = {
     "07_PHU_LUC": text_07
 }
 
+chapters_dict_qmd = {
+    "00_TRANG_BIA_VA_MUC_LUC": text_00,
+    "01_CHUONG_1_GIOI_THIEU": text_01,
+    "02_CHUONG_2_LUOC_KHAO_TAI_LIEU": text_02,
+    "03_CHUONG_3_PHUONG_PHAP_NGHIEN_CUU": text_03,
+    "04_CHUONG_4_KET_QUA_VA_THAO_LUAN": text_04,
+    "05_CHUONG_5_KET_LUAN_VA_KIEN_NGHI": text_05,
+    "06_TAI_LIEU_THAM_KHAO": text_06,
+    "07_PHU_LUC": text_07
+}
+
 # 1. Ghi vào doc/
-for k, v in chapters_dict.items():
+for k, v in chapters_dict_doc.items():
     p = os.path.join("doc", f"{k}.md")
     with open(p, "w", encoding="utf-8") as f:
         f.write(v)
@@ -1001,7 +1018,7 @@ qmd_metadata = {
     "07_PHU_LUC": "Phụ Lục"
 }
 
-for k, v in chapters_dict.items():
+for k, v in chapters_dict_qmd.items():
     title = qmd_metadata.get(k, k)
     yaml_header = f"""---
 title: "{title}"

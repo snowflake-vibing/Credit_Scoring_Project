@@ -16,6 +16,7 @@ Quy trình luồng dữ liệu tổng thể qua ba tầng Bronze, Silver và Gol
 Toàn bộ các tệp mã nguồn phân tán, tệp cấu hình môi trường và tài liệu hướng dẫn thực thi được tổ chức trong kho lưu trữ GitHub chính thức:
 
 * **Đường dẫn GitHub Repository:** https://github.com/snowflake-vibing/Credit_Scoring_Project
+* **Không gian làm việc Databricks (Cloud Workspace):** https://dbc-4d46c653-6b7e.cloud.databricks.com/browse/folders/907137357494385?o=7474645074756875
 * **Cấu trúc mã nguồn chính:**
   - `code/De_Tai_7_Databricks_Notebook.ipynb`: Sổ tay thực thi chính trên Databricks Serverless.
   - `code/De_Tai_7_Databricks_Notebook.html`: Kết quả thực thi thực tế đầy đủ bảng biểu và biểu đồ trực quan.
