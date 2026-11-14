@@ -145,72 +145,13 @@ body {
 }
 
 /* ==============================================================================
-   HEADER HỌC THUẬT UFM (RUNNING HEADER)
+   HEADER & FOOTER (ĐÃ ẨN THEO YÊU CẦU NGƯỜI DÙNG)
    ============================================================================== */
-.academic-header-bar {
-  border-bottom: 2px solid #1a365d;
-  padding: 12px 0 8px 0;
-  margin-bottom: 30px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 10.5pt;
-  color: #334155;
-  font-weight: 600;
-  letter-spacing: 0.3px;
-  background: transparent;
-}
-
-.academic-header-bar .header-univ {
-  color: #1a365d;
-  font-weight: bold;
-}
-
-.academic-header-bar .header-subject {
-  color: #64748b;
-  font-style: italic;
-  font-size: 9.5pt;
-}
-
-/* ==============================================================================
-   FOOTER HỌC THUẬT UFM (RUNNING FOOTER - KHÔNG SỐ TRANG GIẢ TRÊN FILE QMD)
-   ============================================================================== */
-.academic-footer-bar {
-  border-top: 1.5px solid #cbd5e1;
-  margin-top: 60px;
-  padding: 16px 0 30px 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 10pt;
-  color: #475569;
-}
-
-.academic-footer-bar .footer-left {
-  flex: 1;
-  text-align: left;
-}
-
-.academic-footer-bar .footer-center {
-  flex: 1.5;
-  text-align: center;
-}
-
-.academic-footer-bar .page-number-box {
-  display: inline-block;
-  font-size: 11pt;
-  font-weight: 600;
-  color: #1e3a8a;
-  background: #f1f5f9;
-  border: 1px solid #cbd5e1;
-  padding: 4px 16px;
-  border-radius: 4px;
-}
-
-.academic-footer-bar .footer-right {
-  flex: 1;
-  text-align: right;
-  font-style: italic;
+.academic-header-bar,
+.academic-footer-bar,
+.nav-page-footer,
+.page-footer {
+  display: none !important;
 }
 
 /* ==============================================================================

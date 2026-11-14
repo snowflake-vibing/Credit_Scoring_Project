@@ -5,7 +5,7 @@
 ## 3.1 Phương tiện nghiên cứu
 
 ### 3.1.1 Bộ dữ liệu lớn LendingClub quy mô 2.26 triệu hồ sơ
-Nghiên cứu sử dụng tập dữ liệu thực tế **LendingClub Complete Loan Dataset (2007 - 2018Q4)** được công bố bởi LendingClub - nền tảng cho vay ngang hàng trực tuyến lớn nhất thế giới [28]. Dữ liệu bao gồm 2,260,701 khoản vay (1.6 GB) với 12 thuộc tính cốt lõi được trích xuất và chuẩn hóa:
+Nghiên cứu sử dụng tập dữ liệu thực tế **LendingClub Complete Loan Dataset (2007 - 2018Q4)** được công bố bởi LendingClub - nền tảng cho vay ngang hàng trực tuyến lớn nhất thế giới [21]. Dữ liệu bao gồm 2,260,701 khoản vay (1.6 GB) với 12 thuộc tính cốt lõi được trích xuất và chuẩn hóa:
 
 **Bảng 3.1 Mô tả chi tiết 12 thuộc tính cốt lõi trong Bộ dữ liệu lớn LendingClub (2,260,701 bản ghi)**
 
@@ -37,12 +37,12 @@ Nghiên cứu được triển khai trên nền tảng **Databricks Serverless C
 ## 3.2 Phương pháp nghiên cứu
 
 ### 3.2.1 Quy trình thu thập và nạp dữ liệu thô Tầng Bronze
-Khâu tiếp nhận dữ liệu đầu vào (Data Ingestion) đòi hỏi phải bảo đảm tính toàn vẹn và khả năng lưu vết lịch sử không thể chỉnh sửa [21]:
+Khâu tiếp nhận dữ liệu đầu vào (Data Ingestion) đòi hỏi phải bảo đảm tính toàn vẹn và khả năng lưu vết lịch sử không thể chỉnh sửa [14]:
 1. **Nguyên tắc bảo toàn nguyên vẹn (Data Immutability):** Dữ liệu thô từ file CSV được nạp thẳng vào bảng Delta `workspace.default.bronze_credit_data`, giữ nguyên mọi trường giá trị trống (`NULL`), kiểu chuỗi và các điểm ngoại lai nhằm phục vụ mục đích kiểm toán (Audit Trail).
 2. **Khởi tạo Delta Transaction Log:** Hệ thống tự động thiết lập nhật ký giao dịch tuần tự (`_delta_log/00000000000000000000.json`) để ghi nhận siêu dữ liệu, lược đồ (schema) và vị trí các tệp con Parquet phân tán.
 
 ### 3.2.2 Phương pháp tiền xử lý và làm sạch dữ liệu Tầng Silver
-Dữ liệu từ Tầng Bronze được kích hoạt quy trình làm sạch phân tán để tạo lập bảng `workspace.default.silver_credit_data` [29]:
+Dữ liệu từ Tầng Bronze được kích hoạt quy trình làm sạch phân tán để tạo lập bảng `workspace.default.silver_credit_data` [22]:
 
 **Bảng 3.2 Kế hoạch làm sạch và chuẩn hóa dữ liệu tại Tầng Silver**
 
@@ -58,7 +58,7 @@ Dữ liệu từ Tầng Bronze được kích hoạt quy trình làm sạch phâ
 <p align="left"><em>(Nguồn: Tác giả đề xuất dựa trên phân tích đặc tính dữ liệu thực tế)</em></p>
 
 ### 3.2.3 Phương pháp kỹ nghệ đặc trưng tài chính
-Nhằm cung cấp các biến số tổng hợp mang hàm lượng thông tin kinh tế cao, nghiên cứu xây dựng hai chỉ số đòn bẩy tài chính chuyên sâu [23], [30]:
+Nhằm cung cấp các biến số tổng hợp mang hàm lượng thông tin kinh tế cao, nghiên cứu xây dựng hai chỉ số đòn bẩy tài chính chuyên sâu [16], [23]:
 
 1. **Chỉ số Tỷ lệ Nợ trên Thu nhập (Debt-to-Income Ratio - DTI):**
    $$DTI = \frac{\text{Loan Amount}}{\text{Person Income}}$$
@@ -69,7 +69,7 @@ Nhằm cung cấp các biến số tổng hợp mang hàm lượng thông tin ki
    Tử số đại diện cho tổng nghĩa vụ nợ cả gốc và lãi; Mẫu số đại diện cho thu nhập có trọng số theo mức độ ổn định nghề nghiệp. Chỉ số $CBI$ càng cao cảnh báo áp lực tài chính càng lớn.
 
 ### 3.2.4 Phương pháp phân tích khám phá dữ liệu bằng Spark SQL và Window Functions
-Sử dụng công cụ tối ưu hóa truy vấn Spark SQL để phân tích thống kê đa chiều theo Mục đích vay (`loan_intent`), Hạng khoản vay (`loan_grade`) và Tình trạng nhà ở (`home_ownership`) [31]. Đồng thời, áp dụng các hàm cửa sổ (Window Functions) để xác định vị thế thu nhập tương đối của khách hàng trong từng phân khúc vay vốn:
+Sử dụng công cụ tối ưu hóa truy vấn Spark SQL để phân tích thống kê đa chiều theo Mục đích vay (`loan_intent`), Hạng khoản vay (`loan_grade`) và Tình trạng nhà ở (`home_ownership`) [24]. Đồng thời, áp dụng các hàm cửa sổ (Window Functions) để xác định vị thế thu nhập tương đối của khách hàng trong từng phân khúc vay vốn:
 ```python
 windowSpec = Window.partitionBy("loan_intent").orderBy(col("person_income").desc())
 df_silver = df_silver.withColumn("income_rank_in_intent", dense_rank().over(windowSpec))
@@ -84,7 +84,7 @@ Toàn bộ quy trình biến đổi dữ liệu được đóng gói thành mộ
 5. `RandomForestClassifier`: Thuật toán máy học phân tán ước tính xác suất vỡ nợ.
 
 ### 3.2.6 Thuật toán phân loại Random Forest Classifier
-Thuật toán Rừng Ngẫu nhiên (Random Forest) là phương pháp học kết hợp (Ensemble Learning) dựa trên kỹ thuật đóng bao (Bagging) và không gian ngẫu nhiên con (Random Subspace) [32], [33]. Mô hình xây dựng một tập hợp gồm $B$ cây quyết định độc lập:
+Thuật toán Rừng Ngẫu nhiên (Random Forest) là phương pháp học kết hợp (Ensemble Learning) dựa trên kỹ thuật đóng bao (Bagging) và không gian ngẫu nhiên con (Random Subspace) [25], [26]. Mô hình xây dựng một tập hợp gồm $B$ cây quyết định độc lập:
 $$\hat{p}(x) = \frac{1}{B} \sum_{b=1}^{B} p_b(x)$$
 Ưu điểm vượt trội của thuật toán trên môi trường Spark MLlib:
 - Hạn chế tối đa hiện tượng quá khớp (Overfitting) nhờ cơ chế lấy mẫu ngẫu nhiên có hoàn lại (Bootstrap Sampling).
@@ -92,7 +92,7 @@ $$\hat{p}(x) = \frac{1}{B} \sum_{b=1}^{B} p_b(x)$$
 - Cung cấp trực tiếp độ quan trọng của các đặc trưng (Feature Importance) dựa trên mức giảm độ đo bất thuần Gini (Mean Decrease Gini).
 
 ### 3.2.7 Phương pháp kiểm định chéo và tối ưu hóa siêu tham số
-Để tìm ra cấu hình mô hình tối ưu nhất, nghiên cứu sử dụng `ParamGridBuilder` kết hợp bộ kiểm định chéo 3 nếp gấp (`CrossValidator` với $K=3$ folds) [34]:
+Để tìm ra cấu hình mô hình tối ưu nhất, nghiên cứu sử dụng `ParamGridBuilder` kết hợp bộ kiểm định chéo 3 nếp gấp (`CrossValidator` với $K=3$ folds) [27]:
 
 **Bảng 3.3 Không gian tìm kiếm siêu tham số trong bộ tinh chỉnh ParamGridBuilder**
 
@@ -106,8 +106,8 @@ $$\hat{p}(x) = \frac{1}{B} \sum_{b=1}^{B} p_b(x)$$
 
 ### 3.2.8 Phương pháp đánh giá mô hình và xác lập ngưỡng cắt rủi ro
 Hiệu năng của mô hình được đánh giá toàn diện qua tập kiểm thử độc lập gồm **452,140 hồ sơ (chiếm 20% dữ liệu)** dựa trên các chỉ số:
-- **Diện tích dưới đường cong ROC (ROC-AUC):** Đo lường năng lực phân biệt tổng thể giữa hồ sơ tốt và hồ sơ vỡ nợ [35].
+- **Diện tích dưới đường cong ROC (ROC-AUC):** Đo lường năng lực phân biệt tổng thể giữa hồ sơ tốt và hồ sơ vỡ nợ [28].
 - **Ma trận nhầm lẫn (Confusion Matrix):** Xác định các đại lượng True Positive (TP), False Positive (FP), True Negative (TN), False Negative (FN).
 - **Độ nhạy phát hiện nợ xấu (Recall) và Độ chính xác (Precision):** Đánh giá khả năng không bỏ sót rủi ro tín dụng.
-- **Chỉ số Youden's J Statistic:** Xác định ngưỡng cắt xác suất tối ưu nhằm cực đại hóa hiệu quả phân loại:
+- **Chỉ số Youden's J Statistic:** Xác định ngưỡng cắt xác suất tối ưu nhằm cực đại hóa hiệu quả phân loại [29]:
   $$J = \text{Sensitivity} + \text{Specificity} - 1$$

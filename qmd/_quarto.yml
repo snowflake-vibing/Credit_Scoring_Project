@@ -4,18 +4,13 @@ project:
 
 book:
   title: "Đề Tài 7: Mô Hình Chấm Điểm Tín Dụng & Thẩm Định Rủi Ro Vỡ NỢ"
-  subtitle: "Báo Cáo Tiểu Luận Môn Học Dữ Liệu Lớn & Trí Tuệ Nhân Tạo Trong Kinh Doanh"
+  subtitle: "Báo Cáo Tiểu Luận Kết Thúc Học Phần (Capstone Project) - Môn Dữ Liệu Lớn (Big Data) - Samsung Innovation Campus (SIC) - UFM"
   author:
     - name: "Lê Thành Hiệu"
       affiliation: "Trường Đại học Tài chính - Marketing (UFM)"
   date: "2026"
   search: true
   page-navigation: true
-  page-footer:
-    left: "Báo cáo Tiểu luận: Hệ thống Chấm điểm Tín dụng & Thẩm định Rủi ro Vỡ nợ"
-    center: "Trường Đại học Tài chính - Marketing (UFM) • 2026"
-    right: "GVHD: TS. Trần Mạnh Tường • SV: Lê Thành Hiệu"
-    border: true
   chapters:
     - index.qmd
     - 01_CHUONG_1_GIOI_THIEU.qmd
@@ -37,8 +32,6 @@ format:
     code-fold: show
     highlight-style: github
     css: styles.css
-    include-before-body: header.html
-    include-after-body: footer.html
   docx:
     toc: true
     number-sections: false

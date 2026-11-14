@@ -13,62 +13,34 @@ format:
 
 ---
 
-### I. TIẾNG VIỆT
-
-1. Chính phủ nước Cộng hòa Xã hội Chủ nghĩa Việt Nam (2023), *Nghị định số 13/2023/NĐ-CP: Quy định về bảo vệ dữ liệu cá nhân*, Hà Nội.
-2. Ngân hàng Nhà nước Việt Nam (2016), *Thông tư số 41/2016/TT-NHNN: Quy định tỷ lệ an toàn vốn đối với ngân hàng thương mại, chi nhánh ngân hàng nước ngoài*, Hà Nội.
-3. Ngân hàng Nhà nước Việt Nam (2021), *Thông tư số 11/2021/TT-NHNN: Quy định về phân loại tài sản có, mức trích, phương pháp trích lập dự phòng rủi ro và việc sử dụng dự phòng để xử lý rủi ro trong hoạt động của tổ chức tín dụng*, Hà Nội.
-4. Quốc hội nước Cộng hòa Xã hội Chủ nghĩa Việt Nam (2019), *Bộ luật Lao động số 45/2019/QH14*, Hà Nội.
-5. Quốc hội nước Cộng hòa Xã hội Chủ nghĩa Việt Nam (2024), *Luật Các tổ chức tín dụng số 32/2024/QH15*, Hà Nội.
-
----
-
-### II. TIẾNG ANH
-
-6. Altman, E. I. (1968), Financial ratios, discriminant analysis and the prediction of corporate bankruptcy, *The Journal of Finance*, 23(4), pp. 589-609.
-7. Anderson, R. (2007), *The Credit Scoring Toolkit: Theory and Practice for Retail Credit Risk Management and Decision Automation*, Oxford University Press.
-8. Armbrust, M., R. S. Xin, C. Lian, Y. Huai, D. Liu, J. K. Bradley, ... and M. Zaharia (2015), Spark SQL: Relational data processing in Spark, *Proceedings of the 2015 ACM SIGMOD International Conference on Management of Data*, pp. 1383-1394.
-9. Armbrust, M., T. Das, L. Sun, B. Yavuz, S. Zhu, M. Murthy, ... and M. Zaharia (2020), Delta Lake: High-Performance ACID Table Storage over Cloud Object Stores, *Proceedings of the VLDB Endowment*, 13(12), pp. 3411-3424.
-10. Armbrust, M., A. Ghodsi, R. Xin, and M. Zaharia (2021), Lakehouse: A New Generation of Open Platforms that Unify Data Warehousing and Advanced Analytics, *Proceedings of CIDR 2021*.
-11. Arner, D. W., J. Barberis, and R. P. Buckley (2015), The Evolution of FinTech: A New Post-Crisis Paradigm?, *Georgetown Journal of International Law*, 47, pp. 1271-1319.
-12. Baesens, B., T. Van Gestel, S. Viaene, M. Stepanova, J. Suykens, and J. Vanthienen (2003), Benchmarking state-of-the-art classification algorithms for credit scoring, *Journal of the Operational Research Society*, 54(6), pp. 627-635.
-13. Basel Committee on Banking Supervision (BCBS) (2006), *International Convergence of Capital Measurement and Capital Standards: A Revised Framework (Basel II)*, Bank for International Settlements (BIS).
-14. Basel Committee on Banking Supervision (BCBS) (2017), *Basel III: Finalising post-crisis reforms*, Bank for International Settlements (BIS).
-15. Basel Committee on Banking Supervision (BCBS) (2019), *Standardised approach for credit risk: Guidance and implementation*, Bank for International Settlements (BIS).
-16. Berger, J. O. (1985), *Statistical Decision Theory and Bayesian Analysis (2nd ed.)*, Springer-Verlag.
-17. Biau, G. and E. Scornet (2016), A random forest guided tour, *TEST*, 25(2), pp. 197-227.
-18. Breiman, L. (2001), Random Forests, *Machine Learning*, 45(1), pp. 5-32.
-19. Chambers, B. and M. Zaharia (2018), *Spark: The Definitive Guide: Big Data Processing Made Simple*, O'Reilly Media.
-20. Chawla, N. V., K. W. Bowyer, L. O. Hall, and W. P. Kegelmeyer (2002), SMOTE: synthetic minority over-sampling technique, *Journal of Artificial Intelligence Research*, 16, pp. 321-357.
-21. Crouhy, M., D. Galai, and R. Mark (2006), *The Essentials of Risk Management*, McGraw-Hill.
-22. DAMA International (2017), *DAMA-DMBOK: Data Management Body of Knowledge (2nd ed.)*, Technics Publications.
-23. Databricks Inc. (2023), *Medallion Architecture: Best Practices for Managing Data with Bronze, Silver, and Gold Tables*, Databricks Official Technical Documentation.
-24. DeYoung, R., D. Glennon, and P. Nigro (2008), Borrower-lender distance, credit scoring, and loan performance: Evidence from informational-opaque small business borrowers, *Journal of Financial Intermediation*, 17(1), pp. 113-143.
-25. Fair Isaac Corporation (FICO) (2020), *Understanding FICO Scores: How Credit Scoring Works*, FICO Technical Whitepaper.
-26. Fawcett, T. (2006), An introduction to ROC analysis, *Pattern Recognition Letters*, 27(8), pp. 861-874.
-27. Fuster, A., M. Plosser, P. Schnabl, and J. Vickery (2019), The role of technology in mortgage lending, *The Review of Financial Studies*, 32(5), pp. 1854-1899.
-28. Gandomi, A. and M. Haider (2015), Beyond the hype: Big data concepts, methods, and analytics, *International Journal of Information Management*, 35(2), pp. 137-144.
-29. Han, J., M. Kamber, and J. Pei (2011), *Data Mining: Concepts and Techniques (3rd ed.)*, Morgan Kaufmann.
-30. Hand, D. J. and W. E. Henley (1997), Statistical classification methods in consumer credit scoring: a review, *Journal of the Royal Statistical Society: Series A*, 160(3), pp. 523-541.
-31. Hastie, T., R. Tibshirani, and J. Friedman (2009), *The Elements of Statistical Learning: Data Mining, Inference, and Prediction (2nd ed.)*, Springer.
-32. Ho, T. K. (1998), The random subspace method for constructing decision forests, *IEEE Transactions on Pattern Analysis and Machine Intelligence*, 20(8), pp. 832-844.
-33. Inmon, W. H. (2005), *Building the Data Warehouse (4th ed.)*, John Wiley & Sons.
-34. Jagtiani, J. and C. Lemieux (2019), The roles of alternative data and machine learning in fintech lending: evidence from the LendingClub consumer platform, *Financial Management*, 48(4), pp. 1009-1029.
-35. Karau, H., A. Konwinski, P. Wendell, and M. Zaharia (2015), *Learning Spark: Lightning-Fast Big Data Analysis*, O'Reilly Media.
-36. Kimball, R. and M. Ross (2013), *The Data Warehouse Toolkit: The Definitive Guide to Dimensional Modeling (3rd ed.)*, Wiley.
-37. Kleppmann, M. (2017), *Designing Data-Intensive Applications: The Big Ideas Behind Reliable, Scalable, and Maintainable Systems*, O'Reilly Media.
-38. Kohavi, R. (1995), A study of cross-validation and bootstrap for accuracy estimation and model selection, *Proceedings of IJCAI*, 2, pp. 1137-1145.
-39. LendingClub Corporation (2019), *LendingClub Complete Loan Data 2007-2018Q4*, Open Financial Datasets, Kaggle.
-40. Lessmann, S., B. Baesens, H. V. Seow, and L. C. Thomas (2015), Benchmarking state-of-the-art classification algorithms for credit scoring: An update of research, *European Journal of Operational Research*, 247(1), pp. 124-136.
-41. Louppe, G., L. Wehenkel, A. Sutera, and P. Geurts (2013), Understanding variable importances in forests of randomized trees, *Advances in NeurIPS*, 26, pp. 431-439.
-42. Meng, X., J. Bradley, B. Yavuz, E. Sparks, S. Venkataraman, D. Liu, ... and M. Zaharia (2016), MLlib: Machine learning in Apache Spark, *The Journal of Machine Learning Research*, 17(1), pp. 1235-1241.
-43. Mishkin, F. S. (2018), *The Economics of Money, Banking, and Financial Markets (12th ed.)*, Pearson.
-44. O'Leary, D. E. (2014), ‘Big data’, the ‘Internet of things’ and the ‘Internet of signs’, *Intelligent Systems in Accounting, Finance and Management*, 21(3), pp. 141-165.
-45. Saunders, A. and M. M. Cornett (2018), *Financial Institutions Management: A Risk Management Approach (9th ed.)*, McGraw-Hill Education.
-46. Siddiqi, N. (2017), *Intelligent Credit Scoring: Building and Implementing Better Credit Risk Scorecards (2nd ed.)*, John Wiley & Sons.
-47. Stiglitz, J. E. and A. Weiss (1981), Credit Rationing in Markets with Imperfect Information, *The American Economic Review*, 71(3), pp. 393-410.
-48. Strunk, C. R. and R. Sankar (2012), Risk-Based Pricing in Retail Banking: Methodologies and Implementation, *Journal of Risk Management in Financial Institutions*, 5(4), pp. 415-429.
-49. Thomas, L. C., D. B. Edelman, and J. N. Crook (2002), *Credit Scoring and Its Applications*, SIAM Monographs.
-50. White, T. (2015), *Hadoop: The Definitive Guide (4th ed.)*, O'Reilly Media.
-51. Youden, W. J. (1950), Index for rating diagnostic tests, *Cancer*, 3(1), pp. 32-35.
-52. Zaharia, M., R. S. Xin, P. Wendell, T. Das, M. Armbrust, A. Dave, ... and I. Stoica (2016), Apache Spark: a unified engine for big data processing, *Communications of the ACM*, 59(11), pp. 56-65.
+1. Mishkin, F. S. (2018), *The Economics of Money, Banking, and Financial Markets (12th ed.)*, Pearson Education.
+2. Arner, D. W., J. Barberis, and R. P. Buckley (2015), The Evolution of FinTech: A New Post-Crisis Paradigm?, *Georgetown Journal of International Law*, 47, pp. 1271-1319.
+3. Fuster, A., M. Plosser, P. Schnabl, and J. Vickery (2019), The role of technology in mortgage lending, *The Review of Financial Studies*, 32(5), pp. 1854-1899.
+4. Saunders, A. and M. M. Cornett (2018), *Financial Institutions Management: A Risk Management Approach (9th ed.)*, McGraw-Hill Education.
+5. Basel Committee on Banking Supervision (BCBS) (2006), *International Convergence of Capital Measurement and Capital Standards: A Revised Framework (Basel II)*, Bank for International Settlements (BIS).
+6. Crouhy, M., D. Galai, and R. Mark (2006), *The Essentials of Risk Management*, McGraw-Hill.
+7. Thomas, L. C., D. B. Edelman, and J. N. Crook (2002), *Credit Scoring and Its Applications*, Society for Industrial and Applied Mathematics (SIAM).
+8. Gandomi, A. and M. Haider (2015), Beyond the hype: Big data concepts, methods, and analytics, *International Journal of Information Management*, 35(2), pp. 137-144.
+9. Akerlof, G. A. (1970), The market for "lemons": Quality uncertainty and the market mechanism, *The Quarterly Journal of Economics*, 84(3), pp. 488-500.
+10. Stiglitz, J. E. and A. Weiss (1981), Credit Rationing in Markets with Imperfect Information, *The American Economic Review*, 71(3), pp. 393-410.
+11. Ngân hàng Nhà nước Việt Nam (2016), *Thông tư số 41/2016/TT-NHNN: Quy định tỷ lệ an toàn vốn đối với ngân hàng thương mại, chi nhánh ngân hàng nước ngoài*, Hà Nội.
+12. Siddiqi, N. (2017), *Intelligent Credit Scoring: Building and Implementing Better Credit Risk Scorecards (2nd ed.)*, John Wiley & Sons.
+13. Armbrust, M., A. Ghodsi, R. Xin, and M. Zaharia (2021), Lakehouse: A New Generation of Open Platforms that Unify Data Warehousing and Advanced Analytics, *Proceedings of CIDR 2021*.
+14. Armbrust, M., T. Das, L. Sun, B. Yavuz, S. Zhu, M. Murthy, ... and M. Zaharia (2020), Delta Lake: High-Performance ACID Table Storage over Cloud Object Stores, *Proceedings of the VLDB Endowment*, 13(12), pp. 3411-3424.
+15. Databricks Inc. (2023), *Medallion Architecture: Best Practices for Managing Data with Delta Lake*, Databricks Technical Whitepaper.
+16. Altman, E. I. (1968), Financial ratios, discriminant analysis and the prediction of corporate bankruptcy, *The Journal of Finance*, 23(4), pp. 589-609.
+17. Baesens, B., T. Van Gestel, S. Viaene, M. Stepanova, J. Suykens, and J. Vanthienen (2003), Benchmarking state-of-the-art classification algorithms for credit scoring, *Journal of the Operational Research Society*, 54(6), pp. 627-635.
+18. Lessmann, S., B. Baesens, H. V. Seow, and L. C. Thomas (2015), Benchmarking state-of-the-art classification algorithms for credit scoring: An update of research, *European Journal of Operational Research*, 247(1), pp. 124-136.
+19. Jagtiani, J. and C. Lemieux (2019), The roles of alternative data and machine learning in fintech lending: Evidence from the LendingClub consumer platform, *Financial Management*, 48(4), pp. 1009-1029.
+20. Basel Committee on Banking Supervision (BCBS) (2017), *Basel III: Finalising post-crisis reforms*, Bank for International Settlements (BIS).
+21. LendingClub Corporation (2019), *LendingClub Complete Loan Data 2007-2018Q4*, Open Financial Data Repository.
+22. Han, J., M. Kamber, and J. Pei (2011), *Data Mining: Concepts and Techniques (3rd ed.)*, Morgan Kaufmann Publishers.
+23. Hand, D. J. and W. E. Henley (1997), Statistical classification methods in consumer credit scoring: a review, *Journal of the Royal Statistical Society: Series A (Statistics in Society)*, 160(3), pp. 523-541.
+24. Armbrust, M., R. S. Xin, C. Lian, Y. Huai, D. Liu, J. K. Bradley, ... and M. Zaharia (2015), Spark SQL: Relational data processing in Spark, *Proceedings of the 2015 ACM SIGMOD International Conference on Management of Data*, pp. 1383-1394.
+25. Breiman, L. (2001), Random Forests, *Machine Learning*, 45(1), pp. 5-32.
+26. Ho, T. K. (1998), The random subspace method for constructing decision forests, *IEEE Transactions on Pattern Analysis and Machine Intelligence*, 20(8), pp. 832-844.
+27. Kohavi, R. (1995), A study of cross-validation and bootstrap for accuracy estimation and model selection, *IJCAI*, 14(2), pp. 1137-1145.
+28. Fawcett, T. (2006), An introduction to ROC analysis, *Pattern Recognition Letters*, 27(8), pp. 861-874.
+29. Youden, W. J. (1950), Index for rating diagnostic tests, *Cancer*, 3(1), pp. 32-35.
+30. Fair Isaac Corporation (FICO) (2020), *Understanding FICO Scores: How Credit Scoring Works*, San Jose, California.
+31. Strunk, C. R. and R. Sankar (2012), Risk-Based Pricing in Retail Banking: Methodologies and Applications, *Journal of Retail Banking Services*, 34(2), pp. 45-58.

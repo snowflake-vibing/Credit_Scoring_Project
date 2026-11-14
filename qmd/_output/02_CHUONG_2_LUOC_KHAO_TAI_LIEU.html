@@ -44,7 +44,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-de63f62b328812d8e578a4d74e282472.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-b4e84526986408c0be4397cdca2904de.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-ff39eb75f09dfe1eb0ac836af7385c3d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -218,11 +218,6 @@ window.Quarto = {
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
-<!-- HEADER HỌC THUẬT UFM -->
-<div class="academic-header-bar">
-  <div class="header-univ">BỘ TÀI CHÍNH • TRƯỜNG ĐẠI HỌC TÀI CHÍNH - MARKETING (UFM) • KHOA CNTT</div>
-  <div class="header-subject">TIỂU LUẬN DỮ LIỆU LỚN &amp; AI TRONG KINH DOANH</div>
-</div>
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -250,12 +245,12 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="tổng-quan-về-rủi-ro-tín-dụng-và-phương-pháp-thẩm-định-truyền-thống">2.1 Tổng quan về rủi ro tín dụng và phương pháp thẩm định truyền thống</h2>
 <section id="bản-chất-kinh-tế-của-rủi-ro-tín-dụng-và-biến-cố-vỡ-nợ" class="level3">
 <h3 class="anchored" data-anchor-id="bản-chất-kinh-tế-của-rủi-ro-tín-dụng-và-biến-cố-vỡ-nợ">2.1.1 Bản chất kinh tế của rủi ro tín dụng và biến cố vỡ nợ</h3>
-<p>Trong hoạt động trung gian tài chính, rủi ro tín dụng phát sinh từ hiện tượng <strong>bất cân xứng thông tin (Asymmetric Information)</strong> giữa người đi vay và bên cho vay, dẫn đến hai hệ lụy kinh điển là lựa chọn đối nghịch (Adverse Selection) trước khi ký hợp đồng và rủi ro đạo đức (Moral Hazard) sau khi giải ngân [16]. Theo Stiglitz và Weiss (1981), việc nâng lãi suất để bù đắp rủi ro có thể vô tình loại bỏ các khách hàng tốt và chỉ thu hút những đối tượng sẵn sàng mạo hiểm, làm tăng nguy cơ vỡ nợ của toàn danh mục [17].</p>
-<p>Khi biến cố vỡ nợ xảy ra, ngân hàng không chỉ tổn thất phần vốn gốc chưa thu hồi mà còn phải gánh chịu chi phí xử lý nợ, trích lập dự phòng rủi ro và làm suy giảm tỷ lệ an toàn vốn CAR theo quy định của Ngân hàng Nhà nước [18]. Do đó, việc xây dựng mô hình dự báo xác suất vỡ nợ (Probability of Default - PD) chính xác là nền tảng sống còn trong quản trị tài chính hiện đại.</p>
+<p>Trong hoạt động trung gian tài chính, rủi ro tín dụng phát sinh từ hiện tượng <strong>bất cân xứng thông tin (Asymmetric Information)</strong> giữa người đi vay và bên cho vay, dẫn đến hai hệ lụy kinh điển là lựa chọn đối nghịch (Adverse Selection) trước khi ký hợp đồng và rủi ro đạo đức (Moral Hazard) sau khi giải ngân [9]. Theo Stiglitz và Weiss (1981), việc nâng lãi suất để bù đắp rủi ro có thể vô tình loại bỏ các khách hàng tốt và chỉ thu hút những đối tượng sẵn sàng mạo hiểm, làm tăng nguy cơ vỡ nợ của toàn danh mục [10].</p>
+<p>Khi biến cố vỡ nợ xảy ra, ngân hàng không chỉ tổn thất phần vốn gốc chưa thu hồi mà còn phải gánh chịu chi phí xử lý nợ, trích lập dự phòng rủi ro và làm suy giảm tỷ lệ an toàn vốn CAR theo quy định của Ngân hàng Nhà nước [11]. Do đó, việc xây dựng mô hình dự báo xác suất vỡ nợ (Probability of Default - PD) chính xác là nền tảng sống còn trong quản trị tài chính hiện đại.</p>
 </section>
 <section id="các-hạn-chế-của-phương-pháp-thẩm-định-tín-dụng-truyền-thống" class="level3">
 <h3 class="anchored" data-anchor-id="các-hạn-chế-của-phương-pháp-thẩm-định-tín-dụng-truyền-thống">2.1.2 Các hạn chế của phương pháp thẩm định tín dụng truyền thống</h3>
-<p>Quy trình thẩm định truyền thống chủ yếu dựa trên đánh giá định tính của chuyên viên tín dụng (Expert Judgment) hoặc các bảng điểm tĩnh (Scorecards) xây dựng bằng hồi quy Logistic đơn biến [19]. Các phương pháp này bộc lộ những hạn chế rõ rệt: 1. <strong>Độ trễ thời gian lớn:</strong> Mất từ 2 đến 5 ngày để thẩm định hồ sơ giấy tờ và gọi điện xác minh, không đáp ứng được yêu cầu phê duyệt tức thì của khách hàng số. 2. <strong>Chi phí vận hành cao:</strong> Đòi hỏi lực lượng nhân sự thẩm định thực địa đông đảo, khiến biên lợi nhuận của các khoản vay nhỏ bị bào mòn. 3. <strong>Định kiến chủ quan:</strong> Quyết định phê duyệt phụ thuộc vào cảm tính cá nhân, dễ tạo ra sự thiếu nhất quán giữa các chi nhánh. 4. <strong>Không nắm bắt được quan hệ phi tuyến:</strong> Không xử lý được các mối quan hệ tương tác phức tạp giữa các đặc trưng tài chính đa chiều.</p>
+<p>Quy trình thẩm định truyền thống chủ yếu dựa trên đánh giá định tính của chuyên viên tín dụng (Expert Judgment) hoặc các bảng điểm tĩnh (Scorecards) xây dựng bằng hồi quy Logistic đơn biến [12]. Các phương pháp này bộc lộ những hạn chế rõ rệt: 1. <strong>Độ trễ thời gian lớn:</strong> Mất từ 2 đến 5 ngày để thẩm định hồ sơ giấy tờ và gọi điện xác minh, không đáp ứng được yêu cầu phê duyệt tức thì của khách hàng số. 2. <strong>Chi phí vận hành cao:</strong> Đòi hỏi lực lượng nhân sự thẩm định thực địa đông đảo, khiến biên lợi nhuận của các khoản vay nhỏ bị bào mòn. 3. <strong>Định kiến chủ quan:</strong> Quyết định phê duyệt phụ thuộc vào cảm tính cá nhân, dễ tạo ra sự thiếu nhất quán giữa các chi nhánh. 4. <strong>Không nắm bắt được quan hệ phi tuyến:</strong> Không xử lý được các mối quan hệ tương tác phức tạp giữa các đặc trưng tài chính đa chiều.</p>
 <hr>
 </section>
 </section>
@@ -263,7 +258,7 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="cơ-sở-lý-thuyết-về-kiến-trúc-hồ-dữ-liệu-databricks-lakehouse">2.2 Cơ sở lý thuyết về Kiến trúc Hồ dữ liệu Databricks Lakehouse</h2>
 <section id="sự-tiến-hóa-từ-data-warehouse-đến-lakehouse" class="level3">
 <h3 class="anchored" data-anchor-id="sự-tiến-hóa-từ-data-warehouse-đến-lakehouse">2.2.1 Sự tiến hóa từ Data Warehouse đến Lakehouse</h3>
-<p>Để giải quyết bài toán dữ liệu lớn, kiến trúc lưu trữ và xử lý đã trải qua ba thế hệ tiến hóa: Kho dữ liệu (Data Warehouse), Hồ dữ liệu (Data Lake) và Kiến trúc kết hợp Hồ - Kho dữ liệu (Lakehouse) [20]:</p>
+<p>Để giải quyết bài toán dữ liệu lớn, kiến trúc lưu trữ và xử lý đã trải qua ba thế hệ tiến hóa: Kho dữ liệu (Data Warehouse), Hồ dữ liệu (Data Lake) và Kiến trúc kết hợp Hồ - Kho dữ liệu (Lakehouse) [13]:</p>
 <p><strong>Bảng 2.1 So sánh ưu nhược điểm giữa Data Warehouse, Data Lake và Databricks Lakehouse</strong></p>
 <table class="caption-top table">
 <colgroup>
@@ -313,7 +308,7 @@ window.Quarto = {
 </section>
 <section id="định-dạng-lưu-trữ-phân-tán-delta-lake-và-apache-spark" class="level3">
 <h3 class="anchored" data-anchor-id="định-dạng-lưu-trữ-phân-tán-delta-lake-và-apache-spark">2.2.2 Định dạng lưu trữ phân tán Delta Lake và Apache Spark</h3>
-<p>Delta Lake là tầng lưu trữ mã nguồn mở trung gian xây dựng trên nền tảng tệp Parquet dạng cột, mang lại các ưu thế vượt trội: - <strong>Tính toàn vẹn giao dịch ACID:</strong> Đảm bảo mọi giao dịch thêm mới, cập nhật hoặc xóa dữ liệu đều thành công trọn vẹn hoặc hoàn tác hoàn toàn, ngăn ngừa hiện tượng phân mảnh dữ liệu (Data Corruption) [21]. - <strong>Khả năng quay ngược thời gian (Time Travel):</strong> Cho phép truy vấn dữ liệu tại một thời điểm lịch sử chính xác thông qua nhật ký <code>_delta_log</code>, đáp ứng yêu cầu kiểm toán nghiêm ngặt của ngành ngân hàng. - <strong>Tối ưu hóa truy vấn Spark Catalyst Optimizer:</strong> Tự động tối ưu hóa kế hoạch thực thi logic và vật lý, giảm thiểu dung lượng truyền tải qua mạng giữa các worker node.</p>
+<p>Delta Lake là tầng lưu trữ mã nguồn mở trung gian xây dựng trên nền tảng tệp Parquet dạng cột, mang lại các ưu thế vượt trội: - <strong>Tính toàn vẹn giao dịch ACID:</strong> Đảm bảo mọi giao dịch thêm mới, cập nhật hoặc xóa dữ liệu đều thành công trọn vẹn hoặc hoàn tác hoàn toàn, ngăn ngừa hiện tượng phân mảnh dữ liệu (Data Corruption) [14]. - <strong>Khả năng quay ngược thời gian (Time Travel):</strong> Cho phép truy vấn dữ liệu tại một thời điểm lịch sử chính xác thông qua nhật ký <code>_delta_log</code>, đáp ứng yêu cầu kiểm toán nghiêm ngặt của ngành ngân hàng. - <strong>Tối ưu hóa truy vấn Spark Catalyst Optimizer:</strong> Tự động tối ưu hóa kế hoạch thực thi logic và vật lý, giảm thiểu dung lượng truyền tải qua mạng giữa các worker node.</p>
 <hr>
 </section>
 </section>
@@ -321,7 +316,7 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="thiết-kế-kiến-trúc-phân-tầng-medallion-trong-định-chế-tài-chính">2.3 Thiết kế kiến trúc phân tầng Medallion trong định chế tài chính</h2>
 <section id="phân-định-chức-năng-ba-tầng-bronze-silver-và-gold" class="level3">
 <h3 class="anchored" data-anchor-id="phân-định-chức-năng-ba-tầng-bronze-silver-và-gold">2.3.1 Phân định chức năng ba tầng Bronze, Silver và Gold</h3>
-<p>Kiến trúc Medallion tổ chức luồng dữ liệu theo ba cấp độ tinh chế tăng dần nhằm bảo đảm chất lượng dữ liệu phục vụ mô hình học máy [22]:</p>
+<p>Kiến trúc Medallion tổ chức luồng dữ liệu theo ba cấp độ tinh chế tăng dần nhằm bảo đảm chất lượng dữ liệu phục vụ mô hình học máy [15]:</p>
 <p><strong>Bảng 2.2 Phân định chức năng, nguyên tắc và công nghệ giữa 3 tầng kiến trúc Medallion</strong></p>
 <table class="caption-top table">
 <colgroup>
@@ -390,11 +385,11 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="khung-quản-trị-dữ-liệu-và-chuẩn-mực-an-toàn-vốn-basel-iiiii">2.4 Khung quản trị dữ liệu và Chuẩn mực an toàn vốn Basel II/III</h2>
 <section id="tổng-quan-các-nghiên-cứu-thực-nghiệm-trong-và-ngoài-nước" class="level3">
 <h3 class="anchored" data-anchor-id="tổng-quan-các-nghiên-cứu-thực-nghiệm-trong-và-ngoài-nước">2.4.1 Tổng quan các nghiên cứu thực nghiệm trong và ngoài nước</h3>
-<p>Trong nhiều năm qua, các phương pháp phân loại nhị phân đã được áp dụng rộng rãi trong xếp hạng tín dụng cá nhân: - Altman (1968) tiên phong với chỉ số Z-score dựa trên phân tích biệt số đa biến (MDA) để dự báo nguy cơ phá sản [23]. - Baesens et al.&nbsp;(2003) và Lessmann et al.&nbsp;(2015) qua các nghiên cứu thực nghiệm quy mô lớn đã chứng minh rằng các mô hình học kết hợp (Ensemble Learning) như Random Forest và Gradient Boosting luôn vượt trội so với hồi quy Logistic truyền thống về chỉ số AUC và khả năng kháng hiện tượng quá khớp (Overfitting) [24], [25]. - Jagtiani và Lemieux (2019) khẳng định dữ liệu phi truyền thống kết hợp máy học giúp các nền tảng FinTech nâng cao khả năng tiếp cận vốn cho người yếu thế mà không làm tăng tỷ lệ nợ xấu [26].</p>
+<p>Trong nhiều năm qua, các phương pháp phân loại nhị phân đã được áp dụng rộng rãi trong xếp hạng tín dụng cá nhân: - Altman (1968) tiên phong với chỉ số Z-score dựa trên phân tích biệt số đa biến (MDA) để dự báo nguy cơ phá sản [16]. - Baesens et al.&nbsp;(2003) và Lessmann et al.&nbsp;(2015) qua các nghiên cứu thực nghiệm quy mô lớn đã chứng minh rằng các mô hình học kết hợp (Ensemble Learning) như Random Forest và Gradient Boosting luôn vượt trội so với hồi quy Logistic truyền thống về chỉ số AUC và khả năng kháng hiện tượng quá khớp (Overfitting) [17], [18]. - Jagtiani và Lemieux (2019) khẳng định dữ liệu phi truyền thống kết hợp máy học giúp các nền tảng FinTech nâng cao khả năng tiếp cận vốn cho người yếu thế mà không làm tăng tỷ lệ nợ xấu [19].</p>
 </section>
 <section id="yêu-cầu-tuân-thủ-an-toàn-vốn-theo-chuẩn-basel-iiiii-và-thông-tư-412016tt-nhnn" class="level3">
 <h3 class="anchored" data-anchor-id="yêu-cầu-tuân-thủ-an-toàn-vốn-theo-chuẩn-basel-iiiii-và-thông-tư-412016tt-nhnn">2.4.2 Yêu cầu tuân thủ an toàn vốn theo chuẩn Basel II/III và Thông tư 41/2016/TT-NHNN</h3>
-<p>Ủy ban Basel về Giám sát Ngân hàng quy định phương pháp xếp hạng nội bộ nâng cao (Advanced Internal Ratings-Based - A-IRB) đòi hỏi ngân hàng phải tự lượng hóa xác suất vỡ nợ (PD), tỷ lệ tổn thất khi vỡ nợ (LGD) và tổng dư nợ chịu rủi ro (EAD) [27]. Theo Thông tư 41/2016/TT-NHNN của Ngân hàng Nhà nước Việt Nam: - Mô hình chấm điểm tín dụng phải được kiểm định chéo độc lập và có khả năng phân biệt rõ ràng giữa các nhóm khách hàng có mức độ rủi ro khác nhau. - Tổ chức tín dụng phải trích lập dự phòng tổn thất tín dụng kỳ vọng (<span class="math inline">\(EL\)</span>) theo công thức: <span class="math display">\[EL = PD \times LGD \times EAD\]</span> Việc áp dụng mô hình máy học phân tán trong đề tài này giúp ước tính chính xác tham số <span class="math inline">\(PD\)</span>, từ đó tối ưu hóa nguồn vốn tự có và đáp ứng toàn diện các chuẩn mực an toàn vốn quốc tế.</p>
+<p>Ủy ban Basel về Giám sát Ngân hàng quy định phương pháp xếp hạng nội bộ nâng cao (Advanced Internal Ratings-Based - A-IRB) đòi hỏi ngân hàng phải tự lượng hóa xác suất vỡ nợ (PD), tỷ lệ tổn thất khi vỡ nợ (LGD) và tổng dư nợ chịu rủi ro (EAD) [20]. Theo Thông tư 41/2016/TT-NHNN của Ngân hàng Nhà nước Việt Nam: - Mô hình chấm điểm tín dụng phải được kiểm định chéo độc lập và có khả năng phân biệt rõ ràng giữa các nhóm khách hàng có mức độ rủi ro khác nhau. - Tổ chức tín dụng phải trích lập dự phòng tổn thất tín dụng kỳ vọng (<span class="math inline">\(EL\)</span>) theo công thức: <span class="math display">\[EL = PD \times LGD \times EAD\]</span> Việc áp dụng mô hình máy học phân tán trong đề tài này giúp ước tính chính xác tham số <span class="math inline">\(PD\)</span>, từ đó tối ưu hóa nguồn vốn tự có và đáp ứng toàn diện các chuẩn mực an toàn vốn quốc tế.</p>
 
 
 </section>
@@ -402,14 +397,6 @@ window.Quarto = {
 </section>
 
 </main> <!-- /main -->
-<!-- FOOTER HỌC THUẬT UFM - KHÔNG ĐÁNH SỐ TRANG TRÊN FILE QMD/WEB -->
-<div class="academic-footer-bar">
-  <div class="footer-left">Đề tài 7: Mô hình Chấm điểm Tín dụng &amp; Thẩm định Rủi ro Vỡ nợ</div>
-  <div class="footer-center">
-    <span class="page-number-box">Trường Đại học Tài chính - Marketing (UFM) • 2026</span>
-  </div>
-  <div class="footer-right">GVHD: TS. Trần Mạnh Tường • SV: Lê Thành Hiệu</div>
-</div>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -823,19 +810,6 @@ window.Quarto = {
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
-    <div class="nav-footer-left">
-<p>Báo cáo Tiểu luận: Hệ thống Chấm điểm Tín dụng &amp; Thẩm định Rủi ro Vỡ nợ</p>
-</div>   
-    <div class="nav-footer-center">
-<p>Trường Đại học Tài chính - Marketing (UFM) • 2026</p>
-</div>
-    <div class="nav-footer-right">
-<p>GVHD: TS. Trần Mạnh Tường • SV: Lê Thành Hiệu</p>
-</div>
-  </div>
-</footer>
 
 
 

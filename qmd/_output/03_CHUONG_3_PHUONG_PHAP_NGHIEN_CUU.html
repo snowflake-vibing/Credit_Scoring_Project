@@ -79,7 +79,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-de63f62b328812d8e578a4d74e282472.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-b4e84526986408c0be4397cdca2904de.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-ff39eb75f09dfe1eb0ac836af7385c3d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -249,11 +249,6 @@ window.Quarto = {
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
-<!-- HEADER HỌC THUẬT UFM -->
-<div class="academic-header-bar">
-  <div class="header-univ">BỘ TÀI CHÍNH • TRƯỜNG ĐẠI HỌC TÀI CHÍNH - MARKETING (UFM) • KHOA CNTT</div>
-  <div class="header-subject">TIỂU LUẬN DỮ LIỆU LỚN &amp; AI TRONG KINH DOANH</div>
-</div>
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -281,7 +276,7 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="phương-tiện-nghiên-cứu">3.1 Phương tiện nghiên cứu</h2>
 <section id="bộ-dữ-liệu-lớn-lendingclub-quy-mô-2.26-triệu-hồ-sơ" class="level3">
 <h3 class="anchored" data-anchor-id="bộ-dữ-liệu-lớn-lendingclub-quy-mô-2.26-triệu-hồ-sơ">3.1.1 Bộ dữ liệu lớn LendingClub quy mô 2.26 triệu hồ sơ</h3>
-<p>Nghiên cứu sử dụng tập dữ liệu thực tế <strong>LendingClub Complete Loan Dataset (2007 - 2018Q4)</strong> được công bố bởi LendingClub - nền tảng cho vay ngang hàng trực tuyến lớn nhất thế giới [28]. Dữ liệu bao gồm 2,260,701 khoản vay (1.6 GB) với 12 thuộc tính cốt lõi được trích xuất và chuẩn hóa:</p>
+<p>Nghiên cứu sử dụng tập dữ liệu thực tế <strong>LendingClub Complete Loan Dataset (2007 - 2018Q4)</strong> được công bố bởi LendingClub - nền tảng cho vay ngang hàng trực tuyến lớn nhất thế giới [21]. Dữ liệu bao gồm 2,260,701 khoản vay (1.6 GB) với 12 thuộc tính cốt lõi được trích xuất và chuẩn hóa:</p>
 <p><strong>Bảng 3.1 Mô tả chi tiết 12 thuộc tính cốt lõi trong Bộ dữ liệu lớn LendingClub (2,260,701 bản ghi)</strong></p>
 <table class="caption-top table">
 <colgroup>
@@ -401,11 +396,11 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="phương-pháp-nghiên-cứu">3.2 Phương pháp nghiên cứu</h2>
 <section id="quy-trình-thu-thập-và-nạp-dữ-liệu-thô-tầng-bronze" class="level3">
 <h3 class="anchored" data-anchor-id="quy-trình-thu-thập-và-nạp-dữ-liệu-thô-tầng-bronze">3.2.1 Quy trình thu thập và nạp dữ liệu thô Tầng Bronze</h3>
-<p>Khâu tiếp nhận dữ liệu đầu vào (Data Ingestion) đòi hỏi phải bảo đảm tính toàn vẹn và khả năng lưu vết lịch sử không thể chỉnh sửa [21]: 1. <strong>Nguyên tắc bảo toàn nguyên vẹn (Data Immutability):</strong> Dữ liệu thô từ file CSV được nạp thẳng vào bảng Delta <code>workspace.default.bronze_credit_data</code>, giữ nguyên mọi trường giá trị trống (<code>NULL</code>), kiểu chuỗi và các điểm ngoại lai nhằm phục vụ mục đích kiểm toán (Audit Trail). 2. <strong>Khởi tạo Delta Transaction Log:</strong> Hệ thống tự động thiết lập nhật ký giao dịch tuần tự (<code>_delta_log/00000000000000000000.json</code>) để ghi nhận siêu dữ liệu, lược đồ (schema) và vị trí các tệp con Parquet phân tán.</p>
+<p>Khâu tiếp nhận dữ liệu đầu vào (Data Ingestion) đòi hỏi phải bảo đảm tính toàn vẹn và khả năng lưu vết lịch sử không thể chỉnh sửa [14]: 1. <strong>Nguyên tắc bảo toàn nguyên vẹn (Data Immutability):</strong> Dữ liệu thô từ file CSV được nạp thẳng vào bảng Delta <code>workspace.default.bronze_credit_data</code>, giữ nguyên mọi trường giá trị trống (<code>NULL</code>), kiểu chuỗi và các điểm ngoại lai nhằm phục vụ mục đích kiểm toán (Audit Trail). 2. <strong>Khởi tạo Delta Transaction Log:</strong> Hệ thống tự động thiết lập nhật ký giao dịch tuần tự (<code>_delta_log/00000000000000000000.json</code>) để ghi nhận siêu dữ liệu, lược đồ (schema) và vị trí các tệp con Parquet phân tán.</p>
 </section>
 <section id="phương-pháp-tiền-xử-lý-và-làm-sạch-dữ-liệu-tầng-silver" class="level3">
 <h3 class="anchored" data-anchor-id="phương-pháp-tiền-xử-lý-và-làm-sạch-dữ-liệu-tầng-silver">3.2.2 Phương pháp tiền xử lý và làm sạch dữ liệu Tầng Silver</h3>
-<p>Dữ liệu từ Tầng Bronze được kích hoạt quy trình làm sạch phân tán để tạo lập bảng <code>workspace.default.silver_credit_data</code> [29]:</p>
+<p>Dữ liệu từ Tầng Bronze được kích hoạt quy trình làm sạch phân tán để tạo lập bảng <code>workspace.default.silver_credit_data</code> [22]:</p>
 <p><strong>Bảng 3.2 Kế hoạch làm sạch và chuẩn hóa dữ liệu tại Tầng Silver</strong></p>
 <table class="caption-top table">
 <colgroup>
@@ -467,7 +462,7 @@ window.Quarto = {
 </section>
 <section id="phương-pháp-kỹ-nghệ-đặc-trưng-tài-chính" class="level3">
 <h3 class="anchored" data-anchor-id="phương-pháp-kỹ-nghệ-đặc-trưng-tài-chính">3.2.3 Phương pháp kỹ nghệ đặc trưng tài chính</h3>
-<p>Nhằm cung cấp các biến số tổng hợp mang hàm lượng thông tin kinh tế cao, nghiên cứu xây dựng hai chỉ số đòn bẩy tài chính chuyên sâu [23], [30]:</p>
+<p>Nhằm cung cấp các biến số tổng hợp mang hàm lượng thông tin kinh tế cao, nghiên cứu xây dựng hai chỉ số đòn bẩy tài chính chuyên sâu [16], [23]:</p>
 <ol type="1">
 <li><p><strong>Chỉ số Tỷ lệ Nợ trên Thu nhập (Debt-to-Income Ratio - DTI):</strong> <span class="math display">\[DTI = \frac{\text{Loan Amount}}{\text{Person Income}}\]</span> Phản ánh tỷ lệ phần trăm thu nhập năm mà người vay phải dành ra để trả nợ. Mức <span class="math inline">\(DTI &gt; 0.35\)</span> (&gt; 35%) được xếp vào nhóm rủi ro cao.</p></li>
 <li><p><strong>Chỉ số Gánh nặng Tín dụng có Trọng số Thâm niên (Credit Burden Index - CBI):</strong> <span class="math display">\[CBI = \frac{\text{Loan Amount} \times (1 + \text{Interest Rate} / 100)}{\text{Person Income} \times \max(\text{Emp Length}, 1)}\]</span> Tử số đại diện cho tổng nghĩa vụ nợ cả gốc và lãi; Mẫu số đại diện cho thu nhập có trọng số theo mức độ ổn định nghề nghiệp. Chỉ số <span class="math inline">\(CBI\)</span> càng cao cảnh báo áp lực tài chính càng lớn.</p></li>
@@ -475,7 +470,7 @@ window.Quarto = {
 </section>
 <section id="phương-pháp-phân-tích-khám-phá-dữ-liệu-bằng-spark-sql-và-window-functions" class="level3">
 <h3 class="anchored" data-anchor-id="phương-pháp-phân-tích-khám-phá-dữ-liệu-bằng-spark-sql-và-window-functions">3.2.4 Phương pháp phân tích khám phá dữ liệu bằng Spark SQL và Window Functions</h3>
-<p>Sử dụng công cụ tối ưu hóa truy vấn Spark SQL để phân tích thống kê đa chiều theo Mục đích vay (<code>loan_intent</code>), Hạng khoản vay (<code>loan_grade</code>) và Tình trạng nhà ở (<code>home_ownership</code>) [31]. Đồng thời, áp dụng các hàm cửa sổ (Window Functions) để xác định vị thế thu nhập tương đối của khách hàng trong từng phân khúc vay vốn:</p>
+<p>Sử dụng công cụ tối ưu hóa truy vấn Spark SQL để phân tích thống kê đa chiều theo Mục đích vay (<code>loan_intent</code>), Hạng khoản vay (<code>loan_grade</code>) và Tình trạng nhà ở (<code>home_ownership</code>) [24]. Đồng thời, áp dụng các hàm cửa sổ (Window Functions) để xác định vị thế thu nhập tương đối của khách hàng trong từng phân khúc vay vốn:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>windowSpec <span class="op">=</span> Window.partitionBy(<span class="st">"loan_intent"</span>).orderBy(col(<span class="st">"person_income"</span>).desc())</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>df_silver <span class="op">=</span> df_silver.withColumn(<span class="st">"income_rank_in_intent"</span>, dense_rank().over(windowSpec))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
@@ -485,11 +480,11 @@ window.Quarto = {
 </section>
 <section id="thuật-toán-phân-loại-random-forest-classifier" class="level3">
 <h3 class="anchored" data-anchor-id="thuật-toán-phân-loại-random-forest-classifier">3.2.6 Thuật toán phân loại Random Forest Classifier</h3>
-<p>Thuật toán Rừng Ngẫu nhiên (Random Forest) là phương pháp học kết hợp (Ensemble Learning) dựa trên kỹ thuật đóng bao (Bagging) và không gian ngẫu nhiên con (Random Subspace) [32], [33]. Mô hình xây dựng một tập hợp gồm <span class="math inline">\(B\)</span> cây quyết định độc lập: <span class="math display">\[\hat{p}(x) = \frac{1}{B} \sum_{b=1}^{B} p_b(x)\]</span> Ưu điểm vượt trội của thuật toán trên môi trường Spark MLlib: - Hạn chế tối đa hiện tượng quá khớp (Overfitting) nhờ cơ chế lấy mẫu ngẫu nhiên có hoàn lại (Bootstrap Sampling). - Tương thích tự nhiên với tính toán phân tán: Các cây quyết định được phân bổ huấn luyện song song trên các worker node mà không cần chia sẻ trạng thái bộ nhớ. - Cung cấp trực tiếp độ quan trọng của các đặc trưng (Feature Importance) dựa trên mức giảm độ đo bất thuần Gini (Mean Decrease Gini).</p>
+<p>Thuật toán Rừng Ngẫu nhiên (Random Forest) là phương pháp học kết hợp (Ensemble Learning) dựa trên kỹ thuật đóng bao (Bagging) và không gian ngẫu nhiên con (Random Subspace) [25], [26]. Mô hình xây dựng một tập hợp gồm <span class="math inline">\(B\)</span> cây quyết định độc lập: <span class="math display">\[\hat{p}(x) = \frac{1}{B} \sum_{b=1}^{B} p_b(x)\]</span> Ưu điểm vượt trội của thuật toán trên môi trường Spark MLlib: - Hạn chế tối đa hiện tượng quá khớp (Overfitting) nhờ cơ chế lấy mẫu ngẫu nhiên có hoàn lại (Bootstrap Sampling). - Tương thích tự nhiên với tính toán phân tán: Các cây quyết định được phân bổ huấn luyện song song trên các worker node mà không cần chia sẻ trạng thái bộ nhớ. - Cung cấp trực tiếp độ quan trọng của các đặc trưng (Feature Importance) dựa trên mức giảm độ đo bất thuần Gini (Mean Decrease Gini).</p>
 </section>
 <section id="phương-pháp-kiểm-định-chéo-và-tối-ưu-hóa-siêu-tham-số" class="level3">
 <h3 class="anchored" data-anchor-id="phương-pháp-kiểm-định-chéo-và-tối-ưu-hóa-siêu-tham-số">3.2.7 Phương pháp kiểm định chéo và tối ưu hóa siêu tham số</h3>
-<p>Để tìm ra cấu hình mô hình tối ưu nhất, nghiên cứu sử dụng <code>ParamGridBuilder</code> kết hợp bộ kiểm định chéo 3 nếp gấp (<code>CrossValidator</code> với <span class="math inline">\(K=3\)</span> folds) [34]:</p>
+<p>Để tìm ra cấu hình mô hình tối ưu nhất, nghiên cứu sử dụng <code>ParamGridBuilder</code> kết hợp bộ kiểm định chéo 3 nếp gấp (<code>CrossValidator</code> với <span class="math inline">\(K=3\)</span> folds) [27]:</p>
 <p><strong>Bảng 3.3 Không gian tìm kiếm siêu tham số trong bộ tinh chỉnh ParamGridBuilder</strong></p>
 <table class="caption-top table">
 <colgroup>
@@ -533,7 +528,7 @@ window.Quarto = {
 </section>
 <section id="phương-pháp-đánh-giá-mô-hình-và-xác-lập-ngưỡng-cắt-rủi-ro" class="level3">
 <h3 class="anchored" data-anchor-id="phương-pháp-đánh-giá-mô-hình-và-xác-lập-ngưỡng-cắt-rủi-ro">3.2.8 Phương pháp đánh giá mô hình và xác lập ngưỡng cắt rủi ro</h3>
-<p>Hiệu năng của mô hình được đánh giá toàn diện qua tập kiểm thử độc lập gồm <strong>452,140 hồ sơ (chiếm 20% dữ liệu)</strong> dựa trên các chỉ số: - <strong>Diện tích dưới đường cong ROC (ROC-AUC):</strong> Đo lường năng lực phân biệt tổng thể giữa hồ sơ tốt và hồ sơ vỡ nợ [35]. - <strong>Ma trận nhầm lẫn (Confusion Matrix):</strong> Xác định các đại lượng True Positive (TP), False Positive (FP), True Negative (TN), False Negative (FN). - <strong>Độ nhạy phát hiện nợ xấu (Recall) và Độ chính xác (Precision):</strong> Đánh giá khả năng không bỏ sót rủi ro tín dụng. - <strong>Chỉ số Youden’s J Statistic:</strong> Xác định ngưỡng cắt xác suất tối ưu nhằm cực đại hóa hiệu quả phân loại: <span class="math display">\[J = \text{Sensitivity} + \text{Specificity} - 1\]</span></p>
+<p>Hiệu năng của mô hình được đánh giá toàn diện qua tập kiểm thử độc lập gồm <strong>452,140 hồ sơ (chiếm 20% dữ liệu)</strong> dựa trên các chỉ số: - <strong>Diện tích dưới đường cong ROC (ROC-AUC):</strong> Đo lường năng lực phân biệt tổng thể giữa hồ sơ tốt và hồ sơ vỡ nợ [28]. - <strong>Ma trận nhầm lẫn (Confusion Matrix):</strong> Xác định các đại lượng True Positive (TP), False Positive (FP), True Negative (TN), False Negative (FN). - <strong>Độ nhạy phát hiện nợ xấu (Recall) và Độ chính xác (Precision):</strong> Đánh giá khả năng không bỏ sót rủi ro tín dụng. - <strong>Chỉ số Youden’s J Statistic:</strong> Xác định ngưỡng cắt xác suất tối ưu nhằm cực đại hóa hiệu quả phân loại [29]: <span class="math display">\[J = \text{Sensitivity} + \text{Specificity} - 1\]</span></p>
 
 
 </section>
@@ -541,14 +536,6 @@ window.Quarto = {
 </section>
 
 </main> <!-- /main -->
-<!-- FOOTER HỌC THUẬT UFM - KHÔNG ĐÁNH SỐ TRANG TRÊN FILE QMD/WEB -->
-<div class="academic-footer-bar">
-  <div class="footer-left">Đề tài 7: Mô hình Chấm điểm Tín dụng &amp; Thẩm định Rủi ro Vỡ nợ</div>
-  <div class="footer-center">
-    <span class="page-number-box">Trường Đại học Tài chính - Marketing (UFM) • 2026</span>
-  </div>
-  <div class="footer-right">GVHD: TS. Trần Mạnh Tường • SV: Lê Thành Hiệu</div>
-</div>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -962,19 +949,6 @@ window.Quarto = {
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
-    <div class="nav-footer-left">
-<p>Báo cáo Tiểu luận: Hệ thống Chấm điểm Tín dụng &amp; Thẩm định Rủi ro Vỡ nợ</p>
-</div>   
-    <div class="nav-footer-center">
-<p>Trường Đại học Tài chính - Marketing (UFM) • 2026</p>
-</div>
-    <div class="nav-footer-right">
-<p>GVHD: TS. Trần Mạnh Tường • SV: Lê Thành Hiệu</p>
-</div>
-  </div>
-</footer>
 
 
 

@@ -24,13 +24,13 @@ text_00 = """# TRANG BÌA
     <div class="gov-title">BỘ TÀI CHÍNH</div>
     <div class="univ-title">TRƯỜNG ĐẠI HỌC TÀI CHÍNH - MARKETING (UFM)</div>
     <div class="faculty-title">KHOA CÔNG NGHỆ THÔNG TIN</div>
-    <div class="dept-title">BỘ MÔN HỆ THỐNG THÔNG TIN QUẢN LÝ &amp; KHOA HỌC DỮ LIỆU</div>
+    <div class="dept-title">CHƯƠNG TRÌNH SAMSUNG INNOVATION CAMPUS (SIC)</div>
   </div>
 
   <div class="cover-body">
-    <div class="report-type">BÁO CÁO TIỂU LUẬN MÔN HỌC</div>
-    <div class="course-name">DỮ LIỆU LỚN VÀ TRÍ TUỆ NHÂN TẠO TRONG KINH DOANH</div>
-    <div class="course-sub">(BIG DATA ANALYTICS &amp; ARTIFICIAL INTELLIGENCE IN BUSINESS)</div>
+    <div class="report-type">BÁO CÁO TIỂU LUẬN KẾT THÚC HỌC PHẦN (CAPSTONE PROJECT)</div>
+    <div class="course-name">MÔN HỌC: DỮ LIỆU LỚN (BIG DATA ANALYTICS &amp; ARTIFICIAL INTELLIGENCE)</div>
+    <div class="course-sub">(CHƯƠNG TRÌNH ĐÀO TẠO CÔNG NGHỆ SAMSUNG INNOVATION CAMPUS - UFM)</div>
     
     <div class="topic-box">
       <div class="topic-label">ĐỀ TÀI NGHIÊN CỨU:</div>
@@ -42,8 +42,8 @@ text_00 = """# TRANG BÌA
     <div class="info-row"><strong>Giảng viên hướng dẫn:</strong> TS. Trần Mạnh Tường</div>
     <div class="info-row"><strong>Sinh viên thực hiện:</strong> Lê Thành Hiệu</div>
     <div class="info-row"><strong>Mã số sinh viên:</strong> [Điền MSSV tại đây]</div>
-    <div class="info-row"><strong>Lớp / Khóa học:</strong> Big Data Analytics &amp; AI - Khóa 2026</div>
-    <div class="info-row"><strong>Chuyên ngành:</strong> Hệ thống Thông tin Quản lý (MIS)</div>
+    <div class="info-row"><strong>Khóa học / Đơn vị:</strong> Khóa đào tạo Dữ liệu lớn (Big Data) - Samsung Innovation Campus (SIC) 2026</div>
+    <div class="info-row"><strong>Chuyên ngành:</strong> Hệ thống Thông tin Quản lý (MIS) &amp; Khoa học Dữ liệu</div>
     <div class="info-row"><strong>Kho lưu trữ mã nguồn:</strong> <a href="https://github.com/snowflake-vibing/Credit_Scoring_Project">github.com/snowflake-vibing/Credit_Scoring_Project</a></div>
     <div class="info-row"><strong>Không gian làm việc Databricks:</strong> <a href="https://dbc-4d46c653-6b7e.cloud.databricks.com/browse/folders/907137357494385?o=7474645074756875">Databricks Cloud Workspace (Folder 907137357494385)</a></div>
     
@@ -59,13 +59,13 @@ text_00 = """# TRANG BÌA
 **BỘ TÀI CHÍNH**  
 **TRƯỜNG ĐẠI HỌC TÀI CHÍNH - MARKETING (UFM)**  
 **KHOA CÔNG NGHỆ THÔNG TIN**  
-**BỘ MÔN HỆ THỐNG THÔNG TIN QUẢN LÝ & KHOA HỌC DỮ LIỆU**  
+**CHƯƠNG TRÌNH SAMSUNG INNOVATION CAMPUS (SIC)**  
 
 ---
 
-### **BÁO CÁO TIỂU LUẬN MÔN HỌC**
-## **DỮ LIỆU LỚN VÀ TRÍ TUỆ NHÂN TẠO TRONG KINH DOANH**
-*(BIG DATA ANALYTICS & ARTIFICIAL INTELLIGENCE IN BUSINESS)*
+### **BÁO CÁO TIỂU LUẬN KẾT THÚC HỌC PHẦN (CAPSTONE PROJECT)**
+## **MÔN HỌC: DỮ LIỆU LỚN (BIG DATA ANALYTICS & ARTIFICIAL INTELLIGENCE)**
+*(CHƯƠNG TRÌNH ĐÀO TẠO CÔNG NGHỆ SAMSUNG INNOVATION CAMPUS - UFM)*
 
 ---
 
@@ -77,8 +77,8 @@ text_00 = """# TRANG BÌA
 **Giảng viên hướng dẫn:** TS. Trần Mạnh Tường  
 **Sinh viên thực hiện:** Lê Thành Hiệu  
 **Mã số sinh viên:** [Điền MSSV tại đây]  
-**Lớp / Khóa học:** Big Data Analytics & AI - Khóa 2026  
-**Chuyên ngành:** Hệ thống Thông tin Quản lý (MIS)  
+**Khóa học / Đơn vị:** Khóa đào tạo Dữ liệu lớn (Big Data) - Samsung Innovation Campus (SIC) 2026  
+**Chuyên ngành:** Hệ thống Thông tin Quản lý (MIS) & Khoa học Dữ liệu  
 **Kho lưu trữ mã nguồn:** https://github.com/snowflake-vibing/Credit_Scoring_Project  
 **Không gian làm việc Databricks:** https://dbc-4d46c653-6b7e.cloud.databricks.com/browse/folders/907137357494385?o=7474645074756875  
 
@@ -93,11 +93,11 @@ text_00 = """# TRANG BÌA
 
 ## LỜI CẢM ƠN
 
-Để hoàn thành bài tiểu luận nghiên cứu này, trước hết em xin bày tỏ lòng biết ơn sâu sắc và chân thành nhất đến **TS. Trần Mạnh Tường**, giảng viên phụ trách học phần *Dữ liệu lớn và Trí tuệ nhân tạo trong Kinh doanh*. Thầy đã tận tình truyền đạt những kiến thức chuyên môn sâu rộng về kiến trúc dữ liệu phân tán, khoa học dữ liệu hiện đại và các phương pháp ứng dụng trí tuệ nhân tạo vào thực tiễn kinh tế - tài chính. Những lời chỉ dẫn, định hướng khoa học và phản biện quý báu của Thầy trong suốt quá trình học tập là tiền đề quan trọng giúp em hoàn thiện đồ án này một cách chỉn chu và đúng đắn.
+Để hoàn thành bài tiểu luận nghiên cứu này, trước hết em xin bày tỏ lòng biết ơn sâu sắc và chân thành nhất đến **TS. Trần Mạnh Tường**, giảng viên phụ trách môn học *Dữ liệu lớn (Big Data)* thuộc **Chương trình Samsung Innovation Campus (SIC)** tại **Trường Đại học Tài chính - Marketing (UFM)**. Thầy đã tận tình truyền đạt những kiến thức chuyên môn sâu rộng về kiến trúc dữ liệu phân tán, khoa học dữ liệu hiện đại và các phương pháp ứng dụng trí tuệ nhân tạo vào thực tiễn kinh tế - tài chính. Những lời chỉ dẫn, định hướng khoa học và phản biện quý báu của Thầy trong suốt quá trình học tập là tiền đề quan trọng giúp em hoàn thiện đồ án này một cách chỉn chu và đúng đắn.
 
-Em cũng xin gửi lời cảm ơn chân thành đến Ban Giám hiệu nhà trường, các Quý Thầy Cô trong Khoa Công nghệ Thông tin - Trường Đại học Tài chính - Marketing (UFM) đã tạo điều kiện học tập tốt nhất, cung cấp môi trường nghiên cứu và cơ sở vật chất hiện đại phục vụ cho môn học.
+Em cũng xin gửi lời cảm ơn chân thành đến Ban Giám hiệu nhà trường, các Quý Thầy Cô trong Khoa Công nghệ Thông tin - Trường Đại học Tài chính - Marketing (UFM) cùng Ban điều phối **Chương trình Samsung Innovation Campus (SIC)** đã tạo điều kiện học tập tốt nhất, cung cấp môi trường nghiên cứu và cơ sở vật chất công nghệ hiện đại phục vụ cho môn học.
 
-*Kính chúc Thầy luôn dồi dào sức khỏe, hạnh phúc và gặt hái được nhiều thành công hơn nữa trong sự nghiệp giảng dạy và nghiên cứu khoa học cao quý!*
+*Kính chúc Thầy và Ban điều phối chương trình luôn dồi dào sức khỏe, hạnh phúc và gặt hái được nhiều thành công hơn nữa trong sự nghiệp giảng dạy và phát triển nguồn nhân lực công nghệ cao!*
 
 \\newpage
 
@@ -105,7 +105,7 @@ Em cũng xin gửi lời cảm ơn chân thành đến Ban Giám hiệu nhà tr�
 
 ## LỜI CAM ĐOAN
 
-Tôi xin cam đoan rằng bài tiểu luận kết thúc học phần với đề tài **"Mô hình chấm điểm tín dụng và thẩm định rủi ro vỡ nợ trong lĩnh vực Ngân hàng và FinTech"** là công trình nghiên cứu độc lập của cá nhân tôi dưới sự hướng dẫn khoa học của **TS. Trần Mạnh Tường**.
+Tôi xin cam đoan rằng bài tiểu luận kết thúc học phần với đề tài **"Mô hình chấm điểm tín dụng và thẩm định rủi ro vỡ nợ trong lĩnh vực Ngân hàng và FinTech"** trong khuôn khổ môn học Big Data thuộc **Chương trình Samsung Innovation Campus (SIC)** tổ chức tại **Trường Đại học Tài chính - Marketing (UFM)** là công trình nghiên cứu độc lập của cá nhân tôi dưới sự hướng dẫn khoa học của **TS. Trần Mạnh Tường**.
 
 Toàn bộ số liệu phân tích, kết quả mô phỏng thực nghiệm và các luận điểm trình bày trong báo cáo hoàn toàn trung thực, khách quan và được thu thập, xử lý từ dữ liệu thực tế 2,260,701 khoản vay của nền tảng LendingClub. Các tài liệu tham khảo, các lý thuyết tài chính - ngân hàng và nghiên cứu khoa học của các tác giả khác đều được trích dẫn nguồn gốc đầy đủ theo đúng quy chuẩn học thuật hiện hành.
 
@@ -216,8 +216,6 @@ Dựa trên xác suất vỡ nợ dự báo, đề tài xây dựng động cơ 
     * 5.2.1 Khuyến nghị quản trị chiến lược cho Ban Điều hành Ngân hàng
     * 5.2.2 Hướng nghiên cứu và phát triển tiếp theo
 * [TÀI LIỆU THAM KHẢO](06_TAI_LIEU_THAM_KHAO.html)
-  * I. Tiếng Việt (12 tài liệu tham khảo học thuật)
-  * II. Tiếng Anh (40 tài liệu tham khảo quốc tế)
 * [PHỤ LỤC](07_PHU_LUC.html)
   * Phụ lục 1: Sơ đồ chi tiết luồng xử lý dữ liệu Lakehouse Medallion
   * Phụ lục 2: Kho lưu trữ mã nguồn GitHub và Hướng dẫn thực nghiệm
@@ -370,7 +368,7 @@ Nghiên cứu, thiết kế và phát triển hệ thống tự động hóa ch�
 
 ## 1.6 Phân tích đặc tính Dữ liệu lớn theo mô hình 5Vs
 
-Để chứng minh tính tương thích và sự cần thiết của nền tảng Big Data đối với bài toán tín dụng, nghiên cứu phân tích đề tài dựa trên khung lý thuyết 5Vs kinh điển [15]:
+Để chứng minh tính tương thích và sự cần thiết của nền tảng Big Data đối với bài toán tín dụng, nghiên cứu phân tích đề tài dựa trên khung lý thuyết 5Vs kinh điển [8]:
 
 **Bảng 1.1 Phân tích đặc tính Dữ liệu lớn theo mô hình 5Vs trong Đề tài Chấm điểm Tín dụng**
 
@@ -397,12 +395,12 @@ text_02 = """# CHƯƠNG 2: LƯỢC KHẢO TÀI LIỆU
 ## 2.1 Tổng quan về rủi ro tín dụng và phương pháp thẩm định truyền thống
 
 ### 2.1.1 Bản chất kinh tế của rủi ro tín dụng và biến cố vỡ nợ
-Trong hoạt động trung gian tài chính, rủi ro tín dụng phát sinh từ hiện tượng **bất cân xứng thông tin (Asymmetric Information)** giữa người đi vay và bên cho vay, dẫn đến hai hệ lụy kinh điển là lựa chọn đối nghịch (Adverse Selection) trước khi ký hợp đồng và rủi ro đạo đức (Moral Hazard) sau khi giải ngân [16]. Theo Stiglitz và Weiss (1981), việc nâng lãi suất để bù đắp rủi ro có thể vô tình loại bỏ các khách hàng tốt và chỉ thu hút những đối tượng sẵn sàng mạo hiểm, làm tăng nguy cơ vỡ nợ của toàn danh mục [17]. 
+Trong hoạt động trung gian tài chính, rủi ro tín dụng phát sinh từ hiện tượng **bất cân xứng thông tin (Asymmetric Information)** giữa người đi vay và bên cho vay, dẫn đến hai hệ lụy kinh điển là lựa chọn đối nghịch (Adverse Selection) trước khi ký hợp đồng và rủi ro đạo đức (Moral Hazard) sau khi giải ngân [9]. Theo Stiglitz và Weiss (1981), việc nâng lãi suất để bù đắp rủi ro có thể vô tình loại bỏ các khách hàng tốt và chỉ thu hút những đối tượng sẵn sàng mạo hiểm, làm tăng nguy cơ vỡ nợ của toàn danh mục [10]. 
 
-Khi biến cố vỡ nợ xảy ra, ngân hàng không chỉ tổn thất phần vốn gốc chưa thu hồi mà còn phải gánh chịu chi phí xử lý nợ, trích lập dự phòng rủi ro và làm suy giảm tỷ lệ an toàn vốn CAR theo quy định của Ngân hàng Nhà nước [18]. Do đó, việc xây dựng mô hình dự báo xác suất vỡ nợ (Probability of Default - PD) chính xác là nền tảng sống còn trong quản trị tài chính hiện đại.
+Khi biến cố vỡ nợ xảy ra, ngân hàng không chỉ tổn thất phần vốn gốc chưa thu hồi mà còn phải gánh chịu chi phí xử lý nợ, trích lập dự phòng rủi ro và làm suy giảm tỷ lệ an toàn vốn CAR theo quy định của Ngân hàng Nhà nước [11]. Do đó, việc xây dựng mô hình dự báo xác suất vỡ nợ (Probability of Default - PD) chính xác là nền tảng sống còn trong quản trị tài chính hiện đại.
 
 ### 2.1.2 Các hạn chế của phương pháp thẩm định tín dụng truyền thống
-Quy trình thẩm định truyền thống chủ yếu dựa trên đánh giá định tính của chuyên viên tín dụng (Expert Judgment) hoặc các bảng điểm tĩnh (Scorecards) xây dựng bằng hồi quy Logistic đơn biến [19]. Các phương pháp này bộc lộ những hạn chế rõ rệt:
+Quy trình thẩm định truyền thống chủ yếu dựa trên đánh giá định tính của chuyên viên tín dụng (Expert Judgment) hoặc các bảng điểm tĩnh (Scorecards) xây dựng bằng hồi quy Logistic đơn biến [12]. Các phương pháp này bộc lộ những hạn chế rõ rệt:
 1. **Độ trễ thời gian lớn:** Mất từ 2 đến 5 ngày để thẩm định hồ sơ giấy tờ và gọi điện xác minh, không đáp ứng được yêu cầu phê duyệt tức thì của khách hàng số.
 2. **Chi phí vận hành cao:** Đòi hỏi lực lượng nhân sự thẩm định thực địa đông đảo, khiến biên lợi nhuận của các khoản vay nhỏ bị bào mòn.
 3. **Định kiến chủ quan:** Quyết định phê duyệt phụ thuộc vào cảm tính cá nhân, dễ tạo ra sự thiếu nhất quán giữa các chi nhánh.
@@ -413,7 +411,7 @@ Quy trình thẩm định truyền thống chủ yếu dựa trên đánh giá �
 ## 2.2 Cơ sở lý thuyết về Kiến trúc Hồ dữ liệu Databricks Lakehouse
 
 ### 2.2.1 Sự tiến hóa từ Data Warehouse đến Lakehouse
-Để giải quyết bài toán dữ liệu lớn, kiến trúc lưu trữ và xử lý đã trải qua ba thế hệ tiến hóa: Kho dữ liệu (Data Warehouse), Hồ dữ liệu (Data Lake) và Kiến trúc kết hợp Hồ - Kho dữ liệu (Lakehouse) [20]:
+Để giải quyết bài toán dữ liệu lớn, kiến trúc lưu trữ và xử lý đã trải qua ba thế hệ tiến hóa: Kho dữ liệu (Data Warehouse), Hồ dữ liệu (Data Lake) và Kiến trúc kết hợp Hồ - Kho dữ liệu (Lakehouse) [13]:
 
 **Bảng 2.1 So sánh ưu nhược điểm giữa Data Warehouse, Data Lake và Databricks Lakehouse**
 
@@ -428,7 +426,7 @@ Quy trình thẩm định truyền thống chủ yếu dựa trên đánh giá �
 
 ### 2.2.2 Định dạng lưu trữ phân tán Delta Lake và Apache Spark
 Delta Lake là tầng lưu trữ mã nguồn mở trung gian xây dựng trên nền tảng tệp Parquet dạng cột, mang lại các ưu thế vượt trội:
-- **Tính toàn vẹn giao dịch ACID:** Đảm bảo mọi giao dịch thêm mới, cập nhật hoặc xóa dữ liệu đều thành công trọn vẹn hoặc hoàn tác hoàn toàn, ngăn ngừa hiện tượng phân mảnh dữ liệu (Data Corruption) [21].
+- **Tính toàn vẹn giao dịch ACID:** Đảm bảo mọi giao dịch thêm mới, cập nhật hoặc xóa dữ liệu đều thành công trọn vẹn hoặc hoàn tác hoàn toàn, ngăn ngừa hiện tượng phân mảnh dữ liệu (Data Corruption) [14].
 - **Khả năng quay ngược thời gian (Time Travel):** Cho phép truy vấn dữ liệu tại một thời điểm lịch sử chính xác thông qua nhật ký `_delta_log`, đáp ứng yêu cầu kiểm toán nghiêm ngặt của ngành ngân hàng.
 - **Tối ưu hóa truy vấn Spark Catalyst Optimizer:** Tự động tối ưu hóa kế hoạch thực thi logic và vật lý, giảm thiểu dung lượng truyền tải qua mạng giữa các worker node.
 
@@ -437,7 +435,7 @@ Delta Lake là tầng lưu trữ mã nguồn mở trung gian xây dựng trên n
 ## 2.3 Thiết kế kiến trúc phân tầng Medallion trong định chế tài chính
 
 ### 2.3.1 Phân định chức năng ba tầng Bronze, Silver và Gold
-Kiến trúc Medallion tổ chức luồng dữ liệu theo ba cấp độ tinh chế tăng dần nhằm bảo đảm chất lượng dữ liệu phục vụ mô hình học máy [22]:
+Kiến trúc Medallion tổ chức luồng dữ liệu theo ba cấp độ tinh chế tăng dần nhằm bảo đảm chất lượng dữ liệu phục vụ mô hình học máy [15]:
 
 **Bảng 2.2 Phân định chức năng, nguyên tắc và công nghệ giữa 3 tầng kiến trúc Medallion**
 
@@ -462,12 +460,12 @@ Toàn bộ luồng xử lý dữ liệu từ nạp dữ liệu thô đến xuấ
 
 ### 2.4.1 Tổng quan các nghiên cứu thực nghiệm trong và ngoài nước
 Trong nhiều năm qua, các phương pháp phân loại nhị phân đã được áp dụng rộng rãi trong xếp hạng tín dụng cá nhân:
-- Altman (1968) tiên phong với chỉ số Z-score dựa trên phân tích biệt số đa biến (MDA) để dự báo nguy cơ phá sản [23].
-- Baesens et al. (2003) và Lessmann et al. (2015) qua các nghiên cứu thực nghiệm quy mô lớn đã chứng minh rằng các mô hình học kết hợp (Ensemble Learning) như Random Forest và Gradient Boosting luôn vượt trội so với hồi quy Logistic truyền thống về chỉ số AUC và khả năng kháng hiện tượng quá khớp (Overfitting) [24], [25].
-- Jagtiani và Lemieux (2019) khẳng định dữ liệu phi truyền thống kết hợp máy học giúp các nền tảng FinTech nâng cao khả năng tiếp cận vốn cho người yếu thế mà không làm tăng tỷ lệ nợ xấu [26].
+- Altman (1968) tiên phong với chỉ số Z-score dựa trên phân tích biệt số đa biến (MDA) để dự báo nguy cơ phá sản [16].
+- Baesens et al. (2003) và Lessmann et al. (2015) qua các nghiên cứu thực nghiệm quy mô lớn đã chứng minh rằng các mô hình học kết hợp (Ensemble Learning) như Random Forest và Gradient Boosting luôn vượt trội so với hồi quy Logistic truyền thống về chỉ số AUC và khả năng kháng hiện tượng quá khớp (Overfitting) [17], [18].
+- Jagtiani và Lemieux (2019) khẳng định dữ liệu phi truyền thống kết hợp máy học giúp các nền tảng FinTech nâng cao khả năng tiếp cận vốn cho người yếu thế mà không làm tăng tỷ lệ nợ xấu [19].
 
 ### 2.4.2 Yêu cầu tuân thủ an toàn vốn theo chuẩn Basel II/III và Thông tư 41/2016/TT-NHNN
-Ủy ban Basel về Giám sát Ngân hàng quy định phương pháp xếp hạng nội bộ nâng cao (Advanced Internal Ratings-Based - A-IRB) đòi hỏi ngân hàng phải tự lượng hóa xác suất vỡ nợ (PD), tỷ lệ tổn thất khi vỡ nợ (LGD) và tổng dư nợ chịu rủi ro (EAD) [27]. Theo Thông tư 41/2016/TT-NHNN của Ngân hàng Nhà nước Việt Nam:
+Ủy ban Basel về Giám sát Ngân hàng quy định phương pháp xếp hạng nội bộ nâng cao (Advanced Internal Ratings-Based - A-IRB) đòi hỏi ngân hàng phải tự lượng hóa xác suất vỡ nợ (PD), tỷ lệ tổn thất khi vỡ nợ (LGD) và tổng dư nợ chịu rủi ro (EAD) [20]. Theo Thông tư 41/2016/TT-NHNN của Ngân hàng Nhà nước Việt Nam:
 - Mô hình chấm điểm tín dụng phải được kiểm định chéo độc lập và có khả năng phân biệt rõ ràng giữa các nhóm khách hàng có mức độ rủi ro khác nhau.
 - Tổ chức tín dụng phải trích lập dự phòng tổn thất tín dụng kỳ vọng ($EL$) theo công thức:
   $$EL = PD \\times LGD \\times EAD$$
@@ -486,7 +484,7 @@ text_03 = """# CHƯƠNG 3: PHƯƠNG PHÁP NGHIÊN CỨU
 ## 3.1 Phương tiện nghiên cứu
 
 ### 3.1.1 Bộ dữ liệu lớn LendingClub quy mô 2.26 triệu hồ sơ
-Nghiên cứu sử dụng tập dữ liệu thực tế **LendingClub Complete Loan Dataset (2007 - 2018Q4)** được công bố bởi LendingClub - nền tảng cho vay ngang hàng trực tuyến lớn nhất thế giới [28]. Dữ liệu bao gồm 2,260,701 khoản vay (1.6 GB) với 12 thuộc tính cốt lõi được trích xuất và chuẩn hóa:
+Nghiên cứu sử dụng tập dữ liệu thực tế **LendingClub Complete Loan Dataset (2007 - 2018Q4)** được công bố bởi LendingClub - nền tảng cho vay ngang hàng trực tuyến lớn nhất thế giới [21]. Dữ liệu bao gồm 2,260,701 khoản vay (1.6 GB) với 12 thuộc tính cốt lõi được trích xuất và chuẩn hóa:
 
 **Bảng 3.1 Mô tả chi tiết 12 thuộc tính cốt lõi trong Bộ dữ liệu lớn LendingClub (2,260,701 bản ghi)**
 
@@ -518,12 +516,12 @@ Nghiên cứu được triển khai trên nền tảng **Databricks Serverless C
 ## 3.2 Phương pháp nghiên cứu
 
 ### 3.2.1 Quy trình thu thập và nạp dữ liệu thô Tầng Bronze
-Khâu tiếp nhận dữ liệu đầu vào (Data Ingestion) đòi hỏi phải bảo đảm tính toàn vẹn và khả năng lưu vết lịch sử không thể chỉnh sửa [21]:
+Khâu tiếp nhận dữ liệu đầu vào (Data Ingestion) đòi hỏi phải bảo đảm tính toàn vẹn và khả năng lưu vết lịch sử không thể chỉnh sửa [14]:
 1. **Nguyên tắc bảo toàn nguyên vẹn (Data Immutability):** Dữ liệu thô từ file CSV được nạp thẳng vào bảng Delta `workspace.default.bronze_credit_data`, giữ nguyên mọi trường giá trị trống (`NULL`), kiểu chuỗi và các điểm ngoại lai nhằm phục vụ mục đích kiểm toán (Audit Trail).
 2. **Khởi tạo Delta Transaction Log:** Hệ thống tự động thiết lập nhật ký giao dịch tuần tự (`_delta_log/00000000000000000000.json`) để ghi nhận siêu dữ liệu, lược đồ (schema) và vị trí các tệp con Parquet phân tán.
 
 ### 3.2.2 Phương pháp tiền xử lý và làm sạch dữ liệu Tầng Silver
-Dữ liệu từ Tầng Bronze được kích hoạt quy trình làm sạch phân tán để tạo lập bảng `workspace.default.silver_credit_data` [29]:
+Dữ liệu từ Tầng Bronze được kích hoạt quy trình làm sạch phân tán để tạo lập bảng `workspace.default.silver_credit_data` [22]:
 
 **Bảng 3.2 Kế hoạch làm sạch và chuẩn hóa dữ liệu tại Tầng Silver**
 
@@ -539,7 +537,7 @@ Dữ liệu từ Tầng Bronze được kích hoạt quy trình làm sạch phâ
 <p align="left"><em>(Nguồn: Tác giả đề xuất dựa trên phân tích đặc tính dữ liệu thực tế)</em></p>
 
 ### 3.2.3 Phương pháp kỹ nghệ đặc trưng tài chính
-Nhằm cung cấp các biến số tổng hợp mang hàm lượng thông tin kinh tế cao, nghiên cứu xây dựng hai chỉ số đòn bẩy tài chính chuyên sâu [23], [30]:
+Nhằm cung cấp các biến số tổng hợp mang hàm lượng thông tin kinh tế cao, nghiên cứu xây dựng hai chỉ số đòn bẩy tài chính chuyên sâu [16], [23]:
 
 1. **Chỉ số Tỷ lệ Nợ trên Thu nhập (Debt-to-Income Ratio - DTI):**
    $$DTI = \\frac{\\text{Loan Amount}}{\\text{Person Income}}$$
@@ -550,7 +548,7 @@ Nhằm cung cấp các biến số tổng hợp mang hàm lượng thông tin ki
    Tử số đại diện cho tổng nghĩa vụ nợ cả gốc và lãi; Mẫu số đại diện cho thu nhập có trọng số theo mức độ ổn định nghề nghiệp. Chỉ số $CBI$ càng cao cảnh báo áp lực tài chính càng lớn.
 
 ### 3.2.4 Phương pháp phân tích khám phá dữ liệu bằng Spark SQL và Window Functions
-Sử dụng công cụ tối ưu hóa truy vấn Spark SQL để phân tích thống kê đa chiều theo Mục đích vay (`loan_intent`), Hạng khoản vay (`loan_grade`) và Tình trạng nhà ở (`home_ownership`) [31]. Đồng thời, áp dụng các hàm cửa sổ (Window Functions) để xác định vị thế thu nhập tương đối của khách hàng trong từng phân khúc vay vốn:
+Sử dụng công cụ tối ưu hóa truy vấn Spark SQL để phân tích thống kê đa chiều theo Mục đích vay (`loan_intent`), Hạng khoản vay (`loan_grade`) và Tình trạng nhà ở (`home_ownership`) [24]. Đồng thời, áp dụng các hàm cửa sổ (Window Functions) để xác định vị thế thu nhập tương đối của khách hàng trong từng phân khúc vay vốn:
 ```python
 windowSpec = Window.partitionBy("loan_intent").orderBy(col("person_income").desc())
 df_silver = df_silver.withColumn("income_rank_in_intent", dense_rank().over(windowSpec))
@@ -565,7 +563,7 @@ Toàn bộ quy trình biến đổi dữ liệu được đóng gói thành mộ
 5. `RandomForestClassifier`: Thuật toán máy học phân tán ước tính xác suất vỡ nợ.
 
 ### 3.2.6 Thuật toán phân loại Random Forest Classifier
-Thuật toán Rừng Ngẫu nhiên (Random Forest) là phương pháp học kết hợp (Ensemble Learning) dựa trên kỹ thuật đóng bao (Bagging) và không gian ngẫu nhiên con (Random Subspace) [32], [33]. Mô hình xây dựng một tập hợp gồm $B$ cây quyết định độc lập:
+Thuật toán Rừng Ngẫu nhiên (Random Forest) là phương pháp học kết hợp (Ensemble Learning) dựa trên kỹ thuật đóng bao (Bagging) và không gian ngẫu nhiên con (Random Subspace) [25], [26]. Mô hình xây dựng một tập hợp gồm $B$ cây quyết định độc lập:
 $$\\hat{p}(x) = \\frac{1}{B} \\sum_{b=1}^{B} p_b(x)$$
 Ưu điểm vượt trội của thuật toán trên môi trường Spark MLlib:
 - Hạn chế tối đa hiện tượng quá khớp (Overfitting) nhờ cơ chế lấy mẫu ngẫu nhiên có hoàn lại (Bootstrap Sampling).
@@ -573,7 +571,7 @@ $$\\hat{p}(x) = \\frac{1}{B} \\sum_{b=1}^{B} p_b(x)$$
 - Cung cấp trực tiếp độ quan trọng của các đặc trưng (Feature Importance) dựa trên mức giảm độ đo bất thuần Gini (Mean Decrease Gini).
 
 ### 3.2.7 Phương pháp kiểm định chéo và tối ưu hóa siêu tham số
-Để tìm ra cấu hình mô hình tối ưu nhất, nghiên cứu sử dụng `ParamGridBuilder` kết hợp bộ kiểm định chéo 3 nếp gấp (`CrossValidator` với $K=3$ folds) [34]:
+Để tìm ra cấu hình mô hình tối ưu nhất, nghiên cứu sử dụng `ParamGridBuilder` kết hợp bộ kiểm định chéo 3 nếp gấp (`CrossValidator` với $K=3$ folds) [27]:
 
 **Bảng 3.3 Không gian tìm kiếm siêu tham số trong bộ tinh chỉnh ParamGridBuilder**
 
@@ -587,10 +585,10 @@ $$\\hat{p}(x) = \\frac{1}{B} \\sum_{b=1}^{B} p_b(x)$$
 
 ### 3.2.8 Phương pháp đánh giá mô hình và xác lập ngưỡng cắt rủi ro
 Hiệu năng của mô hình được đánh giá toàn diện qua tập kiểm thử độc lập gồm **452,140 hồ sơ (chiếm 20% dữ liệu)** dựa trên các chỉ số:
-- **Diện tích dưới đường cong ROC (ROC-AUC):** Đo lường năng lực phân biệt tổng thể giữa hồ sơ tốt và hồ sơ vỡ nợ [35].
+- **Diện tích dưới đường cong ROC (ROC-AUC):** Đo lường năng lực phân biệt tổng thể giữa hồ sơ tốt và hồ sơ vỡ nợ [28].
 - **Ma trận nhầm lẫn (Confusion Matrix):** Xác định các đại lượng True Positive (TP), False Positive (FP), True Negative (TN), False Negative (FN).
 - **Độ nhạy phát hiện nợ xấu (Recall) và Độ chính xác (Precision):** Đánh giá khả năng không bỏ sót rủi ro tín dụng.
-- **Chỉ số Youden's J Statistic:** Xác định ngưỡng cắt xác suất tối ưu nhằm cực đại hóa hiệu quả phân loại:
+- **Chỉ số Youden's J Statistic:** Xác định ngưỡng cắt xác suất tối ưu nhằm cực đại hóa hiệu quả phân loại [29]:
   $$J = \\text{Sensitivity} + \\text{Specificity} - 1$$
 """
 
@@ -738,7 +736,7 @@ Kết quả chứng minh tính đúng đắn của việc kỹ nghệ hai chỉ 
 ## 4.3 Thảo luận và Đề xuất ứng dụng nghiệp vụ ngân hàng
 
 ### 4.3.1 Động cơ quy đổi điểm tín dụng FICO Score tiêu chuẩn
-Để tích hợp kết quả vào hệ thống phê duyệt tự động (Core Banking), xác suất vỡ nợ ($p$) được quy đổi sang thang điểm FICO Score tiêu chuẩn ($300 - 850$) theo nguyên lý Log-Odds [36]:
+Để tích hợp kết quả vào hệ thống phê duyệt tự động (Core Banking), xác suất vỡ nợ ($p$) được quy đổi sang thang điểm FICO Score tiêu chuẩn ($300 - 850$) theo nguyên lý Log-Odds [30]:
 $$\\text{FICO Score} = 650 - 50 \\times \\ln\\left(\\frac{p}{1 - p}\\right)$$
 
 **Bảng 4.7 Bảng quy đổi Log-Odds từ xác suất vỡ nợ sang Thang điểm tín dụng FICO Score**
@@ -774,7 +772,7 @@ Căn cứ chỉ số Youden's J Statistic và chuẩn mực Basel II, danh mục
 
 <p align="left"><em>(Nguồn: Khung chính sách đề xuất cho tổ chức tín dụng)</em></p>
 
-### 4.3.3 Mô hình định giá lãi suất theo rủi ro (Risk-Based Pricing Framework)
+### 4.3.3 Mô hình định giá lãi suất theo rủi ro (Risk-Based Pricing Framework) [31]
 Mô hình định giá bóc tách lãi suất danh nghĩa theo 4 cấu phần chi phí:
 $$\\text{Lãi Suất Cho Vay} = \\text{COF} + \\text{OPEX} + \\text{Target Profit Margin} + \\text{Credit Risk Premium}(p)$$
 
@@ -851,65 +849,37 @@ text_06 = """# TÀI LIỆU THAM KHẢO
 
 ---
 
-### I. TIẾNG VIỆT
-
-1. Chính phủ nước Cộng hòa Xã hội Chủ nghĩa Việt Nam (2023), *Nghị định số 13/2023/NĐ-CP: Quy định về bảo vệ dữ liệu cá nhân*, Hà Nội.
-2. Ngân hàng Nhà nước Việt Nam (2016), *Thông tư số 41/2016/TT-NHNN: Quy định tỷ lệ an toàn vốn đối với ngân hàng thương mại, chi nhánh ngân hàng nước ngoài*, Hà Nội.
-3. Ngân hàng Nhà nước Việt Nam (2021), *Thông tư số 11/2021/TT-NHNN: Quy định về phân loại tài sản có, mức trích, phương pháp trích lập dự phòng rủi ro và việc sử dụng dự phòng để xử lý rủi ro trong hoạt động của tổ chức tín dụng*, Hà Nội.
-4. Quốc hội nước Cộng hòa Xã hội Chủ nghĩa Việt Nam (2019), *Bộ luật Lao động số 45/2019/QH14*, Hà Nội.
-5. Quốc hội nước Cộng hòa Xã hội Chủ nghĩa Việt Nam (2024), *Luật Các tổ chức tín dụng số 32/2024/QH15*, Hà Nội.
-
----
-
-### II. TIẾNG ANH
-
-6. Altman, E. I. (1968), Financial ratios, discriminant analysis and the prediction of corporate bankruptcy, *The Journal of Finance*, 23(4), pp. 589-609.
-7. Anderson, R. (2007), *The Credit Scoring Toolkit: Theory and Practice for Retail Credit Risk Management and Decision Automation*, Oxford University Press.
-8. Armbrust, M., R. S. Xin, C. Lian, Y. Huai, D. Liu, J. K. Bradley, ... and M. Zaharia (2015), Spark SQL: Relational data processing in Spark, *Proceedings of the 2015 ACM SIGMOD International Conference on Management of Data*, pp. 1383-1394.
-9. Armbrust, M., T. Das, L. Sun, B. Yavuz, S. Zhu, M. Murthy, ... and M. Zaharia (2020), Delta Lake: High-Performance ACID Table Storage over Cloud Object Stores, *Proceedings of the VLDB Endowment*, 13(12), pp. 3411-3424.
-10. Armbrust, M., A. Ghodsi, R. Xin, and M. Zaharia (2021), Lakehouse: A New Generation of Open Platforms that Unify Data Warehousing and Advanced Analytics, *Proceedings of CIDR 2021*.
-11. Arner, D. W., J. Barberis, and R. P. Buckley (2015), The Evolution of FinTech: A New Post-Crisis Paradigm?, *Georgetown Journal of International Law*, 47, pp. 1271-1319.
-12. Baesens, B., T. Van Gestel, S. Viaene, M. Stepanova, J. Suykens, and J. Vanthienen (2003), Benchmarking state-of-the-art classification algorithms for credit scoring, *Journal of the Operational Research Society*, 54(6), pp. 627-635.
-13. Basel Committee on Banking Supervision (BCBS) (2006), *International Convergence of Capital Measurement and Capital Standards: A Revised Framework (Basel II)*, Bank for International Settlements (BIS).
-14. Basel Committee on Banking Supervision (BCBS) (2017), *Basel III: Finalising post-crisis reforms*, Bank for International Settlements (BIS).
-15. Basel Committee on Banking Supervision (BCBS) (2019), *Standardised approach for credit risk: Guidance and implementation*, Bank for International Settlements (BIS).
-16. Berger, J. O. (1985), *Statistical Decision Theory and Bayesian Analysis (2nd ed.)*, Springer-Verlag.
-17. Biau, G. and E. Scornet (2016), A random forest guided tour, *TEST*, 25(2), pp. 197-227.
-18. Breiman, L. (2001), Random Forests, *Machine Learning*, 45(1), pp. 5-32.
-19. Chambers, B. and M. Zaharia (2018), *Spark: The Definitive Guide: Big Data Processing Made Simple*, O'Reilly Media.
-20. Chawla, N. V., K. W. Bowyer, L. O. Hall, and W. P. Kegelmeyer (2002), SMOTE: synthetic minority over-sampling technique, *Journal of Artificial Intelligence Research*, 16, pp. 321-357.
-21. Crouhy, M., D. Galai, and R. Mark (2006), *The Essentials of Risk Management*, McGraw-Hill.
-22. DAMA International (2017), *DAMA-DMBOK: Data Management Body of Knowledge (2nd ed.)*, Technics Publications.
-23. Databricks Inc. (2023), *Medallion Architecture: Best Practices for Managing Data with Bronze, Silver, and Gold Tables*, Databricks Official Technical Documentation.
-24. DeYoung, R., D. Glennon, and P. Nigro (2008), Borrower-lender distance, credit scoring, and loan performance: Evidence from informational-opaque small business borrowers, *Journal of Financial Intermediation*, 17(1), pp. 113-143.
-25. Fair Isaac Corporation (FICO) (2020), *Understanding FICO Scores: How Credit Scoring Works*, FICO Technical Whitepaper.
-26. Fawcett, T. (2006), An introduction to ROC analysis, *Pattern Recognition Letters*, 27(8), pp. 861-874.
-27. Fuster, A., M. Plosser, P. Schnabl, and J. Vickery (2019), The role of technology in mortgage lending, *The Review of Financial Studies*, 32(5), pp. 1854-1899.
-28. Gandomi, A. and M. Haider (2015), Beyond the hype: Big data concepts, methods, and analytics, *International Journal of Information Management*, 35(2), pp. 137-144.
-29. Han, J., M. Kamber, and J. Pei (2011), *Data Mining: Concepts and Techniques (3rd ed.)*, Morgan Kaufmann.
-30. Hand, D. J. and W. E. Henley (1997), Statistical classification methods in consumer credit scoring: a review, *Journal of the Royal Statistical Society: Series A*, 160(3), pp. 523-541.
-31. Hastie, T., R. Tibshirani, and J. Friedman (2009), *The Elements of Statistical Learning: Data Mining, Inference, and Prediction (2nd ed.)*, Springer.
-32. Ho, T. K. (1998), The random subspace method for constructing decision forests, *IEEE Transactions on Pattern Analysis and Machine Intelligence*, 20(8), pp. 832-844.
-33. Inmon, W. H. (2005), *Building the Data Warehouse (4th ed.)*, John Wiley & Sons.
-34. Jagtiani, J. and C. Lemieux (2019), The roles of alternative data and machine learning in fintech lending: evidence from the LendingClub consumer platform, *Financial Management*, 48(4), pp. 1009-1029.
-35. Karau, H., A. Konwinski, P. Wendell, and M. Zaharia (2015), *Learning Spark: Lightning-Fast Big Data Analysis*, O'Reilly Media.
-36. Kimball, R. and M. Ross (2013), *The Data Warehouse Toolkit: The Definitive Guide to Dimensional Modeling (3rd ed.)*, Wiley.
-37. Kleppmann, M. (2017), *Designing Data-Intensive Applications: The Big Ideas Behind Reliable, Scalable, and Maintainable Systems*, O'Reilly Media.
-38. Kohavi, R. (1995), A study of cross-validation and bootstrap for accuracy estimation and model selection, *Proceedings of IJCAI*, 2, pp. 1137-1145.
-39. LendingClub Corporation (2019), *LendingClub Complete Loan Data 2007-2018Q4*, Open Financial Datasets, Kaggle.
-40. Lessmann, S., B. Baesens, H. V. Seow, and L. C. Thomas (2015), Benchmarking state-of-the-art classification algorithms for credit scoring: An update of research, *European Journal of Operational Research*, 247(1), pp. 124-136.
-41. Louppe, G., L. Wehenkel, A. Sutera, and P. Geurts (2013), Understanding variable importances in forests of randomized trees, *Advances in NeurIPS*, 26, pp. 431-439.
-42. Meng, X., J. Bradley, B. Yavuz, E. Sparks, S. Venkataraman, D. Liu, ... and M. Zaharia (2016), MLlib: Machine learning in Apache Spark, *The Journal of Machine Learning Research*, 17(1), pp. 1235-1241.
-43. Mishkin, F. S. (2018), *The Economics of Money, Banking, and Financial Markets (12th ed.)*, Pearson.
-44. O'Leary, D. E. (2014), ‘Big data’, the ‘Internet of things’ and the ‘Internet of signs’, *Intelligent Systems in Accounting, Finance and Management*, 21(3), pp. 141-165.
-45. Saunders, A. and M. M. Cornett (2018), *Financial Institutions Management: A Risk Management Approach (9th ed.)*, McGraw-Hill Education.
-46. Siddiqi, N. (2017), *Intelligent Credit Scoring: Building and Implementing Better Credit Risk Scorecards (2nd ed.)*, John Wiley & Sons.
-47. Stiglitz, J. E. and A. Weiss (1981), Credit Rationing in Markets with Imperfect Information, *The American Economic Review*, 71(3), pp. 393-410.
-48. Strunk, C. R. and R. Sankar (2012), Risk-Based Pricing in Retail Banking: Methodologies and Implementation, *Journal of Risk Management in Financial Institutions*, 5(4), pp. 415-429.
-49. Thomas, L. C., D. B. Edelman, and J. N. Crook (2002), *Credit Scoring and Its Applications*, SIAM Monographs.
-50. White, T. (2015), *Hadoop: The Definitive Guide (4th ed.)*, O'Reilly Media.
-51. Youden, W. J. (1950), Index for rating diagnostic tests, *Cancer*, 3(1), pp. 32-35.
-52. Zaharia, M., R. S. Xin, P. Wendell, T. Das, M. Armbrust, A. Dave, ... and I. Stoica (2016), Apache Spark: a unified engine for big data processing, *Communications of the ACM*, 59(11), pp. 56-65.
+1. Mishkin, F. S. (2018), *The Economics of Money, Banking, and Financial Markets (12th ed.)*, Pearson Education.
+2. Arner, D. W., J. Barberis, and R. P. Buckley (2015), The Evolution of FinTech: A New Post-Crisis Paradigm?, *Georgetown Journal of International Law*, 47, pp. 1271-1319.
+3. Fuster, A., M. Plosser, P. Schnabl, and J. Vickery (2019), The role of technology in mortgage lending, *The Review of Financial Studies*, 32(5), pp. 1854-1899.
+4. Saunders, A. and M. M. Cornett (2018), *Financial Institutions Management: A Risk Management Approach (9th ed.)*, McGraw-Hill Education.
+5. Basel Committee on Banking Supervision (BCBS) (2006), *International Convergence of Capital Measurement and Capital Standards: A Revised Framework (Basel II)*, Bank for International Settlements (BIS).
+6. Crouhy, M., D. Galai, and R. Mark (2006), *The Essentials of Risk Management*, McGraw-Hill.
+7. Thomas, L. C., D. B. Edelman, and J. N. Crook (2002), *Credit Scoring and Its Applications*, Society for Industrial and Applied Mathematics (SIAM).
+8. Gandomi, A. and M. Haider (2015), Beyond the hype: Big data concepts, methods, and analytics, *International Journal of Information Management*, 35(2), pp. 137-144.
+9. Akerlof, G. A. (1970), The market for "lemons": Quality uncertainty and the market mechanism, *The Quarterly Journal of Economics*, 84(3), pp. 488-500.
+10. Stiglitz, J. E. and A. Weiss (1981), Credit Rationing in Markets with Imperfect Information, *The American Economic Review*, 71(3), pp. 393-410.
+11. Ngân hàng Nhà nước Việt Nam (2016), *Thông tư số 41/2016/TT-NHNN: Quy định tỷ lệ an toàn vốn đối với ngân hàng thương mại, chi nhánh ngân hàng nước ngoài*, Hà Nội.
+12. Siddiqi, N. (2017), *Intelligent Credit Scoring: Building and Implementing Better Credit Risk Scorecards (2nd ed.)*, John Wiley & Sons.
+13. Armbrust, M., A. Ghodsi, R. Xin, and M. Zaharia (2021), Lakehouse: A New Generation of Open Platforms that Unify Data Warehousing and Advanced Analytics, *Proceedings of CIDR 2021*.
+14. Armbrust, M., T. Das, L. Sun, B. Yavuz, S. Zhu, M. Murthy, ... and M. Zaharia (2020), Delta Lake: High-Performance ACID Table Storage over Cloud Object Stores, *Proceedings of the VLDB Endowment*, 13(12), pp. 3411-3424.
+15. Databricks Inc. (2023), *Medallion Architecture: Best Practices for Managing Data with Delta Lake*, Databricks Technical Whitepaper.
+16. Altman, E. I. (1968), Financial ratios, discriminant analysis and the prediction of corporate bankruptcy, *The Journal of Finance*, 23(4), pp. 589-609.
+17. Baesens, B., T. Van Gestel, S. Viaene, M. Stepanova, J. Suykens, and J. Vanthienen (2003), Benchmarking state-of-the-art classification algorithms for credit scoring, *Journal of the Operational Research Society*, 54(6), pp. 627-635.
+18. Lessmann, S., B. Baesens, H. V. Seow, and L. C. Thomas (2015), Benchmarking state-of-the-art classification algorithms for credit scoring: An update of research, *European Journal of Operational Research*, 247(1), pp. 124-136.
+19. Jagtiani, J. and C. Lemieux (2019), The roles of alternative data and machine learning in fintech lending: Evidence from the LendingClub consumer platform, *Financial Management*, 48(4), pp. 1009-1029.
+20. Basel Committee on Banking Supervision (BCBS) (2017), *Basel III: Finalising post-crisis reforms*, Bank for International Settlements (BIS).
+21. LendingClub Corporation (2019), *LendingClub Complete Loan Data 2007-2018Q4*, Open Financial Data Repository.
+22. Han, J., M. Kamber, and J. Pei (2011), *Data Mining: Concepts and Techniques (3rd ed.)*, Morgan Kaufmann Publishers.
+23. Hand, D. J. and W. E. Henley (1997), Statistical classification methods in consumer credit scoring: a review, *Journal of the Royal Statistical Society: Series A (Statistics in Society)*, 160(3), pp. 523-541.
+24. Armbrust, M., R. S. Xin, C. Lian, Y. Huai, D. Liu, J. K. Bradley, ... and M. Zaharia (2015), Spark SQL: Relational data processing in Spark, *Proceedings of the 2015 ACM SIGMOD International Conference on Management of Data*, pp. 1383-1394.
+25. Breiman, L. (2001), Random Forests, *Machine Learning*, 45(1), pp. 5-32.
+26. Ho, T. K. (1998), The random subspace method for constructing decision forests, *IEEE Transactions on Pattern Analysis and Machine Intelligence*, 20(8), pp. 832-844.
+27. Kohavi, R. (1995), A study of cross-validation and bootstrap for accuracy estimation and model selection, *IJCAI*, 14(2), pp. 1137-1145.
+28. Fawcett, T. (2006), An introduction to ROC analysis, *Pattern Recognition Letters*, 27(8), pp. 861-874.
+29. Youden, W. J. (1950), Index for rating diagnostic tests, *Cancer*, 3(1), pp. 32-35.
+30. Fair Isaac Corporation (FICO) (2020), *Understanding FICO Scores: How Credit Scoring Works*, San Jose, California.
+31. Strunk, C. R. and R. Sankar (2012), Risk-Based Pricing in Retail Banking: Methodologies and Applications, *Journal of Retail Banking Services*, 34(2), pp. 45-58.
 """
 
 print("Đã soạn thảo xong Tài liệu tham khảo.")
@@ -1073,8 +1043,6 @@ format:
     embed-resources: true
     highlight-style: github
     css: styles.css
-    include-before-body: header.html
-    include-after-body: footer.html
   docx:
     toc: true
     number-sections: false
@@ -1133,18 +1101,13 @@ quarto_yml = """project:
 
 book:
   title: "Đề Tài 7: Mô Hình Chấm Điểm Tín Dụng & Thẩm Định Rủi Ro Vỡ NỢ"
-  subtitle: "Báo Cáo Tiểu Luận Môn Học Dữ Liệu Lớn & Trí Tuệ Nhân Tạo Trong Kinh Doanh"
+  subtitle: "Báo Cáo Tiểu Luận Kết Thúc Học Phần (Capstone Project) - Môn Dữ Liệu Lớn (Big Data) - Samsung Innovation Campus (SIC) - UFM"
   author:
     - name: "Lê Thành Hiệu"
       affiliation: "Trường Đại học Tài chính - Marketing (UFM)"
   date: "2026"
   search: true
   page-navigation: true
-  page-footer:
-    left: "Báo cáo Tiểu luận: Hệ thống Chấm điểm Tín dụng & Thẩm định Rủi ro Vỡ nợ"
-    center: "Trường Đại học Tài chính - Marketing (UFM) • 2026"
-    right: "GVHD: TS. Trần Mạnh Tường • SV: Lê Thành Hiệu"
-    border: true
   chapters:
     - index.qmd
     - 01_CHUONG_1_GIOI_THIEU.qmd
@@ -1166,8 +1129,6 @@ format:
     code-fold: show
     highlight-style: github
     css: styles.css
-    include-before-body: header.html
-    include-after-body: footer.html
   docx:
     toc: true
     number-sections: false

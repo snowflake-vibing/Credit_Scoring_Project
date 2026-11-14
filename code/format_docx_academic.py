@@ -50,38 +50,18 @@ def format_document(path):
         section.header_distance = Cm(1.27)
         section.footer_distance = Cm(1.27)
         
-        # Trang đầu tiên (Trang bìa) không hiển thị Header và Footer
-        section.different_first_page_header_footer = True
+        # Xóa hoàn toàn Header và Footer theo yêu cầu người dùng ("khỏi header, footer đi")
+        section.different_first_page_header_footer = False
         
-        # Thiết lập Header cho các trang sau trang bìa
         header = section.header
-        header_p = header.paragraphs[0] if header.paragraphs else header.add_paragraph()
-        header_p.alignment = WD_ALIGN_PARAGRAPH.RIGHT
-        header_p.text = ""
-        run_h = header_p.add_run("TRƯỜNG ĐH TÀI CHÍNH - MARKETING (UFM) • TIỂU LUẬN DỮ LIỆU LỚN & AI")
-        run_h.font.name = "Times New Roman"
-        run_h.font.size = Pt(10)
-        run_h.font.italic = True
-        run_h.font.color.rgb = RGBColor(100, 116, 139)
-        
-        # Thiết lập Footer (Đánh số trang ở giữa trang, cỡ chữ 13pt)
+        header.is_linked_to_previous = False
+        for hp in header.paragraphs:
+            hp.text = ""
+            
         footer = section.footer
-        footer_p = footer.paragraphs[0] if footer.paragraphs else footer.add_paragraph()
-        footer_p.alignment = WD_ALIGN_PARAGRAPH.CENTER
-        footer_p.text = ""
-        
-        # Thêm text chân trang và số trang
-        run_f1 = footer_p.add_run("— ")
-        run_f1.font.name = "Times New Roman"
-        run_f1.font.size = Pt(13)
-        
-        fldSimple = OxmlElement('w:fldSimple')
-        fldSimple.set(qn('w:instr'), 'PAGE')
-        footer_p._p.append(fldSimple)
-        
-        run_f2 = footer_p.add_run(" —")
-        run_f2.font.name = "Times New Roman"
-        run_f2.font.size = Pt(13)
+        footer.is_linked_to_previous = False
+        for fp in footer.paragraphs:
+            fp.text = ""
 
     # 2. Chuẩn hóa font, căn lề và khoảng cách cho từng đoạn văn
     prev_was_sig_note = False
@@ -100,8 +80,8 @@ def format_document(path):
             in_cover_page = False
 
         if in_cover_page:
-            # Định dạng trang trọng cho Trang Bìa UFM
-            if any(term in txt for term in ["BỘ TÀI CHÍNH", "TRƯỜNG ĐẠI HỌC TÀI CHÍNH - MARKETING", "KHOA CÔNG NGHỆ THÔNG TIN", "BỘ MÔN HỆ THỐNG THÔNG TIN QUẢN LÝ"]):
+            # Định dạng trang trọng cho Trang Bìa UFM & Samsung Innovation Campus (SIC)
+            if any(term in txt for term in ["BỘ TÀI CHÍNH", "TRƯỜNG ĐẠI HỌC TÀI CHÍNH - MARKETING", "KHOA CÔNG NGHỆ THÔNG TIN", "CHƯƠNG TRÌNH SAMSUNG INNOVATION CAMPUS", "BỘ MÔN HỆ THỐNG THÔNG TIN QUẢN LÝ"]):
                 p.alignment = WD_ALIGN_PARAGRAPH.CENTER
                 p.paragraph_format.space_before = Pt(2)
                 p.paragraph_format.space_after = Pt(2)
@@ -109,7 +89,7 @@ def format_document(path):
                     r.font.name = "Times New Roman"
                     r.font.bold = True
                     r.font.size = Pt(12)
-            elif "BÁO CÁO TIỂU LUẬN MÔN HỌC" in txt:
+            elif "BÁO CÁO TIỂU LUẬN" in txt or "CAPSTONE PROJECT" in txt:
                 p.alignment = WD_ALIGN_PARAGRAPH.CENTER
                 p.paragraph_format.space_before = Pt(24)
                 p.paragraph_format.space_after = Pt(4)
@@ -117,7 +97,7 @@ def format_document(path):
                     r.font.name = "Times New Roman"
                     r.font.bold = True
                     r.font.size = Pt(13)
-            elif "DỮ LIỆU LỚN VÀ TRÍ TUỆ NHÂN TẠO TRONG KINH DOANH" in txt:
+            elif "DỮ LIỆU LỚN" in txt or "BIG DATA" in txt:
                 p.alignment = WD_ALIGN_PARAGRAPH.CENTER
                 p.paragraph_format.space_before = Pt(4)
                 p.paragraph_format.space_after = Pt(2)
@@ -125,7 +105,7 @@ def format_document(path):
                     r.font.name = "Times New Roman"
                     r.font.bold = True
                     r.font.size = Pt(15)
-            elif "BIG DATA ANALYTICS & ARTIFICIAL INTELLIGENCE IN BUSINESS" in txt:
+            elif any(sub in txt for sub in ["PHỐI HỢP ĐÀO TẠO", "SAMSUNG INNOVATION CAMPUS - UFM", "BIG DATA ANALYTICS & ARTIFICIAL INTELLIGENCE IN BUSINESS"]):
                 p.alignment = WD_ALIGN_PARAGRAPH.CENTER
                 p.paragraph_format.space_before = Pt(2)
                 p.paragraph_format.space_after = Pt(20)
@@ -149,7 +129,7 @@ def format_document(path):
                     r.font.name = "Times New Roman"
                     r.font.bold = True
                     r.font.size = Pt(16)
-            elif any(txt.startswith(prefix) for prefix in ["Giảng viên hướng dẫn:", "Sinh viên thực hiện:", "Mã số sinh viên:", "Lớp / Khóa học:", "Chuyên ngành:", "Kho lưu trữ mã nguồn:", "Không gian làm việc Databricks:"]):
+            elif any(txt.startswith(prefix) for prefix in ["Giảng viên hướng dẫn:", "Sinh viên thực hiện:", "Mã số sinh viên:", "Lớp / Khóa học:", "Khóa học / Đơn vị:", "Chuyên ngành:", "Kho lưu trữ mã nguồn:", "Không gian làm việc Databricks:"]):
                 p.alignment = WD_ALIGN_PARAGRAPH.LEFT
                 p.paragraph_format.left_indent = Cm(1.5)
                 p.paragraph_format.space_before = Pt(3)

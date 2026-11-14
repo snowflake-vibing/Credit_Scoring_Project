@@ -148,7 +148,7 @@ Kết quả chứng minh tính đúng đắn của việc kỹ nghệ hai chỉ 
 ## 4.3 Thảo luận và Đề xuất ứng dụng nghiệp vụ ngân hàng
 
 ### 4.3.1 Động cơ quy đổi điểm tín dụng FICO Score tiêu chuẩn
-Để tích hợp kết quả vào hệ thống phê duyệt tự động (Core Banking), xác suất vỡ nợ ($p$) được quy đổi sang thang điểm FICO Score tiêu chuẩn ($300 - 850$) theo nguyên lý Log-Odds [36]:
+Để tích hợp kết quả vào hệ thống phê duyệt tự động (Core Banking), xác suất vỡ nợ ($p$) được quy đổi sang thang điểm FICO Score tiêu chuẩn ($300 - 850$) theo nguyên lý Log-Odds [30]:
 $$\text{FICO Score} = 650 - 50 \times \ln\left(\frac{p}{1 - p}\right)$$
 
 **Bảng 4.7 Bảng quy đổi Log-Odds từ xác suất vỡ nợ sang Thang điểm tín dụng FICO Score**
@@ -184,7 +184,7 @@ Căn cứ chỉ số Youden's J Statistic và chuẩn mực Basel II, danh mục
 
 <p align="left"><em>(Nguồn: Khung chính sách đề xuất cho tổ chức tín dụng)</em></p>
 
-### 4.3.3 Mô hình định giá lãi suất theo rủi ro (Risk-Based Pricing Framework)
+### 4.3.3 Mô hình định giá lãi suất theo rủi ro (Risk-Based Pricing Framework) [31]
 Mô hình định giá bóc tách lãi suất danh nghĩa theo 4 cấu phần chi phí:
 $$\text{Lãi Suất Cho Vay} = \text{COF} + \text{OPEX} + \text{Target Profit Margin} + \text{Credit Risk Premium}(p)$$
 

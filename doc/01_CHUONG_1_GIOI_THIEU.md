@@ -64,7 +64,7 @@ Nghiên cứu, thiết kế và phát triển hệ thống tự động hóa ch�
 
 ## 1.6 Phân tích đặc tính Dữ liệu lớn theo mô hình 5Vs
 
-Để chứng minh tính tương thích và sự cần thiết của nền tảng Big Data đối với bài toán tín dụng, nghiên cứu phân tích đề tài dựa trên khung lý thuyết 5Vs kinh điển [15]:
+Để chứng minh tính tương thích và sự cần thiết của nền tảng Big Data đối với bài toán tín dụng, nghiên cứu phân tích đề tài dựa trên khung lý thuyết 5Vs kinh điển [8]:
 
 **Bảng 1.1 Phân tích đặc tính Dữ liệu lớn theo mô hình 5Vs trong Đề tài Chấm điểm Tín dụng**
 
