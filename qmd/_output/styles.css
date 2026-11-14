@@ -274,3 +274,55 @@ th {
   background-color: #f8fafc;
   font-weight: bold;
 }
+
+/* ==============================================================================
+   KHỐI CHỮ KÝ HỌC THUẬT (SIGNATURE BLOCK)
+   Căn phải toàn bộ khối, căn giữa các dòng trong khối, chừa khoảng trống ký tên
+   ============================================================================== */
+.signature-container {
+  display: flex !important;
+  justify-content: flex-end !important;
+  margin-top: 40px !important;
+  margin-bottom: 35px !important;
+  width: 100% !important;
+}
+
+.signature-box {
+  width: 330px !important;
+  text-align: center !important;
+  font-family: "Times New Roman", Times, serif !important;
+  line-height: 1.4 !important;
+}
+
+.signature-box .sig-date {
+  font-style: italic !important;
+  font-size: 13pt !important;
+  margin-bottom: 6px !important;
+  color: #1e293b !important;
+}
+
+.signature-box .sig-title {
+  font-weight: bold !important;
+  font-size: 13pt !important;
+  text-transform: uppercase !important;
+  margin-bottom: 3px !important;
+  color: #0f172a !important;
+}
+
+.signature-box .sig-note {
+  font-style: italic !important;
+  font-size: 11pt !important;
+  color: #475569 !important;
+}
+
+.signature-box .sig-space {
+  height: 95px !important; /* Chừa 95px (~2.5cm) để ký tên */
+  min-height: 95px !important;
+}
+
+.signature-box .sig-name {
+  font-weight: bold !important;
+  font-size: 13.5pt !important;
+  color: #000000 !important;
+}
+

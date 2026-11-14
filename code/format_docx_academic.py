@@ -80,6 +80,7 @@ def format_document(path):
         run_f2.font.size = Pt(13)
 
     # 2. Chuẩn hóa font và paragraph spacing cho toàn bộ văn bản
+    prev_was_sig_note = False
     for p in doc.paragraphs:
         p.paragraph_format.line_spacing = 1.2
         p.paragraph_format.space_before = Pt(6)
@@ -87,6 +88,30 @@ def format_document(path):
         for r in p.runs:
             if not r.font.name:
                 r.font.name = "Times New Roman"
+
+        # Căn phải và chừa khoảng trống chữ ký theo chuẩn văn bản hành chính & luận văn VN
+        txt = p.text.strip()
+        if "TP. Hồ Chí Minh" in txt and ("năm" in txt or "tháng" in txt):
+            p.alignment = WD_ALIGN_PARAGRAPH.RIGHT
+            p.paragraph_format.space_before = Pt(20)
+            p.paragraph_format.space_after = Pt(2)
+        elif txt in ["Sinh viên thực hiện", "Sinh viên cam đoan"]:
+            p.alignment = WD_ALIGN_PARAGRAPH.RIGHT
+            p.paragraph_format.space_before = Pt(2)
+            p.paragraph_format.space_after = Pt(2)
+        elif "(Ký và ghi rõ họ tên)" in txt:
+            p.alignment = WD_ALIGN_PARAGRAPH.RIGHT
+            p.paragraph_format.space_before = Pt(2)
+            p.paragraph_format.space_after = Pt(72) # Chừa ~2.5cm để ký tên
+            prev_was_sig_note = True
+            continue
+        elif prev_was_sig_note and "Lê Thành Hiệu" in txt:
+            p.alignment = WD_ALIGN_PARAGRAPH.RIGHT
+            p.paragraph_format.space_before = Pt(0)
+            p.paragraph_format.space_after = Pt(12)
+            prev_was_sig_note = False
+            continue
+        prev_was_sig_note = False
 
     doc.save(path)
     print(f"✅ Đã chuẩn hóa thành công: {path} (Header 1.27cm, Footer 1.27cm số trang giữa, Margin 3-2-2-2cm, Font 13pt)")

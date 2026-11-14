@@ -118,6 +118,16 @@ Em cũng xin gửi lời cảm ơn chân thành đến Ban Giám hiệu nhà tr�
 
 *Kính chúc Thầy luôn dồi dào sức khỏe, hạnh phúc và gặt hái được nhiều thành công hơn nữa trong sự nghiệp giảng dạy và nghiên cứu khoa học cao quý!*
 
+<div class="signature-container" style="display: flex; justify-content: flex-end; margin-top: 35px; margin-bottom: 25px;">
+<div class="signature-box" style="width: 330px; text-align: center; font-family: 'Times New Roman', Times, serif;">
+<p class="sig-date" style="margin: 0; font-style: italic; font-size: 13pt;">TP. Hồ Chí Minh, ngày &hellip; tháng 11 năm 2026</p>
+<p class="sig-title" style="margin: 6px 0 2px 0; font-weight: bold; font-size: 13pt; text-transform: uppercase;">Sinh viên thực hiện</p>
+<p class="sig-note" style="margin: 0; font-style: italic; font-size: 11pt; color: #555555;">(Ký và ghi rõ họ tên)</p>
+<div class="sig-space" style="height: 95px;"></div>
+<p class="sig-name" style="margin: 0; font-weight: bold; font-size: 13.5pt;">Lê Thành Hiệu</p>
+</div>
+</div>
+
 \newpage
 
 ---
@@ -128,11 +138,15 @@ Tôi xin cam đoan rằng bài tiểu luận kết thúc học phần với đ�
 
 Toàn bộ số liệu phân tích, kết quả mô phỏng thực nghiệm và các luận điểm trình bày trong báo cáo hoàn toàn trung thực, khách quan và được thu thập, xử lý từ dữ liệu thực tế 2,260,701 khoản vay của nền tảng LendingClub. Các tài liệu tham khảo, các lý thuyết tài chính - ngân hàng và nghiên cứu khoa học của các tác giả khác đều được trích dẫn nguồn gốc đầy đủ theo đúng quy chuẩn học thuật hiện hành.
 
-*TP. Hồ Chí Minh, năm 2026*  
-**Sinh viên thực hiện**  
-*(Ký và ghi rõ họ tên)*  
-
-**Lê Thành Hiệu**
+<div class="signature-container" style="display: flex; justify-content: flex-end; margin-top: 35px; margin-bottom: 25px;">
+<div class="signature-box" style="width: 330px; text-align: center; font-family: 'Times New Roman', Times, serif;">
+<p class="sig-date" style="margin: 0; font-style: italic; font-size: 13pt;">TP. Hồ Chí Minh, ngày &hellip; tháng 11 năm 2026</p>
+<p class="sig-title" style="margin: 6px 0 2px 0; font-weight: bold; font-size: 13pt; text-transform: uppercase;">Sinh viên cam đoan</p>
+<p class="sig-note" style="margin: 0; font-style: italic; font-size: 11pt; color: #555555;">(Ký và ghi rõ họ tên)</p>
+<div class="sig-space" style="height: 95px;"></div>
+<p class="sig-name" style="margin: 0; font-weight: bold; font-size: 13.5pt;">Lê Thành Hiệu</p>
+</div>
+</div>
 
 \newpage
 
