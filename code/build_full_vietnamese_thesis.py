@@ -41,7 +41,7 @@ text_00 = """# TRANG BÌA
   <div class="cover-footer">
     <div class="info-row"><strong>Giảng viên hướng dẫn:</strong> TS. Trần Mạnh Tường</div>
     <div class="info-row"><strong>Sinh viên thực hiện:</strong> Lê Thành Hiệu</div>
-    <div class="info-row"><strong>Mã số sinh viên:</strong> [Điền MSSV tại đây]</div>
+    <div class="info-row"><strong>Mã số sinh viên:</strong> 24520496</div>
     <div class="info-row"><strong>Khóa học / Đơn vị:</strong> Khóa đào tạo Dữ liệu lớn (Big Data) - Samsung Innovation Campus (SIC) 2026</div>
     <div class="info-row"><strong>Chuyên ngành:</strong> Hệ thống Thông tin Quản lý (MIS) &amp; Khoa học Dữ liệu</div>
     <div class="info-row"><strong>Kho lưu trữ mã nguồn:</strong> <a href="https://github.com/snowflake-vibing/Credit_Scoring_Project">github.com/snowflake-vibing/Credit_Scoring_Project</a></div>
@@ -76,7 +76,7 @@ text_00 = """# TRANG BÌA
 
 **Giảng viên hướng dẫn:** TS. Trần Mạnh Tường  
 **Sinh viên thực hiện:** Lê Thành Hiệu  
-**Mã số sinh viên:** [Điền MSSV tại đây]  
+**Mã số sinh viên:** 24520496  
 **Khóa học / Đơn vị:** Khóa đào tạo Dữ liệu lớn (Big Data) - Samsung Innovation Campus (SIC) 2026  
 **Chuyên ngành:** Hệ thống Thông tin Quản lý (MIS) & Khoa học Dữ liệu  
 **Kho lưu trữ mã nguồn:** https://github.com/snowflake-vibing/Credit_Scoring_Project  

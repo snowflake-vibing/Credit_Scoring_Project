@@ -25,7 +25,7 @@ Học phần này hướng tới sự hiểu biết **thực chất** và khả 
 
 | STT | Họ và tên | MSSV | Nhiệm vụ đảm nhiệm chính | Mức độ đóng góp |
 | :---: | :--- | :---: | :--- | :---: |
-| 1 | Lê Thành Hiệu | [Điền MSSV] | Đặt vấn đề, nạp dữ liệu Bronze, làm sạch Silver, phân tích Spark SQL, xây dựng Spark MLlib Pipeline, tính toán tác động tài chính và viết toàn bộ báo cáo tiểu luận. | 100% |
+| 1 | Lê Thành Hiệu | 24520496 | Đặt vấn đề, nạp dữ liệu Bronze, làm sạch Silver, phân tích Spark SQL, xây dựng Spark MLlib Pipeline, tính toán tác động tài chính và viết toàn bộ báo cáo tiểu luận. | 100% |
 
 ::: {style="text-align: right; margin-top: 25px; margin-bottom: 25px;"}
 *TP. Hồ Chí Minh, năm 2026*  

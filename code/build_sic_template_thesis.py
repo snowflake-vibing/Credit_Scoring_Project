@@ -17,7 +17,7 @@ print("Bắt đầu tái cấu trúc mã nguồn QMD và PDF theo đúng chuẩn
 yaml_header = """---
 title: "Báo cáo tiểu luận môn học Dữ liệu lớn & Trí tuệ nhân tạo trong kinh doanh"
 subtitle: "Chương trình đào tạo Samsung Innovation Campus (SIC) - Hợp tác cùng NIC & Trường Đại học Tài chính - Marketing (UFM)"
-author: "Lê Thành Hiệu - MSSV: [Điền MSSV tại đây] (Sinh viên thực hiện)"
+author: "Lê Thành Hiệu - MSSV: 24520496 (Sinh viên thực hiện)"
 date: "Năm 2026"
 toc: true
 toc-title: "Mục lục"
@@ -69,7 +69,7 @@ sec2_content = """# 2 Thông tin chung về nhóm và đề tài nghiên cứu
 
 | STT | Họ và tên | MSSV | Nhiệm vụ đảm nhiệm chính | Mức độ đóng góp |
 | :---: | :--- | :---: | :--- | :---: |
-| 1 | Lê Thành Hiệu | [Điền MSSV] | Đặt vấn đề, nạp dữ liệu Bronze, làm sạch Silver, phân tích Spark SQL, xây dựng Spark MLlib Pipeline, tính toán tác động tài chính và viết toàn bộ báo cáo tiểu luận. | 100% |
+| 1 | Lê Thành Hiệu | 24520496 | Đặt vấn đề, nạp dữ liệu Bronze, làm sạch Silver, phân tích Spark SQL, xây dựng Spark MLlib Pipeline, tính toán tác động tài chính và viết toàn bộ báo cáo tiểu luận. | 100% |
 
 ::: {style="text-align: right; margin-top: 25px; margin-bottom: 25px;"}
 *TP. Hồ Chí Minh, năm 2026*  
