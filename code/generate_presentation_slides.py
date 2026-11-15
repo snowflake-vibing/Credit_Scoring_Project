@@ -320,72 +320,231 @@ p_sum.space_before = Pt(14)
 print("✅ Slide 2 hoàn tất.")
 
 # ==============================================================================
-# SLIDE 3: KIẾN TRÚC DATABRICKS LAKEHOUSE MEDALLION (CONCISE & SPACING 1.5)
+# SLIDE 3: KIẾN TRÚC DATABRICKS LAKEHOUSE MEDALLION (NATIVE VECTOR DIAGRAM & KEYWORDS)
 # ==============================================================================
 slide3 = prs.slides.add_slide(blank_layout)
 set_slide_background(slide3, LIGHT_BG)
 add_clean_title(slide3, "2. Quản Trị & Lưu Trữ Dữ Liệu Theo Kiến Trúc Medallion")
 
-arch_cards = [
-    ("🥉 TẦNG BRONZE (Raw Lakehouse)", 
-     "workspace.default.bronze_credit_data",
-     ["Nạp thô 2.26 triệu dòng (1.6 GB) nguyên bản từ DBFS.",
-      "Lưu trữ chuẩn Delta Lake, bảo toàn giao dịch ACID.",
-      "Hỗ trợ Time Travel Audit phục vụ truy vết lịch sử dữ liệu."], 
-     AMBER_BG, AMBER_BR, AMBER_TX),
-    ("🥈 TẦNG SILVER (Curated & Enriched)", 
-     "workspace.default.silver_credit_data",
-     ["Lọc sạch ngoại lai: tuổi (18-80) và thu nhập (>0).",
-      "Kỹ nghệ 2 chỉ số tài chính cốt lõi: DTI Ratio và CBI Index.",
-      "Chuẩn hóa 12 đặc trưng, phân chia tập 80% Train / 20% Test."], 
-     BLUE_BG, BLUE_BR, BLUE_TX),
-    ("🥇 TẦNG GOLD (AI Serving & Decision)", 
-     "workspace.default.gold_credit_scoring",
-     ["Triển khai mô hình Random Forest phân tán dự báo vỡ nợ (PD).",
-      "Chấm điểm tín dụng FICO Score chuẩn hóa (300 - 850).",
-      "Tích hợp biểu phí lãi suất bù đắp rủi ro (Risk-Based Pricing)."], 
-     EMERALD_BG, EMERALD_BR, EMERALD_TX)
+tiers = [
+    {
+        "step": "BƯỚC 1",
+        "title": "NGUỒN DỮ LIỆU",
+        "sub": "Raw Data Sources",
+        "badge": "LendingClub Dataset",
+        "header_bg": RGBColor(30, 41, 59),
+        "border_c": RGBColor(71, 85, 105),
+        "pill_bg": RGBColor(241, 245, 249),
+        "pill_tx": RGBColor(30, 41, 59),
+        "pill_title": "TẬP DỮ LIỆU GỐC",
+        "pill_sub": "1.6 GB • 2.26M dòng",
+        "keywords": [
+            ("Quy mô:", "2,260,701 hồ sơ vay"),
+            ("Định dạng:", "Tệp nén CSV (1.6 GB)"),
+            ("Thuộc tính:", "151 trường thông tin"),
+            ("Nợ xấu nền:", "21.82% toàn danh mục"),
+            ("Tiếp nhận:", "PySpark Batch Ingest")
+        ]
+    },
+    {
+        "step": "BƯỚC 2",
+        "title": "TẦNG BRONZE",
+        "sub": "Raw Lakehouse Layer",
+        "badge": "workspace.bronze",
+        "header_bg": RGBColor(180, 83, 9),
+        "border_c": RGBColor(217, 119, 6),
+        "pill_bg": RGBColor(254, 243, 199),
+        "pill_tx": RGBColor(180, 83, 9),
+        "pill_title": "TOÀN VẸN GIAO DỊCH",
+        "pill_sub": "100% ACID Log Audit",
+        "keywords": [
+            ("Bảng Delta:", "bronze_credit_data"),
+            ("Lưu trữ:", "Delta Lake (Parquet)"),
+            ("Nguyên tắc:", "Bất biến (As-Is Data)"),
+            ("Bảo toàn:", "100% dữ liệu nguyên bản"),
+            ("Kiểm toán:", "Time Travel v0 Audit")
+        ]
+    },
+    {
+        "step": "BƯỚC 3",
+        "title": "TẦNG SILVER",
+        "sub": "Curated & Enriched",
+        "badge": "workspace.silver",
+        "header_bg": RGBColor(29, 78, 216),
+        "border_c": RGBColor(37, 99, 235),
+        "pill_bg": RGBColor(239, 246, 255),
+        "pill_tx": RGBColor(29, 78, 216),
+        "pill_title": "DỮ LIỆU SẠCH & CHUẨN",
+        "pill_sub": "12 Features Đầu Vào",
+        "keywords": [
+            ("Bảng Delta:", "silver_credit_data"),
+            ("Lọc logic:", "Tuổi (18-80) & Thu nhập"),
+            ("Điền khuyết:", "Median lãi suất 11%"),
+            ("Kỹ nghệ:", "DTI Ratio & CBI Index"),
+            ("Phân chia:", "80% Train / 20% Test")
+        ]
+    },
+    {
+        "step": "BƯỚC 4",
+        "title": "TẦNG GOLD",
+        "sub": "AI Engine & Scoring",
+        "badge": "workspace.gold",
+        "header_bg": RGBColor(4, 120, 87),
+        "border_c": RGBColor(16, 185, 129),
+        "pill_bg": RGBColor(236, 253, 245),
+        "pill_tx": RGBColor(4, 120, 87),
+        "pill_title": "MÔ HÌNH HỌC MÁY",
+        "pill_sub": "ROC-AUC = 0.8745",
+        "keywords": [
+            ("Bảng Delta:", "gold_credit_scoring"),
+            ("Thuật toán:", "Random Forest (50 cây)"),
+            ("Dự báo:", "Xác suất vỡ nợ (PD)"),
+            ("Chấm điểm:", "FICO Score (300-850)"),
+            ("Độ chính xác:", "Accuracy 87.16%")
+        ]
+    },
+    {
+        "step": "BƯỚC 5",
+        "title": "QUYẾT ĐỊNH STP",
+        "sub": "Automated Policy",
+        "badge": "Core Banking / LOS",
+        "header_bg": RGBColor(67, 56, 202),
+        "border_c": RGBColor(99, 102, 241),
+        "pill_bg": RGBColor(238, 242, 255),
+        "pill_tx": RGBColor(67, 56, 202),
+        "pill_title": "TỰ ĐỘNG HÓA CAO",
+        "pill_sub": "Duyệt STP > 76% Hồ Sơ",
+        "keywords": [
+            ("Phân tầng:", "4 nhóm rủi ro tín dụng"),
+            ("Định giá:", "Risk-Based Pricing"),
+            ("Phê duyệt:", "STP 100% nhóm tốt"),
+            ("Thời gian:", "Dưới 3 phút / hồ sơ"),
+            ("Giá trị:", "Tiết kiệm 176.4 tỷ VNĐ")
+        ]
+    }
 ]
 
-ay = Inches(1.55)
-ah = Inches(1.68)
-agap = Inches(0.14)
+c_w = Inches(2.18)
+c_gap = Inches(0.20)
+c_y = Inches(1.55)
+c_h = Inches(5.35)
 
-for i, (atitle, asub, abullets, bg_c, br_c, tx_c) in enumerate(arch_cards):
-    cur_y = ay + i * (ah + agap)
-    create_styled_card(slide3, Inches(0.8), cur_y, Inches(5.3), ah, bg_color=bg_c, border_color=br_c, border_width=1.5)
+for i, t in enumerate(tiers):
+    cx = Inches(0.8) + i * (c_w + c_gap)
     
-    tb = slide3.shapes.add_textbox(Inches(1.0), cur_y + Inches(0.14), Inches(4.9), ah - Inches(0.28))
-    tf = tb.text_frame
-    tf.word_wrap = True
-    tf.margin_left = tf.margin_top = tf.margin_right = tf.margin_bottom = 0
+    # Outer card container
+    card = slide3.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, cx, c_y, c_w, c_h)
+    card.fill.solid()
+    card.fill.fore_color.rgb = WHITE
+    card.line.color.rgb = t["border_c"]
+    card.line.width = Pt(1.5)
     
-    p = tf.paragraphs[0]
-    p.text = atitle
+    # Header shape
+    head = slide3.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, cx, c_y, c_w, Inches(1.08))
+    head.fill.solid()
+    head.fill.fore_color.rgb = t["header_bg"]
+    head.line.fill.background()
+    
+    # Header text
+    tb_h = slide3.shapes.add_textbox(cx, c_y + Inches(0.08), c_w, Inches(0.92))
+    tf_h = tb_h.text_frame
+    tf_h.word_wrap = True
+    tf_h.margin_left = tf_h.margin_right = tf_h.margin_top = tf_h.margin_bottom = 0
+    
+    p = tf_h.paragraphs[0]
+    p.text = t["step"]
     p.font.name = FONT_FAMILY
-    p.font.size = Pt(11.5)
+    p.font.size = Pt(8.5)
     p.font.bold = True
-    p.font.color.rgb = tx_c
+    p.font.color.rgb = RGBColor(226, 232, 240)
+    p.alignment = PP_ALIGN.CENTER
     
-    ps = tf.add_paragraph()
-    ps.text = asub
-    ps.font.name = FONT_FAMILY
-    ps.font.size = Pt(9)
-    ps.font.bold = True
-    ps.font.color.rgb = TEXT_MUTED
-    ps.space_before = Pt(1)
+    p2 = tf_h.add_paragraph()
+    p2.text = t["title"]
+    p2.font.name = FONT_FAMILY
+    p2.font.size = Pt(10.5)
+    p2.font.bold = True
+    p2.font.color.rgb = WHITE
+    p2.alignment = PP_ALIGN.CENTER
+    p2.space_before = Pt(1)
     
-    for b_item in abullets:
-        pb = tf.add_paragraph()
-        pb.text = f"• {b_item}"
+    p3 = tf_h.add_paragraph()
+    p3.text = t["sub"]
+    p3.font.name = FONT_FAMILY
+    p3.font.size = Pt(8.2)
+    p3.font.italic = True
+    p3.font.color.rgb = RGBColor(203, 213, 225)
+    p3.alignment = PP_ALIGN.CENTER
+    p3.space_before = Pt(1)
+    
+    # Body keywords textbox
+    tb_b = slide3.shapes.add_textbox(cx + Inches(0.12), c_y + Inches(1.18), c_w - Inches(0.24), Inches(3.3))
+    tf_b = tb_b.text_frame
+    tf_b.word_wrap = True
+    tf_b.margin_left = tf_b.margin_right = tf_b.margin_top = tf_b.margin_bottom = 0
+    
+    # Sub badge
+    p_sub = tf_b.paragraphs[0]
+    p_sub.text = f"🏷️ {t['badge']}"
+    p_sub.font.name = FONT_FAMILY
+    p_sub.font.size = Pt(8.5)
+    p_sub.font.bold = True
+    p_sub.font.color.rgb = t["header_bg"]
+    
+    for lead, val in t["keywords"]:
+        pb = tf_b.add_paragraph()
+        pb.text = f"• {lead} {val}"
         pb.font.name = FONT_FAMILY
-        pb.font.size = Pt(10)
+        pb.font.size = Pt(9.2)
         pb.font.color.rgb = TEXT_DARK
         pb.line_spacing = 1.5
-        pb.space_before = Pt(5)
+        pb.space_before = Pt(6)
+        
+    # Bottom KPI Box
+    pill_h = Inches(0.68)
+    pill_y = c_y + c_h - pill_h - Inches(0.12)
+    pill = slide3.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, cx + Inches(0.1), pill_y, c_w - Inches(0.2), pill_h)
+    pill.fill.solid()
+    pill.fill.fore_color.rgb = t["pill_bg"]
+    pill.line.color.rgb = t["border_c"]
+    pill.line.width = Pt(1.2)
+    
+    tb_pill = slide3.shapes.add_textbox(cx + Inches(0.12), pill_y + Inches(0.08), c_w - Inches(0.24), pill_h - Inches(0.16))
+    tf_pill = tb_pill.text_frame
+    tf_pill.word_wrap = True
+    tf_pill.margin_left = tf_pill.margin_right = tf_pill.margin_top = tf_pill.margin_bottom = 0
+    
+    p_pt = tf_pill.paragraphs[0]
+    p_pt.text = t["pill_title"]
+    p_pt.font.name = FONT_FAMILY
+    p_pt.font.size = Pt(8)
+    p_pt.font.bold = True
+    p_pt.font.color.rgb = t["pill_tx"]
+    p_pt.alignment = PP_ALIGN.CENTER
+    
+    p_ps = tf_pill.add_paragraph()
+    p_ps.text = t["pill_sub"]
+    p_ps.font.name = FONT_FAMILY
+    p_ps.font.size = Pt(9.5)
+    p_ps.font.bold = True
+    p_ps.font.color.rgb = t["pill_tx"]
+    p_ps.alignment = PP_ALIGN.CENTER
+    p_ps.space_before = Pt(1)
 
-# Right Side: Proportional Image (Hinh 2.1 Medallion: Aspect 1.878)
-add_proportional_image(slide3, "images/hinh_2_1_medallion_architecture.png", Inches(6.3), Inches(1.55), Inches(6.233), Inches(5.32))
+    # Connector arrow to next stage
+    if i < len(tiers) - 1:
+        arr_x = cx + c_w
+        arr_y = c_y + Inches(0.35)
+        tb_arr = slide3.shapes.add_textbox(arr_x, arr_y, c_gap, Inches(0.4))
+        tfa = tb_arr.text_frame
+        tfa.margin_left = tfa.margin_right = tfa.margin_top = tfa.margin_bottom = 0
+        pa = tfa.paragraphs[0]
+        pa.text = "➔"
+        pa.font.name = FONT_FAMILY
+        pa.font.size = Pt(14)
+        pa.font.bold = True
+        pa.font.color.rgb = RGBColor(148, 163, 184)
+        pa.alignment = PP_ALIGN.CENTER
 
 print("✅ Slide 3 hoàn tất.")
 
